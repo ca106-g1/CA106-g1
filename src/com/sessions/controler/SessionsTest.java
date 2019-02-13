@@ -17,6 +17,7 @@ public class SessionsTest extends HttpServlet{
 	
 	private SessionsDAOImpl sessionsDAOImpl;
 
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SessionsVO sessionsVO = new SessionsVO();
