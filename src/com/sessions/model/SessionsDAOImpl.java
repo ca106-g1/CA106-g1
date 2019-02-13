@@ -1,4 +1,4 @@
-package com.session.model;
+package com.sessions.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBD_MVC");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -47,6 +47,8 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			pstmt.setDate(3, sessionsVO.getSessions_start());
 			pstmt.setString(4, sessionsVO.getSessions_status());
 			pstmt.setInt(5, sessionsVO.getSessions_remaining());
+			
+			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -87,7 +89,7 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			pstmt.setString(4, sessionsVO.getSessions_status());
 			pstmt.setInt(5, sessionsVO.getSessions_remaining());
 			pstmt.setString(6, sessionsVO.getSessions_no());
-
+			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
@@ -119,9 +121,10 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
+			//DELETE FROM SESSIONS WHERE SESSIONS_NO = ?
 			pstmt.setString(1, sessions_no);
 
-
+			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {

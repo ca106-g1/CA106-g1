@@ -1,4 +1,4 @@
-package com.session.model;
+package com.sessions.model;
 
 import java.io.Serializable;
 import java.sql.Date;
