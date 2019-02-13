@@ -29,7 +29,7 @@ public class CinemaTest extends HttpServlet{
 		cinemaDAOImpl.insert(cinemaVO);
 		
 		CinemaVO cinemaVO2 = new CinemaVO();
-		cinemaVO2.setCinema_no("CINEMA015");
+		cinemaVO2.setCinema_no("CINEMA014");
 		cinemaVO2.setCinema_type("CINEMA_TYPE_update");
 		cinemaVO2.setCinema_size(400);
 		cinemaVO2.setCinema_name("CINEMA_N");
@@ -38,7 +38,7 @@ public class CinemaTest extends HttpServlet{
 		
 		cinemaDAOImpl.update(cinemaVO2);
 		
-		cinemaDAOImpl.delete("CINEMA018");
+		cinemaDAOImpl.delete("CINEMA019");
 		
 		System.out.println(cinemaDAOImpl.findByPrimaryKey("CINEMA002"));
 		System.out.println(cinemaDAOImpl.getAll());
