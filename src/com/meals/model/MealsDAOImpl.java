@@ -12,7 +12,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-
 public class MealsDAOImpl implements MealsDAO_interface {
 	private static DataSource ds = null;
 	static {
@@ -24,14 +23,14 @@ public class MealsDAOImpl implements MealsDAO_interface {
 		}
 	}
 
-	private static final String INSERT = "INSERT INTO CINEMA VALUES ('CINEMA'||LPAD(CINEMA_SEQ.NEXTVAL,3,0),?,?,?,?,?)";
-	private static final String GET_ALL = "SELECT * FROM CINEMA";
-	private static final String GET_ONE = "SELECT * FROM CINEMA WHERE CINEMA_NO = ?";
-	private static final String DELETE = "DELETE FROM CINEMA WHERE CINEMA_NO = ?";
-	private static final String UPDATE = "UPDATE CINEMA SET CINEMA_TYPE=?, CINEMA_SIZE=?, CINEMA_NAME=?, CINEMA_CORRECT=?, CINEMA_STATUS=? WHERE CINEMA_NO = ?";
+	private static final String INSERT = "INSERT INTO MEALS VALUES ('MEALS'||LPAD(MEALS_SEQ.NEXTVAL, 3, '0'),?,?,?,?,?)";
+	private static final String GET_ALL = "SELECT * FROM MEALS";
+	private static final String GET_ONE = "SELECT * FROM MEALS WHERE MEALS_NO = ?";
+	private static final String DELETE = "DELETE FROM MEALS WHERE MEALS_NO = ?";
+	private static final String UPDATE = "UPDATE MEALS SET MEALS_NAME=?, MEALS_PRICE_PRE=?, MEALS_PRICE_GEN=?, MEALS_BLOB=?, MEALS_STATUS=? WHERE MEALS_NO = ?";
 
 	@Override
-	public void insert(CinemaVO cinemaVO) {
+	public void insert(MealsVO MealsVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -40,15 +39,14 @@ public class MealsDAOImpl implements MealsDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT);
-			// INSERT INTO CINEMA VALUES ('CINEMA'||LPAD(CINEMA_SEQ.NEXTVAL,3,0),?,?,?,?,?)
-			// UPDATE CINEMA SET CINEMA_TYPE=?, CINEMA_SIZE=?, CINEMA_NAME=?,
-			// CINEMA_CORRECT=?, CINEMA_STATUS=? WHERE CINEMA_NO = ?
+			// UPDATE MEALS SET MEALS_NAME=?, MEALS_PRICE_PRE=?, MEALS_PRICE_GEN=?,
+			// MEALS_BLOB=?, MEALS_STATUS=? WHERE MEALS_NO = ?
 
-			pstmt.setString(1, cinemaVO.getCinema_type());
-			pstmt.setInt(2, cinemaVO.getCinema_size());
-			pstmt.setString(3, cinemaVO.getCinema_name());
-			pstmt.setInt(4, cinemaVO.getCinema_correct());
-			pstmt.setString(5, cinemaVO.getCinema_status());
+			pstmt.setString(1, MealsVO.getMeals_name());
+			pstmt.setInt(2, MealsVO.getMeals_price_pre());
+			pstmt.setInt(3, MealsVO.getMeals_price_gen());
+			pstmt.setBytes(4, MealsVO.getMeals_blob());
+			pstmt.setString(5, MealsVO.getMeals_status());
 
 			pstmt.executeUpdate();
 
@@ -74,7 +72,7 @@ public class MealsDAOImpl implements MealsDAO_interface {
 	}
 
 	@Override
-	public void update(CinemaVO cinemaVO) {
+	public void update(MealsVO MealsVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -83,15 +81,14 @@ public class MealsDAOImpl implements MealsDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			//// UPDATE CINEMA SET CINEMA_TYPE=?, CINEMA_SIZE=?, CINEMA_NAME=?,
-			//// CINEMA_CORRECT=?, CINEMA_STATUS=? WHERE CINEMA_NO = ?
-
-			pstmt.setString(1, cinemaVO.getCinema_type());
-			pstmt.setInt(2, cinemaVO.getCinema_size());
-			pstmt.setString(3, cinemaVO.getCinema_name());
-			pstmt.setInt(4, cinemaVO.getCinema_correct());
-			pstmt.setString(5, cinemaVO.getCinema_status());
-			pstmt.setString(6, cinemaVO.getCinema_no());
+			// UPDATE MEALS SET MEALS_NAME=?, MEALS_PRICE_PRE=?, MEALS_PRICE_GEN=?,
+			// MEALS_BLOB=?, MEALS_STATUS=? WHERE MEALS_NO = ?
+			pstmt.setString(1, MealsVO.getMeals_name());
+			pstmt.setInt(2, MealsVO.getMeals_price_pre());
+			pstmt.setInt(3, MealsVO.getMeals_price_gen());
+			pstmt.setBytes(4, MealsVO.getMeals_blob());
+			pstmt.setString(5, MealsVO.getMeals_status());
+			pstmt.setString(6, MealsVO.getMeals_no());
 
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
@@ -116,7 +113,7 @@ public class MealsDAOImpl implements MealsDAO_interface {
 	}
 
 	@Override
-	public void delete(String cinema_no) {
+	public void delete(String meals_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -125,8 +122,8 @@ public class MealsDAOImpl implements MealsDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			// DELETE FROM CINEMA WHERE CINEMA_NO = ?
-			pstmt.setString(1, cinema_no);
+			// DELETE FROM MEALS WHERE MEALS_NO = ?
+			pstmt.setString(1, meals_no);
 
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
@@ -151,8 +148,8 @@ public class MealsDAOImpl implements MealsDAO_interface {
 	}
 
 	@Override
-	public CinemaVO findByPrimaryKey(String cinema_no) {
-		CinemaVO cinemaVO = null;
+	public MealsVO findByPrimaryKey(String meals_no) {
+		MealsVO mealsVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -162,23 +159,23 @@ public class MealsDAOImpl implements MealsDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE);
 
-			pstmt.setString(1, cinema_no);
+			pstmt.setString(1, meals_no);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				cinemaVO = new CinemaVO();
-				cinemaVO.setCinema_no(cinema_no);
-				cinemaVO.setCinema_type(rs.getString("CINEMA_TYPE"));
-				cinemaVO.setCinema_size(rs.getInt("CINEMA_SIZE"));
-				cinemaVO.setCinema_name(rs.getString("CINEMA_NAME"));
-				cinemaVO.setCinema_correct(rs.getInt("CINEMA_CORRECT"));
-				cinemaVO.setCinema_status(rs.getString("CINEMA_STATUS"));
-				// UPDATE CINEMA SET CINEMA_TYPE=?, CINEMA_SIZE=?, CINEMA_NAME=?,
-				// CINEMA_CORRECT=?, CINEMA_STATUS=? WHERE CINEMA_NO = ?
+				mealsVO = new MealsVO();
+				mealsVO.setMeals_no(meals_no);
+				mealsVO.setMeals_name(rs.getString("MEALS_NAME"));
+				mealsVO.setMeals_price_pre(rs.getInt("MEALS_PRICE_PRE"));
+				mealsVO.setMeals_price_gen(rs.getInt("MEALS_PRICE_GEN"));
+				mealsVO.setMeals_blob(rs.getBytes("MEALS_BLOB"));
+				mealsVO.setMeals_status(rs.getString("MEALS_STATUS"));
+				// UPDATE MEALS SET MEALS_NAME=?, MEALS_PRICE_PRE=?, MEALS_PRICE_GEN=?,
+				// MEALS_BLOB=?, MEALS_STATUS=? WHERE MEALS_NO = ?
 
 			}
-			System.out.println(cinemaVO);
+
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
@@ -204,13 +201,13 @@ public class MealsDAOImpl implements MealsDAO_interface {
 				}
 			}
 		}
-		return cinemaVO;
+		return mealsVO;
 	}
 
 	@Override
-	public List<CinemaVO> getAll() {
-		List<CinemaVO> list = new ArrayList<CinemaVO>();
-		CinemaVO cinemaVO = null;
+	public List<MealsVO> getAll() {
+		List<MealsVO> list = new ArrayList<MealsVO>();
+		MealsVO mealsVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -223,14 +220,16 @@ public class MealsDAOImpl implements MealsDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				cinemaVO = new CinemaVO();
-				cinemaVO.setCinema_no(rs.getString("CINEMA_NO"));
-				cinemaVO.setCinema_type(rs.getString("CINEMA_TYPE"));
-				cinemaVO.setCinema_size(rs.getInt("CINEMA_SIZE"));
-				cinemaVO.setCinema_name(rs.getString("CINEMA_NAME"));
-				cinemaVO.setCinema_correct(rs.getInt("CINEMA_CORRECT"));
-				cinemaVO.setCinema_status(rs.getString("CINEMA_STATUS"));
-				list.add(cinemaVO);
+				mealsVO = new MealsVO();
+				mealsVO.setMeals_no(rs.getString("MEALS_NO"));
+				mealsVO.setMeals_name(rs.getString("MEALS_NAME"));
+				mealsVO.setMeals_price_pre(rs.getInt("MEALS_PRICE_PRE"));
+				mealsVO.setMeals_price_gen(rs.getInt("MEALS_PRICE_GEN"));
+				mealsVO.setMeals_blob(rs.getBytes("MEALS_BLOB"));
+				mealsVO.setMeals_status(rs.getString("MEALS_STATUS"));
+				// UPDATE MEALS SET MEALS_NAME=?, MEALS_PRICE_PRE=?, MEALS_PRICE_GEN=?,
+				// MEALS_BLOB=?, MEALS_STATUS=? WHERE MEALS_NO = ?
+				list.add(mealsVO);
 			}
 			System.out.println(list);
 		} catch (SQLException se) {
