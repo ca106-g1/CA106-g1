@@ -15,6 +15,8 @@ import com.meals.model.MealsVO;
 @WebServlet("/MealsTest")
 public class MealsTest extends HttpServlet{
 	
+
+	private static final long serialVersionUID = -1921776397555789457L;
 	private MealsDAOImpl mealsDAOImpl;
 
 	@Override

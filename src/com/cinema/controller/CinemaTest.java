@@ -1,4 +1,4 @@
-package com.cinema.controler;
+package com.cinema.controller;
 
 import java.io.IOException;
 import java.util.GregorianCalendar;

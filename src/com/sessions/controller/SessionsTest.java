@@ -1,4 +1,4 @@
-package com.sessions.controler;
+package com.sessions.controller;
 
 import java.io.IOException;
 import java.util.GregorianCalendar;
