@@ -13,7 +13,7 @@ public class AdvDAOImpl implements AdvDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String username = "JOIN";
-	String password = "JOIN";
+	String password = "123456";
 
 	private static final String INSERT_DEP = "INSERT INTO ADVERTISEMENT VALUES (ADVERTISEMENT_seq.NEXTVAL ,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE ADVERTISEMENT set AD_NAME = ?, AD_PIC =?, AD_CONT =?, AD_START =?, AD_END =? WHERE AD_NO = ?";
