@@ -8,7 +8,7 @@ public class SessionsVO implements Serializable{
 	private static final long serialVersionUID = -6332296927066906614L;
 
 	private String sessions_no;
-	private Integer movie_no;
+	private String movie_no;
 	private String cinema_no;
 	private Date sessions_start;
 	private String sessions_status;
@@ -21,10 +21,10 @@ public class SessionsVO implements Serializable{
 	public void setSessions_no(String sessions_no) {
 		this.sessions_no = sessions_no;
 	}
-	public Integer getMovie_no() {
+	public String getMovie_no() {
 		return movie_no;
 	}
-	public void setMovie_no(Integer movie_no) {
+	public void setMovie_no(String movie_no) {
 		this.movie_no = movie_no;
 	}
 	public String getCinema_no() {

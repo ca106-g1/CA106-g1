@@ -10,7 +10,7 @@ public class AdvVO implements java.io.Serializable{
 	private static final long serialVersionUID = -484289920823447586L;
 	private String ad_no;			
 	private String ad_name;			
-	private byte[]   ad_pic;
+	private byte[] ad_pic;
 	private String ad_cont;	
 	private Date   ad_start;				
 	private Date   ad_end;

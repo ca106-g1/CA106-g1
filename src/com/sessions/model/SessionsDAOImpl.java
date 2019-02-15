@@ -42,7 +42,7 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			pstmt = con.prepareStatement(INSERT);
 			// INSERT INTO SESSIONS VALUES ('SESSIONS'||LPAD(SESSIONS_SEQ.NEXTVAL, 8, '0'),?,?,?,?,?)
 
-			pstmt.setInt(1, sessionsVO.getMovie_no());
+			pstmt.setString(1, sessionsVO.getMovie_no());
 			pstmt.setString(2, sessionsVO.getCinema_no());
 			pstmt.setDate(3, sessionsVO.getSessions_start());
 			pstmt.setString(4, sessionsVO.getSessions_status());
@@ -83,7 +83,7 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			
 			//UPDATE SESSIONS SET MOVIE_NO=?, CINEMA_NO=?, SESSIONS_START=?, SESSIONS_STATUS=?, SESSIONS_REMAINING=? WHERE SESSIONS_NO = ?
 
-			pstmt.setInt(1, sessionsVO.getMovie_no());
+			pstmt.setString(1, sessionsVO.getMovie_no());
 			pstmt.setString(2, sessionsVO.getCinema_no());
 			pstmt.setDate(3, sessionsVO.getSessions_start());
 			pstmt.setString(4, sessionsVO.getSessions_status());
@@ -165,7 +165,7 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			while (rs.next()) {
 				sessionsVO = new SessionsVO();
 				sessionsVO.setSessions_no(sessions_no);
-				sessionsVO.setMovie_no(rs.getInt("MOVIE_NO"));
+				sessionsVO.setMovie_no(rs.getString("MOVIE_NO"));
 				sessionsVO.setCinema_no(rs.getString("CINEMA_NO"));
 				sessionsVO.setSessions_start(rs.getDate("SESSIONS_START"));
 				sessionsVO.setSessions_status(rs.getString("SESSIONS_STATUS"));
@@ -220,7 +220,7 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			while (rs.next()) {
 				sessionsVO = new SessionsVO();
 				sessionsVO.setSessions_no(rs.getString("SESSIONS_NO"));
-				sessionsVO.setMovie_no(rs.getInt("MOVIE_NO"));
+				sessionsVO.setMovie_no(rs.getString("MOVIE_NO"));
 				sessionsVO.setCinema_no(rs.getString("CINEMA_NO"));
 				sessionsVO.setSessions_start(rs.getDate("SESSIONS_START"));
 				sessionsVO.setSessions_status(rs.getString("SESSIONS_STATUS"));
