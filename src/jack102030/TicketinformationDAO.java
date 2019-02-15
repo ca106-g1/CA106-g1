@@ -4,7 +4,7 @@ import java.util.*;
 
 import java.sql.*;
 
-public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
+public class TicketinformationDAO implements TicketinformationDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String userid = "CA106";
@@ -23,7 +23,7 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 	
 
 	@Override
-	public void insert(TICKETINFORMATION_VO ticketinformationVO) {
+	public void insert(TicketinformationVO ticketinformationVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -63,7 +63,7 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 	}
 
 	@Override
-	public void update(TICKETINFORMATION_VO ticketinformationVO) {
+	public void update(TicketinformationVO ticketinformationVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -146,8 +146,8 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 	}
 
 	@Override
-	public TICKETINFORMATION_VO findByPrimaryKey(String ti_no) {
-		TICKETINFORMATION_VO ticketinformationVO = null;
+	public TicketinformationVO findByPrimaryKey(String ti_no) {
+		TicketinformationVO ticketinformationVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -163,7 +163,7 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				ticketinformationVO = new TICKETINFORMATION_VO();
+				ticketinformationVO = new TicketinformationVO();
 				ticketinformationVO.setTi_no(rs.getString("ti_no"));
 				ticketinformationVO.setTi_name(rs.getString("ti_name"));
 				ticketinformationVO.setTi_price(rs.getString("ti_price"));
@@ -202,9 +202,9 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 	}
 
 	@Override
-	public List<TICKETINFORMATION_VO> getAll() {
-		List<TICKETINFORMATION_VO> list = new ArrayList<TICKETINFORMATION_VO>();
-		TICKETINFORMATION_VO ticketinformationVO = null;
+	public List<TicketinformationVO> getAll() {
+		List<TicketinformationVO> list = new ArrayList<TicketinformationVO>();
+		TicketinformationVO ticketinformationVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -218,7 +218,7 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				ticketinformationVO = new TICKETINFORMATION_VO();
+				ticketinformationVO = new TicketinformationVO();
 				ticketinformationVO.setTi_no(rs.getString("ti_no"));
 				ticketinformationVO.setTi_name(rs.getString("ti_name"));
 				ticketinformationVO.setTi_price(rs.getString("ti_price"));
@@ -260,16 +260,16 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 	
 	public static void main(String[] args) {
 		
-		TICKETINFORMATION_DAO dao = new TICKETINFORMATION_DAO();
+		TicketinformationDAO dao = new TicketinformationDAO();
 		
 		// 穝糤
-		TICKETINFORMATION_VO ticketinformationVO1 = new TICKETINFORMATION_VO();
+		TicketinformationVO ticketinformationVO1 = new TicketinformationVO();
 		ticketinformationVO1.setTi_name("穝糤布");
 		ticketinformationVO1.setTi_price("11111");
 		dao.insert(ticketinformationVO1);
 		
 		// э
-		TICKETINFORMATION_VO ticketinformationVO2 = new TICKETINFORMATION_VO();
+		TicketinformationVO ticketinformationVO2 = new TicketinformationVO();
 		ticketinformationVO2.setTi_no("1");
 		ticketinformationVO2.setTi_name("э布");
 		ticketinformationVO2.setTi_price("22");
@@ -279,15 +279,15 @@ public class TICKETINFORMATION_DAO implements TICKETINFORMATION_interface {
 		dao.delete("15");
 		
 		// 琩高
-		TICKETINFORMATION_VO ticketinformationVO3 = dao.findByPrimaryKey("1");
+		TicketinformationVO ticketinformationVO3 = dao.findByPrimaryKey("1");
 		System.out.print(ticketinformationVO3.getTi_no() + ",");
 		System.out.print(ticketinformationVO3.getTi_name() + ",");
 		System.out.println(ticketinformationVO3.getTi_price());
 		System.out.println("---------------------");
 		
 		// 琩高
-		List<TICKETINFORMATION_VO> list = dao.getAll();
-		for (TICKETINFORMATION_VO ticketinformationVO4 : list) {
+		List<TicketinformationVO> list = dao.getAll();
+		for (TicketinformationVO ticketinformationVO4 : list) {
 			System.out.print(ticketinformationVO4.getTi_no() + ",");
 			System.out.print(ticketinformationVO4.getTi_name() + ",");
 			System.out.print(ticketinformationVO4.getTi_price());

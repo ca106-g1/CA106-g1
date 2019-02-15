@@ -1,7 +1,7 @@
 package jack102030;
 import java.sql.Date;
 
-public class TICKETORDER_VO implements java.io.Serializable{
+public class TicketorderVO implements java.io.Serializable{
 	private String order_no;
 	private String member_no;
 	private String fd_no;

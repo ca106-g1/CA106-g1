@@ -1,6 +1,6 @@
 package jack102030;
 
-public class MEALSORDERDETAIL_VO implements java.io.Serializable{
+public class MealsorderdetailVO implements java.io.Serializable{
 	private String order_no;
 	private String meals_no;
 	private Integer mo_count;

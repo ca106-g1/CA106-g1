@@ -2,28 +2,27 @@ package jack102030;
 
 import java.util.*;
 
-
 import java.sql.*;
 
-public class TICKETORDER_DAO implements TICKETORDER_interface {
+public class MovieticketDAO implements MovieticketDAO_interface{
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String userid = "CA106";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT = 
-			"INSERT INTO TICKETORDER (order_no,member_no,fd_no,session_no,employee_no,order_group,order_takemeals,order_time,order_amount) VALUES (TICKETORDER_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+			"INSERT INTO MOVIETICKET (mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share) VALUES (MOVIETICKET_seq.NEXTVAL, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-			"SELECT order_no,member_no,fd_no,session_no,employee_no,order_group,order_takemeals,to_char(order_time,'yyyy-mm-dd') order_time,order_amount FROM TICKETORDER order by order_no";
+			"SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET order by mt_no";
 	private static final String GET_ONE_STMT = 
-			"SELECT order_no,member_no,fd_no,session_no,employee_no,order_group,order_takemeals,to_char(order_time,'yyyy-mm-dd') order_time,order_amount FROM TICKETORDER where order_no = ?";
+			"SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET where mt_no = ?";
 	private static final String DELETE = 
-			"DELETE FROM TICKETORDER where order_no = ?";
+			"DELETE FROM MOVIETICKET where mt_no = ?";
 	private static final String UPDATE = 
-			"UPDATE TICKETORDER set member_no=?, fd_no=?, session_no=?, employee_no=?, order_group=?, order_takemeals=?, order_time=?, order_amount=? where order_no = ?";
-
+			"UPDATE MOVIETICKET set order_no=?, ti_no=?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
+	
 	@Override
-	public void insert(TICKETORDER_VO ticketorderVO) {
+	public void insert(MovieticketVO movieticketVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -35,14 +34,12 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			//pstmt.setString(1, ticketorderVO.getOrder_no());
-			pstmt.setString(1, ticketorderVO.getMember_no());
-			pstmt.setString(2, ticketorderVO.getFd_no());
-			pstmt.setString(3, ticketorderVO.getSession_no());
-			pstmt.setString(4, ticketorderVO.getEmployee_no());
-			pstmt.setInt(5, ticketorderVO.getOrder_group());
-			pstmt.setInt(6, ticketorderVO.getOrder_takemeals());
-			pstmt.setDate(7, ticketorderVO.getOrder_time());
-			pstmt.setInt(8, ticketorderVO.getOrder_amount());
+			pstmt.setString(1, movieticketVO.getOrder_no());
+			pstmt.setString(2, movieticketVO.getTi_no());
+			pstmt.setBytes(3, movieticketVO.getMt_qr());
+			pstmt.setInt(4, movieticketVO.getMt_admission());
+			pstmt.setString(5, movieticketVO.getMt_share());
+			
 			
 
 			pstmt.executeUpdate();
@@ -75,26 +72,26 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 	}
 
 	@Override
-	public void update(TICKETORDER_VO ticketorderVO) {
+	public void update(MovieticketVO movieticketVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		
 		try {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setString(1, ticketorderVO.getMember_no());
-			pstmt.setString(2, ticketorderVO.getFd_no());
-			pstmt.setString(3, ticketorderVO.getSession_no());
-			pstmt.setString(4, ticketorderVO.getEmployee_no());
-			pstmt.setInt(5, ticketorderVO.getOrder_group());
-			pstmt.setInt(6, ticketorderVO.getOrder_takemeals());
-			pstmt.setDate(7, ticketorderVO.getOrder_time());
-			pstmt.setInt(8, ticketorderVO.getOrder_amount());
-			pstmt.setString(9, ticketorderVO.getOrder_no());
 			
+			
+//			pstmt.setString(1, movieticketVO.getMt_no());
+			pstmt.setString(1, movieticketVO.getOrder_no());
+			pstmt.setString(2, movieticketVO.getTi_no());
+			pstmt.setBytes(3, movieticketVO.getMt_qr());
+			pstmt.setInt(4, movieticketVO.getMt_admission());
+			pstmt.setString(5, movieticketVO.getMt_share());
+			pstmt.setString(6, movieticketVO.getMt_no());
+			
+//			"UPDATE MOVIETICKET set order_no=?, ti_no=?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
 
 			pstmt.executeUpdate();
 
@@ -126,8 +123,11 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 		
 	}
 
+		
+	
+
 	@Override
-	public void delete(String order_no) {
+	public void delete(String mt_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -137,7 +137,7 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setString(1, order_no);
+			pstmt.setString(1, mt_no);
 
 			pstmt.executeUpdate();
 
@@ -170,8 +170,8 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 	}
 
 	@Override
-	public TICKETORDER_VO findByPrimaryKey(String order_no) {
-		TICKETORDER_VO ticketorderVO = null;
+	public MovieticketVO findByPrimaryKey(String mt_no) {
+		MovieticketVO movieticketVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -182,22 +182,19 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setString(1, order_no);
+			pstmt.setString(1, mt_no);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				ticketorderVO = new TICKETORDER_VO();
-				ticketorderVO.setOrder_no(rs.getString("order_no"));
-				ticketorderVO.setMember_no(rs.getString("member_no"));
-				ticketorderVO.setFd_no(rs.getString("fd_no"));
-				ticketorderVO.setSession_no(rs.getString("session_no"));
-				ticketorderVO.setEmployee_no(rs.getString("employee_no"));
-				ticketorderVO.setOrder_group(rs.getInt("order_group"));
-				ticketorderVO.setOrder_takemeals(rs.getInt("order_takemeals"));
-				ticketorderVO.setOrder_time(rs.getDate("order_time"));
-				ticketorderVO.setOrder_amount(rs.getInt("order_amount"));
+				movieticketVO = new MovieticketVO();
+				movieticketVO.setMt_no(rs.getString("mt_no"));
+				movieticketVO.setOrder_no(rs.getString("order_no"));
+				movieticketVO.setTi_no(rs.getString("ti_no"));
+				movieticketVO.setMt_qr(rs.getBytes("mt_qr"));
+				movieticketVO.setMt_admission(rs.getInt("mt_admission"));
+				movieticketVO.setMt_share(rs.getString("mt_share"));
 			}
 
 			// Handle any driver errors
@@ -233,13 +230,13 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 			}
 		}
 		
-		return ticketorderVO;
+		return movieticketVO;
 	}
 
 	@Override
-	public List<TICKETORDER_VO> getAll() {
-		List<TICKETORDER_VO> list = new ArrayList<TICKETORDER_VO>();
-		TICKETORDER_VO ticketorderVO = null;
+	public List<MovieticketVO> getAll() {
+		List<MovieticketVO> list = new ArrayList<MovieticketVO>();
+		MovieticketVO movieticketVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -254,17 +251,14 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				ticketorderVO = new TICKETORDER_VO();
-				ticketorderVO.setOrder_no(rs.getString("order_no"));
-				ticketorderVO.setMember_no(rs.getString("member_no"));
-				ticketorderVO.setFd_no(rs.getString("fd_no"));
-				ticketorderVO.setSession_no(rs.getString("session_no"));
-				ticketorderVO.setEmployee_no(rs.getString("employee_no"));
-				ticketorderVO.setOrder_group(rs.getInt("order_group"));
-				ticketorderVO.setOrder_takemeals(rs.getInt("order_takemeals"));
-				ticketorderVO.setOrder_time(rs.getDate("order_time"));
-				ticketorderVO.setOrder_amount(rs.getInt("order_amount"));
-				list.add(ticketorderVO); // Store the row in the list
+				movieticketVO = new MovieticketVO();
+				movieticketVO.setMt_no(rs.getString("mt_no"));
+				movieticketVO.setOrder_no(rs.getString("order_no"));
+				movieticketVO.setTi_no(rs.getString("ti_no"));
+				movieticketVO.setMt_qr(rs.getBytes("mt_qr"));
+				movieticketVO.setMt_admission(rs.getInt("mt_admission"));
+				movieticketVO.setMt_share(rs.getString("mt_share"));
+				list.add(movieticketVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -302,69 +296,57 @@ public class TICKETORDER_DAO implements TICKETORDER_interface {
 		return list;
 	}
 	
-	
 	public static void main(String[] args) {
 
-		TICKETORDER_DAO dao = new TICKETORDER_DAO();
+		MovieticketDAO dao = new MovieticketDAO();
 
 		// 新增
-		TICKETORDER_VO ticketorderVO1 = new TICKETORDER_VO();
-		ticketorderVO1.setMember_no("16");
-		ticketorderVO1.setFd_no("22");
-		ticketorderVO1.setSession_no("122");
-		ticketorderVO1.setEmployee_no("0022");
-		ticketorderVO1.setOrder_group(1);
-		ticketorderVO1.setOrder_takemeals(1);
-		ticketorderVO1.setOrder_time(java.sql.Date.valueOf("2005-01-01"));
-		ticketorderVO1.setOrder_amount(500);
-		dao.insert(ticketorderVO1);
+		MovieticketVO movieticketVO1 = new MovieticketVO();
+		movieticketVO1.setOrder_no("2");
+		movieticketVO1.setTi_no("22");
+		movieticketVO1.setMt_qr(null);
+		movieticketVO1.setMt_admission(0);
+		movieticketVO1.setMt_share("qewr520@gmail.com");
+		dao.insert(movieticketVO1);
 
 		// 修改
-		TICKETORDER_VO ticketorderVO2 = new TICKETORDER_VO();
-		ticketorderVO2.setOrder_no("1");
-		ticketorderVO2.setMember_no("10023");
-		ticketorderVO2.setFd_no("23");
-		ticketorderVO2.setSession_no("123");
-		ticketorderVO2.setEmployee_no("0023");
-		ticketorderVO2.setOrder_group(0);
-		ticketorderVO2.setOrder_takemeals(0);
-		ticketorderVO2.setOrder_time(java.sql.Date.valueOf("2005-03-03"));
-		ticketorderVO2.setOrder_amount(503);
-		dao.update(ticketorderVO2);
+		MovieticketVO movieticketVO2 = new MovieticketVO();
+		movieticketVO2.setMt_no("1");
+		movieticketVO2.setOrder_no("1");
+		movieticketVO2.setTi_no("23");
+		movieticketVO2.setMt_qr(null);
+		movieticketVO2.setMt_admission(1);
+		movieticketVO2.setMt_share("zxcv520@gmail.com");
+		dao.update(movieticketVO2);
 
 		// 刪除
 		dao.delete("16");
 
 		// 查詢
-		TICKETORDER_VO ticketorderVO3 = dao.findByPrimaryKey("1");
-		System.out.print(ticketorderVO3.getOrder_no() + ",");
-		System.out.print(ticketorderVO3.getMember_no() + ",");
-		System.out.print(ticketorderVO3.getFd_no() + ",");
-		System.out.print(ticketorderVO3.getSession_no() + ",");
-		System.out.print(ticketorderVO3.getEmployee_no() + ",");
-		System.out.print(ticketorderVO3.getOrder_group() + ",");
-		System.out.print(ticketorderVO3.getOrder_takemeals() + ",");
-		System.out.print(ticketorderVO3.getOrder_time() + ",");
-		System.out.println(ticketorderVO3.getOrder_amount());
+		MovieticketVO movieticketVO3 = dao.findByPrimaryKey("1");
+		System.out.print(movieticketVO3.getMt_no() + ",");
+		System.out.print(movieticketVO3.getOrder_no() + ",");
+		System.out.print(movieticketVO3.getTi_no() + ",");
+		System.out.print(movieticketVO3.getMt_qr() + ",");
+		System.out.print(movieticketVO3.getMt_admission() + ",");
+		System.out.println(movieticketVO3.getMt_share());
 		System.out.println("---------------------");
 
 		// 查詢
-		List<TICKETORDER_VO> list = dao.getAll();
-		for (TICKETORDER_VO ticketorderVO4 : list) {
-			System.out.print(ticketorderVO4.getOrder_no() + ",");
-			System.out.print(ticketorderVO4.getMember_no() + ",");
-			System.out.print(ticketorderVO4.getFd_no() + ",");
-			System.out.print(ticketorderVO4.getSession_no() + ",");
-			System.out.print(ticketorderVO4.getEmployee_no() + ",");
-			System.out.print(ticketorderVO4.getOrder_group() + ",");
-			System.out.print(ticketorderVO4.getOrder_takemeals() + ",");
-			System.out.print(ticketorderVO4.getOrder_time() + ",");
-			System.out.print(ticketorderVO4.getOrder_amount());
+		List<MovieticketVO> list = dao.getAll();
+		for (MovieticketVO movieticketVO4 : list) {
+			System.out.print(movieticketVO4.getMt_no() + ",");
+			System.out.print(movieticketVO4.getOrder_no() + ",");
+			System.out.print(movieticketVO4.getTi_no() + ",");
+			System.out.print(movieticketVO4.getMt_qr() + ",");
+			System.out.print(movieticketVO4.getMt_admission() + ",");
+			System.out.print(movieticketVO4.getMt_share());
 			System.out.println();
 		}
 	}
-		
-				
+
+	
+	
 	
 	
 

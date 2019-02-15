@@ -1,6 +1,6 @@
 package jack102030;
 
-public class TICKETINFORMATION_VO {
+public class TicketinformationVO {
 	private String ti_no;
 	private String ti_name;
 	private String ti_price;

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
+public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String userid = "CA106";
@@ -27,7 +27,7 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 
 
 	@Override
-	public void insert(MEALSORDERDETAIL_VO mealsorderdetailVO) {
+	public void insert(MealsorderdetailVO mealsorderdetailVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -76,7 +76,7 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 	}
 
 	@Override
-	public void update(MEALSORDERDETAIL_VO mealsorderdetailVO) {
+	public void update(MealsorderdetailVO mealsorderdetailVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -167,8 +167,8 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 	}
 
 	@Override
-	public MEALSORDERDETAIL_VO findByPrimaryKey(String order_no) {
-		MEALSORDERDETAIL_VO mealsorderdetailVO = null;
+	public MealsorderdetailVO findByPrimaryKey(String order_no) {
+		MealsorderdetailVO mealsorderdetailVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -185,7 +185,7 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				mealsorderdetailVO = new MEALSORDERDETAIL_VO();
+				mealsorderdetailVO = new MealsorderdetailVO();
 				mealsorderdetailVO.setOrder_no(rs.getString("order_no"));
 				mealsorderdetailVO.setMeals_no(rs.getString("meals_no"));
 				mealsorderdetailVO.setMo_count(rs.getInt("mo_count"));
@@ -229,9 +229,9 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 	}
 
 	@Override
-	public List<MEALSORDERDETAIL_VO> getAll() {
-		List<MEALSORDERDETAIL_VO> list = new ArrayList<MEALSORDERDETAIL_VO>();
-		MEALSORDERDETAIL_VO mealsorderdetailVO = null;
+	public List<MealsorderdetailVO> getAll() {
+		List<MealsorderdetailVO> list = new ArrayList<MealsorderdetailVO>();
+		MealsorderdetailVO mealsorderdetailVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -246,7 +246,7 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				mealsorderdetailVO = new MEALSORDERDETAIL_VO();
+				mealsorderdetailVO = new MealsorderdetailVO();
 				mealsorderdetailVO.setOrder_no(rs.getString("order_no"));
 				mealsorderdetailVO.setMeals_no(rs.getString("meals_no"));
 				mealsorderdetailVO.setMo_count(rs.getInt("mo_count"));
@@ -292,17 +292,17 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 	
 	public static void main(String[] args) {
 
-		MEALSORDERDETAIL_DAO dao = new MEALSORDERDETAIL_DAO();
+		MealsorderdetailDAO dao = new MealsorderdetailDAO();
 
 		// 新增
-		MEALSORDERDETAIL_VO mealsorderdetailVO1 = new MEALSORDERDETAIL_VO();
+		MealsorderdetailVO mealsorderdetailVO1 = new MealsorderdetailVO();
 		mealsorderdetailVO1.setOrder_no("20");
 		mealsorderdetailVO1.setMeals_no("MEALS010");
 		mealsorderdetailVO1.setMo_count(100);
 		dao.insert(mealsorderdetailVO1);
 
 		// 修改
-		MEALSORDERDETAIL_VO mealsorderdetailVO2 = new MEALSORDERDETAIL_VO();
+		MealsorderdetailVO mealsorderdetailVO2 = new MealsorderdetailVO();
 		mealsorderdetailVO2.setOrder_no("1");
 		mealsorderdetailVO2.setMeals_no("MEALS001");
 		mealsorderdetailVO2.setMo_count(46);
@@ -312,15 +312,15 @@ public class MEALSORDERDETAIL_DAO implements MEALSORDERDETAIL_interface {
 		dao.delete("5");
 
 		// 查詢
-		MEALSORDERDETAIL_VO mealsorderdetailVO3 = dao.findByPrimaryKey("6");
+		MealsorderdetailVO mealsorderdetailVO3 = dao.findByPrimaryKey("6");
 		System.out.print(mealsorderdetailVO3.getOrder_no() + ",");
 		System.out.print(mealsorderdetailVO3.getMeals_no() + ",");
 		System.out.println(mealsorderdetailVO3.getMo_count());
 		System.out.println("---------------------");
 
 		// 查詢
-		List<MEALSORDERDETAIL_VO> list = dao.getAll();
-		for (MEALSORDERDETAIL_VO mealsorderdetailVO4 : list) {
+		List<MealsorderdetailVO> list = dao.getAll();
+		for (MealsorderdetailVO mealsorderdetailVO4 : list) {
 			System.out.print(mealsorderdetailVO4.getOrder_no() + ",");
 			System.out.print(mealsorderdetailVO4.getMeals_no() + ",");
 			System.out.print(mealsorderdetailVO4.getMo_count() + ",");
