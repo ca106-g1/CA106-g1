@@ -1,6 +1,5 @@
 package com.adv.model;
 
-import java.sql.Blob;
 import java.sql.Date;
 
 public class AdvVO implements java.io.Serializable{
@@ -11,7 +10,7 @@ public class AdvVO implements java.io.Serializable{
 	private static final long serialVersionUID = -484289920823447586L;
 	private String ad_no;			
 	private String ad_name;			
-	private Blob   ad_pic;
+	private byte[]   ad_pic;
 	private String ad_cont;	
 	private Date   ad_start;				
 	private Date   ad_end;
@@ -29,10 +28,10 @@ public class AdvVO implements java.io.Serializable{
 	public void setAd_name(String ad_name) {
 		this.ad_name = ad_name;
 	}
-	public Blob getAd_pic() {
+	public byte[] getAd_pic() {
 		return ad_pic;
 	}
-	public void setAd_pic(Blob ad_pic) {
+	public void setAd_pic(byte[] ad_pic) {
 		this.ad_pic = ad_pic;
 	}
 	public String getAd_cont() {
