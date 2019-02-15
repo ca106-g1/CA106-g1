@@ -69,6 +69,7 @@ public class UserDAOImpl implements UserDAO_interface {
 		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+e.getMessage());
+			
 		}catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -79,6 +80,8 @@ public class UserDAOImpl implements UserDAO_interface {
 				pstmt.close();
 			}catch(SQLException se) {
 				se.printStackTrace(System.err);
+				throw new RuntimeException("Could't load database driver."
+					+se.getMessage());
 			}
 		}
 		
@@ -87,6 +90,8 @@ public class UserDAOImpl implements UserDAO_interface {
 				con.close();
 			}catch(Exception e) {
 				e.printStackTrace(System.err);
+				throw new RuntimeException("Could't load database driver."
+						+e.getMessage());
 				}
 			}
 		}
@@ -100,7 +105,7 @@ public class UserDAOImpl implements UserDAO_interface {
 		
 
 	@Override
-	public UserVO findByPrimaryKey(String MEMBER_NO) {
+	public UserVO findByPrimaryKey(String member_no) {
 		// TODO Auto-generated method stub
 		
 		UserVO userVO = null;
@@ -113,7 +118,7 @@ public class UserDAOImpl implements UserDAO_interface {
 			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(GET_ONE_MEM);
 			
-			pstmt.setString(1,MEMBER_NO);
+			pstmt.setString(1,member_no);
 			
 			rs = pstmt.executeQuery();
 			
@@ -149,6 +154,8 @@ public class UserDAOImpl implements UserDAO_interface {
 					rs.close();
 				}catch (SQLException se) {
 					se.printStackTrace(System.err);
+					throw new RuntimeException("Could't load database driver."
+							+se.getMessage());
 				}
 			}
 			if (pstmt != null) {
@@ -156,6 +163,8 @@ public class UserDAOImpl implements UserDAO_interface {
 					pstmt.close();
 				}catch(SQLException se) {
 					se.printStackTrace(System.err);
+					throw new RuntimeException("Could't load database driver."
+							+se.getMessage());
 				}
 			}
 			if (con != null) {
@@ -209,10 +218,15 @@ public class UserDAOImpl implements UserDAO_interface {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			throw new RuntimeException("Could't load database driver"
+					+ e.getMessage());
+			
+			
+		} catch (SQLException se) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException("A database error occured"
+					+ se.getMessage()); 
+			
 		}finally {
 			if (rs != null) {
 				try {
@@ -285,16 +299,23 @@ public class UserDAOImpl implements UserDAO_interface {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			
+			throw new RuntimeException ("Could't load datebase driver "
+					+e.getMessage());
+			
+		} catch (SQLException se) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			throw new RuntimeException ("A database error occured"
+					+se.getMessage());
+			
 		}finally {
 			if(pstmt != null) {
 				try {
 					pstmt.close();
 				}catch(SQLException se) {
-					se.printStackTrace(System.err);
+					throw new RuntimeException ("Could't load datebase driver "
+							+se.getMessage());
 				}
 			}
 			
@@ -302,7 +323,8 @@ public class UserDAOImpl implements UserDAO_interface {
 				try {
 					con.close();
 				}catch (SQLException se) {
-					se.printStackTrace(System.err);
+					throw new RuntimeException ("Could't load datebase driver "
+							+se.getMessage());
 				}
 			}
 			
@@ -324,7 +346,7 @@ public class UserDAOImpl implements UserDAO_interface {
 
 
 	@Override
-	public void delete(String MEMBER_NO) {
+	public void delete(String member_no) {
 		// TODO Auto-generated method stub
 		
 		Connection con = null;
@@ -335,7 +357,7 @@ public class UserDAOImpl implements UserDAO_interface {
 			con = DriverManager.getConnection(url,username,password);
 			pstmt = con.prepareStatement(DELETE);
 			
-			pstmt.setString(1, MEMBER_NO);
+			pstmt.setString(1, member_no);
 			
 			pstmt.executeUpdate();
 			
@@ -343,10 +365,14 @@ public class UserDAOImpl implements UserDAO_interface {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			throw new RuntimeException ("Could't load datebase driver "
+					+e.getMessage());
+		} catch (SQLException se) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			throw new RuntimeException ("A database error occured"
+					+ se.getMessage());
+			
 		}finally {
 			if (pstmt != null) {
 				try {

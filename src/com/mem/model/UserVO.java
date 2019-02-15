@@ -20,7 +20,7 @@ public class UserVO implements java.io.Serializable{
 	private String  member_nick ;
 	private Integer member_sex ;
 	private Date    member_birthday ; 
-	private String  member_address ;
+	private String  member_address;
 	private String  member_email ;
 	private BLOB  	member_picture ;
 	private String  member_credit_number;

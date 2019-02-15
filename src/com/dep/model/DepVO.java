@@ -10,35 +10,37 @@ public class DepVO implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private String DEPOSIT_CHANGE_NO;
-	private String DEPOSIT_MEMBER_NO;
-	private Integer DEPOSIT_CHANGE_MONEY;
-	private Date DEPOSIT_CHANGE_DATE;
+	private String 	deposit_change_no;
+	private String 	deposit_member_no;
+	private Integer deposit_change_money;
+	private Date 	deposit_change_date;
 	
-	public String getDEPOSIT_CHANGE_NO() {
-		return DEPOSIT_CHANGE_NO;
+	
+	public String getDeposit_change_no() {
+		return deposit_change_no;
 	}
-	public void setDEPOSIT_CHANGE_NO(String DEPOSIT_CHANGE_NO) {
-		this.DEPOSIT_CHANGE_NO = DEPOSIT_CHANGE_NO;
+	public void setDeposit_change_no(String deposit_change_no) {
+		this.deposit_change_no = deposit_change_no;
 	}
-	public String getDEPOSIT_MEMBER_NO() {
-		return DEPOSIT_MEMBER_NO;
+	public String getDeposit_member_no() {
+		return deposit_member_no;
 	}
-	public void setDEPOSIT_MEMBER_NO(String DEPOSIT_MEMBER_NO) {
-		this.DEPOSIT_MEMBER_NO = DEPOSIT_MEMBER_NO;
+	public void setDeposit_member_no(String deposit_member_no) {
+		this.deposit_member_no = deposit_member_no;
 	}
-	public Integer getDEPOSIT_CHANGE_MONEY() {
-		return DEPOSIT_CHANGE_MONEY;
+	public Integer getDeposit_change_money() {
+		return deposit_change_money;
 	}
-	public void setDEPOSIT_CHANGE_MONEY(Integer DEPOSIT_CHANGE_MONEY) {
-		this.DEPOSIT_CHANGE_MONEY = DEPOSIT_CHANGE_MONEY;
+	public void setDeposit_change_money(Integer deposit_change_money) {
+		this.deposit_change_money = deposit_change_money;
 	}
-	public Date getDEPOSIT_CHANGE_DATE() {
-		return DEPOSIT_CHANGE_DATE;
+	public Date getDeposit_change_date() {
+		return deposit_change_date;
 	}
-	public void setDEPOSIT_CHANGE_DATE(Date DEPOSIT_CHANGE_DATE) {
-		this.DEPOSIT_CHANGE_DATE = DEPOSIT_CHANGE_DATE;
+	public void setDeposit_change_date(Date deposit_change_date) {
+		this.deposit_change_date = deposit_change_date;
 	}
+	
 	
 
 	
