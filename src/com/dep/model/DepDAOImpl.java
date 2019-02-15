@@ -18,7 +18,7 @@ public class DepDAOImpl implements DepDAO_interface {
 	private static final String INSERT_DEP =
 			"INSERT INTO DEPOSITDETAIL (DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,DEPOSIT_CHANGE_DATE) VALUES ('D'||LPAD(to_char(DEPOSITDETAIL_seq.NEXTVAL),6,'0'),?,?,?)";
 	private static final String UPDATE = 
-			"UPDATE DEPOSITDETAIL set DEPOSIT_MEMBER_NO = ?,DEPOSIT_CHANGE_MONEY =?,DEPOSIT_CHANGE_DATE =? ";
+			"UPDATE DEPOSITDETAIL set DEPOSIT_MEMBER_NO = ?,DEPOSIT_CHANGE_MONEY =?,DEPOSIT_CHANGE_DATE =? where DEPOSIT_CHANGE_NO=?";
 	private static final String DELETE =
 			"DELETE FROM DEPOSITDETAIL where DEPOSIT_CHANGE_NO = ?";
 	private static final String GET_ALL_DEP = 
@@ -93,6 +93,7 @@ public class DepDAOImpl implements DepDAO_interface {
 			pstmt.setString(1,depVO.getDeposit_member_no());
 			pstmt.setInt(2,depVO.getDeposit_change_money());
 			pstmt.setDate(3,depVO.getDeposit_change_date());
+			pstmt.setString(4,depVO.getDeposit_change_no());
 			
 			pstmt.executeUpdate();
 			
