@@ -21,18 +21,18 @@ public class UserDAOImpl implements UserDAO_interface {
 	String password = "123456";
 	
 	private static final String INSERT_MEM = 
-			"INSERT INTO MEMBER (MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION) VALUES ('M'||LPAD(to_char(MEMBER_seq.NEXTVAL),6,'0'),?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO MEMBER (MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS) VALUES ('M'||LPAD(to_char(MEMBER_seq.NEXTVAL),6,'0'),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private static final String GET_ALL_MEM = 
-			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL , MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION FROM MEMBER order by MEMBER_NO";
+			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL , MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS FROM MEMBER order by MEMBER_NO";
 		
 	private static final String GET_ONE_MEM = 
-			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION FROM MEMBER where MEMBER_NO = ?";
+			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS FROM MEMBER where MEMBER_NO = ?";
 	
 	private static final String DELETE = 
 			"DELETE FROM MEMBER where MEMBER_NO = ?";
 	private static final String UPDATE = 
-			"UPDATE MEMBER set MEMBER_ACCOUNT =?,MEMBER_PASSWORD=?,MEMBER_NAME=?,MEMBER_NICK=?,MEMBER_SEX=?,MEMBER_BIRTHDAY=?,MEMBER_ADDRESS=?,MEMBER_EMAIL=?,MEMBER_PICTURE=? ,MEMBER_CREDIT_NUMBER=?,MEMBER_BACK_VERIFICATION=? where MEMBER_NO = ?";
+			"UPDATE MEMBER set MEMBER_ACCOUNT =?,MEMBER_PASSWORD=?,MEMBER_NAME=?,MEMBER_NICK=?,MEMBER_SEX=?,MEMBER_BIRTHDAY=?,MEMBER_ADDRESS=?,MEMBER_EMAIL=?,MEMBER_PICTURE=? ,MEMBER_CREDIT_NUMBER=?,MEMBER_BACK_VERIFICATION=?,MEMBER_BUILDDAY=?,MEMBER_POINT=?,MEMBER_STATUS=? where MEMBER_NO = ?";
 	
 	
 
@@ -49,24 +49,27 @@ public class UserDAOImpl implements UserDAO_interface {
 			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(INSERT_MEM);
 			
-			pstmt.setString(1,userVO.getMEMBER_ACCOUNT());
-			pstmt.setString(2,userVO.getMEMBER_PASSWORD());
-			pstmt.setString(3,userVO.getMEMBER_NAME());
-			pstmt.setString(4,userVO.getMEMBER_NICK());
-			pstmt.setInt(5,userVO.getMEMBER_SEX());
-			pstmt.setDate(6,userVO.getMEMBER_BIRTHDAY());
-			pstmt.setString(7,userVO.getMEMBER_ADDRESS());
-			pstmt.setString(8,userVO.getMEMBER_EMAIL());
-			pstmt.setBlob(9,userVO.getMEMBER_PICTURE());
-			pstmt.setString(10,userVO.getMEMBER_CREDIT_NUMBER());
-			pstmt.setInt(11,userVO.getMEMBER_BACK_VERIFICATION());
-			
+			pstmt.setString(1,userVO.getMember_account());
+			pstmt.setString(2,userVO.getMember_password());
+			pstmt.setString(3,userVO.getMember_name());
+			pstmt.setString(4,userVO.getMember_nick());
+			pstmt.setInt(5,userVO.getMember_sex());
+			pstmt.setDate(6,userVO.getMember_birthday());
+			pstmt.setString(7,userVO.getMember_address());
+			pstmt.setString(8,userVO.getMember_email());
+			pstmt.setBlob(9,userVO.getMember_picture());
+			pstmt.setString(10,userVO.getMember_credit_number());
+			pstmt.setInt(11,userVO.getMember_back_verification());
+			pstmt.setDate(12,userVO.getMember_buildday());
+			pstmt.setInt(13,userVO.getMember_point());
+			pstmt.setString(14,userVO.getMember_status());
 			
 			pstmt.executeUpdate();
 			
 		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+e.getMessage());
+			
 		}catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -77,6 +80,8 @@ public class UserDAOImpl implements UserDAO_interface {
 				pstmt.close();
 			}catch(SQLException se) {
 				se.printStackTrace(System.err);
+				throw new RuntimeException("Could't load database driver."
+					+se.getMessage());
 			}
 		}
 		
@@ -85,6 +90,8 @@ public class UserDAOImpl implements UserDAO_interface {
 				con.close();
 			}catch(Exception e) {
 				e.printStackTrace(System.err);
+				throw new RuntimeException("Could't load database driver."
+						+e.getMessage());
 				}
 			}
 		}
@@ -98,7 +105,7 @@ public class UserDAOImpl implements UserDAO_interface {
 		
 
 	@Override
-	public UserVO findByPrimaryKey(String MEMBER_NO) {
+	public UserVO findByPrimaryKey(String member_no) {
 		// TODO Auto-generated method stub
 		
 		UserVO userVO = null;
@@ -111,24 +118,27 @@ public class UserDAOImpl implements UserDAO_interface {
 			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(GET_ONE_MEM);
 			
-			pstmt.setString(1,MEMBER_NO);
+			pstmt.setString(1,member_no);
 			
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				userVO = new UserVO();
-				userVO.setMEMBER_NO(rs.getString("MEMBER_NO"));
-				userVO.setMEMBER_ACCOUNT(rs.getString("MEMBER_ACCOUNT"));
-				userVO.setMEMBER_PASSWORD(rs.getString("MEMBER_PASSWORD"));
-				userVO.setMEMBER_NAME(rs.getString("MEMBER_NAME"));
-				userVO.setMEMBER_NICK(rs.getString("MEMBER_NICK"));
-				userVO.setMEMBER_SEX(rs.getInt("MEMBER_SEX"));
-				userVO.setMEMBER_BIRTHDAY(rs.getDate("MEMBER_BIRTHDAY"));
-				userVO.setMEMBER_ADDRESS(rs.getString("MEMBER_ADDRESS"));
-				userVO.setMEMBER_EMAIL(rs.getString("MEMBER_EMAIL"));
-				userVO.setMEMBER_PICTURE((BLOB) rs.getBlob("MEMBER_PICTURE"));
-				userVO.setMEMBER_CREDIT_NUMBER(rs.getString("MEMBER_CREDIT_NUMBER"));
-				userVO.setMEMBER_BACK_VERIFICATION(rs.getInt("MEMBER_BACK_VERIFICATION"));
+				userVO.setMember_no(rs.getString("member_no"));
+				userVO.setMember_account(rs.getString("member_account"));
+				userVO.setMember_password(rs.getString("member_password"));
+				userVO.setMember_name(rs.getString("member_name"));
+				userVO.setMember_nick(rs.getString("member_nick"));
+				userVO.setMember_sex(rs.getInt("member_sex"));
+				userVO.setMember_birthday(rs.getDate("member_birthday"));
+				userVO.setMember_address(rs.getString("member_address"));
+				userVO.setMember_email(rs.getString("member_email"));
+				userVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
+				userVO.setMember_credit_number(rs.getString("member_credit_number"));
+				userVO.setMember_back_verification(rs.getInt("member_back_verification"));
+				userVO.setMember_buildday(rs.getDate("member_buildday"));
+				userVO.setMember_point(rs.getInt("member_point"));
+				userVO.setMember_status(rs.getString("member_status"));
 			}
 			
 			
@@ -144,6 +154,8 @@ public class UserDAOImpl implements UserDAO_interface {
 					rs.close();
 				}catch (SQLException se) {
 					se.printStackTrace(System.err);
+					throw new RuntimeException("Could't load database driver."
+							+se.getMessage());
 				}
 			}
 			if (pstmt != null) {
@@ -151,6 +163,8 @@ public class UserDAOImpl implements UserDAO_interface {
 					pstmt.close();
 				}catch(SQLException se) {
 					se.printStackTrace(System.err);
+					throw new RuntimeException("Could't load database driver."
+							+se.getMessage());
 				}
 			}
 			if (con != null) {
@@ -183,28 +197,36 @@ public class UserDAOImpl implements UserDAO_interface {
 			
 			while (rs.next()) {
 				userVO = new UserVO();
-				userVO.setMEMBER_NO(rs.getString("MEMBER_NO"));
-				userVO.setMEMBER_ACCOUNT(rs.getString("MEMBER_ACCOUNT"));
-				userVO.setMEMBER_PASSWORD(rs.getString("MEMBER_PASSWORD"));
-				userVO.setMEMBER_NAME(rs.getString("MEMBER_NAME"));
-				userVO.setMEMBER_NICK(rs.getString("MEMBER_NICK"));
-				userVO.setMEMBER_SEX(rs.getInt("MEMBER_SEX"));
-				userVO.setMEMBER_BIRTHDAY(rs.getDate("MEMBER_BIRTHDAY"));
-				userVO.setMEMBER_ADDRESS(rs.getString("MEMBER_ADDRESS"));
-				userVO.setMEMBER_EMAIL(rs.getString("MEMBER_EMAIL"));
-				userVO.setMEMBER_PICTURE((BLOB) rs.getBlob("MEMBER_PICTURE"));
-				userVO.setMEMBER_CREDIT_NUMBER(rs.getString("MEMBER_CREDIT_NUMBER"));
-				userVO.setMEMBER_BACK_VERIFICATION(rs.getInt("MEMBER_BACK_VERIFICATION"));
+				userVO.setMember_no(rs.getString("member_no"));
+				userVO.setMember_account(rs.getString("member_account"));
+				userVO.setMember_password(rs.getString("member_password"));
+				userVO.setMember_name(rs.getString("member_name"));
+				userVO.setMember_nick(rs.getString("member_nick"));
+				userVO.setMember_sex(rs.getInt("member_sex"));
+				userVO.setMember_birthday(rs.getDate("member_birthday"));
+				userVO.setMember_address(rs.getString("member_address"));
+				userVO.setMember_email(rs.getString("member_email"));
+				userVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
+				userVO.setMember_credit_number(rs.getString("member_credit_number"));
+				userVO.setMember_back_verification(rs.getInt("member_back_verification"));
+				userVO.setMember_buildday(rs.getDate("member_buildday"));
+				userVO.setMember_point(rs.getInt("member_point"));
+				userVO.setMember_status(rs.getString("member_status"));
 				list.add(userVO);
 			}
 			
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			throw new RuntimeException("Could't load database driver"
+					+ e.getMessage());
+			
+			
+		} catch (SQLException se) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException("A database error occured"
+					+ se.getMessage()); 
+			
 		}finally {
 			if (rs != null) {
 				try {
@@ -254,19 +276,21 @@ public class UserDAOImpl implements UserDAO_interface {
 			pstmt = con.prepareStatement(UPDATE);
 			
 
-			pstmt.setString(1,userVO.getMEMBER_ACCOUNT());
-			pstmt.setString(2,userVO.getMEMBER_PASSWORD());
-			pstmt.setString(3,userVO.getMEMBER_NAME());
-			pstmt.setString(4,userVO.getMEMBER_NICK());
-			pstmt.setInt(5,userVO.getMEMBER_SEX());
-			pstmt.setDate(6,userVO.getMEMBER_BIRTHDAY());
-			pstmt.setString(7,userVO.getMEMBER_ADDRESS());
-			pstmt.setString(8,userVO.getMEMBER_EMAIL());
-			pstmt.setBlob(9,userVO.getMEMBER_PICTURE());
-			pstmt.setString(10,userVO.getMEMBER_CREDIT_NUMBER());
-			pstmt.setInt(11,userVO.getMEMBER_BACK_VERIFICATION());
-			pstmt.setString(12,userVO.getMEMBER_NO());
-			
+			pstmt.setString(1,userVO.getMember_account());
+			pstmt.setString(2,userVO.getMember_password());
+			pstmt.setString(3,userVO.getMember_name());
+			pstmt.setString(4,userVO.getMember_nick());
+			pstmt.setInt(5,userVO.getMember_sex());
+			pstmt.setDate(6,userVO.getMember_birthday());
+			pstmt.setString(7,userVO.getMember_address());
+			pstmt.setString(8,userVO.getMember_email());
+			pstmt.setBlob(9,userVO.getMember_picture());
+			pstmt.setString(10,userVO.getMember_credit_number());
+			pstmt.setInt(11,userVO.getMember_back_verification());
+			pstmt.setDate(12,userVO.getMember_buildday());
+			pstmt.setInt(13,userVO.getMember_point());
+			pstmt.setString(14,userVO.getMember_status());
+			pstmt.setString(15,userVO.getMember_no());
 			pstmt.executeUpdate();
 			
 			
@@ -275,16 +299,23 @@ public class UserDAOImpl implements UserDAO_interface {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			
+			throw new RuntimeException ("Could't load datebase driver "
+					+e.getMessage());
+			
+		} catch (SQLException se) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			throw new RuntimeException ("A database error occured"
+					+se.getMessage());
+			
 		}finally {
 			if(pstmt != null) {
 				try {
 					pstmt.close();
 				}catch(SQLException se) {
-					se.printStackTrace(System.err);
+					throw new RuntimeException ("Could't load datebase driver "
+							+se.getMessage());
 				}
 			}
 			
@@ -292,7 +323,8 @@ public class UserDAOImpl implements UserDAO_interface {
 				try {
 					con.close();
 				}catch (SQLException se) {
-					se.printStackTrace(System.err);
+					throw new RuntimeException ("Could't load datebase driver "
+							+se.getMessage());
 				}
 			}
 			
@@ -314,7 +346,7 @@ public class UserDAOImpl implements UserDAO_interface {
 
 
 	@Override
-	public void delete(String MEMBER_NO) {
+	public void delete(String member_no) {
 		// TODO Auto-generated method stub
 		
 		Connection con = null;
@@ -325,7 +357,7 @@ public class UserDAOImpl implements UserDAO_interface {
 			con = DriverManager.getConnection(url,username,password);
 			pstmt = con.prepareStatement(DELETE);
 			
-			pstmt.setString(1, MEMBER_NO);
+			pstmt.setString(1, member_no);
 			
 			pstmt.executeUpdate();
 			
@@ -333,10 +365,14 @@ public class UserDAOImpl implements UserDAO_interface {
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
+			throw new RuntimeException ("Could't load datebase driver "
+					+e.getMessage());
+		} catch (SQLException se) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			throw new RuntimeException ("A database error occured"
+					+ se.getMessage());
+			
 		}finally {
 			if (pstmt != null) {
 				try {
@@ -370,17 +406,21 @@ public static void main(String[]args) {
 	
 	//新增
 	UserVO userVO1 = new UserVO();
-	userVO1.setMEMBER_ACCOUNT("sfdgfdhg");
-	userVO1.setMEMBER_PASSWORD("75446");
-	userVO1.setMEMBER_NAME("Beauty");
-	userVO1.setMEMBER_NICK("M");
-	userVO1.setMEMBER_SEX(new Integer (1));
-	userVO1.setMEMBER_BIRTHDAY(java.sql.Date.valueOf("2005-01-01"));
-	userVO1.setMEMBER_ADDRESS("桃園市中壢區中央路6號");
-	userVO1.setMEMBER_EMAIL("a7513@gmail.com");
-	userVO1.setMEMBER_PICTURE(null);
-	userVO1.setMEMBER_CREDIT_NUMBER("49053697461256");
-	userVO1.setMEMBER_BACK_VERIFICATION(new Integer(123));
+	userVO1.setMember_account("sfdgfdhg");
+	userVO1.setMember_password("75446");
+	userVO1.setMember_name("Beauty");
+	userVO1.setMember_nick("M");
+	userVO1.setMember_sex(new Integer (1));
+	userVO1.setMember_birthday(java.sql.Date.valueOf("2005-01-01"));
+	userVO1.setMember_address("桃園市中壢區中央路6號");
+	userVO1.setMember_email("a7513@gmail.com");
+	userVO1.setMember_picture(null);
+	userVO1.setMember_credit_number("49053697461256");
+	userVO1.setMember_back_verification(new Integer(123));
+	userVO1.setMember_buildday(java.sql.Date.valueOf("2019-02-13"));
+	userVO1.setMember_point(new Integer (1000));
+	userVO1.setMember_status("1");
+	
 	dao.insert(userVO1);
 	
 
@@ -390,18 +430,21 @@ public static void main(String[]args) {
 	//修改
 	
 		UserVO userVO2 = new UserVO();
-		userVO2.setMEMBER_NO("5");
-		userVO2.setMEMBER_ACCOUNT("sfdgfdh456");
-		userVO2.setMEMBER_PASSWORD("75776");
-		userVO2.setMEMBER_NAME("Beaut");
-		userVO2.setMEMBER_NICK("S");
-		userVO2.setMEMBER_SEX(new Integer (0));
-		userVO2.setMEMBER_BIRTHDAY(java.sql.Date.valueOf("2006-01-01"));
-		userVO2.setMEMBER_ADDRESS("桃園市中壢區中央路5號");
-		userVO2.setMEMBER_EMAIL("a7713@gmail.com");
-		//userVO1.setMEMBER_PICTURE("");
-		userVO2.setMEMBER_CREDIT_NUMBER("49053697461256");
-		userVO2.setMEMBER_BACK_VERIFICATION(new Integer(123));
+		userVO2.setMember_no("M000012");
+		userVO2.setMember_account("sfdgfhg");
+		userVO2.setMember_password("7546");
+		userVO2.setMember_name("Beaut");
+		userVO2.setMember_nick("s");
+		userVO2.setMember_sex(new Integer (1));
+		userVO2.setMember_birthday(java.sql.Date.valueOf("2004-01-01"));
+		userVO2.setMember_address("桃園市中壢區中央路7號");
+		userVO2.setMember_email("a753@gmail.com");
+		userVO2.setMember_picture(null);
+		userVO2.setMember_credit_number("490536461256");
+		userVO2.setMember_back_verification(new Integer(123));
+		userVO2.setMember_buildday(java.sql.Date.valueOf("2019-02-12"));
+		userVO2.setMember_point(new Integer (2000));
+		userVO2.setMember_status("1");
 		
 		dao.update(userVO2);
 		
@@ -409,25 +452,28 @@ public static void main(String[]args) {
 	
 	//刪除
 		
-		dao.delete("16");
+		dao.delete("M000016");
 		
 	
 		
 	//查詢
 		
 		UserVO userVO3 = dao.findByPrimaryKey("M000001");
-		System.out.print(userVO3.getMEMBER_NO() + ",");
-		System.out.print(userVO3.getMEMBER_ACCOUNT() + ",");
-		System.out.print(userVO3.getMEMBER_PASSWORD() + ",");
-		System.out.print(userVO3.getMEMBER_NAME() + ",");
-		System.out.print(userVO3.getMEMBER_NICK() + ",");
-		System.out.print(userVO3.getMEMBER_SEX() + ",");
-		System.out.print(userVO3.getMEMBER_BIRTHDAY() + ",");
-		System.out.print(userVO3.getMEMBER_ADDRESS() + ",");
-		System.out.print(userVO3.getMEMBER_EMAIL() + ",");
-		//System.out.println(userVO3.getMEMBER_PICTURE() + ",");
-		System.out.print(userVO3.getMEMBER_CREDIT_NUMBER() + ",");
-		System.out.print(userVO3.getMEMBER_BACK_VERIFICATION() + ",");
+		System.out.print(userVO3.getMember_no () + ",");
+		System.out.print(userVO3.getMember_account() + ",");
+		System.out.print(userVO3.getMember_password() + ",");
+		System.out.print(userVO3.getMember_name() + ",");
+		System.out.print(userVO3.getMember_nick() + ",");
+		System.out.print(userVO3.getMember_sex() + ",");
+		System.out.print(userVO3.getMember_birthday() + ",");
+		System.out.print(userVO3.getMember_address() + ",");
+		System.out.print(userVO3.getMember_email() + ",");
+		System.out.print(userVO3.getMember_picture() + ",");
+		System.out.print(userVO3.getMember_credit_number() + ",");
+		System.out.print(userVO3.getMember_back_verification() + ",");
+		System.out.print(userVO3.getMember_buildday() + ",");
+		System.out.print(userVO3.getMember_point() + ",");
+		System.out.print(userVO3.getMember_status());
 		
 		System.out.println("----------------------");
 		
@@ -435,18 +481,21 @@ public static void main(String[]args) {
 	
 	 List<UserVO> list = dao.getAll();
 	for (UserVO aUser : list) {
-		System.out.println(aUser.getMEMBER_NO() + ",");
-		System.out.println(aUser.getMEMBER_ACCOUNT() + ",");
-		System.out.println(aUser.getMEMBER_PASSWORD() + ",");
-		System.out.println(aUser.getMEMBER_NAME() + ",");
-		System.out.println(aUser.getMEMBER_NICK() + ",");
-		System.out.println(aUser.getMEMBER_SEX() + ",");
-		System.out.println(aUser.getMEMBER_BIRTHDAY() + ",");
-		System.out.println(aUser.getMEMBER_ADDRESS() + ",");
-		System.out.println(aUser.getMEMBER_EMAIL() + ",");
-		//System.out.println(aUser.getMEMBER_PICTURE() + ",");
-		System.out.print(userVO3.getMEMBER_CREDIT_NUMBER() + ",");
-		System.out.print(userVO3.getMEMBER_BACK_VERIFICATION() + ",");
+		System.out.print(aUser.getMember_no  () + ",");
+		System.out.print(aUser.getMember_account() + ",");
+		System.out.print(aUser.getMember_password() + ",");
+		System.out.print(aUser.getMember_name() + ",");
+		System.out.print(aUser.getMember_nick() + ",");
+		System.out.print(aUser.getMember_sex() + ",");
+		System.out.print(aUser.getMember_birthday() + ",");
+		System.out.print(aUser.getMember_address() + ",");
+		System.out.print(aUser.getMember_email() + ",");
+		System.out.print(aUser.getMember_picture() + ",");
+		System.out.print(aUser.getMember_credit_number() + ",");
+		System.out.print(aUser.getMember_back_verification() + ",");
+		System.out.print(aUser.getMember_buildday() + ",");
+		System.out.print(aUser.getMember_point() + ",");
+		System.out.print(aUser.getMember_status());
 		System.out.println();
 		
 		
