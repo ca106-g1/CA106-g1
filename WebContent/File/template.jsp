@@ -10,7 +10,7 @@
 
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/File/css/bootstrap.min.css">
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title>Hello, world!</title>
 </head>
@@ -27,13 +27,13 @@
 	<jsp:include page="/HeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/File/jquery-3.3.1.slim.min.js"
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/File/popper.min.js"
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
 		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
 		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/File/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>
