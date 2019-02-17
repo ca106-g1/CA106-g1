@@ -12,7 +12,6 @@ public class Empper_detVO implements java.io.Serializable{
 	private String employee_no;
 	private String permission_no;
 	
-	
 	public String getEmployee_no() {
 		return employee_no;
 	}
@@ -26,6 +25,5 @@ public class Empper_detVO implements java.io.Serializable{
 		this.permission_no = permission_no;
 	}
 	
-	
-	
+			
 }

@@ -85,7 +85,7 @@ public class Empper_detDAOImpl implements Empper_detDAO_interface{
 	}
 
 	@Override
-	public void update(Empper_detVO empper_detVO1,Empper_detVO empper_detVO2) {
+	public void update(Empper_detVO empper_detVOold,Empper_detVO empper_detVOnew) {
 		// TODO Auto-generated method stub
 		
 		Connection con = null;
@@ -99,10 +99,10 @@ public class Empper_detDAOImpl implements Empper_detDAO_interface{
 			//欄位只有複合主鍵，沒有其他欄位，那INSERT語法該如何設立?
 			
 			
-			pstmt.setString(3,empper_detVO1.getEmployee_no());
-			pstmt.setString(4,empper_detVO1.getPermission_no());
-			pstmt.setString(1,empper_detVO2.getEmployee_no());
-			pstmt.setString(2,empper_detVO2.getPermission_no());
+			pstmt.setString(1,empper_detVOnew.getEmployee_no());
+			pstmt.setString(2,empper_detVOnew.getPermission_no());
+			pstmt.setString(3,empper_detVOold.getEmployee_no());
+			pstmt.setString(4,empper_detVOold.getPermission_no());
 			
 			pstmt.executeUpdate();
 			
