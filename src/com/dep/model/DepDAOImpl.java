@@ -18,7 +18,7 @@ public class DepDAOImpl implements DepDAO_interface {
 	private static final String INSERT_DEP =
 			"INSERT INTO DEPOSITDETAIL (DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,DEPOSIT_CHANGE_DATE) VALUES ('D'||LPAD(to_char(DEPOSITDETAIL_seq.NEXTVAL),6,'0'),?,?,?)";
 	private static final String UPDATE = 
-			"UPDATE DEPOSITDETAIL set DEPOSIT_MEMBER_NO = ?,DEPOSIT_CHANGE_MONEY =?,DEPOSIT_CHANGE_DATE =? where DEPOSIT_CHANGE_NO=?";
+			"UPDATE DEPOSITDETAIL set DEPOSIT_MEMBER_NO = ?,DEPOSIT_CHANGE_MONEY =?,DEPOSIT_CHANGE_DATE =? ";
 	private static final String DELETE =
 			"DELETE FROM DEPOSITDETAIL where DEPOSIT_CHANGE_NO = ?";
 	private static final String GET_ALL_DEP = 
@@ -93,7 +93,6 @@ public class DepDAOImpl implements DepDAO_interface {
 			pstmt.setString(1,depVO.getDeposit_member_no());
 			pstmt.setInt(2,depVO.getDeposit_change_money());
 			pstmt.setDate(3,depVO.getDeposit_change_date());
-			pstmt.setString(4,depVO.getDeposit_change_no());
 			
 			pstmt.executeUpdate();
 			
@@ -296,7 +295,7 @@ public static void main(String[]args) {
 	
 	DepDAOImpl dao = new DepDAOImpl();
 	
-	//ï¿½sï¿½W
+	//·s¼W
 	DepVO depVO1 = new DepVO();
 	depVO1.setDeposit_member_no("M000001");
 	depVO1.setDeposit_change_money(new Integer(3000));
@@ -306,7 +305,7 @@ public static void main(String[]args) {
 	
 	
 	
-	//ï¿½×§ï¿½
+	//­×§ï
 	DepVO depVO2 = new DepVO();
 	depVO2.setDeposit_change_no("D000015");
 	depVO2.setDeposit_member_no("M000002");
@@ -317,11 +316,11 @@ public static void main(String[]args) {
 	
 
 	
-	//ï¿½Rï¿½ï¿½
+	//§R°£
 	
 	dao.delete("D000005");
 	
-	//ï¿½dï¿½ï¿½
+	//¬d¸ß
 	DepVO depVO3 = dao.findByPrimaryKey("D000016");
 	System.out.print(depVO3.getDeposit_change_no()+",");
 	System.out.print(depVO3.getDeposit_member_no()+",");
@@ -329,7 +328,7 @@ public static void main(String[]args) {
 	System.out.print(depVO3.getDeposit_change_date());
 	System.out.println("-----------------------");
 	
-	//ï¿½dï¿½ï¿½
+	//¬d¸ß
 	List<DepVO> list = dao.getAll();
 	for (DepVO aDep : list) {
 		
