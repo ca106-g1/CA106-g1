@@ -1,4 +1,4 @@
-package jack102030;
+package com.ticketinformation.model;
 
 public class TicketinformationVO {
 	private String ti_no;

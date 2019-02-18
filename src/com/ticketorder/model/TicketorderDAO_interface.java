@@ -1,4 +1,4 @@
-package jack102030;
+package com.ticketorder.model;
 
 import java.util.*;
 

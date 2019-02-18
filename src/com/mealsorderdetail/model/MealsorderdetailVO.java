@@ -1,4 +1,4 @@
-package jack102030;
+package com.mealsorderdetail.model;
 
 public class MealsorderdetailVO implements java.io.Serializable{
 	private String order_no;

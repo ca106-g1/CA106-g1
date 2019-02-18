@@ -1,33 +1,29 @@
-package jack102030;
+package com.movieticke.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
+import java.sql.*;
+
+public class MovieticketDAO implements MovieticketDAO_interface{
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String userid = "CA106";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT = 
-			"INSERT INTO MEALSORDERDETAIL (order_no,meals_no,mo_count) VALUES ( ?, ?, ?)";
+			"INSERT INTO MOVIETICKET (mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share) VALUES (MOVIETICKET_seq.NEXTVAL, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-			"SELECT order_no,meals_no,mo_count FROM MEALSORDERDETAIL order by order_no";
+			"SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET order by mt_no";
 	private static final String GET_ONE_STMT = 
-			"SELECT order_no,meals_no,mo_count FROM MEALSORDERDETAIL where order_no = ?";
+			"SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET where mt_no = ?";
 	private static final String DELETE = 
-			"DELETE FROM MEALSORDERDETAIL where order_no = ?";
+			"DELETE FROM MOVIETICKET where mt_no = ?";
 	private static final String UPDATE = 
-			"UPDATE MEALSORDERDETAIL set meals_no=?, mo_count=? where order_no = ?";
-
-
+			"UPDATE MOVIETICKET set order_no=?, ti_no=?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
+	
 	@Override
-	public void insert(MealsorderdetailVO mealsorderdetailVO) {
+	public void insert(MovieticketVO movieticketVO) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -38,10 +34,11 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			//pstmt.setString(1, ticketorderVO.getOrder_no());
-			pstmt.setString(1, mealsorderdetailVO.getOrder_no());
-			pstmt.setString(2, mealsorderdetailVO.getMeals_no());
-			pstmt.setInt(3, mealsorderdetailVO.getMo_count());
-			
+			pstmt.setString(1, movieticketVO.getOrder_no());
+			pstmt.setString(2, movieticketVO.getTi_no());
+			pstmt.setBytes(3, movieticketVO.getMt_qr());
+			pstmt.setInt(4, movieticketVO.getMt_admission());
+			pstmt.setString(5, movieticketVO.getMt_share());
 			
 			
 
@@ -72,26 +69,29 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 				}
 			}
 		}
-		
 	}
 
 	@Override
-	public void update(MealsorderdetailVO mealsorderdetailVO) {
+	public void update(MovieticketVO movieticketVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		
 		try {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 			
-			pstmt.setString(1, mealsorderdetailVO.getMeals_no());
-			pstmt.setInt(2, mealsorderdetailVO.getMo_count());
-			pstmt.setString(3, mealsorderdetailVO.getOrder_no());
-//			pstmt.setString(2, mealsorderdetailVO.getMeals_no());
 			
+//			pstmt.setString(1, movieticketVO.getMt_no());
+			pstmt.setString(1, movieticketVO.getOrder_no());
+			pstmt.setString(2, movieticketVO.getTi_no());
+			pstmt.setBytes(3, movieticketVO.getMt_qr());
+			pstmt.setInt(4, movieticketVO.getMt_admission());
+			pstmt.setString(5, movieticketVO.getMt_share());
+			pstmt.setString(6, movieticketVO.getMt_no());
 			
+//			"UPDATE MOVIETICKET set order_no=?, ti_no=?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
 
 			pstmt.executeUpdate();
 
@@ -123,8 +123,11 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 		
 	}
 
+		
+	
+
 	@Override
-	public void delete(String order_no) {
+	public void delete(String mt_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -134,7 +137,7 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setString(1, order_no);
+			pstmt.setString(1, mt_no);
 
 			pstmt.executeUpdate();
 
@@ -167,8 +170,8 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 	}
 
 	@Override
-	public MealsorderdetailVO findByPrimaryKey(String order_no) {
-		MealsorderdetailVO mealsorderdetailVO = null;
+	public MovieticketVO findByPrimaryKey(String mt_no) {
+		MovieticketVO movieticketVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -179,17 +182,19 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setString(1, order_no);
+			pstmt.setString(1, mt_no);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				mealsorderdetailVO = new MealsorderdetailVO();
-				mealsorderdetailVO.setOrder_no(rs.getString("order_no"));
-				mealsorderdetailVO.setMeals_no(rs.getString("meals_no"));
-				mealsorderdetailVO.setMo_count(rs.getInt("mo_count"));
-				
+				movieticketVO = new MovieticketVO();
+				movieticketVO.setMt_no(rs.getString("mt_no"));
+				movieticketVO.setOrder_no(rs.getString("order_no"));
+				movieticketVO.setTi_no(rs.getString("ti_no"));
+				movieticketVO.setMt_qr(rs.getBytes("mt_qr"));
+				movieticketVO.setMt_admission(rs.getInt("mt_admission"));
+				movieticketVO.setMt_share(rs.getString("mt_share"));
 			}
 
 			// Handle any driver errors
@@ -225,13 +230,13 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 			}
 		}
 		
-		return mealsorderdetailVO;
+		return movieticketVO;
 	}
 
 	@Override
-	public List<MealsorderdetailVO> getAll() {
-		List<MealsorderdetailVO> list = new ArrayList<MealsorderdetailVO>();
-		MealsorderdetailVO mealsorderdetailVO = null;
+	public List<MovieticketVO> getAll() {
+		List<MovieticketVO> list = new ArrayList<MovieticketVO>();
+		MovieticketVO movieticketVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -246,12 +251,14 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				mealsorderdetailVO = new MealsorderdetailVO();
-				mealsorderdetailVO.setOrder_no(rs.getString("order_no"));
-				mealsorderdetailVO.setMeals_no(rs.getString("meals_no"));
-				mealsorderdetailVO.setMo_count(rs.getInt("mo_count"));
-				
-				list.add(mealsorderdetailVO); // Store the row in the list
+				movieticketVO = new MovieticketVO();
+				movieticketVO.setMt_no(rs.getString("mt_no"));
+				movieticketVO.setOrder_no(rs.getString("order_no"));
+				movieticketVO.setTi_no(rs.getString("ti_no"));
+				movieticketVO.setMt_qr(rs.getBytes("mt_qr"));
+				movieticketVO.setMt_admission(rs.getInt("mt_admission"));
+				movieticketVO.setMt_share(rs.getString("mt_share"));
+				list.add(movieticketVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -286,46 +293,61 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 				}
 			}
 		}
-		
 		return list;
 	}
 	
 	public static void main(String[] args) {
 
-		MealsorderdetailDAO dao = new MealsorderdetailDAO();
+		MovieticketDAO dao = new MovieticketDAO();
 
 		// 新增
-		MealsorderdetailVO mealsorderdetailVO1 = new MealsorderdetailVO();
-		mealsorderdetailVO1.setOrder_no("20");
-		mealsorderdetailVO1.setMeals_no("MEALS010");
-		mealsorderdetailVO1.setMo_count(100);
-		dao.insert(mealsorderdetailVO1);
+		MovieticketVO movieticketVO1 = new MovieticketVO();
+		movieticketVO1.setOrder_no("2");
+		movieticketVO1.setTi_no("22");
+		movieticketVO1.setMt_qr(null);
+		movieticketVO1.setMt_admission(0);
+		movieticketVO1.setMt_share("qewr520@gmail.com");
+		dao.insert(movieticketVO1);
 
 		// 修改
-		MealsorderdetailVO mealsorderdetailVO2 = new MealsorderdetailVO();
-		mealsorderdetailVO2.setOrder_no("1");
-		mealsorderdetailVO2.setMeals_no("MEALS001");
-		mealsorderdetailVO2.setMo_count(46);
-		dao.update(mealsorderdetailVO2);
+		MovieticketVO movieticketVO2 = new MovieticketVO();
+		movieticketVO2.setMt_no("1");
+		movieticketVO2.setOrder_no("1");
+		movieticketVO2.setTi_no("23");
+		movieticketVO2.setMt_qr(null);
+		movieticketVO2.setMt_admission(1);
+		movieticketVO2.setMt_share("zxcv520@gmail.com");
+		dao.update(movieticketVO2);
 
 		// 刪除
-		dao.delete("5");
+		dao.delete("16");
 
 		// 查詢
-		MealsorderdetailVO mealsorderdetailVO3 = dao.findByPrimaryKey("6");
-		System.out.print(mealsorderdetailVO3.getOrder_no() + ",");
-		System.out.print(mealsorderdetailVO3.getMeals_no() + ",");
-		System.out.println(mealsorderdetailVO3.getMo_count());
+		MovieticketVO movieticketVO3 = dao.findByPrimaryKey("1");
+		System.out.print(movieticketVO3.getMt_no() + ",");
+		System.out.print(movieticketVO3.getOrder_no() + ",");
+		System.out.print(movieticketVO3.getTi_no() + ",");
+		System.out.print(movieticketVO3.getMt_qr() + ",");
+		System.out.print(movieticketVO3.getMt_admission() + ",");
+		System.out.println(movieticketVO3.getMt_share());
 		System.out.println("---------------------");
 
 		// 查詢
-		List<MealsorderdetailVO> list = dao.getAll();
-		for (MealsorderdetailVO mealsorderdetailVO4 : list) {
-			System.out.print(mealsorderdetailVO4.getOrder_no() + ",");
-			System.out.print(mealsorderdetailVO4.getMeals_no() + ",");
-			System.out.print(mealsorderdetailVO4.getMo_count() + ",");
+		List<MovieticketVO> list = dao.getAll();
+		for (MovieticketVO movieticketVO4 : list) {
+			System.out.print(movieticketVO4.getMt_no() + ",");
+			System.out.print(movieticketVO4.getOrder_no() + ",");
+			System.out.print(movieticketVO4.getTi_no() + ",");
+			System.out.print(movieticketVO4.getMt_qr() + ",");
+			System.out.print(movieticketVO4.getMt_admission() + ",");
+			System.out.print(movieticketVO4.getMt_share());
 			System.out.println();
 		}
 	}
+
+	
+	
+	
+	
 
 }

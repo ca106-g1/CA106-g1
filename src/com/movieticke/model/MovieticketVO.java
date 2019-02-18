@@ -1,4 +1,4 @@
-package jack102030;
+package com.movieticke.model;
 import java.sql.Date;
 
 public class MovieticketVO implements java.io.Serializable{

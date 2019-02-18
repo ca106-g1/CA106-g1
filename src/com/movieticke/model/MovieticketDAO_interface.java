@@ -1,4 +1,4 @@
-package jack102030;
+package com.movieticke.model;
 
 import java.util.*;
 
