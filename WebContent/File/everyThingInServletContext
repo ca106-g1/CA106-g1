@@ -1,0 +1,38 @@
+package com.cinema.controller; 
+Class = CinemaTool
+@WebServlet(name = "/CinemaTool", loadOnStartup = 1, urlPatterns = "/CinemaTool") 
+[
+getServletContext().setAttribute("statusOfSitList", statusOfSitList);
+public class statusOfSit{
+		private String str;
+		private String coller;
+		
+		statusOfSit(String str, String coller){
+			this.str = str;
+			this.coller = coller;
+		}
+
+		public String getStr() {
+			return str;
+		}
+
+		public String getColler() {
+			return coller;
+		}
+
+		
+	}
+]
+
+package com.cinema.controller;
+Class = CinemaServlet
+@WebServlet(name = "/CinemaServlet", loadOnStartup = 1, urlPatterns = "/CinemaServlet")
+[
+map = new Hashtable<String, CinemaVO>();
+sc.setAttribute("cinemaMap", map);
+<Cinema_no, CinemaVO>
+
+list = new Vector<CinemaVO>();
+sc.setAttribute("cinemaList", list);
+<CinemaVO>
+]

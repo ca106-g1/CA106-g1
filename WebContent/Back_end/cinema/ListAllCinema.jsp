@@ -12,13 +12,54 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
-<title></title>
+<title>瀏覽廳院</title>
+
+<style>
+  table {
+	width: 600px;
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  table, th, td {
+    border: 1px solid #CCCCFF;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+</style>
+
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
-	<h1></h1>
+	<h1>瀏覽廳院</h1>
 
 	<!-- 工作區開始 -->
+	<table>
+	<tr>
+	<th>廳院編號</th>
+	<th>廳院名稱</th>
+	<th>廳院容量</th>
+	<th>廳院敘述</th>
+	<th>廳院狀態</th>
+	<th>設定廳院</th>
+	</tr>
+<c:forEach var="cinemaVO" items="${cinemaList}">
+
+<tr>
+
+	<td>${cinemaVO.cinema_no}</td>
+	<td>${cinemaVO.cinema_name}</td>
+	<td>${cinemaVO.cinema_size}</td>
+	<td>${cinemaVO.cinema_correct}</td>
+	<td>${cinemaVO.cinema_status}</td>
+	<td><a class = "btn btn-primary" href="updateCinema.jsp?cinema_no=${cinemaVO.cinema_no}">設定</a></td>
+	
+</tr>
+</c:forEach>
+	</table>
+		
 
 
 
