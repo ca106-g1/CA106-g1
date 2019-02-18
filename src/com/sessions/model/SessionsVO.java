@@ -7,6 +7,7 @@ public class SessionsVO implements Serializable{
 
 	private static final long serialVersionUID = -6332296927066906614L;
 
+	
 	private String sessions_no;
 	private String movie_no;
 	private String cinema_no;
