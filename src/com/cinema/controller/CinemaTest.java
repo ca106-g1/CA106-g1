@@ -1,7 +1,6 @@
 package com.cinema.controller;
 
 import java.io.IOException;
-import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,7 @@ import com.cinema.model.*;
 
 @WebServlet("/CinemaTest")
 public class CinemaTest extends HttpServlet{
-	
+	private static final long serialVersionUID = 6014780442490165198L;
 	private CinemaDAOImpl cinemaDAOImpl;
 
 	@Override

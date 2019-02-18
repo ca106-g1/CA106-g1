@@ -34,8 +34,8 @@
 
 	<div class="container">
 		<div class="row justify-content">
-			<div class="col-5">
-				<form action="CinemaServlet" method="post">
+			<div class="col-4">
+				<form action="<%= request.getContextPath()%>/CinemaServlet" method="post">
 					<table>
 
 						<tr>
@@ -49,7 +49,7 @@
 						</tr>
 						<tr>
 							<th>廳院容量</th>
-							<td><P>${cinemaVO.cinema_size}</P></td>
+							<td><P id = "p">${cinemaVO.cinema_size}</P></td>
 						</tr>
 						<tr>
 							<th>廳院敘述</th>
@@ -63,24 +63,49 @@
 						</tr>
 
 					</table>
-					<input type="hidden" name="cinema_size"
-						value="${cinemaVO.cinema_size}"> <input type="hidden"
-						name="cinema_no" value="${cinemaVO.cinema_no}"> <input
-						type="hidden" name="cinema_type" value="${cinemaVO.cinema_type}">
-					<input type="hidden" name="action" value="updateCinema"> <input
-						type="submit" value="送出修改">
+					<input id="hiddensizeinput" type="hidden" name="cinema_size"	value="${cinemaVO.cinema_size}"> 
+					<input type="hidden" name="cinema_no" value="${cinemaVO.cinema_no}"> 
+					<input id="hiddentypeinput" type="hidden" name="cinema_type" value="${cinemaVO.cinema_type}">
+					<input type="hidden" name="action" value="updateCinema"> 
+					<input type="submit" value="送出修改">
 				</form>
 			</div>
-			<div class="col-7">
-				<nav>
-					<c:forEach var="var" items="${statusOfSitList}">
 			
-						${var.str}
-						<div class="btn"
-							style="background-color:${var.coller}; border-color:#000">
-						</div>
+			<!-- ---------------------以上一般input---------------------- -->
+			<div class="col-8">
+				<nav class="row justify-content">
+				
+					<div class="col-9">
+						<c:forEach var="var" items="${statusOfSitList}">
+			
+							${var.str}
+							<div 
+								class="btn"
+								data-sitType = "${var.type}"
+								data-sitStr = "${var.str}"
+								id = "type${var.type}"
+								style="background-color:${var.coller}; border-color:#000; margin-left:5px">
+								
+							</div>
 
-					</c:forEach>
+						</c:forEach>
+					</div>
+								<!-- ---------------------以上所有type---------------------- -->
+				<div class="col-3">
+						<p style="margin:0px">現在使用</p>
+						<p id="str" style="margin:0px">走道</p>
+						
+						<div 
+							class="btn" 
+							data-sitType = "0"  
+							id="color" 
+							style="border-color:#000; margin:0px"></div>
+						
+					</div>
+							<!-- ---------------------以上現在使用type---------------------- -->
+				</nav>
+					<br>
+				<div class= "row">
 
 
 					<%
@@ -90,7 +115,7 @@
 						for (int i = 0; i < 20; i++) {
 							List<Integer> list = new ArrayList<Integer>();
 							for (int j = 0; j < 20; j++) {
-								list.add(new Integer(cinema_type.indexOf(i * 20 + j)));
+								list.add(new Integer(cinema_type.charAt(i * 20 + j)-48));
 							}
 							sitList.add(list);
 						}
@@ -103,12 +128,16 @@
 							List<Integer> sitInnerList = sitList.get(i);
 							int innerSize = sitInnerList.size();
 							for (int j = 0; j < innerSize; j++) {
+								CinemaTool.StatusOfSit cs = (CinemaTool.StatusOfSit) (statusOfSitList.get(sitInnerList.get(j)));
 					%>
 
-					<div class="btn"
-						style="background-color:<%=((CinemaTool.statusOfSit) (statusOfSitList.get(sitInnerList.get(j)))).getColler()%>; border-color:#000">
+					<div 
+						class="btn" 
+						data-sitType = "<%=cs.getType()%>"
+						id="sit<%= i * 20 + j%>"
+						style="background-color:<%=cs.getColler()%>; border-color:#000; margin-left:4px; margin-top:2px">
 					</div>
-
+			<!-- ---------------------以上所有座位---------------------- -->
 					<%
 						}
 					%>
@@ -120,7 +149,7 @@
 					%>
 
 
-				</nav>
+				</div>
 
 
 			</div>
@@ -128,7 +157,60 @@
 	</div>
 
 	<script>
-		
+    function $id(id) {
+        return document.getElementById(id);
+    }
+
+    function $add(a, b, c) {
+        return a.addEventListener(b, c, false);
+    } //物件,事件,動作
+
+    function $bgc(a, b) {
+        a.style.backgroundColor = b;
+    } //物件,"顏色"
+    
+    function choosStyle(e){
+    	$id("str").innerText = e.target.getAttribute("data-sitStr");
+    	$bgc($id("color"), e.target.style.backgroundColor);
+    	$id("color").setAttribute("data-sitType", e.target.getAttribute("data-sitType"));
+    }
+
+    function setStyle(e){
+    	
+    	e.target.setAttribute("data-sitType", $id("color").getAttribute("data-sitType"));
+    	$bgc(e.target,$id("color").style.backgroundColor);
+    	
+    	var str = "";
+    	var str1count = 0;
+    	
+    	for(var i =0;i<<%= cinema_type.length()%>;i++){
+    		var s = $id("sit"+i).getAttribute("data-sitType");
+    		str = str+s;
+    		if(s == 1){
+    			str1count++;
+    		}
+    	}
+    	$id("hiddentypeinput").value = str;
+    	$id("p").innerText = str1count;
+    	$id("hiddensizeinput").value = str1count;
+
+    }
+    
+    function init() {
+		var statusOfSitList_size = ${statusOfSitList.size()};
+		var sit_size = <%= cinema_type.length()%>;
+    	
+       	for(var i = 0;i<statusOfSitList_size;i++){
+       		$add($id("type"+i),"click",choosStyle);
+       	}
+       	
+       	for(var i = 0;i<sit_size;i++){
+       		$add($id("sit"+i),"click",setStyle);
+       	}
+       	
+    }
+
+    window.onload = init;
 	</script>
 
 	<!-- 工作區結束 -->

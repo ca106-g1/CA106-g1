@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -175,7 +176,6 @@ public class CinemaDAOImpl implements CinemaDAO_interface{
 				//UPDATE CINEMA SET CINEMA_TYPE=?, CINEMA_SIZE=?, CINEMA_NAME=?, CINEMA_CORRECT=?, CINEMA_STATUS=? WHERE CINEMA_NO = ?
 
 			}
-			System.out.println(cinemaVO);
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
@@ -206,7 +206,7 @@ public class CinemaDAOImpl implements CinemaDAO_interface{
 
 	@Override
 	public List<CinemaVO> getAll() {
-		List<CinemaVO> list = new ArrayList<CinemaVO>();
+		List<CinemaVO> list = new Vector<CinemaVO>();
 		CinemaVO cinemaVO = null;
 
 		Connection con = null;
@@ -229,7 +229,6 @@ public class CinemaDAOImpl implements CinemaDAO_interface{
 				cinemaVO.setCinema_status(rs.getString("CINEMA_STATUS"));
 				list.add(cinemaVO);
 			}
-			System.out.println(list);
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {

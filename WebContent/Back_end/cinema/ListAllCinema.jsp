@@ -54,7 +54,7 @@
 	<td>${cinemaVO.cinema_size}</td>
 	<td>${cinemaVO.cinema_correct}</td>
 	<td>${cinemaVO.cinema_status}</td>
-	<td><a class = "btn btn-primary" href="updateCinema.jsp?cinema_no=${cinemaVO.cinema_no}">設定</a></td>
+	<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/Back_end/cinema/updateCinema.jsp?cinema_no=${cinemaVO.cinema_no}">設定</a></td>
 	
 </tr>
 </c:forEach>
