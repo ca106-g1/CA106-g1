@@ -43,12 +43,12 @@ public class CinemaTool extends HttpServlet{
 	public void init() throws ServletException {
 		
 		List<StatusOfSit> statusOfSitList = new ArrayList<StatusOfSit>();
-		statusOfSitList.add(new StatusOfSit("¨«¹D","#fff", new Integer(0)));
-		statusOfSitList.add(new StatusOfSit("¥i¥Î","#3f9", new Integer(1)));
-		statusOfSitList.add(new StatusOfSit("ºû­×¤¤","#999", new Integer(2)));
-		statusOfSitList.add(new StatusOfSit("·lÃa","#f00", new Integer(3)));
-		statusOfSitList.add(new StatusOfSit("Àğ¾À","#333", new Integer(4)));
-		statusOfSitList.add(new StatusOfSit("´Z©Ò","#ee6", new Integer(5)));
+		statusOfSitList.add(new StatusOfSit("èµ°é“","#fff", new Integer(0)));
+		statusOfSitList.add(new StatusOfSit("å¯ç”¨","#3f9", new Integer(1)));
+		statusOfSitList.add(new StatusOfSit("ç¶­ä¿®ä¸­","#999", new Integer(2)));
+		statusOfSitList.add(new StatusOfSit("æå£","#f00", new Integer(3)));
+		statusOfSitList.add(new StatusOfSit("ç‰†å£","#333", new Integer(4)));
+		statusOfSitList.add(new StatusOfSit("å»æ‰€","#ee6", new Integer(5)));
 		
 		getServletContext().setAttribute("statusOfSitList", statusOfSitList);
 		
