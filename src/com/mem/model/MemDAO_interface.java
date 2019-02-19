@@ -8,6 +8,7 @@ public interface MemDAO_interface {
 	public void update(MemVO memVO);
 	public void delete (String member_no);
 	public  MemVO findByPrimaryKey(String member_no);
+	public  MemVO findByMember_account(String member_account);
 	public List<MemVO> getAll();
 	
 

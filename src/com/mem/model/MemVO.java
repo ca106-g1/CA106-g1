@@ -21,6 +21,7 @@ public class MemVO implements java.io.Serializable{
 	private Integer member_sex ;
 	private Date    member_birthday ; 
 	private String  member_address;
+	private String  member_telephone;
 	private String  member_email ;
 	private BLOB  	member_picture ;
 	private String  member_credit_number;
@@ -78,6 +79,12 @@ public class MemVO implements java.io.Serializable{
 	public void setMember_address(String member_address) {
 		this.member_address = member_address;
 	}
+	public String getMember_telephone() {
+		return member_telephone;
+	}
+	public void setMember_telephone(String member_telephone) {
+		this.member_telephone = member_telephone;
+	}
 	public String getMember_email() {
 		return member_email;
 	}
@@ -120,6 +127,7 @@ public class MemVO implements java.io.Serializable{
 	public void setMember_status(String member_status) {
 		this.member_status = member_status;
 	}
+	
 	
 	
 	

@@ -17,22 +17,25 @@ public class MemDAOImpl implements MemDAO_interface {
 	
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String memname = "JOIN";
+	String username = "JOIN";
 	String password = "123456";
 	
 	private static final String INSERT_MEM = 
-			"INSERT INTO MEMBER (MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS) VALUES ('M'||LPAD(to_char(MEMBER_seq.NEXTVAL),6,'0'),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO MEMBER (MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_TELEPHONE,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS) VALUES ('M'||LPAD(to_char(MEMBER_seq.NEXTVAL),6,'0'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private static final String GET_ALL_MEM = 
-			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL , MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS FROM MEMBER order by MEMBER_NO";
+			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_TELEPHONE,MEMBER_EMAIL , MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS FROM MEMBER order by MEMBER_NO";
 		
 	private static final String GET_ONE_MEM = 
-			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS FROM MEMBER where MEMBER_NO = ?";
+			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_TELEPHONE,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS FROM MEMBER where MEMBER_NO = ?";
+	
+	private static final String GET_ONE_BY_ACCOUNT_MEM = 
+			"SELECT MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,to_char(MEMBER_BIRTHDAY,'yyyy-mm-dd')MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_TELEPHONE,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS FROM MEMBER where MEMBER_ACCOUNT = ?";
 	
 	private static final String DELETE = 
 			"DELETE FROM MEMBER where MEMBER_NO = ?";
 	private static final String UPDATE = 
-			"UPDATE MEMBER set MEMBER_ACCOUNT =?,MEMBER_PASSWORD=?,MEMBER_NAME=?,MEMBER_NICK=?,MEMBER_SEX=?,MEMBER_BIRTHDAY=?,MEMBER_ADDRESS=?,MEMBER_EMAIL=?,MEMBER_PICTURE=? ,MEMBER_CREDIT_NUMBER=?,MEMBER_BACK_VERIFICATION=?,MEMBER_BUILDDAY=?,MEMBER_POINT=?,MEMBER_STATUS=? where MEMBER_NO = ?";
+			"UPDATE MEMBER set MEMBER_ACCOUNT =?,MEMBER_PASSWORD=?,MEMBER_NAME=?,MEMBER_NICK=?,MEMBER_SEX=?,MEMBER_BIRTHDAY=?,MEMBER_ADDRESS=?,MEMBER_TELEPHONE=?,MEMBER_EMAIL=?,MEMBER_PICTURE=? ,MEMBER_CREDIT_NUMBER=?,MEMBER_BACK_VERIFICATION=?,MEMBER_BUILDDAY=?,MEMBER_POINT=?,MEMBER_STATUS=? where MEMBER_NO = ?";
 	
 	
 
@@ -46,7 +49,7 @@ public class MemDAOImpl implements MemDAO_interface {
 		try {
 			
 			Class.forName(driver);
-			con = DriverManager.getConnection(url, memname, password);
+			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(INSERT_MEM);
 			
 			pstmt.setString(1,memVO.getMember_account());
@@ -56,13 +59,14 @@ public class MemDAOImpl implements MemDAO_interface {
 			pstmt.setInt(5,memVO.getMember_sex());
 			pstmt.setDate(6,memVO.getMember_birthday());
 			pstmt.setString(7,memVO.getMember_address());
-			pstmt.setString(8,memVO.getMember_email());
-			pstmt.setBlob(9,memVO.getMember_picture());
-			pstmt.setString(10,memVO.getMember_credit_number());
-			pstmt.setInt(11,memVO.getMember_back_verification());
-			pstmt.setDate(12,memVO.getMember_buildday());
-			pstmt.setInt(13,memVO.getMember_point());
-			pstmt.setString(14,memVO.getMember_status());
+			pstmt.setString(8,memVO.getMember_telephone());
+			pstmt.setString(9,memVO.getMember_email());
+			pstmt.setBlob(10,memVO.getMember_picture());
+			pstmt.setString(11,memVO.getMember_credit_number());
+			pstmt.setInt(12,memVO.getMember_back_verification());
+			pstmt.setDate(13,memVO.getMember_buildday());
+			pstmt.setInt(14,memVO.getMember_point());
+			pstmt.setString(15,memVO.getMember_status());
 			
 			pstmt.executeUpdate();
 			
@@ -115,7 +119,7 @@ public class MemDAOImpl implements MemDAO_interface {
 		
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url, memname, password);
+			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(GET_ONE_MEM);
 			
 			pstmt.setString(1,member_no);
@@ -132,6 +136,7 @@ public class MemDAOImpl implements MemDAO_interface {
 				memVO.setMember_sex(rs.getInt("member_sex"));
 				memVO.setMember_birthday(rs.getDate("member_birthday"));
 				memVO.setMember_address(rs.getString("member_address"));
+				memVO.setMember_telephone(rs.getString("member_telephone"));
 				memVO.setMember_email(rs.getString("member_email"));
 				memVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
 				memVO.setMember_credit_number(rs.getString("member_credit_number"));
@@ -191,7 +196,7 @@ public class MemDAOImpl implements MemDAO_interface {
 		
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url, memname, password);
+			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(GET_ALL_MEM);
 			rs = pstmt.executeQuery();
 			
@@ -205,6 +210,7 @@ public class MemDAOImpl implements MemDAO_interface {
 				memVO.setMember_sex(rs.getInt("member_sex"));
 				memVO.setMember_birthday(rs.getDate("member_birthday"));
 				memVO.setMember_address(rs.getString("member_address"));
+				memVO.setMember_telephone(rs.getString("member_telephone"));
 				memVO.setMember_email(rs.getString("member_email"));
 				memVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
 				memVO.setMember_credit_number(rs.getString("member_credit_number"));
@@ -272,7 +278,7 @@ public class MemDAOImpl implements MemDAO_interface {
 		
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url, memname, password);
+			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(UPDATE);
 			
 
@@ -283,14 +289,15 @@ public class MemDAOImpl implements MemDAO_interface {
 			pstmt.setInt(5,memVO.getMember_sex());
 			pstmt.setDate(6,memVO.getMember_birthday());
 			pstmt.setString(7,memVO.getMember_address());
-			pstmt.setString(8,memVO.getMember_email());
-			pstmt.setBlob(9,memVO.getMember_picture());
-			pstmt.setString(10,memVO.getMember_credit_number());
-			pstmt.setInt(11,memVO.getMember_back_verification());
-			pstmt.setDate(12,memVO.getMember_buildday());
-			pstmt.setInt(13,memVO.getMember_point());
-			pstmt.setString(14,memVO.getMember_status());
-			pstmt.setString(15,memVO.getMember_no());
+			pstmt.setString(8,memVO.getMember_telephone());
+			pstmt.setString(9,memVO.getMember_email());
+			pstmt.setBlob(10,memVO.getMember_picture());
+			pstmt.setString(11,memVO.getMember_credit_number());
+			pstmt.setInt(12,memVO.getMember_back_verification());
+			pstmt.setDate(13,memVO.getMember_buildday());
+			pstmt.setInt(14,memVO.getMember_point());
+			pstmt.setString(15,memVO.getMember_status());
+			pstmt.setString(16,memVO.getMember_no());
 			pstmt.executeUpdate();
 			
 			
@@ -354,7 +361,7 @@ public class MemDAOImpl implements MemDAO_interface {
 		
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection(url,memname,password);
+			con = DriverManager.getConnection(url,username,password);
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, member_no);
@@ -394,7 +401,80 @@ public class MemDAOImpl implements MemDAO_interface {
 
 
 
-
+	@Override
+	public MemVO findByMember_account(String member_account) {
+		// TODO Auto-generated method stub
+		MemVO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, username, password);
+			pstmt = con.prepareStatement(GET_ONE_BY_ACCOUNT_MEM);
+			
+			pstmt.setString(2, member_account);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				memVO = new MemVO();
+				memVO.setMember_no(rs.getString("member_no"));
+				memVO.setMember_account(rs.getString("member_account"));
+				memVO.setMember_password(rs.getString("member_password"));
+				memVO.setMember_name(rs.getString("member_name"));
+				memVO.setMember_nick(rs.getString("member_nick"));
+				memVO.setMember_sex(rs.getInt("member_sex"));
+				memVO.setMember_birthday(rs.getDate("member_birthday"));
+				memVO.setMember_address(rs.getString("member_address"));
+				memVO.setMember_telephone(rs.getString("member_telephone"));
+				memVO.setMember_email(rs.getString("member_email"));
+				memVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
+				memVO.setMember_credit_number(rs.getString("member_credit_number"));
+				memVO.setMember_back_verification(rs.getInt("member_back_verification"));
+				memVO.setMember_buildday(rs.getDate("member_buildday"));
+				memVO.setMember_point(rs.getInt("member_point"));
+				memVO.setMember_status(rs.getString("member_status"));
+			
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+			
+		
+		
+		
+		
+		return memVO;
+	}
 	
 	
 	
@@ -413,6 +493,7 @@ public static void main(String[]args) {
 	memVO1.setMember_sex(new Integer (1));
 	memVO1.setMember_birthday(java.sql.Date.valueOf("2005-01-01"));
 	memVO1.setMember_address("桃園市中壢區中央路6號");
+	memVO1.setMember_telephone("0933125697");
 	memVO1.setMember_email("a7513@gmail.com");
 	memVO1.setMember_picture(null);
 	memVO1.setMember_credit_number("49053697461256");
@@ -438,6 +519,7 @@ public static void main(String[]args) {
 		memVO2.setMember_sex(new Integer (1));
 		memVO2.setMember_birthday(java.sql.Date.valueOf("2004-01-01"));
 		memVO2.setMember_address("桃園市中壢區中央路7號");
+		memVO2.setMember_telephone("0933125697");
 		memVO2.setMember_email("a753@gmail.com");
 		memVO2.setMember_picture(null);
 		memVO2.setMember_credit_number("490536461256");
@@ -467,6 +549,7 @@ public static void main(String[]args) {
 		System.out.print(memVO3.getMember_sex() + ",");
 		System.out.print(memVO3.getMember_birthday() + ",");
 		System.out.print(memVO3.getMember_address() + ",");
+		System.out.print(memVO3.getMember_telephone() + ",");
 		System.out.print(memVO3.getMember_email() + ",");
 		System.out.print(memVO3.getMember_picture() + ",");
 		System.out.print(memVO3.getMember_credit_number() + ",");
@@ -489,6 +572,7 @@ public static void main(String[]args) {
 		System.out.print(amem.getMember_sex() + ",");
 		System.out.print(amem.getMember_birthday() + ",");
 		System.out.print(amem.getMember_address() + ",");
+		System.out.print(amem.getMember_telephone() + ",");
 		System.out.print(amem.getMember_email() + ",");
 		System.out.print(amem.getMember_picture() + ",");
 		System.out.print(amem.getMember_credit_number() + ",");
@@ -504,5 +588,14 @@ public static void main(String[]args) {
 	 }
 
   }
+
+
+
+
+
+
+
+
+
 
 }

@@ -85,15 +85,16 @@ public class memberServlet extends HttpServlet {
 
 				/*********************** 2.開始查詢資料 **************************/
 				MemService memSvc = new MemService();
-				MemVO memVO = memSvc.getoneMem(member_account);
+				MemVO memVO = memSvc.getoneByAccountMem(member_account);
 				if (memVO == null) {
 					errorMsgs.add("帳號輸入錯誤");
 
-				} else {
-					if (memVO.getMember_password().equals(req.getParameter("member_password"))) {
+				} 
+					
+				else if (!memVO.getMember_password().equals(req.getParameter("member_password"))) {
 						errorMsgs.add("密碼輸入錯誤");
 					}
-				}
+				
 
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/mem/Login.jsp");

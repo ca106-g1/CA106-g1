@@ -12,7 +12,7 @@ public class MemService {
 		dao = new MemDAOImpl();
 	}
 	
-	public MemVO addMem( String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String  member_email,BLOB  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
+	public MemVO addMem( String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String  member_telephone,String  member_email,BLOB  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
 		
 		
 		MemVO memVO = new MemVO();
@@ -23,6 +23,7 @@ public class MemService {
 		memVO.setMember_sex(member_sex);
 		memVO.setMember_birthday(member_birthday);
 		memVO.setMember_address(member_address);
+		memVO.setMember_telephone(member_telephone);
 		memVO.setMember_email(member_email);
 		memVO.setMember_picture(member_picture);
 		memVO.setMember_credit_number(member_credit_number);
@@ -36,7 +37,7 @@ public class MemService {
 		
 	}
 	
-	public MemVO updateMem(String member_no,String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String  member_email,BLOB  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
+	public MemVO updateMem(String member_no,String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String member_telephone,String  member_email,BLOB  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
 		
 		MemVO memVO = new MemVO();
 		memVO.setMember_no(member_no);
@@ -47,6 +48,7 @@ public class MemService {
 		memVO.setMember_sex(member_sex);
 		memVO.setMember_birthday(member_birthday);
 		memVO.setMember_address(member_address);
+		memVO.setMember_telephone(member_telephone);
 		memVO.setMember_email(member_email);
 		memVO.setMember_picture(member_picture);
 		memVO.setMember_credit_number(member_credit_number);
@@ -67,6 +69,12 @@ public class MemService {
 	public MemVO getoneMem(String member_no) {
 		
 		return dao.findByPrimaryKey(member_no);
+		
+	}
+	
+	public MemVO getoneByAccountMem(String member_account) {
+		
+		return dao.findByMember_account(member_account);
 		
 	}
 	
