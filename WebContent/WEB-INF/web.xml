@@ -9,4 +9,17 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+  <servlet>
+  	<servlet-name>memberServlet</servlet-name>
+  	<servlet-class>com.mem.controller.memberServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>memberServlet</servlet-name>
+  	<url-pattern>/mem/mem.do</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
