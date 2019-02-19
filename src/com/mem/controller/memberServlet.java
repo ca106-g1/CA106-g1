@@ -25,21 +25,21 @@ public class memberServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("getone_for_login".equals(action)) { // ¨Ó¦ÛLogin.jspªº½Ğ¨D
+		if ("getone_for_login".equals(action)) { // ä¾†è‡ªLogin.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/************* 1.±µ¦¬½Ğ¨D°Ñ¼Æ ¿é¤J®æ¦¡ªº¿ù»~³B²z ***********/
-				/* ±b¸¹¿ù»~³B²z */
+				/************* 1.æ¥æ”¶è«‹æ±‚åƒæ•¸ è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç† ***********/
+				/* å¸³è™ŸéŒ¯èª¤è™•ç† */
 				String str1 = req.getParameter("member_account");
 				if (str1 == null || (str1.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J±b¸¹");
+					errorMsgs.add("è«‹è¼¸å…¥å¸³è™Ÿ");
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -48,24 +48,24 @@ public class memberServlet extends HttpServlet {
 				try {
 					member_account = new String(str1);
 				} catch (Exception e) {
-					errorMsgs.add("·|­û±b¸¹®æ¦¡¤£¥¿½T");
+					errorMsgs.add("æœƒå“¡å¸³è™Ÿæ ¼å¼ä¸æ­£ç¢º");
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
-				/* ±K½X¿ù»~³B²z */
+				/* å¯†ç¢¼éŒ¯èª¤è™•ç† */
 
 				String str2 = req.getParameter("member_password");
 				if (str2 == null || (str2.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J±K½X");
+					errorMsgs.add("è«‹è¼¸å…¥å¯†ç¢¼");
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -74,45 +74,45 @@ public class memberServlet extends HttpServlet {
 				try {
 					member_password = new String(str2);
 				} catch (Exception e) {
-					errorMsgs.add("·|­û±K½X®æ¦¡¤£¥¿½T");
+					errorMsgs.add("æœƒå“¡å¯†ç¢¼æ ¼å¼ä¸æ­£ç¢º");
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
-				/*********************** 2.¶}©l¬d¸ß¸ê®Æ **************************/
+				/*********************** 2.é–‹å§‹æŸ¥è©¢è³‡æ–™ **************************/
 				MemService memSvc = new MemService();
 				MemVO memVO = memSvc.getoneByAccountMem(member_account);
 				if (memVO == null) {
-					errorMsgs.add("±b¸¹¿é¤J¿ù»~");
+					errorMsgs.add("å¸³è™Ÿè¼¸å…¥éŒ¯èª¤");
 
 				} 
 					
 				else if (!memVO.getMember_password().equals(req.getParameter("member_password"))) {
-						errorMsgs.add("±K½X¿é¤J¿ù»~");
+						errorMsgs.add("å¯†ç¢¼è¼¸å…¥éŒ¯èª¤");
 					}
 				
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
-				/************************* 3.¬d¸ß§¹¦¨ ·Ç³ÆÂà¥æ ***********************************/
-				req.setAttribute("memVO", memVO); // ¸ê®Æ®w¨ú¥XªºempVOª«¥ó¡A¦s¤Jreq
-				String url = "/mem/LoginSucess.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ¦ÜLoginSucess.jsp
+				/************************* 3.æŸ¥è©¢å®Œæˆ æº–å‚™è½‰äº¤ ***********************************/
+				req.setAttribute("memVO", memVO); // è³‡æ–™åº«å–å‡ºçš„empVOç‰©ä»¶ï¼Œå­˜å…¥req
+				String url = "/Front_end/mem/LoginSucess.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤è‡³LoginSucess.jsp
 				successView.forward(req, res);
 				
-				/***********************¨ä¥L¥i¯à¿ù»~³B²z*************/
+				/***********************å…¶ä»–å¯èƒ½éŒ¯èª¤è™•ç†*************/
 
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
-				RequestDispatcher failView = req.getRequestDispatcher("/mem/Login.jsp");
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
+				RequestDispatcher failView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
 				failView.forward(req, res);
 
 			}

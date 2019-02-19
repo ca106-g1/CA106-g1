@@ -18,7 +18,7 @@
   
   <servlet-mapping>
   	<servlet-name>memberServlet</servlet-name>
-  	<url-pattern>/mem/mem.do</url-pattern>
+  	<url-pattern>/Front_end/mem/mem.do</url-pattern>
   </servlet-mapping>
   
   
