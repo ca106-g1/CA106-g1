@@ -21,7 +21,7 @@ public class MovieGenreDAO implements MovieGenreDAO_interface {
 	}
 
 		private static final String INSERT_STMT = 
-				"INSERT INTO moviegenre(genre_no, genre_name) VALUES (moviegenre_seq.NEXTVAL,? )";
+			"INSERT INTO moviegenre(genre_no, genre_name) VALUES (moviegenre_seq.NEXTVAL,? )";
 		private static final String GET_ALL_STMT = 
 			"SELECT genre_no, genre_name FROM moviegenre order by genre_no";
 		private static final String GET_ONE_STMT = 
@@ -212,7 +212,7 @@ public class MovieGenreDAO implements MovieGenreDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				moviegenreVO = new MovieGenreVO();
 				moviegenreVO.setGenre_no(rs.getInt("genre_no"));
 				moviegenreVO.setGenre_name(rs.getString("genre_name"));
