@@ -14,7 +14,7 @@ public class MovieInfoService {
 			Integer genre_no,
 			String movie_name,
 			byte[] movie_level,
-			String director,
+			String movie_director,
 			String movie_cast,
 			String movie_intro,
 			String movie_length,
@@ -33,7 +33,7 @@ public class MovieInfoService {
 		movieinfoVO.setGenre_no(genre_no);
 		movieinfoVO.setMovie_name(movie_name);
 		movieinfoVO.setMovie_level(movie_level);
-		movieinfoVO.setDirector(director);
+		movieinfoVO.setMovie_director(movie_director);
 		movieinfoVO.setMovie_cast(movie_cast);
 		movieinfoVO.setMovie_intro(movie_intro);
 		movieinfoVO.setMovie_length(movie_length);
@@ -56,7 +56,7 @@ public class MovieInfoService {
 			Integer genre_no,
 			String movie_name,
 			byte[] movie_level,
-			String director,
+			String movie_director,
 			String movie_cast,
 			String movie_intro,
 			String movie_length,
@@ -76,7 +76,7 @@ public class MovieInfoService {
 		movieinfoVO.setGenre_no(genre_no);
 		movieinfoVO.setMovie_name(movie_name);
 		movieinfoVO.setMovie_level(movie_level);
-		movieinfoVO.setDirector(director);
+		movieinfoVO.setMovie_director(movie_director);
 		movieinfoVO.setMovie_cast(movie_cast);
 		movieinfoVO.setMovie_intro(movie_intro);
 		movieinfoVO.setMovie_length(movie_length);

@@ -42,7 +42,7 @@ public class MovieInfoJDBCDAO implements MovieInfoDAO_interface{
 			pstmt.setInt(1, movieinfoVO.getGenre_no());
 			pstmt.setString(2, movieinfoVO.getMovie_name());
 			pstmt.setBytes(3, movieinfoVO.getMovie_level());
-			pstmt.setString(4, movieinfoVO.getDirector());
+			pstmt.setString(4, movieinfoVO.getMovie_director());
 			pstmt.setString(5, movieinfoVO.getMovie_cast());
 			pstmt.setString(6, movieinfoVO.getMovie_intro());
 			pstmt.setString(7, movieinfoVO.getMovie_length());
@@ -101,7 +101,7 @@ public class MovieInfoJDBCDAO implements MovieInfoDAO_interface{
 			pstmt.setInt(1, movieinfoVO.getGenre_no());
 			pstmt.setString(2, movieinfoVO.getMovie_name());
 			pstmt.setBytes(3, movieinfoVO.getMovie_level());
-			pstmt.setString(4, movieinfoVO.getDirector());
+			pstmt.setString(4, movieinfoVO.getMovie_director());
 			pstmt.setString(5, movieinfoVO.getMovie_cast());
 			pstmt.setString(6, movieinfoVO.getMovie_intro());
 			pstmt.setString(7, movieinfoVO.getMovie_length());
@@ -215,7 +215,7 @@ public class MovieInfoJDBCDAO implements MovieInfoDAO_interface{
 				movieinfoVO.setGenre_no(rs.getInt("genre_no"));
 				movieinfoVO.setMovie_name(rs.getString("movie_name"));
 				movieinfoVO.setMovie_level(rs.getBytes("movie_level"));
-				movieinfoVO.setDirector(rs.getString("director"));
+				movieinfoVO.setMovie_director(rs.getString("Movie_director"));
 				movieinfoVO.setMovie_cast(rs.getString("movie_cast"));
 				movieinfoVO.setMovie_intro(rs.getString("movie_intro"));
 				movieinfoVO.setMovie_length(rs.getString("movie_length"));
@@ -289,7 +289,7 @@ public class MovieInfoJDBCDAO implements MovieInfoDAO_interface{
 				movieinfoVO.setGenre_no(rs.getInt("genre_no"));
 				movieinfoVO.setMovie_name(rs.getString("movie_name"));
 				movieinfoVO.setMovie_level(rs.getBytes("movie_level"));
-				movieinfoVO.setDirector(rs.getString("director"));
+				movieinfoVO.setMovie_director(rs.getString("movie_director"));
 				movieinfoVO.setMovie_cast(rs.getString("movie_cast"));
 				movieinfoVO.setMovie_intro(rs.getString("movie_intro"));
 				movieinfoVO.setMovie_length(rs.getString("movie_length"));
