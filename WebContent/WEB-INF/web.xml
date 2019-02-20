@@ -21,5 +21,36 @@
   	<url-pattern>/Front_end/mem/mem.do</url-pattern>
   </servlet-mapping>
   
+  <!-- 昀翰 -->
+  <servlet>
+		<servlet-name>TicketorderServlet</servlet-name>
+		<servlet-class>com.ticketorder.controller.TicketorderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TicketorderServlet</servlet-name>
+		<url-pattern>/ticketorder/ticketorder.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>MealsorderdetailServlet</servlet-name>
+		<servlet-class>com.mealsorderdetail.controller.MealsorderdetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MealsorderdetailServlet</servlet-name>
+		<url-pattern>/mealsorderdetail/mealsorderdetail.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>TicketinformationServlet</servlet-name>
+		<servlet-class>com.ticketinformation.controller.TicketinformationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TicketinformationServlet</servlet-name>
+		<url-pattern>/ticketinformation/ticketinformation.do</url-pattern>
+	</servlet-mapping>
+	
+  
   
 </web-app>

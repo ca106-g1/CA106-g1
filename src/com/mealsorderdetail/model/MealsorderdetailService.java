@@ -11,10 +11,11 @@ public class MealsorderdetailService {
 		dao = new MealsorderdetailDAO();
 	}
 	
-	public MealsorderdetailVO addMealsorderdetail(String meals_no,Integer mo_count) {
+	public MealsorderdetailVO addMealsorderdetail(String order_no,String meals_no,Integer mo_count) {
 
 		MealsorderdetailVO mealsorderdetailVO = new MealsorderdetailVO();
 		
+		mealsorderdetailVO.setOrder_no(order_no);
 		mealsorderdetailVO.setMeals_no(meals_no);
 		mealsorderdetailVO.setMo_count(mo_count);
 		dao.insert(mealsorderdetailVO);
