@@ -18,6 +18,7 @@ public class Cus_serService {
 		cus_serVO.setMember_no(member_no);
 		cus_serVO.setCustomer_service_start_date(customer_service_start_date);
 		cus_serVO.setCustomer_service_status(customer_service_status);
+		dao.insert(cus_serVO);
 		
 		return cus_serVO;
 		
@@ -31,6 +32,7 @@ public class Cus_serService {
 		cus_serVO.setMember_no(member_no);
 		cus_serVO.setCustomer_service_start_date(customer_service_start_date);
 		cus_serVO.setCustomer_service_status(customer_service_status);
+		dao.update(cus_serVO);
 		
 		return cus_serVO;
 		

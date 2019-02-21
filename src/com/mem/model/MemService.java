@@ -56,7 +56,7 @@ public class MemService {
 		memVO.setMember_buildday(member_buildday);
 		memVO.setMember_point(member_point);
 		memVO.setMember_status(member_status);
-		dao.insert(memVO);
+		dao.update(memVO);
 		
 		return memVO;
 		

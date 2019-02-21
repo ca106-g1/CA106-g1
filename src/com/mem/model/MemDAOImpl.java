@@ -415,7 +415,7 @@ public class MemDAOImpl implements MemDAO_interface {
 			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(GET_ONE_BY_ACCOUNT_MEM);
 			
-			pstmt.setString(2, member_account);
+			pstmt.setString(1, member_account);
 			
 			rs = pstmt.executeQuery();
 			

@@ -298,30 +298,30 @@ public class PermDAOImpl implements PermDAO_interface{
 	}
 	
 	
-	// ´ú¸Õ
+	
 	
 	
 	public static void main(String[]args) {
 		
 		PermDAOImpl dao = new PermDAOImpl();
 		
-		//·s¼W
+		//æ–°å¢ž
 		
 		PermVO permVO1 = new PermVO();
-		permVO1.setPermission_name("½Õ¾\ºÞ²z");
+		permVO1.setPermission_name("é›…ç­‘");
 		dao.insert(permVO1);
 		
-		//­×§ï
+		//ä¿®æ”¹
 		
 		PermVO permVO2 = new PermVO();
 		permVO2.setPermission_no("1");
-		permVO2.setPermission_name("ºÞ²zµ¥¯ÅºÞ²z");
+		permVO2.setPermission_name("æˆ€æ„›");
 		dao.update(permVO2);
 		
-		//§R°£
+		//åˆªé™¤
 		dao.delete("3");
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 		
 		PermVO permVO3 = new PermVO();
 		System.out.print(permVO3.getPermission_no()+",");
@@ -329,7 +329,7 @@ public class PermDAOImpl implements PermDAO_interface{
 		System.out.println();
 		
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 		
 		List<PermVO> list = dao.getAll();
 		for (PermVO aPerm : list) {

@@ -48,7 +48,7 @@ public class Empper_detDAOImpl implements Empper_detDAO_interface{
 			con = DriverManager.getConnection(url,username,password);
 			pstmt = con.prepareStatement(INSERT_EMPPER_DET);
 			
-			//Äæ¦ì¥u¦³½Æ¦X¥DÁä¡A¨S¦³¨ä¥LÄæ¦ì¡A¨ºINSERT»yªk¸Ó¦p¦ó³]¥ß?
+			
 			
 			
 			pstmt.setString(1,empper_detVO.getEmployee_no());
@@ -96,7 +96,7 @@ public class Empper_detDAOImpl implements Empper_detDAO_interface{
 			con = DriverManager.getConnection(url, username, password);
 			pstmt = con.prepareStatement(UPDATE);
 			
-			//Äæ¦ì¥u¦³½Æ¦X¥DÁä¡A¨S¦³¨ä¥LÄæ¦ì¡A¨ºINSERT»yªk¸Ó¦p¦ó³]¥ß?
+		
 			
 			
 			pstmt.setString(1,empper_detVOnew.getEmployee_no());
@@ -309,14 +309,14 @@ public class Empper_detDAOImpl implements Empper_detDAO_interface{
 		
 		Empper_detDAOImpl dao = new Empper_detDAOImpl();
 		
-		//·s¼W
+		//æ–°å¢ž
 		
 	Empper_detVO empper_detVO1 = new Empper_detVO();
 	empper_detVO1.setEmployee_no("8");
 	empper_detVO1.setPermission_no("15");
 		dao.insert(empper_detVO1);
 		
-		//­×§ï
+		//ä¿®æ”¹
 		
 		Empper_detVO empper_detVO2 = new Empper_detVO();
 		
@@ -330,10 +330,10 @@ public class Empper_detDAOImpl implements Empper_detDAO_interface{
 		
 		dao.update(empper_detVO2, empper_detVO4);
 		
-		//§R°£
+		//åˆªé™¤
 		dao.delete("3","3");
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 		
 		Empper_detVO empper_detVO3 = new Empper_detVO();
 		System.out.print(empper_detVO3.getEmployee_no()+",");
@@ -341,7 +341,7 @@ public class Empper_detDAOImpl implements Empper_detDAO_interface{
 		System.out.println();
 		
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 		
 		List<Empper_detVO> list = dao.getAll();
 		for (Empper_detVO aEmpper_det : list) {

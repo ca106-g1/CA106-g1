@@ -295,7 +295,7 @@ public static void main(String[]args) {
 	
 	DepDAOImpl dao = new DepDAOImpl();
 	
-	//·s¼W
+	//æ–°å¢ž
 	DepVO depVO1 = new DepVO();
 	depVO1.setDeposit_member_no("M000001");
 	depVO1.setDeposit_change_money(new Integer(3000));
@@ -305,7 +305,7 @@ public static void main(String[]args) {
 	
 	
 	
-	//­×§ï
+	//ä¿®æ”¹
 	DepVO depVO2 = new DepVO();
 	depVO2.setDeposit_change_no("D000015");
 	depVO2.setDeposit_member_no("M000002");
@@ -316,11 +316,11 @@ public static void main(String[]args) {
 	
 
 	
-	//§R°£
+	//åˆªé™¤
 	
 	dao.delete("D000005");
 	
-	//¬d¸ß
+	//æŸ¥è©¢
 	DepVO depVO3 = dao.findByPrimaryKey("D000016");
 	System.out.print(depVO3.getDeposit_change_no()+",");
 	System.out.print(depVO3.getDeposit_member_no()+",");
@@ -328,7 +328,7 @@ public static void main(String[]args) {
 	System.out.print(depVO3.getDeposit_change_date());
 	System.out.println("-----------------------");
 	
-	//¬d¸ß
+	//æŸ¥è©¢
 	List<DepVO> list = dao.getAll();
 	for (DepVO aDep : list) {
 		
