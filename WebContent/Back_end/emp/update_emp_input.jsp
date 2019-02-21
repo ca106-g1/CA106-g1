@@ -47,34 +47,52 @@
 
 	<tr>
 		<td>員工姓名:</td>
-		<td><input type = "TEXT" name="employee_name" value="<%=empVO.getEmployee_name()%>" /></td>
+		<td><input type = "TEXT" name="employee_name" value="<%= (empVO==null)? "" : empVO.getEmployee_name()%>" /></td>
 	</tr>
 	
 
 	<tr>
-		<td>員工性別:</td>
-				<td><input type = "TEXT" name="employee_sex" value="<%=empVO.getEmployee_sex()%>" /></td>
+		<td>員工性別:</td>		
+				
+		<td>
+		<input type="radio" name="employee_sex" value="1" ${(empVO.employee_sex==1)? "checked": ""}>男性
+		<input type="radio" name="employee_sex" value="0" ${(empVO.employee_sex==0)? "checked": ""}>女性
+		</td>
+		
 	</tr>
+	
+	<% 
+  java.sql.Date employee_builddate = null;
+  try {
+	  employee_builddate = empVO.getEmployee_builddate();
+   } catch (Exception e) {
+	   employee_builddate = new java.sql.Date(System.currentTimeMillis());
+   }
+%>
 	
 	<tr>
 		<td>員工雇用日期:</td>
-		<td><input name="employee_builddate" id="f_date1" type="date" ></td>
+		<td><input  name="employee_builddate"  id="f_date1" type="DATE" value="<%= (empVO==null)? employee_builddate : empVO.getEmployee_builddate()%>"></td>
 	</tr>
 	
 	<tr>
 		<td>員工離職日期:</td>
-		<td><input name="employee_quitdate" id="f_date2" type="date" ></td>
+		<td><input  name="employee_quitdate"  id="f_date2" type="DATE" value="<%= empVO.getEmployee_quitdate()%>"></td>
 	</tr>
 
 
 	<tr>
 		<td>員工職稱:</td>
-		<td><input type = "TEXT" name="employee_ability" value="<%=empVO.getEmployee_ability()%>" /></td>
+		<td><input type="TEXT" name="employee_ability" value="<%= (empVO==null)? "" : empVO.getEmployee_ability()%>">
+		</td>
 	</tr>
 	
 	<tr>
 		<td>員工狀態:</td>
-		<td><input type = "TEXT" name="employee_status" value="<%=empVO.getEmployee_status()%>" /></td>
+		<td>
+		<input type="radio" name="employee_status" value="1" checked>在職
+		<input type="radio" name="employee_status" value="0" >已離職
+		</td>
 	</tr>
 
 </table>

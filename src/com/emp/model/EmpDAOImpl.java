@@ -315,35 +315,35 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		
 		EmpDAOImpl dao = new EmpDAOImpl();
 		
-		//·s¼W
+		//æ–°å¢ž
 		
 		EmpVO empVO1 = new EmpVO();
-		empVO1.setEmployee_name("¶®µ®");
+		empVO1.setEmployee_name("Android");
 		empVO1.setEmployee_sex(new Integer(0));
 		empVO1.setEmployee_builddate(java.sql.Date.valueOf("2018-09-14"));
 		empVO1.setEmployee_quitdate(java.sql.Date.valueOf("2019-11-04"));
-		empVO1.setEmployee_ability("ÅÊ·R");
+		empVO1.setEmployee_ability("å¾·æ–‡");
 		empVO1.setEmployee_status("1");
 		dao.insert(empVO1);
 		
 		
-		//­×§ï
+		//ä¿®æ”¹
 		
 		EmpVO empVO2 = new EmpVO();
 		empVO2.setEmployee_no("15");
-		empVO2.setEmployee_name("¤l³Ç");
+		empVO2.setEmployee_name("Sue");
 		empVO2.setEmployee_sex(new Integer(1));
 		empVO2.setEmployee_builddate(java.sql.Date.valueOf("2018-09-14"));
 		empVO2.setEmployee_quitdate(java.sql.Date.valueOf("2019-11-04"));
-		empVO2.setEmployee_ability("ÅÊ·R");
+		empVO2.setEmployee_ability("è‹±æ–‡");
 		empVO2.setEmployee_status("1");
 		dao.update(empVO2);
 		
-		//§R°£
+		//åˆªé™¤
 		
 		dao.delete("16");
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 		EmpVO empVO3 = dao.findByPrimaryKey("10");
 		System.out.print(empVO3.getEmployee_no()+",");
 		System.out.print(empVO3.getEmployee_name()+",");
@@ -355,7 +355,7 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		System.out.println("-------------------------");
 		
 		
-		//¬d¸ß
+		//æŸ¥è©¢
 		List<EmpVO> list = dao.getAll();
 		for (EmpVO aEmp : list ) {
 			System.out.print(aEmp.getEmployee_no()+",");

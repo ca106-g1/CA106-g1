@@ -36,7 +36,7 @@ public class EmpService {
 		empVO.setEmployee_quitdate(employee_quitdate);
 		empVO.setEmployee_ability(employee_ability);
 		empVO.setEmployee_status(employee_status);
-		dao.insert(empVO);
+		dao.update(empVO);
 		
 		return empVO;
 		
