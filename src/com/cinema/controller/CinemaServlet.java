@@ -63,9 +63,6 @@ public class CinemaServlet extends HttpServlet {
 
 		for (CinemaVO cinemaVO : cinemaService.getAll()) {
 			list.add(cinemaVO);
-		}
-
-		for (CinemaVO cinemaVO : list) {
 			map.put(cinemaVO.getCinema_no(), cinemaVO);
 		}
 
@@ -197,7 +194,7 @@ public class CinemaServlet extends HttpServlet {
 			if (!errorMessage.isEmpty()) {
 				req.setAttribute("cinemaVO", cinemaVO);
 				req.setAttribute("errorMessage", errorMessage);
-				req.getRequestDispatcher("/Back_end/cinema/updateCinema.jsp").forward(req, res);
+				req.getRequestDispatcher("/Back_end/cinema/insertCinema.jsp").forward(req, res);
 				return;
 			}
 

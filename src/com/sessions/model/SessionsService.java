@@ -10,7 +10,7 @@ public class SessionsService {
 		dao = new SessionsDAOImpl();
 	}
 	
-	public SessionsVO addEmp(String movie_no, String cinema_no, java.sql.Date sessions_start,
+	public SessionsVO addSes(String movie_no, String cinema_no, java.sql.Timestamp sessions_start,
 			String sessions_status, Integer sessions_remaining) {
 
 		SessionsVO sessionsVO = new SessionsVO();
@@ -25,7 +25,7 @@ public class SessionsService {
 		return sessionsVO;
 	}
 
-	public SessionsVO updateSes(String sessions_no, String movie_no, String cinema_no, java.sql.Date sessions_start,
+	public SessionsVO updateSes(String sessions_no, String movie_no, String cinema_no, java.sql.Timestamp sessions_start,
 			String sessions_status, Integer sessions_remaining) {
 
 		SessionsVO sessionsVO = new SessionsVO();

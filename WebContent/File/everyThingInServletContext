@@ -6,10 +6,12 @@ getServletContext().setAttribute("statusOfSitList", statusOfSitList);
 public class statusOfSit{
 		private String str;
 		private String coller;
+		private Integer type;
 		
-		statusOfSit(String str, String coller){
+		private StatusOfSit(String str, String coller, Integer type){
 			this.str = str;
 			this.coller = coller;
+			this.type = type;
 		}
 
 		public String getStr() {
@@ -19,6 +21,11 @@ public class statusOfSit{
 		public String getColler() {
 			return coller;
 		}
+
+		public Integer getType() {
+			return type;
+		}
+
 
 		
 	}
@@ -42,14 +49,12 @@ Class = SessionServlet
 @WebServlet("/SessionServlet")
 [
 
-		list_effect = new Vector<SessionsVO>();
 		list_all = new Vector<SessionsVO>();
 		map = new Hashtable<String, SessionsVO>();
 		
 		ServletContext context = getServletContext();
 		
 		context.setAttribute("sessionList_all", list_all);
-		context.setAttribute("sessionList_effect", list_effect);
 		context.setAttribute("sessionMap", map);
 
 ]

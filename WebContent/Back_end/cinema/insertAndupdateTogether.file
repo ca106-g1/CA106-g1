@@ -12,7 +12,7 @@
 								data-sitType = "${var.type}"
 								data-sitStr = "${var.str}"
 								id = "type${var.type}"
-								style="background-color:${var.coller}; border-color:#000; margin-left:5px">
+								style="background-color:${var.coller}; border-color:#000; margin-right:10px">
 								
 							</div>
 						</c:if>

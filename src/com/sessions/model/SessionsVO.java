@@ -1,7 +1,7 @@
 package com.sessions.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class SessionsVO implements Serializable{
 
@@ -11,10 +11,9 @@ public class SessionsVO implements Serializable{
 	private String sessions_no;
 	private String movie_no;
 	private String cinema_no;
-	private Date sessions_start;
+	private Timestamp sessions_start;
 	private String sessions_status;
 	private Integer sessions_remaining;
-	
 	
 	public String getSessions_no() {
 		return sessions_no;
@@ -34,10 +33,10 @@ public class SessionsVO implements Serializable{
 	public void setCinema_no(String cinema_no) {
 		this.cinema_no = cinema_no;
 	}
-	public Date getSessions_start() {
+	public Timestamp getSessions_start() {
 		return sessions_start;
 	}
-	public void setSessions_start(Date sessions_start) {
+	public void setSessions_start(Timestamp sessions_start) {
 		this.sessions_start = sessions_start;
 	}
 	public String getSessions_status() {

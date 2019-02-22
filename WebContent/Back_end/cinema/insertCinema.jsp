@@ -18,37 +18,34 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
-<title>瀏覽廳院</title>
+<title>新增廳院</title>
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
-	<h1>瀏覽廳院</h1>
+	<h1>新增廳院</h1>
 
 	<!-- 工作區開始 -->
 	
-	<%
-		Object object = request.getAttribute("cinemaVO");
-		CinemaVO cinemaVO;
+	<jsp:useBean id="cinemaVO" scope="request" class="com.cinema.model.CinemaVO"/>
 	
-		if(object != null){
-			cinemaVO = (CinemaVO)object;
-		} else{
-			cinemaVO = new CinemaVO();
+	<%
+		if(cinemaVO.getCinema_type() == null){
 			cinemaVO.setCinema_type("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
 		}
 	%>
 
+
 	<div class="container">
 		<div class="row justify-content">
 			<div class="col-4">
-				<form action="<%= request.getContextPath()%>/Cinema/CinemaServlet" method="post">
-					<table>
-
 						<ul>
 							<c:forEach var="message" items="${errorMessage}">
 								<li style="color:red">${message}</li>
 							</c:forEach>
 						</ul>
+				<form action="<%= request.getContextPath()%>/Cinema/CinemaServlet" method="post">
+					<table>
+
 
 						<tr>
 							<th>廳院名稱</th>
@@ -68,7 +65,7 @@
 						</tr>
 
 					</table>
-					<input id="hiddensizeinput" type="hidden" name="cinema_size"	value="<c:out value="${cinemaVO.cinema_size}" default="400"/>"> 
+					<input id="hiddensizeinput" type="hidden" name="cinema_size"	value="<c:out value="${cinemaVO.cinema_size}" default="0"/>"> 
 					<input id="hiddentypeinput" type="hidden" name="cinema_type" value="<c:out value="${cinemaVO.cinema_type}" default="0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>">
 					<input type="hidden" name="action" value="insertCinema"> 
 					<input type="submit" value="新增廳院">

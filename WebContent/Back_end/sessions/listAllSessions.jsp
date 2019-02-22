@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -46,7 +47,15 @@
 	if("all".equals(request.getParameter("action"))){
 		list = (List<SessionsVO>)application.getAttribute("sessionList_all");
 	}else{
-		list = (List<SessionsVO>)application.getAttribute("sessionList_effect");
+		list = new ArrayList<SessionsVO>();
+		
+		long time = System.currentTimeMillis();
+		
+		for(SessionsVO sessionsVO : (List<SessionsVO>)application.getAttribute("sessionList_all")){
+			if(sessionsVO.getSessions_start().getTime() > time){
+				list.add(sessionsVO);
+			}
+		}
 	}
 	
 	pageContext.setAttribute("list", list);
