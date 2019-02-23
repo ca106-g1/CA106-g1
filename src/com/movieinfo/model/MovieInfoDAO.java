@@ -118,7 +118,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 			pstmt.setInt(14, movieinfoVO.getMovie_noexp());
 			pstmt.setInt(15, movieinfoVO.getMovie_touch());
 			pstmt.setInt(16, movieinfoVO.getMovie_ticket());
-			pstmt.setInt(17, movieinfoVO.getMovie_no());
+			pstmt.setString(17, movieinfoVO.getMovie_no());
 
 			pstmt.executeUpdate();
 
@@ -146,7 +146,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer movie_no) {
+	public void delete(String movie_no) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -156,7 +156,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, movie_no);
+			pstmt.setString(1, movie_no);
 
 			pstmt.executeUpdate();
 
@@ -184,7 +184,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 	}
 
 	@Override
-	public MovieInfoVO findByPrimaryKey(Integer movie_no) {
+	public MovieInfoVO findByPrimaryKey(String movie_no) {
 
 		MovieInfoVO movieinfoVO = null;
 		Connection con = null;
@@ -196,7 +196,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, movie_no);
+			pstmt.setString(1, movie_no);
 
 			rs = pstmt.executeQuery();
 
@@ -204,7 +204,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 
 				movieinfoVO = new MovieInfoVO();
 
-				movieinfoVO.setMovie_no(rs.getInt("movie_no"));
+				movieinfoVO.setMovie_no(rs.getString("movie_no"));
 				movieinfoVO.setGenre_no(rs.getInt("genre_no"));
 				movieinfoVO.setMovie_name(rs.getString("movie_name"));
 				movieinfoVO.setMovie_level(rs.getBytes("movie_level"));
@@ -272,7 +272,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 
 				movieinfoVO = new MovieInfoVO();
 
-				movieinfoVO.setMovie_no(rs.getInt("movie_no"));
+				movieinfoVO.setMovie_no(rs.getString("movie_no"));
 				movieinfoVO.setGenre_no(rs.getInt("genre_no"));
 				movieinfoVO.setMovie_name(rs.getString("movie_name"));
 				movieinfoVO.setMovie_level(rs.getBytes("movie_level"));

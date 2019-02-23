@@ -3,7 +3,7 @@ package com.movieinfo.model;
 import java.sql.Date;
 
 public class MovieInfoVO implements java.io.Serializable {
-	private Integer movie_no;
+	private String movie_no;
 	private Integer genre_no;
 	private String movie_name;
 	private byte[] movie_level;
@@ -22,10 +22,10 @@ public class MovieInfoVO implements java.io.Serializable {
 	private Integer movie_ticket;
 	
 	
-	public Integer getMovie_no() {
+	public String getMovie_no() {
 		return movie_no;
 	}
-	public void setMovie_no(Integer movie_no) {
+	public void setMovie_no(String movie_no) {
 		this.movie_no = movie_no;
 	}
 	public Integer getGenre_no() {
