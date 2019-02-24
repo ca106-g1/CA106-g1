@@ -51,10 +51,12 @@ Class = SessionServlet
 
 		list_all = new Vector<SessionsVO>();
 		map = new Hashtable<String, SessionsVO>();
+		movieMap = new Hashtable<Integer, MovieInfoVO>();
 		
 		ServletContext context = getServletContext();
 		
 		context.setAttribute("sessionList_all", list_all);
 		context.setAttribute("sessionMap", map);
+		context.setAttribute("movieMap", movieMap);
 
 ]

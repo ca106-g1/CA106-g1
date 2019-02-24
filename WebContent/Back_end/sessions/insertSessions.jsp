@@ -298,7 +298,7 @@
     	//準備生成要送進資料庫的資料
     	var input = document.createElement("input");
     	input.type = "hidden";
-    	input.value = $id("movie_no").value + ";" + $id("cinema_no").value + ";" + date + ";" + time+"-"+half;
+    	input.value = $id("movie_no").value + ";" + $id("cinema_no").value + ";" + date + " " + time+":"+half+":"+"00";
     	input.name = "sessions";
     	input.id = "input"+count;
     	
