@@ -7,7 +7,7 @@ import java.sql.*;
 public class MovieticketDAO implements MovieticketDAO_interface{
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "CA106";
+	String userid = "JOIN";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT = 
@@ -187,7 +187,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				movieticketVO = new MovieticketVO();
 				movieticketVO.setMt_no(rs.getString("mt_no"));
 				movieticketVO.setOrder_no(rs.getString("order_no"));
@@ -250,7 +250,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				movieticketVO = new MovieticketVO();
 				movieticketVO.setMt_no(rs.getString("mt_no"));
 				movieticketVO.setOrder_no(rs.getString("order_no"));
@@ -300,7 +300,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 
 		MovieticketDAO dao = new MovieticketDAO();
 
-		// ·s¼W
+		// ï¿½sï¿½W
 		MovieticketVO movieticketVO1 = new MovieticketVO();
 		movieticketVO1.setOrder_no("2");
 		movieticketVO1.setTi_no("22");
@@ -309,7 +309,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 		movieticketVO1.setMt_share("qewr520@gmail.com");
 		dao.insert(movieticketVO1);
 
-		// ­×§ï
+		// ï¿½×§ï¿½
 		MovieticketVO movieticketVO2 = new MovieticketVO();
 		movieticketVO2.setMt_no("1");
 		movieticketVO2.setOrder_no("1");
@@ -319,10 +319,10 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 		movieticketVO2.setMt_share("zxcv520@gmail.com");
 		dao.update(movieticketVO2);
 
-		// §R°£
+		// ï¿½Rï¿½ï¿½
 		dao.delete("16");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		MovieticketVO movieticketVO3 = dao.findByPrimaryKey("1");
 		System.out.print(movieticketVO3.getMt_no() + ",");
 		System.out.print(movieticketVO3.getOrder_no() + ",");
@@ -332,7 +332,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 		System.out.println(movieticketVO3.getMt_share());
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		List<MovieticketVO> list = dao.getAll();
 		for (MovieticketVO movieticketVO4 : list) {
 			System.out.print(movieticketVO4.getMt_no() + ",");

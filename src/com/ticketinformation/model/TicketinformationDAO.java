@@ -7,7 +7,7 @@ import java.sql.*;
 public class TicketinformationDAO implements TicketinformationDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "CA106";
+	String userid = "JOIN";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT =
@@ -262,30 +262,30 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 		
 		TicketinformationDAO dao = new TicketinformationDAO();
 		
-		// ·s¼W
+		// ï¿½sï¿½W
 		TicketinformationVO ticketinformationVO1 = new TicketinformationVO();
-		ticketinformationVO1.setTi_name("·s¼W²¼");
+		ticketinformationVO1.setTi_name("ï¿½sï¿½Wï¿½ï¿½");
 		ticketinformationVO1.setTi_price("11111");
 		dao.insert(ticketinformationVO1);
 		
-		// ­×§ï
+		// ï¿½×§ï¿½
 		TicketinformationVO ticketinformationVO2 = new TicketinformationVO();
 		ticketinformationVO2.setTi_no("1");
-		ticketinformationVO2.setTi_name("­×§ï²¼");
+		ticketinformationVO2.setTi_name("ï¿½×§ï²¼");
 		ticketinformationVO2.setTi_price("22");
 		dao.update(ticketinformationVO2);
 		
-		// §R°£
+		// ï¿½Rï¿½ï¿½
 		dao.delete("15");
 		
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		TicketinformationVO ticketinformationVO3 = dao.findByPrimaryKey("1");
 		System.out.print(ticketinformationVO3.getTi_no() + ",");
 		System.out.print(ticketinformationVO3.getTi_name() + ",");
 		System.out.println(ticketinformationVO3.getTi_price());
 		System.out.println("---------------------");
 		
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		List<TicketinformationVO> list = dao.getAll();
 		for (TicketinformationVO ticketinformationVO4 : list) {
 			System.out.print(ticketinformationVO4.getTi_no() + ",");
