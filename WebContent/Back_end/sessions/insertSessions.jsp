@@ -1,10 +1,11 @@
-<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.sql.Timestamp"%>
 <%@ page import="com.cinema.model.*"%>
 <%@ page import="com.movieinfo.model.*"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -42,6 +43,22 @@
 	<h1>新增場次</h1>
 
 	<!-- 工作區開始 -->
+	
+	<%
+	MovieInfoService movieInfoService = new MovieInfoService();
+	List<MovieInfoVO> movieInfoVOList = new ArrayList<MovieInfoVO>();
+	long now = System.currentTimeMillis();
+	
+	for(MovieInfoVO movieInfoVO : movieInfoService.getAll()){
+		
+		if(movieInfoVO.getMovie_in().getTime()<now && movieInfoVO.getMovie_out().getTime()>now){
+			movieInfoVOList.add(movieInfoVO);
+		}
+		
+	}
+	
+	pageContext.setAttribute("movieInfoVOList", movieInfoVOList);
+	%>
 
 
 	<div class="container">

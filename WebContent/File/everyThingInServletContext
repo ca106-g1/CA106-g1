@@ -33,7 +33,7 @@ public class statusOfSit{
 
 package com.cinema.controller;
 Class = CinemaServlet
-@WebServlet(name = "/CinemaServlet", loadOnStartup = 1, urlPatterns = "/CinemaServlet")
+@WebServlet(name = "/Cinema/CinemaServlet", loadOnStartup = 1, urlPatterns = "/Cinema/CinemaServlet")
 [
 map = new Hashtable<String, CinemaVO>();
 sc.setAttribute("cinemaMap", map);
@@ -46,7 +46,7 @@ sc.setAttribute("cinemaList", list);
 
 package com.sessions.controller;
 Class = SessionServlet
-@WebServlet("/SessionServlet")
+@WebServlet(name = "/sessions/SessionServlet", loadOnStartup = 1, urlPatterns = "/sessions/SessionServlet")
 [
 
 		list_all = new Vector<SessionsVO>();
