@@ -17,11 +17,9 @@ z-index:999;
 				<div class="col-5">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">廳院管理</button>
+						aria-haspopup="true" aria-expanded="false">訂票</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/cinema/ListAllCinema.jsp">瀏覽廳院</a> 
-						<a class="dropdown-item" href="#">新增廳院</a>
-						<a class="dropdown-item" href="#">設定廳院</a>
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/insertticketorder.jsp">線上訂票</a> 
 					</div>
 				</div>
 			</div>

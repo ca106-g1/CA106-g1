@@ -38,7 +38,6 @@
 </style>
 </head>
 <body>
-<%System.out.println(request.getParameter("whichPage")); %>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1>瀏覽場次</h1>
 
