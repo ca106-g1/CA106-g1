@@ -49,7 +49,7 @@ public class DepService {
 		
 	}
 	
-	public List<DepVO> getALL(){
+	public List<DepVO> getAll(){
 		
 		return dao.getAll();
 		

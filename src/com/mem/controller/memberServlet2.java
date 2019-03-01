@@ -19,7 +19,7 @@ import com.mem.model.MemService;
 import com.mem.model.MemVO;
 
 @MultipartConfig
-public class memberServlet extends HttpServlet {
+public class memberServlet2 extends HttpServlet {
 
 	/**
 	 * 
@@ -136,7 +136,7 @@ public class memberServlet extends HttpServlet {
 				}
 
 				/************************* 3.查詢完成 準備轉交 ***********************************/
-				req.getSession().setAttribute("memVO", memVO); // 資料庫取出的empVO物件，存入req
+				req.setAttribute("memVO", memVO); // 資料庫取出的empVO物件，存入req
 				String url = "/Front_end/mem/select_page.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交至LoginSucess.jsp
 				successView.forward(req, res);
@@ -169,7 +169,6 @@ public class memberServlet extends HttpServlet {
 				req.setAttribute("memVO",memVO);
 				String url= "/Front_end/mem/update_mem_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
-				System.out.println("getOne_for_Update檢查");
 				successView.forward(req, res);
 				
 				/******************************/
@@ -193,10 +192,9 @@ public class memberServlet extends HttpServlet {
 			
 //try {
 	
-			MemVO memVO1 = 	(MemVO)req.getSession().getAttribute("memVO");
-			String member_no = memVO1.getMember_no();
+				String member_no = new String(req.getParameter("member_no").trim());
 				System.out.println(member_no);
-				String member_account = memVO1.getMember_account();
+				String member_account = req.getParameter("member_account");
 //				String member_accountReg = "^[(a-zA-Z0-9)]{2,10}$";
 //				//System.out.println(!member_account.trim().matches(member_accountReg));
 //					if(member_account==null || member_account.trim().length()==0) {

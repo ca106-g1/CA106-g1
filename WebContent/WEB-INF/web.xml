@@ -51,6 +51,25 @@
 		<url-pattern>/ticketinformation/ticketinformation.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+    <servlet-name>DepServlet</servlet-name>
+    <servlet-class>com.dep.controller.DepServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DepServlet</servlet-name>
+    <url-pattern>/Front_end/dep/dep.do</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>PermServlet</servlet-name>
+  	<servlet-class>com.perm.controller.PermServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>PermServlet</servlet-name>
+  	<url-pattern>/Back_end/perm/perm.do</url-pattern>
+  </servlet-mapping>
+  
   
   
 </web-app>

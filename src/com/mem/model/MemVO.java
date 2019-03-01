@@ -3,7 +3,7 @@ package com.mem.model;
 
 import java.sql.Date;
 
-import oracle.sql.BLOB;
+
 
 
 
@@ -23,7 +23,7 @@ public class MemVO implements java.io.Serializable{
 	private String  member_address;
 	private String  member_telephone;
 	private String  member_email ;
-	private BLOB  	member_picture ;
+	private byte[]  member_picture ;
 	private String  member_credit_number;
 	private Integer member_back_verification;
 	private Date 	member_buildday;
@@ -91,10 +91,10 @@ public class MemVO implements java.io.Serializable{
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	public BLOB getMember_picture() {
+	public byte[] getMember_picture() {
 		return member_picture;
 	}
-	public void setMember_picture(BLOB member_picture) {
+	public void setMember_picture(byte[] member_picture) {
 		this.member_picture = member_picture;
 	}
 	public String getMember_credit_number() {

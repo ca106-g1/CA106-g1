@@ -135,6 +135,7 @@ public class PermDAOImpl implements PermDAO_interface{
 			pstmt=con.prepareStatement(DELETE);
 			
 			pstmt.setString(1,permission_no);
+			System.out.println(pstmt.executeUpdate());
 			
 			
 		} catch (ClassNotFoundException e) {

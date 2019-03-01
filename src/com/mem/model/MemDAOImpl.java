@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import oracle.sql.BLOB;
+
 
 
 
@@ -61,7 +61,7 @@ public class MemDAOImpl implements MemDAO_interface {
 			pstmt.setString(7,memVO.getMember_address());
 			pstmt.setString(8,memVO.getMember_telephone());
 			pstmt.setString(9,memVO.getMember_email());
-			pstmt.setBlob(10,memVO.getMember_picture());
+			pstmt.setBytes(10,memVO.getMember_picture());
 			pstmt.setString(11,memVO.getMember_credit_number());
 			pstmt.setInt(12,memVO.getMember_back_verification());
 			pstmt.setDate(13,memVO.getMember_buildday());
@@ -138,7 +138,7 @@ public class MemDAOImpl implements MemDAO_interface {
 				memVO.setMember_address(rs.getString("member_address"));
 				memVO.setMember_telephone(rs.getString("member_telephone"));
 				memVO.setMember_email(rs.getString("member_email"));
-				memVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
+				memVO.setMember_picture(rs.getBytes("member_picture"));
 				memVO.setMember_credit_number(rs.getString("member_credit_number"));
 				memVO.setMember_back_verification(rs.getInt("member_back_verification"));
 				memVO.setMember_buildday(rs.getDate("member_buildday"));
@@ -212,7 +212,7 @@ public class MemDAOImpl implements MemDAO_interface {
 				memVO.setMember_address(rs.getString("member_address"));
 				memVO.setMember_telephone(rs.getString("member_telephone"));
 				memVO.setMember_email(rs.getString("member_email"));
-				memVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
+				memVO.setMember_picture(rs.getBytes("member_picture"));
 				memVO.setMember_credit_number(rs.getString("member_credit_number"));
 				memVO.setMember_back_verification(rs.getInt("member_back_verification"));
 				memVO.setMember_buildday(rs.getDate("member_buildday"));
@@ -291,7 +291,7 @@ public class MemDAOImpl implements MemDAO_interface {
 			pstmt.setString(7,memVO.getMember_address());
 			pstmt.setString(8,memVO.getMember_telephone());
 			pstmt.setString(9,memVO.getMember_email());
-			pstmt.setBlob(10,memVO.getMember_picture());
+			pstmt.setBytes(10,memVO.getMember_picture());
 			pstmt.setString(11,memVO.getMember_credit_number());
 			pstmt.setInt(12,memVO.getMember_back_verification());
 			pstmt.setDate(13,memVO.getMember_buildday());
@@ -431,7 +431,7 @@ public class MemDAOImpl implements MemDAO_interface {
 				memVO.setMember_address(rs.getString("member_address"));
 				memVO.setMember_telephone(rs.getString("member_telephone"));
 				memVO.setMember_email(rs.getString("member_email"));
-				memVO.setMember_picture((BLOB) rs.getBlob("member_picture"));
+				memVO.setMember_picture(rs.getBytes("member_picture"));
 				memVO.setMember_credit_number(rs.getString("member_credit_number"));
 				memVO.setMember_back_verification(rs.getInt("member_back_verification"));
 				memVO.setMember_buildday(rs.getDate("member_buildday"));

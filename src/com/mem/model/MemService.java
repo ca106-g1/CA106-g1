@@ -2,7 +2,7 @@ package com.mem.model;
 
 import java.util.List;
 
-import oracle.sql.BLOB;
+
 
 public class MemService {
 	
@@ -12,7 +12,7 @@ public class MemService {
 		dao = new MemDAOImpl();
 	}
 	
-	public MemVO addMem( String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String  member_telephone,String  member_email,BLOB  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
+	public MemVO addMem( String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String  member_telephone,String  member_email,byte[]  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
 		
 		
 		MemVO memVO = new MemVO();
@@ -37,7 +37,7 @@ public class MemService {
 		
 	}
 	
-	public MemVO updateMem(String member_no,String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String member_telephone,String  member_email,BLOB  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
+	public MemVO updateMem(String member_no,String  member_account,String  member_password,String  member_name,String  member_nick,Integer member_sex,java.sql.Date  member_birthday,String  member_address,String member_telephone,String  member_email,byte[]  member_picture,String  member_credit_number,Integer member_back_verification,java.sql.Date member_buildday,Integer member_point,String member_status) {
 		
 		MemVO memVO = new MemVO();
 		memVO.setMember_no(member_no);
