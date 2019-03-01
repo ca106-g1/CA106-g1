@@ -23,5 +23,4 @@ public class StatusOfSit{
 		return type;
 	}
 
-	
 }
