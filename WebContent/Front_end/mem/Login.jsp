@@ -1,11 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="Big5"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="BIG5">
-<title>Join´ª¼v¼v«°µn¤J¨t²Î</title>
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
+<title>JOINå½±åŸç™»å…¥ç³»çµ±</title>
+
 <style>
 
 table#table-1{
@@ -31,19 +39,24 @@ display: inline;
 </style>
 
 
+
 </head>
-<body bgcolor='white'>
+<body>
+	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<h1></h1>
 
-<table id = "table-1">
+	<!-- å·¥ä½œå€é–‹å§‹ -->
+	
+	
+	<table id = "table-1">
 
-<tr><td><h3>Join´ª¼v¼v«°µn¤J¨t²Î</h3></td></tr>
+		<tr><td><h3>Joinæªå½±å½±åŸç™»å…¥ç³»çµ±</h3></td></tr>
 
-</table>
+	</table>
 
-
-<%--¿ù»~ªí¦C --%>
+<%--éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs }">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 		<c:forEach var = "message"  items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -54,20 +67,31 @@ display: inline;
 
 <form  method = "post"   action = "mem.do"  >
 
-<p>±b¸¹: <input type = "text"  name = "member_account"  ></p>
-<p>±K½X: <input type = "text"  name = "member_password" ></p>
+<p>å¸³è™Ÿ: <input type = "text"  name = "member_account"  ></p>
+<p>å¯†ç¢¼: <input type = "password"  name = "member_password" ></p>
 <p><input type = "hidden" name="action" value="getone_for_login">
-   <input type = "submit"  value = "°e¥X">
-   <input type = "reset"   value = "¨ú®ø">
+   <input type = "submit"  value = "é€å‡º">
+   <input type = "reset"   value = "å–æ¶ˆ">
 </p>
 </form>
 
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 
-*¦pªG±zÁÙ¥¼µù¥U·|­û ½ĞÂIÀ»<a href='Registered.jsp'>µù¥U</a>
+*å¦‚æœæ‚¨é‚„æœªè¨»å†Šæœƒå“¡ è«‹é»æ“Š<a href='Registered.jsp'>è¨»å†Š</a>
 
-
-
+	<!-- å·¥ä½œå€çµæŸ -->
+	
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>
 </html>

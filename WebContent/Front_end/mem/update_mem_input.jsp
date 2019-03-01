@@ -1,12 +1,10 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import= "com.mem.model.*" %>
 
-<%@ page import = "com.mem.model.*" %>
 
-<%
-	MemVO memVO = (MemVO) request.getAttribute("memVO");
-%>kk
+<jsp:useBean id="memVO" class="com.mem.model.MemVO" scope="session"/>
 
 <!doctype html>
 <html lang="en">
@@ -19,7 +17,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
-<title>Join影城註冊頁面</title>
+<title></title>
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -27,26 +25,29 @@
 
 	<!-- 工作區開始 -->
 	
-<div><h1>Join揪影註冊頁面</h1></div>
-	
-<%--錯誤表列 --%>
-
-<c:if test = "${not empty errorMsgs }">
-	<font style ="color:red">請修正以下錯誤:</font>
+	<%--錯誤表列 --%>
+<c:if test="${not empty errorMsgs }">
+	<font style = "color:red">請修正以下錯誤</font>
 	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-		<li style="color:red">${message}</li>
+		<c:forEach var = "message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
 		</c:forEach>
 	</ul>
 </c:if>
-	
-	
-<form action = "mem.do" method = "post" name="form1" enctype="multipart/form-data">
 
-<br>
+<FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data">
+<table>
+	<tr>
+		<td>會員編號:</td>
+		<td><%=memVO.getMember_no() %></td>
+	</tr>
+	
+	<tr>
+		<td>會員帳號:</td>
+		<td><%=memVO.getMember_account() %></td>
+	</tr>
 
-<p>*帳號: 
-<input type = "text"  name = "member_account" value="<%= (memVO==null)?"":memVO.getMember_account()%>" autofocus> </p>
+
 
 <p>*密碼: 
 <input type = "password"  name = "member_password" value="<%= (memVO==null)?"":""%>"  required> </p>
@@ -92,24 +93,16 @@
 <input type = "file" id = "img" name = "member_picture"> </p>
 
 <p>信用卡號碼:
-<input type = "text"  name = "member_credit_number" value="<%= (memVO==null)?"":memVO.getMember_credit_number()%>"> </p> 
+<input type = "text"  name = "member_credit_number" value="${memVO.member_credit_number}"> </p> 
 
 <p>背面後三碼: 
 <input type = "text"  name = "member_back_verification" value="<%= (memVO==null)?"":memVO.getMember_back_verification()%>"> </p>
 
-<p><input type = "hidden" name="action" value="insert">
-   <input type = "submit" id="send" value = "送出"> &nbsp;&nbsp;
-   <input type = "reset"   value = "取消">
-   <a href = 'Login.jsp'>回到首頁</a>
-</p>
+</table>
+<br>
+<input type = "hidden" name="action" value="update">
+<input type = "submit" value = "送出修改"> </FORM>
 
-
-
-
-
-
-
-</form>
 
 
 	<!-- 工作區結束 -->
