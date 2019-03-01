@@ -1,3 +1,5 @@
+<%@page import="com.cinema.model.CinemaVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -45,20 +47,28 @@
 	<th>廳院狀態</th>
 	<th>設定廳院</th>
 	</tr>
-<c:forEach var="cinemaVO" items="${cinemaList}">
-
-<tr>
-
-	<td>${cinemaVO.cinema_no}</td>
-	<td>${cinemaVO.cinema_name}</td>
-	<td>${cinemaVO.cinema_size}</td>
-	<td>${cinemaVO.cinema_correct}</td>
-	<td>${cinemaVO.cinema_status}</td>
-	<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/Back_end/cinema/updateCinema.jsp?cinema_no=${cinemaVO.cinema_no}">設定</a></td>
 	
-</tr>
-</c:forEach>
+	<%
+	List list = (List<CinemaVO>)application.getAttribute("cinemaList");
+	request.setAttribute("list", list); 
+	%>
+	
+		<%@ include file="/File/page1.file" %>
+			<c:forEach var="cinemaVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+			
+			<tr>
+			
+				<td>${cinemaVO.cinema_no}</td>
+				<td>${cinemaVO.cinema_name}</td>
+				<td>${cinemaVO.cinema_size}</td>
+				<td>${cinemaVO.cinema_correct}</td>
+				<td>${cinemaVO.cinema_status}</td>
+				<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/Back_end/cinema/updateCinema.jsp?cinema_no=${cinemaVO.cinema_no}">設定</a></td>
+				
+			</tr>
+			</c:forEach>
 	</table>
+		<%@ include file="/File/page2.file" %>
 		
 
 

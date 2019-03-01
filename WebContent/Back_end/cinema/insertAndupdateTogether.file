@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="ToolClasses.StatusOfSit"%>
 <div class="col-8">
 				<nav class="row justify-content">
 				
@@ -56,7 +57,7 @@
 							List<Integer> sitInnerList = sitList.get(i);
 							int innerSize = sitInnerList.size();
 							for (int j = 0; j < innerSize; j++) {
-								CinemaTool.StatusOfSit cs = (CinemaTool.StatusOfSit) (statusOfSitList.get(sitInnerList.get(j)));
+								StatusOfSit cs = (StatusOfSit) (statusOfSitList.get(sitInnerList.get(j)));
 					%>
 
 					<div 

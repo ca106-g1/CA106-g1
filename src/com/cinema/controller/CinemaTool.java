@@ -9,36 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+import ToolClasses.StatusOfSit;
+
 @WebServlet(name = "/CinemaTool", loadOnStartup = 1, urlPatterns = "/CinemaTool")
 public class CinemaTool extends HttpServlet{
 	private static final long serialVersionUID = 1201483449723249054L;
-	
-
-	public class StatusOfSit{
-		private String str;
-		private String coller;
-		private Integer type;
-		
-		private StatusOfSit(String str, String coller, Integer type){
-			this.str = str;
-			this.coller = coller;
-			this.type = type;
-		}
-
-		public String getStr() {
-			return str;
-		}
-
-		public String getColler() {
-			return coller;
-		}
-
-		public Integer getType() {
-			return type;
-		}
-
-		
-	}
 	
 	public void init() throws ServletException {
 		

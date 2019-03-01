@@ -1,10 +1,13 @@
+<%@page import="com.movieinfo.model.MovieInfoVO"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.Map"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.sessions.model.*"%>
+<%@ page import="com.cinema.model.*"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,6 +33,7 @@
   th, td {
     padding: 5px;
     text-align: center;
+    hight : 30px;
   }
 </style>
 </head>
@@ -45,7 +49,9 @@
 	
 	
 	if("all".equals(request.getParameter("action"))){
+		
 		list = (List<SessionsVO>)application.getAttribute("sessionList_all");
+		
 	}else{
 		list = new ArrayList<SessionsVO>();
 		
@@ -67,28 +73,31 @@
 <table>
 	<tr>
 	<th>場次編號</th>
-	<th>電影編號</th>
+	<th>電影名稱</th>
 	<th>廳院編號</th>
 	<th>開始時間</th>
 	<th>剩餘座位數量</th>
 	<th>查看座位</th>
 	<th>刪除場次</th>
 	</tr>
-<c:forEach var="sessionsVO" items="${list}">
-
-<tr>
-
-	<td>${sessionsVO.sessions_no}</td>
-	<td>${sessionsVO.movie_no}</td>
-	<td>${sessionsVO.cinema_no}</td>
-	<td>${sessionsVO.sessions_start}</td>
-	<td>${sessionsVO.sessions_remaining}</td>
-	<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/Back_end/session/checkOneSession.jsp?sessions_no=${sessionsVO.sessions_no}">查看</a></td>
-	<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/session/SessionServlet?sessions_no=${sessionsVO.sessions_no}">刪除</a></td>
-	
-</tr>
-</c:forEach>
+	<%@ include file="/File/page1.file" %>
+		<c:forEach var="sessionsVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+		
+			<tr>
+			
+				<td>${sessionsVO.sessions_no}</td>
+				<td>${movieMap[ sessionsVO.movie_no ].movie_name }</td>
+				<td>${cinemaMap[ sessionsVO.cinema_no ].cinema_name}</td>
+				<td>${sessionsVO.sessions_start}</td>
+				<td>${sessionsVO.sessions_remaining}</td>
+				<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/Back_end/session/checkOneSession.jsp?sessions_no=${sessionsVO.sessions_no}">查看</a></td>
+				<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/session/SessionServlet?sessions_no=${sessionsVO.sessions_no}">刪除</a></td>
+			
+			</tr>
+		
+		</c:forEach>
 	</table>
+	<%@ include file="/File/page2.file" %>
 
 
 	<!-- 工作區結束 -->

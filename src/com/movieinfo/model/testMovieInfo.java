@@ -62,30 +62,28 @@ public class testMovieInfo extends HttpServlet {
 //		vo.setMovie_no(18);
 		
 //		dao.update(vo);
-		vo = dao.findByPrimaryKey(2);
-		System.out.println(vo.getMovie_no());
-		System.out.println(vo.getGenre_no());
-		System.out.println(vo.getMovie_name());
-		System.out.println(vo.getMovie_level());
-		System.out.println(vo.getMovie_director());
-		System.out.println(vo.getMovie_cast());
-		System.out.println(vo.getMovie_intro());
-		System.out.println(vo.getMovie_length());
-		System.out.println(vo.getMovie_pic());
-		System.out.println(vo.getMovie_trailer());
-		System.out.println(vo.getMovie_in());
-		System.out.println(vo.getMovie_out());
-		System.out.println(vo.getMovie_count());
-		System.out.println(vo.getMovie_exp());
-		System.out.println(vo.getMovie_noexp());
-		System.out.println(vo.getMovie_touch());
-		System.out.println(vo.getMovie_ticket());
+//		vo = dao.findByPrimaryKey(2);
+//		System.out.println(vo.getMovie_no());
+//		System.out.println(vo.getGenre_no());
+//		System.out.println(vo.getMovie_name());
+//		System.out.println(vo.getMovie_level());
+//		System.out.println(vo.getMovie_director());
+//		System.out.println(vo.getMovie_cast());
+//		System.out.println(vo.getMovie_intro());
+//		System.out.println(vo.getMovie_length());
+//		System.out.println(vo.getMovie_pic());
+//		System.out.println(vo.getMovie_trailer());
+//		System.out.println(vo.getMovie_in());
+//		System.out.println(vo.getMovie_out());
+//		System.out.println(vo.getMovie_count());
+//		System.out.println(vo.getMovie_exp());
+//		System.out.println(vo.getMovie_noexp());
+//		System.out.println(vo.getMovie_touch());
+//		System.out.println(vo.getMovie_ticket());
 		
 		List<MovieInfoVO> list = service.getAll();
 		for(MovieInfoVO a:list) {
 			System.out.println(a.getMovie_no());
 		}
-		
-		
 	}
 }

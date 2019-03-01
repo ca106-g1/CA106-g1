@@ -52,7 +52,7 @@ public class MovieInfoService {
 	}
 
 	public MovieInfoVO updateMovieInfo(
-			Integer movie_no,
+			String movie_no,
 			Integer genre_no,
 			String movie_name,
 			byte[] movie_level,
@@ -94,11 +94,11 @@ public class MovieInfoService {
 		return movieinfoVO;
 	}
 
-	public void deleteMovieInfo(Integer movie_no) {
+	public void deleteMovieInfo(String movie_no) {
 		dao.delete(movie_no);
 	}
 
-	public MovieInfoVO getOneMovieInfo(Integer movie_no) {
+	public MovieInfoVO getOneMovieInfo(String movie_no) {
 		return dao.findByPrimaryKey(movie_no);
 	}
 

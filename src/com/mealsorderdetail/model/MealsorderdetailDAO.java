@@ -11,7 +11,7 @@ import java.util.List;
 public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "CA106";
+	String userid = "JOIN";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT = 
@@ -184,7 +184,7 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				mealsorderdetailVO = new MealsorderdetailVO();
 				mealsorderdetailVO.setOrder_no(rs.getString("order_no"));
 				mealsorderdetailVO.setMeals_no(rs.getString("meals_no"));
@@ -245,7 +245,7 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				mealsorderdetailVO = new MealsorderdetailVO();
 				mealsorderdetailVO.setOrder_no(rs.getString("order_no"));
 				mealsorderdetailVO.setMeals_no(rs.getString("meals_no"));
@@ -294,31 +294,31 @@ public class MealsorderdetailDAO implements MealsorderdetailDAO_interface {
 
 		MealsorderdetailDAO dao = new MealsorderdetailDAO();
 
-		// ·s¼W
+		// ï¿½sï¿½W
 		MealsorderdetailVO mealsorderdetailVO1 = new MealsorderdetailVO();
 		mealsorderdetailVO1.setOrder_no("20");
 		mealsorderdetailVO1.setMeals_no("MEALS010");
 		mealsorderdetailVO1.setMo_count(100);
 		dao.insert(mealsorderdetailVO1);
 
-		// ­×§ï
+		// ï¿½×§ï¿½
 		MealsorderdetailVO mealsorderdetailVO2 = new MealsorderdetailVO();
 		mealsorderdetailVO2.setOrder_no("1");
 		mealsorderdetailVO2.setMeals_no("MEALS001");
 		mealsorderdetailVO2.setMo_count(46);
 		dao.update(mealsorderdetailVO2);
 
-		// §R°£
+		// ï¿½Rï¿½ï¿½
 		dao.delete("5");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		MealsorderdetailVO mealsorderdetailVO3 = dao.findByPrimaryKey("6");
 		System.out.print(mealsorderdetailVO3.getOrder_no() + ",");
 		System.out.print(mealsorderdetailVO3.getMeals_no() + ",");
 		System.out.println(mealsorderdetailVO3.getMo_count());
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		List<MealsorderdetailVO> list = dao.getAll();
 		for (MealsorderdetailVO mealsorderdetailVO4 : list) {
 			System.out.print(mealsorderdetailVO4.getOrder_no() + ",");

@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cinema.model.*;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
-
 @WebServlet(name = "/Cinema/CinemaServlet", loadOnStartup = 1, urlPatterns = "/Cinema/CinemaServlet")
 public class CinemaServlet extends HttpServlet {
 	private static final long serialVersionUID = -6487812844357722812L;
@@ -35,8 +33,6 @@ public class CinemaServlet extends HttpServlet {
 	private static final int CINEMA_CORRECT_MAX = 100;
 	private static final int CINEMA_CORRECT_MIN = -100;
 	private static final String CINEMA_CORRECT_ILLEGAL_MESSAGE = "票價修正異常，請重新輸入-100~100的票價修正";
-
-	private static final String REGEX_CINEMA_CORRECT = "[0-9] {0,20}";
 
 	private static final String CINEMA_CORRECT_ISNOT_NUMBER_ILLEGAL_MESSAGE = "票價調整必須是數字";
 

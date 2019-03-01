@@ -8,7 +8,7 @@ import java.sql.*;
 public class TicketorderDAO implements TicketorderDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "CA106";
+	String userid = "JOIN";
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT = 
@@ -187,7 +187,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				ticketorderVO = new TicketorderVO();
 				ticketorderVO.setOrder_no(rs.getString("order_no"));
 				ticketorderVO.setMember_no(rs.getString("member_no"));
@@ -253,7 +253,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				ticketorderVO = new TicketorderVO();
 				ticketorderVO.setOrder_no(rs.getString("order_no"));
 				ticketorderVO.setMember_no(rs.getString("member_no"));
@@ -307,7 +307,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 
 		TicketorderDAO dao = new TicketorderDAO();
 
-		// ·s¼W
+		// ï¿½sï¿½W
 		TicketorderVO ticketorderVO1 = new TicketorderVO();
 		ticketorderVO1.setMember_no("16");
 		ticketorderVO1.setFd_no("22");
@@ -319,7 +319,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 		ticketorderVO1.setOrder_amount(500);
 		dao.insert(ticketorderVO1);
 
-		// ­×§ï
+		// ï¿½×§ï¿½
 		TicketorderVO ticketorderVO2 = new TicketorderVO();
 		ticketorderVO2.setOrder_no("1");
 		ticketorderVO2.setMember_no("10023");
@@ -332,10 +332,10 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 		ticketorderVO2.setOrder_amount(503);
 		dao.update(ticketorderVO2);
 
-		// §R°£
+		// ï¿½Rï¿½ï¿½
 		dao.delete("16");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		TicketorderVO ticketorderVO3 = dao.findByPrimaryKey("1");
 		System.out.print(ticketorderVO3.getOrder_no() + ",");
 		System.out.print(ticketorderVO3.getMember_no() + ",");
@@ -348,7 +348,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 		System.out.println(ticketorderVO3.getOrder_amount());
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		List<TicketorderVO> list = dao.getAll();
 		for (TicketorderVO ticketorderVO4 : list) {
 			System.out.print(ticketorderVO4.getOrder_no() + ",");
