@@ -394,7 +394,7 @@ CREATE TABLE MOVIEINFO(
     MOVIE_IN            DATE                    NOT NULL,
     MOVIE_OUT           DATE                    NOT NULL,
     MOVIE_COUNT         NUMBER(10)              NOT NULL,
-    MOVUE_EXP           NUMBER(10)              NOT NULL,
+    MOVIE_EXP           NUMBER(10)              NOT NULL,
     MOVIE_NOEXP         NUMBER(10)              NOT NULL,
     MOVIE_TOUCH         NUMBER(10)              ,               
     MOVIE_TICKET        NUMBER(10)              NOT NULL,
