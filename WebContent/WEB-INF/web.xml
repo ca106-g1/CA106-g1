@@ -70,6 +70,14 @@
   	<url-pattern>/Back_end/perm/perm.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Cus_serServlet</servlet-name>
+    <servlet-class>com.cus_ser.controller.Cus_serServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Cus_serServlet</servlet-name>
+    <url-pattern>/Front_end/cus_ser/cus_ser.do</url-pattern>
+  </servlet-mapping>
   
   
 </web-app>

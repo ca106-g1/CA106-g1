@@ -58,7 +58,7 @@ public class Cus_serDAOImpl implements Cus_serDAO_interface {
 			
 			pstmt.setString(1, cus_serVO.getMember_no());
 			pstmt.setDate(2, cus_serVO.getCustomer_service_start_date());
-			pstmt.setString(3, cus_serVO.getCustomer_service_status());
+			pstmt.setInt(3, cus_serVO.getCustomer_service_status());
 			
 			pstmt.executeUpdate();
 			
@@ -102,7 +102,7 @@ public class Cus_serDAOImpl implements Cus_serDAO_interface {
 			
 			pstmt.setString(1, cus_serVO.getMember_no());
 			pstmt.setDate(2, cus_serVO.getCustomer_service_start_date());
-			pstmt.setString(3, cus_serVO.getCustomer_service_status());
+			pstmt.setInt(3, cus_serVO.getCustomer_service_status());
 			pstmt.setString(4, cus_serVO.getCustomer_service_event_no());
 			
 			pstmt.executeUpdate();
@@ -198,7 +198,7 @@ public class Cus_serDAOImpl implements Cus_serDAO_interface {
 				cus_serVO.setCustomer_service_event_no(rs.getString("customer_service_event_no"));
 				cus_serVO.setMember_no(rs.getString("member_no"));
 				cus_serVO.setCustomer_service_start_date(rs.getDate("customer_service_start_date"));
-				cus_serVO.setCustomer_service_status(rs.getString("customer_service_status"));
+				cus_serVO.setCustomer_service_status(rs.getInt("customer_service_status"));
 				
 			}
 			
@@ -254,7 +254,7 @@ public class Cus_serDAOImpl implements Cus_serDAO_interface {
 				cus_serVO.setCustomer_service_event_no(rs.getString("customer_service_event_no"));
 				cus_serVO.setMember_no(rs.getString("member_no"));
 				cus_serVO.setCustomer_service_start_date(rs.getDate("customer_service_start_date"));
-				cus_serVO.setCustomer_service_status(rs.getString("customer_service_status"));
+				cus_serVO.setCustomer_service_status(rs.getInt("customer_service_status"));
 				list.add(cus_serVO);
 				}
 			

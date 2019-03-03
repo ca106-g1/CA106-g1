@@ -11,7 +11,7 @@ public class Cus_serService {
 		
 	}
 	
-	public Cus_serVO addCus_ser(String member_no,java.sql.Date   customer_service_start_date,String customer_service_status) {
+	public Cus_serVO addCus_ser(String member_no,java.sql.Date   customer_service_start_date,Integer customer_service_status) {
 		
 		Cus_serVO cus_serVO = new Cus_serVO();
 		
@@ -24,7 +24,7 @@ public class Cus_serService {
 		
 	}
 	
-	public Cus_serVO updatecus_ser(String customer_service_event_no,String member_no,java.sql.Date   customer_service_start_date,String customer_service_status) {
+	public Cus_serVO updatecus_ser(String customer_service_event_no,String member_no,java.sql.Date   customer_service_start_date,Integer customer_service_status) {
 		
 		Cus_serVO cus_serVO = new Cus_serVO();
 		

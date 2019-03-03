@@ -13,7 +13,7 @@ public class Cus_serVO implements java.io.Serializable {
 	private String customer_service_event_no;
 	private String member_no;
 	private Date   customer_service_start_date;
-	private String customer_service_status;
+	private Integer customer_service_status;
 	
 	
 	public String getCustomer_service_event_no() {
@@ -34,10 +34,10 @@ public class Cus_serVO implements java.io.Serializable {
 	public void setCustomer_service_start_date(Date customer_service_start_date) {
 		this.customer_service_start_date = customer_service_start_date;
 	}
-	public String getCustomer_service_status() {
+	public Integer getCustomer_service_status() {
 		return customer_service_status;
 	}
-	public void setCustomer_service_status(String customer_service_status) {
+	public void setCustomer_service_status(Integer customer_service_status) {
 		this.customer_service_status = customer_service_status;
 	}
 	
