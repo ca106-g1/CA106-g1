@@ -1,6 +1,11 @@
 package com.mealsorderdetail.model;
 
 public class MealsorderdetailVO implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8200002412050696257L;
+	
 	private String order_no;
 	private String meals_no;
 	private Integer mo_count;

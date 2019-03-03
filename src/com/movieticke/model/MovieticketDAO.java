@@ -2,13 +2,24 @@ package com.movieticke.model;
 
 import java.util.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import java.sql.*;
 
-public class MovieticketDAO implements MovieticketDAO_interface{
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "JOIN";
-	String passwd = "123456";
+public class MovieticketDAO implements MovieticketDAO_interface {
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static final String INSERT_STMT = 
 			"INSERT INTO MOVIETICKET (mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share) VALUES (MOVIETICKET_seq.NEXTVAL, ?, ?, ?, ?, ?)";
@@ -29,8 +40,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			//pstmt.setString(1, ticketorderVO.getOrder_no());
@@ -45,10 +55,6 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -78,8 +84,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 		
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
 			
@@ -96,10 +101,6 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -133,8 +134,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, mt_no);
@@ -142,10 +142,6 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -178,8 +174,7 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, mt_no);
@@ -187,7 +182,6 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO �]�٬� Domain objects
 				movieticketVO = new MovieticketVO();
 				movieticketVO.setMt_no(rs.getString("mt_no"));
 				movieticketVO.setOrder_no(rs.getString("order_no"));
@@ -198,10 +192,6 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -244,13 +234,11 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO �]�٬� Domain objects
 				movieticketVO = new MovieticketVO();
 				movieticketVO.setMt_no(rs.getString("mt_no"));
 				movieticketVO.setOrder_no(rs.getString("order_no"));
@@ -262,10 +250,6 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -295,56 +279,6 @@ public class MovieticketDAO implements MovieticketDAO_interface{
 		}
 		return list;
 	}
-	
-	public static void main(String[] args) {
-
-		MovieticketDAO dao = new MovieticketDAO();
-
-		// �s�W
-		MovieticketVO movieticketVO1 = new MovieticketVO();
-		movieticketVO1.setOrder_no("2");
-		movieticketVO1.setTi_no("22");
-		movieticketVO1.setMt_qr(null);
-		movieticketVO1.setMt_admission(0);
-		movieticketVO1.setMt_share("qewr520@gmail.com");
-		dao.insert(movieticketVO1);
-
-		// �ק�
-		MovieticketVO movieticketVO2 = new MovieticketVO();
-		movieticketVO2.setMt_no("1");
-		movieticketVO2.setOrder_no("1");
-		movieticketVO2.setTi_no("23");
-		movieticketVO2.setMt_qr(null);
-		movieticketVO2.setMt_admission(1);
-		movieticketVO2.setMt_share("zxcv520@gmail.com");
-		dao.update(movieticketVO2);
-
-		// �R��
-		dao.delete("16");
-
-		// �d��
-		MovieticketVO movieticketVO3 = dao.findByPrimaryKey("1");
-		System.out.print(movieticketVO3.getMt_no() + ",");
-		System.out.print(movieticketVO3.getOrder_no() + ",");
-		System.out.print(movieticketVO3.getTi_no() + ",");
-		System.out.print(movieticketVO3.getMt_qr() + ",");
-		System.out.print(movieticketVO3.getMt_admission() + ",");
-		System.out.println(movieticketVO3.getMt_share());
-		System.out.println("---------------------");
-
-		// �d��
-		List<MovieticketVO> list = dao.getAll();
-		for (MovieticketVO movieticketVO4 : list) {
-			System.out.print(movieticketVO4.getMt_no() + ",");
-			System.out.print(movieticketVO4.getOrder_no() + ",");
-			System.out.print(movieticketVO4.getTi_no() + ",");
-			System.out.print(movieticketVO4.getMt_qr() + ",");
-			System.out.print(movieticketVO4.getMt_admission() + ",");
-			System.out.print(movieticketVO4.getMt_share());
-			System.out.println();
-		}
-	}
-
 	
 	
 	

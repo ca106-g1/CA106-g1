@@ -2,17 +2,28 @@ package com.ticketorder.model;
 
 import java.util.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import java.sql.*;
 
 public class TicketorderDAO implements TicketorderDAO_interface {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "JOIN";
-	String passwd = "123456";
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	private static final String INSERT_STMT = 
-			"INSERT INTO TICKETORDER (order_no,member_no,fd_no,session_no,employee_no,order_group,order_takemeals,order_time,order_amount) VALUES (TICKETORDER_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
+			"INSERT INTO TICKETORDER (order_no,member_no,fd_no,session_no,employee_no,order_group,order_takemeals,order_time,order_amount) VALUES ('TO_'||LPAD(TICKETORDER_seq.NEXTVAL,6,'0'), ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 			"SELECT order_no,member_no,fd_no,session_no,employee_no,order_group,order_takemeals,to_char(order_time,'yyyy-mm-dd') order_time,order_amount FROM TICKETORDER order by order_no";
 	private static final String GET_ONE_STMT = 
@@ -30,8 +41,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			//pstmt.setString(1, ticketorderVO.getOrder_no());
@@ -48,10 +58,6 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -81,8 +87,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, ticketorderVO.getMember_no());
@@ -99,11 +104,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
+		}  catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
@@ -133,8 +134,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, order_no);
@@ -142,10 +142,6 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -178,8 +174,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, order_no);
@@ -187,7 +182,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO �]�٬� Domain objects
+				// empVO 也稱為 Domain objects
 				ticketorderVO = new TicketorderVO();
 				ticketorderVO.setOrder_no(rs.getString("order_no"));
 				ticketorderVO.setMember_no(rs.getString("member_no"));
@@ -201,10 +196,6 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -247,13 +238,12 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO �]�٬� Domain objects
+				// empVO 也稱為 Domain objects
 				ticketorderVO = new TicketorderVO();
 				ticketorderVO.setOrder_no(rs.getString("order_no"));
 				ticketorderVO.setMember_no(rs.getString("member_no"));
@@ -268,10 +258,6 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -301,71 +287,5 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 		}
 		return list;
 	}
-	
-	
-	public static void main(String[] args) {
-
-		TicketorderDAO dao = new TicketorderDAO();
-
-		// �s�W
-		TicketorderVO ticketorderVO1 = new TicketorderVO();
-		ticketorderVO1.setMember_no("16");
-		ticketorderVO1.setFd_no("22");
-		ticketorderVO1.setSession_no("122");
-		ticketorderVO1.setEmployee_no("0022");
-		ticketorderVO1.setOrder_group(1);
-		ticketorderVO1.setOrder_takemeals(1);
-		ticketorderVO1.setOrder_time(java.sql.Date.valueOf("2005-01-01"));
-		ticketorderVO1.setOrder_amount(500);
-		dao.insert(ticketorderVO1);
-
-		// �ק�
-		TicketorderVO ticketorderVO2 = new TicketorderVO();
-		ticketorderVO2.setOrder_no("1");
-		ticketorderVO2.setMember_no("10023");
-		ticketorderVO2.setFd_no("23");
-		ticketorderVO2.setSession_no("123");
-		ticketorderVO2.setEmployee_no("0023");
-		ticketorderVO2.setOrder_group(0);
-		ticketorderVO2.setOrder_takemeals(0);
-		ticketorderVO2.setOrder_time(java.sql.Date.valueOf("2005-03-03"));
-		ticketorderVO2.setOrder_amount(503);
-		dao.update(ticketorderVO2);
-
-		// �R��
-		dao.delete("16");
-
-		// �d��
-		TicketorderVO ticketorderVO3 = dao.findByPrimaryKey("1");
-		System.out.print(ticketorderVO3.getOrder_no() + ",");
-		System.out.print(ticketorderVO3.getMember_no() + ",");
-		System.out.print(ticketorderVO3.getFd_no() + ",");
-		System.out.print(ticketorderVO3.getSession_no() + ",");
-		System.out.print(ticketorderVO3.getEmployee_no() + ",");
-		System.out.print(ticketorderVO3.getOrder_group() + ",");
-		System.out.print(ticketorderVO3.getOrder_takemeals() + ",");
-		System.out.print(ticketorderVO3.getOrder_time() + ",");
-		System.out.println(ticketorderVO3.getOrder_amount());
-		System.out.println("---------------------");
-
-		// �d��
-		List<TicketorderVO> list = dao.getAll();
-		for (TicketorderVO ticketorderVO4 : list) {
-			System.out.print(ticketorderVO4.getOrder_no() + ",");
-			System.out.print(ticketorderVO4.getMember_no() + ",");
-			System.out.print(ticketorderVO4.getFd_no() + ",");
-			System.out.print(ticketorderVO4.getSession_no() + ",");
-			System.out.print(ticketorderVO4.getEmployee_no() + ",");
-			System.out.print(ticketorderVO4.getOrder_group() + ",");
-			System.out.print(ticketorderVO4.getOrder_takemeals() + ",");
-			System.out.print(ticketorderVO4.getOrder_time() + ",");
-			System.out.print(ticketorderVO4.getOrder_amount());
-			System.out.println();
-		}
-	}
-		
-				
-	
-	
 
 }

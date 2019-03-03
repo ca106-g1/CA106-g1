@@ -1,6 +1,11 @@
 package com.ticketinformation.model;
 
-public class TicketinformationVO {
+public class TicketinformationVO implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4340645744685221723L;
+	
 	private String ti_no;
 	private String ti_name;
 	private String ti_price;

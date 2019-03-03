@@ -2,6 +2,11 @@ package com.movieticke.model;
 import java.sql.Date;
 
 public class MovieticketVO implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7980585282870133173L;
+	
 	private String mt_no;
 	private String order_no;
 	private String ti_no;

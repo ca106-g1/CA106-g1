@@ -2,6 +2,10 @@ package com.ticketorder.model;
 import java.sql.Date;
 
 public class TicketorderVO implements java.io.Serializable{
+	
+	private static final long serialVersionUID = 3007436197472905842L;
+	
+	
 	private String order_no;
 	private String member_no;
 	private String fd_no;

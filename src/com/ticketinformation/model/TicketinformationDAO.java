@@ -2,13 +2,25 @@ package com.ticketinformation.model;
 
 import java.util.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import java.sql.*;
 
 public class TicketinformationDAO implements TicketinformationDAO_interface {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "JOIN";
-	String passwd = "123456";
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	private static final String INSERT_STMT =
 			"INSERT INTO TICKETINFORMATION (ti_no,ti_name,ti_price) VALUES (TICKETINFORMATION_seq.NEXTVAL, ?, ?)";
@@ -28,17 +40,13 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setString(1, ticketinformationVO.getTi_name());
 			pstmt.setString(2, ticketinformationVO.getTi_price());
 			
 			pstmt.executeUpdate();
-			
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occuted. " + se.getMessage());
@@ -69,8 +77,7 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 		
 		try {
 			
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
 			pstmt.setString(1, ticketinformationVO.getTi_name());
@@ -80,9 +87,6 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 			
 			pstmt.executeUpdate();
 			
-			
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -113,16 +117,12 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 		
 		try {
 			
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, ti_no);
 			
 			pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database drive. " + e.getMessage());
-			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			
@@ -154,8 +154,7 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 		
 		try {
 			
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			
 			pstmt.setString(1, ti_no);
@@ -168,9 +167,6 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 				ticketinformationVO.setTi_name(rs.getString("ti_name"));
 				ticketinformationVO.setTi_price(rs.getString("ti_price"));
 			}
-			
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -212,8 +208,7 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 		
 		try {
 			
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			
@@ -224,9 +219,6 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 				ticketinformationVO.setTi_price(rs.getString("ti_price"));
 				list.add(ticketinformationVO);
 			}
-			
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -258,43 +250,6 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 		return list;
 	}
 	
-	public static void main(String[] args) {
-		
-		TicketinformationDAO dao = new TicketinformationDAO();
-		
-		// �s�W
-		TicketinformationVO ticketinformationVO1 = new TicketinformationVO();
-		ticketinformationVO1.setTi_name("�s�W��");
-		ticketinformationVO1.setTi_price("11111");
-		dao.insert(ticketinformationVO1);
-		
-		// �ק�
-		TicketinformationVO ticketinformationVO2 = new TicketinformationVO();
-		ticketinformationVO2.setTi_no("1");
-		ticketinformationVO2.setTi_name("�קﲼ");
-		ticketinformationVO2.setTi_price("22");
-		dao.update(ticketinformationVO2);
-		
-		// �R��
-		dao.delete("15");
-		
-		// �d��
-		TicketinformationVO ticketinformationVO3 = dao.findByPrimaryKey("1");
-		System.out.print(ticketinformationVO3.getTi_no() + ",");
-		System.out.print(ticketinformationVO3.getTi_name() + ",");
-		System.out.println(ticketinformationVO3.getTi_price());
-		System.out.println("---------------------");
-		
-		// �d��
-		List<TicketinformationVO> list = dao.getAll();
-		for (TicketinformationVO ticketinformationVO4 : list) {
-			System.out.print(ticketinformationVO4.getTi_no() + ",");
-			System.out.print(ticketinformationVO4.getTi_name() + ",");
-			System.out.print(ticketinformationVO4.getTi_price());
-			System.out.println();
-		}
-		
-		
-	}
+	
 
 }
