@@ -38,6 +38,12 @@ public class MemDAOImpl implements MemDAO_interface {
 			"UPDATE MEMBER set MEMBER_ACCOUNT =?,MEMBER_PASSWORD=?,MEMBER_NAME=?,MEMBER_NICK=?,MEMBER_SEX=?,MEMBER_BIRTHDAY=?,MEMBER_ADDRESS=?,MEMBER_TELEPHONE=?,MEMBER_EMAIL=?,MEMBER_PICTURE=? ,MEMBER_CREDIT_NUMBER=?,MEMBER_BACK_VERIFICATION=?,MEMBER_BUILDDAY=?,MEMBER_POINT=?,MEMBER_STATUS=? where MEMBER_NO = ?";
 	
 	
+	//交易區間專用指令--開始
+	
+	private static final String UPDATE_MEMBER_POINT = 
+			"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)-?) WHERE MEMBER_NO = ?";
+	
+	//交易區間專用指令--結束
 
 	@Override
 	public void insert(MemVO memVO) {
@@ -480,6 +486,30 @@ public class MemDAOImpl implements MemDAO_interface {
 	
 	
 	
+	
+	
+
+@Override
+	public void updateMember_point(MemVO memVO, Connection con, Integer order_amount) throws SQLException {
+	 
+	PreparedStatement pstmt = null;
+	
+		pstmt = con.prepareStatement(UPDATE_MEMBER_POINT);
+
+		pstmt.setString(1,memVO.getMember_account());
+		pstmt.setInt(2,order_amount);
+		pstmt.setString(3,memVO.getMember_account());
+		
+		pstmt.executeUpdate();
+		
+	}
+
+
+
+
+
+
+
 
 public static void main(String[]args) { 
 	MemDAOImpl dao = new MemDAOImpl();
