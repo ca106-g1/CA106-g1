@@ -32,6 +32,50 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			"DELETE FROM TICKETORDER where order_no = ?";
 	private static final String UPDATE = 
 			"UPDATE TICKETORDER set member_no=?, fd_no=?, session_no=?, employee_no=?, order_group=?, order_takemeals=?, order_time=?, order_amount=? where order_no = ?";
+	
+	
+	
+	
+	//交易區間專用指令--開始
+	
+	private static final String update_member_point = 
+	"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)+?) WHERE MEMBER_NO = ?";
+	//MEMBER
+	private static final String insert_dep=
+	"INSERT INTO DEPOSITDETAIL VALUES ('D'||LPAD(to_char(DEPOSITDETAIL_seq.NEXTVAL),6,'0'),?,?,?)";
+	//DEPOSITDETAIL
+	private static final String update_sessions=
+	"UPDATE SESSIONS SET SESSIONS_STATUS=? WHERE SESSIONS_NO = ?";
+	//SESSIONS
+	private static final String insert_ticketorder=
+	"INSERT INTO TICKETORDER (ORDER_NO, MEMBER_NO, FD_NO, SESSIONS_NO, ORDER_TAKEMEALS, ORDER_TIME, ORDER_AMOUNT) VALUES ('TO_'||LPAD(TICKETORDER_seq.NEXTVAL,6,'0'), ?, ?, ?, ?, ?, ?)";
+	//TICKETORDER
+	private static final String insert_movieticket=
+	"INSERT INTO MOVIETICKET VALUES ('MVT'||LPAD(to_char(MOVIETICKET_seq.NEXTVAL),7,'0'), ?, ?, ?, ?, ?)";
+	//MOVIETICKET
+	
+	//交易區間專用指令--結束
+	
+	
+	
+	
+
+	
+	
+	
+	@Override
+	public void ticketsTradingInterval(String member_no, Integer order_amount, String sessions_no,
+			String sessions_status, String fd_no, String[] mt_no, String[] ti_no) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		
+	}
+	
+	
+	
+	
 
 	@Override
 	public void insert(TicketorderVO ticketorderVO) {

@@ -80,7 +80,7 @@
 					<input type="hidden" name="cinema_no" value="${cinemaVO.cinema_no}"> 
 					<input id="hiddentypeinput" type="hidden" name="cinema_type" value="${cinemaVO.cinema_type}">
 					<input type="hidden" name="action" value="updateCinema"> 
-					<input type="submit" value="送出修改">
+					<input class="btn btn-primary" type="submit" value="送出修改">
 				</form>
 			</div>
 			

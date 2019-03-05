@@ -82,7 +82,7 @@ margin:0px;
 				<p>剩餘座位</p>
 				<p id="sessions_remaining" style="hight:20px"> </p>
 				<br>
-				<form action="<%= request.getContextPath()%>/ticketorder/TicketorderServlet_">
+				<form action="<%= request.getContextPath()%>/Front_end/ticketinformation_/chooseSeatS.jsp">
 					<input type="hidden" id="sessions_no" name="sessions_no" value="">
 					<input class="btn btn-primary" type="submit" value="送出">
 				</form>

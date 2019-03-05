@@ -60,3 +60,22 @@ Class = SessionServlet
 		context.setAttribute("movieMap", movieMap);
 
 ]
+
+package com.ticketinformation.controller;
+Class = TicketinformationTool
+@WebServlet(name = "/movieticke/MovietickeTool", loadOnStartup = 1, urlPatterns = "/movieticke/MovietickeTool")
+[
+
+		Map<String, TicketType> map = new HashMap<String, TicketType>();
+		map.put( "1", new TicketType("a","#00e") );
+		//一般票
+		map.put("2", new TicketType("b","#66e"));
+		//半票
+		map.put("3", new TicketType("c","#90c"));
+		//軍公教
+		map.put("4", new TicketType("d","#c9e"));
+		//敬老票
+		
+		getServletContext().setAttribute("TicketTypeMap", map);
+
+]

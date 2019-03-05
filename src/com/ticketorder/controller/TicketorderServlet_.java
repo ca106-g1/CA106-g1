@@ -73,13 +73,14 @@ public class TicketorderServlet_ extends HttpServlet {
 			
 			String movie_no = req.getParameter("movie_no");
 			java.sql.Date date = java.sql.Date.valueOf(req.getParameter("date"));
+			java.sql.Date date2 = new java.sql.Date(date.getTime()+24*60*60*1000);
 			
 			
 			JSONArray array = new JSONArray();
 			
 			for(SessionsVO sessionsVO : new SessionsService().getAll()) {
 				
-				if(sessionsVO.getSessions_start().after(date) && sessionsVO.getMovie_no().equals(movie_no)) {
+				if(sessionsVO.getSessions_start().after(date) && sessionsVO.getMovie_no().equals(movie_no) && sessionsVO.getSessions_start().before(date2)) {
 					
 					JSONObject jsonObject = new JSONObject();
 					try {

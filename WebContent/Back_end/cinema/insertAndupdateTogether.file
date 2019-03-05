@@ -25,7 +25,7 @@
 						<p id="str" style="margin:0px">走道</p>
 						
 						<div 
-							class="btn" 
+							class="btn disabled" 
 							data-sitType = "0"  
 							id="color" 
 							style="border-color:#000; margin:0px"></div>

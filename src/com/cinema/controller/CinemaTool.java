@@ -24,7 +24,7 @@ public class CinemaTool extends HttpServlet{
 		statusOfSitList.add(new StatusOfSit("損壞","#f00", new Integer(3)));
 		statusOfSitList.add(new StatusOfSit("牆壁","#333", new Integer(4)));
 		statusOfSitList.add(new StatusOfSit("廁所","#ee6", new Integer(5)));
-		statusOfSitList.add(new StatusOfSit("已訂位","#66f", new Integer(6)));
+		statusOfSitList.add(new StatusOfSit("已訂位","#fc6", new Integer(6)));
 		
 		getServletContext().setAttribute("statusOfSitList", statusOfSitList);
 		
