@@ -3,7 +3,7 @@ import java.sql.Date;
 
 public class NewsInfoVO implements java.io.Serializable {
 	private Integer news_no;
-	private Integer movie_no;
+	private String movie_no;
 	private String news_title;
 	private String news_auther;
 	private Date news_times;
@@ -17,10 +17,10 @@ public class NewsInfoVO implements java.io.Serializable {
 	public void setNews_no(Integer news_no) {
 		this.news_no = news_no;
 	}
-	public Integer getMovie_no() {
+	public String getMovie_no() {
 		return movie_no;
 	}
-	public void setMovie_no(Integer movie_no) {
+	public void setMovie_no(String movie_no) {
 		this.movie_no = movie_no;
 	}
 	public String getNews_title() {

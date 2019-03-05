@@ -11,7 +11,7 @@ public class NewsInfoService {
 	}
 
 	public NewsInfoVO addNewsInfo(
-			Integer movie_no,
+			String movie_no,
 			String news_title,
 			String news_auther,
 			java.sql.Date news_times,
@@ -34,7 +34,7 @@ public class NewsInfoService {
 
 	public NewsInfoVO updateNewsInfo(
 			Integer news_no,
-			Integer movie_no,
+			String movie_no,
 			String news_title,
 			String news_auther,
 			java.sql.Date news_times,

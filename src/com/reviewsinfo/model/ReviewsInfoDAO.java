@@ -18,18 +18,22 @@ public class ReviewsInfoDAO implements ReviewsInfoDAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO reviewsinfo (reviews_no, movie_no, reviews_title, reviews_auther, reviews_times, reviews_con, reviews_pic) VALUES (reviewsinfo_seq.NEXTVAL, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT reviews_no, movie_no, reviews_title, reviews_auther, to_char(reviews_times,'yyyy-mm-dd') reviews_times, reviews_con, reviews_pic FROM reviewsinfo order by reviews_no";
-	private static final String GET_ONE_STMT = "SELECT reviews_no, movie_no, reviews_title, reviews_auther, to_char(reviews_times,'yyyy-mm-dd') reviews_times, reviews_con, reviews_pic FROM reviewsinfo where reviews_no = ?";
-	private static final String DELETE = "DELETE FROM reviewsinfo where reviews_no = ?";
-	private static final String UPDATE = "UPDATE reviewsinfo set movie_no=?, reviews_title=?, reviews_auther=?, reviews_times=?, reviews_con=?, reviews_pic=? where reviews_no = ?";
-
+	private static final String INSERT_STMT = 
+			"INSERT INTO reviewsinfo (reviews_no, movie_no, reviews_title, reviews_auther, reviews_times, reviews_con, reviews_pic) VALUES (reviewsinfo_seq.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+			"SELECT reviews_no, movie_no, reviews_title, reviews_auther, to_char(reviews_times,'yyyy-mm-dd') reviews_times, reviews_con, reviews_pic FROM reviewsinfo order by reviews_no";
+	private static final String GET_ONE_STMT = 
+			"SELECT reviews_no, movie_no, reviews_title, reviews_auther, to_char(reviews_times,'yyyy-mm-dd') reviews_times, reviews_con, reviews_pic FROM reviewsinfo where reviews_no = ?";
+	private static final String DELETE = 
+			"DELETE FROM reviewsinfo where reviews_no = ?";
+	private static final String UPDATE = 
+			"UPDATE reviewsinfo set movie_no=?, reviews_title=?, reviews_auther=?, reviews_times=?, reviews_con=?, reviews_pic=? where reviews_no = ?";
 	
 	@Override
 	public void insert(ReviewsInfoVO reviewsinfoVO) {
@@ -42,7 +46,7 @@ public class ReviewsInfoDAO implements ReviewsInfoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, reviewsinfoVO.getMovie_no());
+			pstmt.setString(1, reviewsinfoVO.getMovie_no());
 			pstmt.setString(2, reviewsinfoVO.getReviews_title());
 			pstmt.setString(3, reviewsinfoVO.getReviews_auther());
 			pstmt.setDate(4, reviewsinfoVO.getReviews_times());
@@ -85,12 +89,13 @@ public class ReviewsInfoDAO implements ReviewsInfoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, reviewsinfoVO.getMovie_no());
+			pstmt.setString(1, reviewsinfoVO.getMovie_no());
 			pstmt.setString(2, reviewsinfoVO.getReviews_title());
 			pstmt.setString(3, reviewsinfoVO.getReviews_auther());
 			pstmt.setDate(4, reviewsinfoVO.getReviews_times());
 			pstmt.setString(5, reviewsinfoVO.getReviews_con());
 			pstmt.setBytes(6, reviewsinfoVO.getReviews_pic());
+			pstmt.setInt(7, reviewsinfoVO.getReviews_no());
 
 			pstmt.executeUpdate();
 
@@ -179,7 +184,7 @@ public class ReviewsInfoDAO implements ReviewsInfoDAO_interface {
 				reviewsinfoVO = new ReviewsInfoVO();
 				
 				reviewsinfoVO.setReviews_no(rs.getInt("reviews_no"));
-				reviewsinfoVO.setMovie_no(rs.getInt("movie_no"));
+				reviewsinfoVO.setMovie_no(rs.getString("movie_no"));
 				reviewsinfoVO.setReviews_title(rs.getString("reviews_title"));
 				reviewsinfoVO.setReviews_auther(rs.getString("reviews_auther"));
 				reviewsinfoVO.setReviews_times(rs.getDate("reviews_times"));
@@ -238,7 +243,7 @@ public class ReviewsInfoDAO implements ReviewsInfoDAO_interface {
 				reviewsinfoVO = new ReviewsInfoVO();
 				
 				reviewsinfoVO.setReviews_no(rs.getInt("reviews_no"));
-				reviewsinfoVO.setMovie_no(rs.getInt("movie_no"));
+				reviewsinfoVO.setMovie_no(rs.getString("movie_no"));
 				reviewsinfoVO.setReviews_title(rs.getString("reviews_title"));
 				reviewsinfoVO.setReviews_auther(rs.getString("reviews_auther"));
 				reviewsinfoVO.setReviews_times(rs.getDate("reviews_times"));

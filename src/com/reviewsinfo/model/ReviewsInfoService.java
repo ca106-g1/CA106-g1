@@ -12,7 +12,7 @@ public class ReviewsInfoService {
 
 	public ReviewsInfoVO addReviewsInfo(
 			Integer reviews_no,
-			Integer movie_no,
+			String movie_no,
 			String reviews_title,
 			String reviews_auther,
 			java.sql.Date reviews_times,
@@ -34,7 +34,7 @@ public class ReviewsInfoService {
 	}
 
 	public ReviewsInfoVO updateReviewsInfo(
-			Integer movie_no,
+			String movie_no,
 			String reviews_title,
 			String reviews_auther,
 			java.sql.Date reviews_times,

@@ -3,7 +3,7 @@ import java.sql.Date;
 
 public class ReviewsInfoVO implements java.io.Serializable {
 	private Integer reviews_no;
-	private Integer movie_no;
+	private String movie_no;
 	private String reviews_title;
 	private String reviews_auther;
 	private Date reviews_times;
@@ -17,10 +17,10 @@ public class ReviewsInfoVO implements java.io.Serializable {
 	public void setReviews_no(Integer reviews_no) {
 		this.reviews_no = reviews_no;
 	}
-	public Integer getMovie_no() {
+	public String getMovie_no() {
 		return movie_no;
 	}
-	public void setMovie_no(Integer movie_no) {
+	public void setMovie_no(String movie_no) {
 		this.movie_no = movie_no;
 	}
 	public String getReviews_title() {

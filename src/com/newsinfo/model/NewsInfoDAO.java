@@ -18,7 +18,7 @@ public class NewsInfoDAO implements NewsInfoDAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -47,7 +47,7 @@ public class NewsInfoDAO implements NewsInfoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, newsinfoVO.getMovie_no());
+			pstmt.setString(1, newsinfoVO.getMovie_no());
 			pstmt.setString(2, newsinfoVO.getNews_title());
 			pstmt.setString(3, newsinfoVO.getNews_auther());
 			pstmt.setDate(4, newsinfoVO.getNews_times());
@@ -90,12 +90,13 @@ public class NewsInfoDAO implements NewsInfoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, newsinfoVO.getMovie_no());
+			pstmt.setString(1, newsinfoVO.getMovie_no());
 			pstmt.setString(2, newsinfoVO.getNews_title());
 			pstmt.setString(3, newsinfoVO.getNews_auther());
 			pstmt.setDate(4, newsinfoVO.getNews_times());
 			pstmt.setString(5, newsinfoVO.getNews_con());
 			pstmt.setBytes(6, newsinfoVO.getNews_pic());
+			pstmt.setInt(7, newsinfoVO.getNews_no());
 
 			pstmt.executeUpdate();
 
@@ -180,11 +181,11 @@ public class NewsInfoDAO implements NewsInfoDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				newsinfoVO = new NewsInfoVO();
 				
 				newsinfoVO.setNews_no(rs.getInt("news_no"));
-				newsinfoVO.setMovie_no(rs.getInt("movie_no"));
+				newsinfoVO.setMovie_no(rs.getString("movie_no"));
 				newsinfoVO.setNews_title(rs.getString("news_title"));
 				newsinfoVO.setNews_auther(rs.getString("news_auther"));
 				newsinfoVO.setNews_times(rs.getDate("news_times"));
@@ -243,7 +244,7 @@ public class NewsInfoDAO implements NewsInfoDAO_interface {
 				newsinfoVO = new NewsInfoVO();
 				
 				newsinfoVO.setNews_no(rs.getInt("news_no"));
-				newsinfoVO.setMovie_no(rs.getInt("movie_no"));
+				newsinfoVO.setMovie_no(rs.getString("movie_no"));
 				newsinfoVO.setNews_title(rs.getString("news_title"));
 				newsinfoVO.setNews_auther(rs.getString("news_auther"));
 				newsinfoVO.setNews_times(rs.getDate("news_times"));
