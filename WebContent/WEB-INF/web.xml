@@ -80,4 +80,41 @@
   </servlet-mapping>
   
   
+  <servlet>
+    <servlet-name>LogoutHandler</servlet-name>
+    <servlet-class>com.login_filter.LoginFilter.LogoutHandler</servlet-class>
+  </servlet>
+ <servlet-mapping>
+    <servlet-name>LogoutHandler</servlet-name>
+    <url-pattern>/Front_end/mem/logoutHandler.do</url-pattern>
+  </servlet-mapping>
+
+
+   <servlet>
+    <servlet-name>LoginHandler</servlet-name>
+    <servlet-class>com.login_filter.LoginFilter.LoginHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginHandler</servlet-name>
+    <url-pattern>/Front_end/mem/loginHandler.do</url-pattern>
+  </servlet-mapping>
+
+
+  
+  <filter>
+  	<filter-name>LoginFilter</filter-name>
+  	<filter-class>com.login_filter.LoginFilter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+   <filter-name>LoginFilter</filter-name>
+   <url-pattern>/Front_end/dep/addDep.jsp</url-pattern>
+   <dispatcher>REQUEST</dispatcher>
+   <dispatcher>FORWARD</dispatcher>
+   <dispatcher>INCLUDE</dispatcher>
+   <dispatcher>ERROR</dispatcher>
+   <dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
+  
+  
+  
 </web-app>
