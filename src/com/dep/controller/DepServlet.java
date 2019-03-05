@@ -57,7 +57,7 @@ public class DepServlet extends HttpServlet {
 			  System.out.println("檢查點4");
 			  if(!errorMsgs.isEmpty()) {
 				  RequestDispatcher failureView =req
-						  .getRequestDispatcher("Front_end/dep/select_page.jsp");
+						  .getRequestDispatcher("/Front_end/dep/select_page.jsp");
 				  failureView.forward(req, res);
 				  return;
 			  }
@@ -88,7 +88,7 @@ public class DepServlet extends HttpServlet {
 		  }catch(Exception e) {
 			  errorMsgs.add("無法取得資料" + e.getMessage());
 			  RequestDispatcher failureView = req
-					  .getRequestDispatcher("Front_end/dep/select_page.jsp");
+					  .getRequestDispatcher("/Front_end/dep/select_page.jsp");
 			  failureView.forward(req, res);
 			  System.out.println("檢查點9");
 		  }
@@ -118,13 +118,13 @@ public class DepServlet extends HttpServlet {
 		  
 		  /***********異動日期***************/
 		  
-		  java.sql.Date deposit_change_date = null;
-		  try {
-			  deposit_change_date = java.sql.Date.valueOf(req.getParameter("deposit_change_date").trim());
-		  }catch (IllegalArgumentException e) {
-			  deposit_change_date = new java.sql.Date(System.currentTimeMillis());
-			  errorMsgs.add("請選取正確日期");  
-		  }
+		  java.sql.Timestamp deposit_change_date = null;
+//		  try {
+//			  deposit_change_date = java.sql.Timestamp.valueOf(req.getParameter("deposit_change_date").trim());
+//		  }catch (IllegalArgumentException e) {
+			  deposit_change_date = new java.sql.Timestamp(System.currentTimeMillis());
+//			  errorMsgs.add("請選取正確日期");  
+//		  }
 		  
 		  DepVO depVO = new DepVO();
 		  depVO.setDeposit_member_no(deposit_member_no);
@@ -141,7 +141,7 @@ public class DepServlet extends HttpServlet {
 		  
 		  /*******************2.開始新增資料*************************/
 		  DepService depSvc = new DepService();
-		  depVO = depSvc.addDep(deposit_member_no, deposit_change_money, deposit_change_date);
+		  depVO = depSvc.addDep(deposit_member_no, deposit_change_money,deposit_change_date);
 		  
 		  /******************3.新增完成 準備轉交*******************/
 		  

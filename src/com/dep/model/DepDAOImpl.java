@@ -22,9 +22,11 @@ public class DepDAOImpl implements DepDAO_interface {
 	private static final String DELETE =
 			"DELETE FROM DEPOSITDETAIL where DEPOSIT_CHANGE_NO = ?";
 	private static final String GET_ALL_DEP = 
-			"SELECT DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,to_char(DEPOSIT_CHANGE_DATE,'yyyy-mm-dd')DEPOSIT_CHANGE_DATE FROM DEPOSITDETAIL order by DEPOSIT_CHANGE_NO";
+			//"SELECT DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,to_char(DEPOSIT_CHANGE_DATE,'yyyy-mm-dd hh-mm-ss.fffffffff')DEPOSIT_CHANGE_DATE FROM DEPOSITDETAIL order by DEPOSIT_CHANGE_NO";
+			"SELECT * FROM DEPOSITDETAIL";
 	private static final String GET_ONE_DEP =
-			"SELECT DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,to_char(DEPOSIT_CHANGE_DATE,'yyyy-mm-dd')DEPOSIT_CHANGE_DATE FROM DEPOSITDETAIL where DEPOSIT_CHANGE_NO = ?";
+			//"SELECT DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,to_char(DEPOSIT_CHANGE_DATE,'yyyy-mm-dd hh-mm-ss.fffffffff')DEPOSIT_CHANGE_DATE FROM DEPOSITDETAIL where DEPOSIT_CHANGE_NO = ?";
+			"SELECT * FROM DEPOSITDETAIL WHERE DEPOSIT_CHANGE_NO =? ";
 	
 	
 	
@@ -47,7 +49,7 @@ public class DepDAOImpl implements DepDAO_interface {
 			
 			pstmt.setString(1, depVO.getDeposit_member_no());
 			pstmt.setInt(2,depVO.getDeposit_change_money());
-			pstmt.setDate(3,depVO.getDeposit_change_date());
+			pstmt.setTimestamp(3,depVO.getDeposit_change_date());
 			
 			pstmt.executeUpdate();
 			
@@ -92,7 +94,7 @@ public class DepDAOImpl implements DepDAO_interface {
 			
 			pstmt.setString(1,depVO.getDeposit_member_no());
 			pstmt.setInt(2,depVO.getDeposit_change_money());
-			pstmt.setDate(3,depVO.getDeposit_change_date());
+			pstmt.setTimestamp(3,depVO.getDeposit_change_date());
 			
 			pstmt.executeUpdate();
 			
@@ -185,7 +187,7 @@ public class DepDAOImpl implements DepDAO_interface {
 				depVO.setDeposit_change_no(rs.getString("deposit_change_no"));
 				depVO.setDeposit_member_no(rs.getString("deposit_member_no"));
 				depVO.setDeposit_change_money(rs.getInt("deposit_change_money"));
-				depVO.setDeposit_change_date(rs.getDate("deposit_change_date"));
+				depVO.setDeposit_change_date(rs.getTimestamp("deposit_change_date"));
 				
 			}
 			
@@ -250,7 +252,7 @@ public class DepDAOImpl implements DepDAO_interface {
 				depVO.setDeposit_change_no(rs.getString("deposit_change_no"));
 				depVO.setDeposit_member_no(rs.getString("deposit_member_no"));
 				depVO.setDeposit_change_money(rs.getInt("deposit_change_money"));
-				depVO.setDeposit_change_date(rs.getDate("deposit_change_date"));
+				depVO.setDeposit_change_date(rs.getTimestamp("deposit_change_date"));
 				list.add(depVO);
 			}
 			
@@ -299,19 +301,19 @@ public static void main(String[]args) {
 	DepVO depVO1 = new DepVO();
 	depVO1.setDeposit_member_no("M000001");
 	depVO1.setDeposit_change_money(new Integer(3000));
-	depVO1.setDeposit_change_date(java.sql.Date.valueOf("2019-02-13"));
+	depVO1.setDeposit_change_date(java.sql.Timestamp.valueOf("2019-02-13 12:05:09"));
 	
 	dao.insert(depVO1);
 	
 	
 	
 	//修改
-	DepVO depVO2 = new DepVO();
-	depVO2.setDeposit_change_no("D000015");
-	depVO2.setDeposit_member_no("M000002");
-	depVO2.setDeposit_change_money(new Integer(4000));
-	depVO2.setDeposit_change_date(java.sql.Date.valueOf("2019-02-11"));
-	dao.update(depVO2);
+//	DepVO depVO2 = new DepVO();
+//	depVO2.setDeposit_change_no("D000015");
+//	depVO2.setDeposit_member_no("M000002");
+//	depVO2.setDeposit_change_money(new Integer(4000));
+//	depVO2.setDeposit_change_date(java.sql.Timestamp.valueOf("2019-02-11 12:05:09"));
+//	dao.update(depVO2);
 	
 	
 
@@ -321,7 +323,7 @@ public static void main(String[]args) {
 	dao.delete("D000005");
 	
 	//查詢
-	DepVO depVO3 = dao.findByPrimaryKey("D000016");
+	DepVO depVO3 = dao.findByPrimaryKey("D000012");
 	System.out.print(depVO3.getDeposit_change_no()+",");
 	System.out.print(depVO3.getDeposit_member_no()+",");
 	System.out.print(depVO3.getDeposit_change_money()+",");

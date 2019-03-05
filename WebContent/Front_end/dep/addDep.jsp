@@ -53,11 +53,18 @@
 	<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 	<tr>
 		<td>會員名稱:</td>
-		<td><select size="1" name="member_no">
+		<td>
+		
+		<%-- <select size="1" name="member_no">
 			<c:forEach var="memVO" items="${memSvc.all}">
-				<option value="${memVO.member_no}" ${(depVO.deposit_member_no==memVO.member_no)? 'selected':''} >${memVO.member_name}       
+				<option value="${depVO.deposit_member_no}" ${(depVO.deposit_member_no==memVO.member_no)? 'selected':''} >${memVO.member_name}       
 			</c:forEach>
-		</select></td>
+		</select> --%>
+		
+		<input type = "text" name="deposit_member_no" 
+			value="<%= (depVO==null)?"":depVO.getDeposit_member_no()%>" />
+		
+		</td>
 	</tr>		
 	
 	<tr>
@@ -67,9 +74,11 @@
 	</tr>
 	
 	<tr>
-		<td>異動日期:</td>
-		<td><input type="date" name="deposit_change_date" id="f_date1"></td>
+	<td><input type = "hidden" name="deposit_change_date" value="<%=(depVO==null)?"":depVO.getDeposit_change_date()%>" /></td>
+	
 	</tr>
+	
+	
 
 </table>
 <br>

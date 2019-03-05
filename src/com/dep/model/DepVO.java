@@ -1,6 +1,7 @@
 package com.dep.model;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 public class DepVO implements java.io.Serializable {
 
@@ -13,9 +14,7 @@ public class DepVO implements java.io.Serializable {
 	private String 	deposit_change_no;
 	private String 	deposit_member_no;
 	private Integer deposit_change_money;
-	private Date 	deposit_change_date;
-	
-	
+	private Timestamp 	deposit_change_date;
 	public String getDeposit_change_no() {
 		return deposit_change_no;
 	}
@@ -34,15 +33,13 @@ public class DepVO implements java.io.Serializable {
 	public void setDeposit_change_money(Integer deposit_change_money) {
 		this.deposit_change_money = deposit_change_money;
 	}
-	public Date getDeposit_change_date() {
+	public Timestamp getDeposit_change_date() {
 		return deposit_change_date;
 	}
-	public void setDeposit_change_date(Date deposit_change_date) {
+	public void setDeposit_change_date(Timestamp deposit_change_date) {
 		this.deposit_change_date = deposit_change_date;
 	}
 	
-	
-
-	
+		
 	
 }

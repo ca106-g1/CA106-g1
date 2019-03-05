@@ -1,5 +1,6 @@
 package com.dep.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class DepService {
@@ -10,7 +11,7 @@ public class DepService {
 		dao = new DepDAOImpl();
 	}
 	
-	public DepVO addDep( String deposit_member_no,Integer deposit_change_money,java.sql.Date deposit_change_date) {
+	public DepVO addDep( String deposit_member_no,Integer deposit_change_money,Timestamp deposit_change_date) {
 		
 		DepVO depVO = new DepVO();
 		
@@ -24,7 +25,7 @@ public class DepService {
 		
 	}
 	
-	public DepVO updateEmp( String deposit_change_no,String deposit_member_no,Integer deposit_change_money,java.sql.Date deposit_change_date) {
+	public DepVO updateEmp( String deposit_change_no,String deposit_member_no,Integer deposit_change_money,Timestamp deposit_change_date) {
 		
 		DepVO depVO = new DepVO();
 		
