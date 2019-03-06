@@ -77,7 +77,7 @@ display: inline;
 
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 
-*如果您還未註冊會員 請點擊<a href='Registered.jsp'>註冊</a>
+*如果您還未註冊會員 請點擊<a href="<%=request.getContextPath()%>/Front_end/mem/Registered.jsp">註冊</a>
 
 	<!-- 工作區結束 -->
 	
