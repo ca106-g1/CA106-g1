@@ -58,6 +58,7 @@
 		<td>
 		<input type="radio" name="employee_sex" value="1" ${(empVO.employee_sex==1)? "checked": ""}>男性
 		<input type="radio" name="employee_sex" value="0" ${(empVO.employee_sex==0)? "checked": ""}>女性
+		
 		</td>
 	</tr>
 	
@@ -84,6 +85,18 @@
 		<td>員工狀態:</td>
 		<td>
 		<input type="radio" name="employee_status" value="1" checked>在職
+		</td>
+	</tr>
+	<tr>
+		<td>密碼:</td>
+		<td>
+		<input type="PASSWORD" name="employee_password" value="<%= (empVO==null)? "" : ""%>">
+		</td>
+	</tr>
+	<tr>
+		<td>再次確認密碼:</td>
+		<td>
+		<input type="PASSWORD" name="employee_password1" value="<%= (empVO==null)? "" : ""%>">
 		</td>
 	</tr>
 	

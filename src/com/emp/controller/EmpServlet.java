@@ -181,7 +181,37 @@ public class EmpServlet extends HttpServlet {
 			
 			/************員工狀態***************/
 			String employee_status = req.getParameter("employee_status");
+			
+			/***********員工密碼*******************/
+			
+			String employee_password = req.getParameter("employee_password");
+			String employee_passwordReg = "^[(a-zA-Z0-9)]{2,20}$";
+			//System.out.println(!member_password.trim().matches(member_passwordReg));
+				if(employee_password==null || employee_password.trim().length()==0) {
+					errorMsgs.add("員工密碼: 請勿空白");
+				}else if (!employee_password.trim().matches(employee_passwordReg)) {
+					errorMsgs.add("員工密碼: 只能是英文、數字，且長度必須在2~10之間");
+				}
+		
+			/***********再次確認員工密碼*****************/			
+				String employee_password1 = req.getParameter("employee_password1");
+				String employee_passwordReg1 = "^[(a-zA-Z0-9)]{2,20}$";
+				//System.out.println(!employee_password1.trim().matches(employee_passwordReg1));
+					if(employee_password1==null || employee_password1.trim().length()==0) {
+						errorMsgs.add("員工密碼: 請勿空白");
+					}else if (!employee_password1.trim().matches(employee_passwordReg1)) {
+						errorMsgs.add("員工密碼: 只能是英文、數字，且長度必須在2~10之間");
+					}
+					
+					
+				if (!employee_password .equals (employee_password1)) {
+						errorMsgs.add("員工密碼輸入不一致 請重新輸入");
+					}
 				
+			
+			
+			
+			
 				EmpVO empVO = new EmpVO();
 				empVO.setEmployee_no(employee_no);
 				empVO.setEmployee_name(employee_name);
@@ -190,6 +220,7 @@ public class EmpServlet extends HttpServlet {
 				empVO.setEmployee_quitdate(employee_quitdate);
 				empVO.setEmployee_ability(employee_ability);
 				empVO.setEmployee_status(employee_status);
+				empVO.setEmployee_password(employee_password);
 				
 				
 				if (!errorMsgs.isEmpty()) {
@@ -202,7 +233,7 @@ public class EmpServlet extends HttpServlet {
 				}
 				/************************2.開始新增資料***********/
 				EmpService empSvc = new EmpService();
-				empVO = empSvc.updateEmp(employee_no,employee_name, employee_sex,employee_builddate,employee_quitdate,employee_ability, employee_status);
+				empVO = empSvc.updateEmp(employee_no,employee_name, employee_sex,employee_builddate,employee_quitdate,employee_ability, employee_status,employee_password);
 				
 				/**************************3.新增完成 準備轉交******************/
 				
@@ -279,6 +310,36 @@ if("insert".equals(action)) { //來自addEmp.jsp的請求
 					/************員工狀態***************/
 					String employee_status = req.getParameter("employee_status");
 					
+					
+					/***********員工密碼*******************/
+					
+					String employee_password = req.getParameter("employee_password");
+					String employee_passwordReg = "^[(a-zA-Z0-9)]{2,20}$";
+					//System.out.println(!member_password.trim().matches(member_passwordReg));
+						if(employee_password==null || employee_password.trim().length()==0) {
+							errorMsgs.add("員工密碼: 請勿空白");
+						}else if (!employee_password.trim().matches(employee_passwordReg)) {
+							errorMsgs.add("員工密碼: 只能是英文、數字，且長度必須在2~10之間");
+						}
+				
+					/***********再次確認員工密碼*****************/			
+						String employee_password1 = req.getParameter("employee_password1");
+						String employee_passwordReg1 = "^[(a-zA-Z0-9)]{2,20}$";
+						//System.out.println(!employee_password1.trim().matches(employee_passwordReg1));
+							if(employee_password1==null || employee_password1.trim().length()==0) {
+								errorMsgs.add("員工密碼: 請勿空白");
+							}else if (!employee_password1.trim().matches(employee_passwordReg1)) {
+								errorMsgs.add("員工密碼: 只能是英文、數字，且長度必須在2~10之間");
+							}
+							
+							
+						if (!employee_password .equals (employee_password1)) {
+								errorMsgs.add("員工密碼輸入不一致 請重新輸入");
+							}
+					
+					
+					
+					
 					EmpVO empVO = new EmpVO();
 					empVO.setEmployee_name(employee_name);
 					empVO.setEmployee_sex(employee_sex);
@@ -286,6 +347,7 @@ if("insert".equals(action)) { //來自addEmp.jsp的請求
 					empVO.setEmployee_quitdate(employee_quitdate);
 					empVO.setEmployee_ability(employee_ability);
 					empVO.setEmployee_status(employee_status);
+					empVO.setEmployee_password(employee_password);
 					
 					
 					if (!errorMsgs.isEmpty()) {
@@ -298,7 +360,7 @@ if("insert".equals(action)) { //來自addEmp.jsp的請求
 					}
 					/************************2.開始新增資料***********/
 					EmpService empSvc = new EmpService();
-					empVO = empSvc.addEmp(employee_name,employee_sex,employee_builddate,employee_quitdate,employee_ability, employee_status);
+					empVO = empSvc.addEmp(employee_name,employee_sex,employee_builddate,employee_quitdate,employee_ability, employee_status,employee_password);
 					
 					/**************************3.新增完成 準備轉交******************/
 					

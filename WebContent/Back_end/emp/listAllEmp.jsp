@@ -82,6 +82,7 @@
 		<th>員工離職日期</th>
 		<th>員工職位</th>
 		<th>員工狀態</th>
+		<th>員工密碼</th>
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
@@ -97,6 +98,7 @@
 		<td>${empVO.employee_quitdate}</td>
 		<td>${empVO.employee_ability}</td>
 		<td>${empVO.employee_status}</td>
+		<td>${empVO.employee_password}</td>
 		<td>
 			<FORM METHOD = "post" ACTION="<%=request.getContextPath()%>/Back_end/emp/emp.do" style="margin-bottom: 0px;">
 				<input type = "submit" value="修改">

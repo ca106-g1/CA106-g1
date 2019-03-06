@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="com.emp.model.*" %>
-
-<%
-	EmpVO empVO = (EmpVO)request.getAttribute("empVO");  //empServlet.java(C) 存入req的EmpVO物件
-%>
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,43 +12,70 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
-<title></title>
+<title>JOIN影城後台登入系統</title>
+
+<style>
+
+table#table-1{
+	width: 450px;
+	background-color: #CCCCFF;
+	margin-top:5px;
+	margin-bottom:10px;
+	border:3px ridge Gray;
+	height: 80px;
+	text-align: center;
+}
+table#table-1 h4{
+
+color:red;
+display:block;
+margin-bottom:1px;
+}
+h4{
+color:blue;
+display: inline;
+}
+
+</style>
+
+
 </head>
-<body bgcolor='white'>
+<body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-<table id ="table-1">
-	<tr><td>
-		<h3>員工個人資料</h3>
-		<h4><a href ="select_page.jsp">回員工後台首頁</a> </h4>
-	</td></tr>
-</table>
 
-<table>
-	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>員工性別</th>
-		<th>員工建立日期</th>
-		<th>員工離職日期</th>
-		<th>員工職位</th>
-		<th>員工狀態</th>
-		<th>員工密碼</th>
-	</tr>
-	<tr>
-		<td><%=empVO.getEmployee_no()%></td>
-		<td><%=empVO.getEmployee_name()%></td>
-		<td><%=empVO.getEmployee_sex()%></td>
-		<td><%=empVO.getEmployee_builddate()%></td>
-		<td><%=empVO.getEmployee_quitdate()%></td>
-		<td><%=empVO.getEmployee_ability()%></td>
-		<td><%=empVO.getEmployee_status()%></td>
-		<td><%=empVO.getEmployee_password()%></td>
-	</tr>
+<table id = "table-1">
 
-</table>
+		<tr><td><h3>Join影城後台登入系統</h3></td></tr>
+
+	</table>
+
+<%--錯誤表列 --%>
+<c:if test="${not empty errorMsgs }">
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+		<c:forEach var = "message"  items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+			</c:forEach>
+	</ul>
+</c:if >
+	
+
+<form  method = "post"   action = "backLoginHandler.do"  >
+
+<p>帳號: <input type = "text"  name = "employee_name"  ></p>
+<p>密碼: <input type = "password"  name = "employee_password" ></p>
+<p><input type = "hidden" name="action" value="getone_for_login">
+   <input type = "submit"  value = "送出">
+   <input type = "reset"   value = "取消">
+</p>
+</form>
+
+<jsp:useBean id="empSvc" scope="page" class="com.emp.model.EmpService" />
+
+
 
 
 	<!-- 工作區結束 -->

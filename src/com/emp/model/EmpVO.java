@@ -18,6 +18,7 @@ public class EmpVO implements java.io.Serializable {
 	private Date 	employee_quitdate;			
 	private String  employee_ability;			
 	private String  employee_status;
+	private String  employee_password;
 	
 	public String getEmployee_no() {
 		return employee_no;
@@ -61,6 +62,14 @@ public class EmpVO implements java.io.Serializable {
 	public void setEmployee_status(String employee_status) {
 		this.employee_status = employee_status;
 	}
+	public String getEmployee_password() {
+		return employee_password;
+	}
+	public void setEmployee_password(String employee_password) {
+		this.employee_password = employee_password;
+	}
+	
+	
 	
 	
 	

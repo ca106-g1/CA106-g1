@@ -10,7 +10,7 @@ public class EmpService {
 		dao= new EmpDAOImpl();
 	}
 	
-	public EmpVO addEmp(String  employee_name,Integer employee_sex,java.sql.Date 	employee_builddate,java.sql.Date 	employee_quitdate,String  employee_ability,String  employee_status) {
+	public EmpVO addEmp(String  employee_name,Integer employee_sex,java.sql.Date 	employee_builddate,java.sql.Date 	employee_quitdate,String  employee_ability,String  employee_status, String employee_password) {
 		
 		EmpVO empVO = new EmpVO();
 		empVO.setEmployee_name(employee_name);
@@ -19,6 +19,7 @@ public class EmpService {
 		empVO.setEmployee_quitdate(employee_quitdate);
 		empVO.setEmployee_ability(employee_ability);
 		empVO.setEmployee_status(employee_status);
+		empVO.setEmployee_password(employee_password);
 		dao.insert(empVO);
 		
 		
@@ -26,7 +27,7 @@ public class EmpService {
 		
 	}
 	
-	public EmpVO updateEmp(String  employee_no,String  employee_name,Integer employee_sex,java.sql.Date 	employee_builddate,java.sql.Date 	employee_quitdate,String  employee_ability,String  employee_status) {
+	public EmpVO updateEmp(String  employee_no,String  employee_name,Integer employee_sex,java.sql.Date 	employee_builddate,java.sql.Date 	employee_quitdate,String  employee_ability,String  employee_status,String employee_password) {
 		
 		EmpVO empVO = new EmpVO();
 		empVO.setEmployee_no(employee_no);
@@ -36,6 +37,7 @@ public class EmpService {
 		empVO.setEmployee_quitdate(employee_quitdate);
 		empVO.setEmployee_ability(employee_ability);
 		empVO.setEmployee_status(employee_status);
+		empVO.setEmployee_password(employee_password);
 		dao.update(empVO);
 		
 		return empVO;
@@ -49,6 +51,10 @@ public class EmpService {
 	
 	public EmpVO getoneEmp(String  employee_no) {
 		return dao.findByPrimaryKey(employee_no);
+	}
+	
+	public EmpVO getoneByEmployee_name(String  employee_name) {
+		return dao.findByEmployee_name(employee_name);
 	}
 	
 	public List<EmpVO> getAll(){

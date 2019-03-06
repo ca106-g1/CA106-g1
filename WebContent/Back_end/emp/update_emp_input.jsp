@@ -94,6 +94,20 @@
 		<input type="radio" name="employee_status" value="0" >已離職
 		</td>
 	</tr>
+	
+	<tr>
+		<td>密碼:</td>
+		<td>
+		<input type="PASSWORD" name="employee_password" value="<%= (empVO==null)? "" : ""%>">
+		</td>
+	</tr>
+	<tr>
+		<td>再次確認密碼:</td>
+		<td>
+		<input type="PASSWORD" name="employee_password1" value="<%= (empVO==null)? "" : ""%>">
+		</td>
+	</tr>
+	
 
 </table>
 <br>
