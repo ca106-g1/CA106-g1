@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.emp.model.EmpService;
 import com.emp.model.EmpVO;
 
-@WebServlet("/loginhandler")
+@WebServlet("/back_loginhandler")
 public class LoginHandler extends HttpServlet{
 
 	/**
