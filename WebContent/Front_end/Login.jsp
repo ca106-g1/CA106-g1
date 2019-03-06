@@ -65,7 +65,7 @@ display: inline;
 </c:if >
 	
 
-<form  method = "post"   action = "mem.do"  >
+<form  method = "post"   action = "loginHandler.do"  >
 
 <p>帳號: <input type = "text"  name = "member_account"  ></p>
 <p>密碼: <input type = "password"  name = "member_password" ></p>
