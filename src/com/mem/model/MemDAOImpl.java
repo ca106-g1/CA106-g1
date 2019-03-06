@@ -490,17 +490,28 @@ public class MemDAOImpl implements MemDAO_interface {
 	
 
 @Override
-	public void updateMember_point(MemVO memVO, Connection con, Integer order_amount) throws SQLException {
+public void updateMember_point(MemVO memVO, Connection con, Integer order_amount) throws SQLException {
 	 
 	PreparedStatement pstmt = null;
 	
-		pstmt = con.prepareStatement(UPDATE_MEMBER_POINT);
+		try {
+			pstmt = con.prepareStatement(UPDATE_MEMBER_POINT);
+			pstmt.setString(1,memVO.getMember_account());
+			pstmt.setInt(2,order_amount);
+			pstmt.setString(3,memVO.getMember_account());
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw(e);
+		} finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+			
+		}
 
-		pstmt.setString(1,memVO.getMember_account());
-		pstmt.setInt(2,order_amount);
-		pstmt.setString(3,memVO.getMember_account());
-		
-		pstmt.executeUpdate();
 		
 	}
 

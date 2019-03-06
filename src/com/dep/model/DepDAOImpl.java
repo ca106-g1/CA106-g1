@@ -29,7 +29,12 @@ public class DepDAOImpl implements DepDAO_interface {
 			"SELECT * FROM DEPOSITDETAIL WHERE DEPOSIT_CHANGE_NO =? ";
 	
 	
+	//交易區間專用指令--開始
 	
+	private static final String INSERT_DEP_BYTICKETORDER=
+			"INSERT INTO DEPOSITDETAIL VALUES ('D'||LPAD(to_char(DEPOSITDETAIL_seq.NEXTVAL),6,'0'),?,?,?)";
+		
+	//交易區間專用指令--結束
 	
 	
 	
@@ -289,6 +294,31 @@ public class DepDAOImpl implements DepDAO_interface {
 		
 		
 		return list;
+	}
+	
+	@Override
+	public void insertByTicketorder(DepVO depVO, Connection con) throws SQLException {
+		
+	PreparedStatement pstmt = null;
+	
+		try {
+			pstmt = con.prepareStatement(INSERT_DEP_BYTICKETORDER);
+			pstmt.setString(1, depVO.getDeposit_member_no());
+			pstmt.setInt(2,depVO.getDeposit_change_money());
+			pstmt.setTimestamp(3,depVO.getDeposit_change_date());
+			
+			pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw(e);
+		} finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+	
 	}
 
 
