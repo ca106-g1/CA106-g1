@@ -117,32 +117,32 @@
   
   
     <servlet>
-    <servlet-name>LogoutHandler</servlet-name>
+    <servlet-name>BackLogoutHandler</servlet-name>
     <servlet-class>com.back_login_filter.BackLoginFilter.LogoutHandler</servlet-class>
   </servlet>
  <servlet-mapping>
-    <servlet-name>LogoutHandler</servlet-name>
+    <servlet-name>BackLogoutHandler</servlet-name>
     <url-pattern>/Back_end/emp/logoutHandler.do</url-pattern>
   </servlet-mapping>
 
 
    <servlet>
-    <servlet-name>LoginHandler</servlet-name>
+    <servlet-name>BackLoginHandler</servlet-name>
     <servlet-class>com.back_login_filter.BackLoginFilter.LoginHandler</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>LoginHandler</servlet-name>
+    <servlet-name>BackLoginHandler</servlet-name>
     <url-pattern>/Back_end/backLoginHandler.do</url-pattern>
   </servlet-mapping>
 
 
   
   <filter>
-  	<filter-name>LoginFilter</filter-name>
+  	<filter-name>BackLoginFilter</filter-name>
   	<filter-class>com.back_login_filter.BackLoginFilter.LoginFilter</filter-class>
   </filter>
   <filter-mapping>
-   <filter-name>LoginFilter</filter-name>
+   <filter-name>BackLoginFilter</filter-name>
    <url-pattern>/Back_end/emp/*</url-pattern>
    <dispatcher>REQUEST</dispatcher>
    <dispatcher>FORWARD</dispatcher>
