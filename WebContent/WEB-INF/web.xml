@@ -134,6 +134,18 @@
     <servlet-name>BackLoginHandler</servlet-name>
     <url-pattern>/Back_end/backLoginHandler.do</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+		<servlet-name>AdvServlet</servlet-name>
+		<servlet-class>com.adv.controller.AdvServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdvServlet</servlet-name>
+		<url-pattern>/Back_end/adv/adv.do</url-pattern>
+	</servlet-mapping>
+  
+  
 
 
   
