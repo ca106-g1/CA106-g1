@@ -21,6 +21,18 @@
   	<url-pattern>/Front_end/mem/mem.do</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>EmpServlet</servlet-name>
+  	<servlet-class>com.emp.controller.EmpServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>EmpServlet</servlet-name>
+  	<url-pattern>/Back_end/emp/emp.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
   <!-- 昀翰 -->
   <servlet>
 		<servlet-name>TicketorderServlet</servlet-name>
@@ -96,7 +108,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginHandler</servlet-name>
-    <url-pattern>/Front_end/mem/loginHandler.do</url-pattern>
+    <url-pattern>/Front_end/loginHandler.do</url-pattern>
   </servlet-mapping>
 
 

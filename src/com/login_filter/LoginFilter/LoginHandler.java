@@ -45,7 +45,7 @@ public class LoginHandler extends HttpServlet{
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -58,7 +58,7 @@ public class LoginHandler extends HttpServlet{
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -71,7 +71,7 @@ public class LoginHandler extends HttpServlet{
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -84,7 +84,7 @@ public class LoginHandler extends HttpServlet{
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -103,7 +103,7 @@ public class LoginHandler extends HttpServlet{
 				
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -150,7 +150,7 @@ System.out.println("檢查點9");
 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
+				RequestDispatcher failView = req.getRequestDispatcher("/Front_end/Login.jsp");
 				failView.forward(req, res);
 				
 System.out.println("檢查點10");
