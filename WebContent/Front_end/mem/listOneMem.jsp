@@ -65,13 +65,15 @@
 		<td><%=memVO.getMember_address()%></td>
 		<td><%=memVO.getMember_telephone()%></td>
 		<td><%=memVO.getMember_email()%></td>
-		<td><%=memVO.getMember_picture()%></td>
+		<td>
+			<img src='<%= request.getContextPath() %>/Front_end/mem/mem.do?member_no=${memVO.member_no}' width='200' height = '200'/>
+		</td>
 		<td><%=memVO.getMember_credit_number()%></td>
 		<td><%=memVO.getMember_back_verification()%></td>
 		<td><%=memVO.getMember_buildday()%></td>
 		<td><%=memVO.getMember_point()%></td>
 		<td><%=memVO.getMember_status()%></td>
-		<img src ="<%= request.getContextPath() %>/memberServlet?member_no=${memVO.member_no}">
+		
 	</tr>
 	
 </table>

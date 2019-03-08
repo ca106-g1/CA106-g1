@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dep.model.DepService;
 import com.dep.model.DepVO;
-import com.mem.model.MemService;
-import com.mem.model.MemVO;
 
-public class DepServlet extends HttpServlet {
+public class DepServlet_backcopy extends HttpServlet {
 
 	/**
 	 * 
@@ -95,40 +93,6 @@ public class DepServlet extends HttpServlet {
 			  System.out.println("檢查點9");
 		  }
 	  }
-	  
-	  
- if ("getOne_For_Display_Mem".equals(action)) {
-		  
-
-			  /**********1.接收請求參數*************************/
-			  
-			  String deposit_member_no = req.getParameter("member_no");
-			 
-				
-			  
-			  /***************2.開始查詢資料***************************/
-			 
-			  DepService depSvc = new DepService();
-			  List<DepVO> list = depSvc.findByMem_no1(deposit_member_no);
-			 
-		  System.out.println(list);
-		  
-			  /******************3.查詢完成 準備轉交********************************/
-			  req.setAttribute("list", list);
-			  String url="/Front_end/dep/listOneDep_Mem.jsp";
-			  RequestDispatcher successView = req.getRequestDispatcher(url);
-			  successView.forward(req, res);
-			  
-			 
-		
-	  }
-	  
-	  
-	  
-	  
-	  
-	  
-	  
 		  
 	
 	  if("insert".equals(action)) {
@@ -197,87 +161,7 @@ public class DepServlet extends HttpServlet {
 	  }
 	  
 	  
-if("mem_insert".equals(action)) {
-		  
-		  List<String> errorMsgs = new LinkedList<String>();
-		  req.setAttribute("errorMsgs",errorMsgs);
-		  
-		  
-		  /*************儲值編號********************/
-		  try {
-		  String deposit_change_no = req.getParameter("deposit_change_no");
-		  
-		  /*************會員編號***************/
-		  
-		  String deposit_member_no = req.getParameter("deposit_member_no");
-		  
-		  /************異動金額***************/
-		  
-		  Integer deposit_change_money = null;
-		  try {
-			  deposit_change_money = new Integer(req.getParameter("deposit_change_money").trim());
-			  
-		  }catch (NumberFormatException e) {
-			  deposit_change_money = 0;
-			  errorMsgs.add("請輸入正確數字");
-		  }
-		  
-		  
-		  /***********異動日期***************/
-		  
-		  java.sql.Timestamp deposit_change_date = null;
-//		  try {
-//			  deposit_change_date = java.sql.Timestamp.valueOf(req.getParameter("deposit_change_date").trim());
-//		  }catch (IllegalArgumentException e) {
-			  deposit_change_date = new java.sql.Timestamp(System.currentTimeMillis());
-//			  errorMsgs.add("請選取正確日期");  
-//		  }
-		  
-		  DepVO depVO = new DepVO();
-		  depVO.setDeposit_member_no(deposit_member_no);
-		  depVO.setDeposit_change_money(deposit_change_money);
-		  depVO.setDeposit_change_date(deposit_change_date);
-		  
-		  if (!errorMsgs.isEmpty()) {
-			  req.setAttribute("depVO",depVO);
-			  RequestDispatcher failureView = req
-					  .getRequestDispatcher("/Front_end/dep/addDep.jsp");
-			  failureView.forward(req,res);
-			  return;
-		  }
-		  
-		  /*******************2.開始新增資料*************************/
-		  DepService depSvc = new DepService();
-		  depVO = depSvc.addDep(deposit_member_no, deposit_change_money,deposit_change_date);
-		  req.setAttribute("depVO", depVO);
-		  /******************3.新增完成 準備轉交*******************/
-		  
-		  String url = "/Front_end/dep/listOneDep.jsp";
-		  RequestDispatcher successView = req.getRequestDispatcher(url);
-		  successView.forward(req, res);
-		  
-		  /***************其他的錯誤處理************/
-		  
-	    }catch(Exception e) {
-	    	errorMsgs.add(e.getMessage());
-	    	RequestDispatcher failureView = req
-	    			.getRequestDispatcher("/Front_end/dep/addDep.jsp");
-	    	failureView.forward(req, res);
-	    }
-		  
-	  }
-
-
-	if("insert_Token".equals(action)) {
-		String deposit_member_no = req.getParameter("member_no");
-		DepVO depVO = new DepVO();
-		depVO.setDeposit_member_no(deposit_member_no);
-		req.setAttribute("depVO",depVO);
-		RequestDispatcher successView = req.getRequestDispatcher("/Front_end/dep/addDep.jsp");
-		successView.forward(req, res);
-		
-		
-	}
+	  
 	  
 	  
 	  

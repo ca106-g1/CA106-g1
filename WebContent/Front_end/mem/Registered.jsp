@@ -6,7 +6,7 @@
 
 <%
 	MemVO memVO = (MemVO) request.getAttribute("memVO");
-%>kk
+%>
 
 <!doctype html>
 <html lang="en">

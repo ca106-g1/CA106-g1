@@ -27,6 +27,10 @@ public class DepDAOImpl implements DepDAO_interface {
 	private static final String GET_ONE_DEP =
 			//"SELECT DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,to_char(DEPOSIT_CHANGE_DATE,'yyyy-mm-dd hh-mm-ss.fffffffff')DEPOSIT_CHANGE_DATE FROM DEPOSITDETAIL where DEPOSIT_CHANGE_NO = ?";
 			"SELECT * FROM DEPOSITDETAIL WHERE DEPOSIT_CHANGE_NO =? ";
+	private static final String GET_ONE_DEP_MEM_NO =
+			//"SELECT DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,to_char(DEPOSIT_CHANGE_DATE,'yyyy-mm-dd hh-mm-ss.fffffffff')DEPOSIT_CHANGE_DATE FROM DEPOSITDETAIL where DEPOSIT_CHANGE_NO = ?";
+			"SELECT * FROM DEPOSITDETAIL WHERE DEPOSIT_MEMBER_NO =? ";
+	
 	
 	
 	//交易區間專用指令--開始
@@ -41,22 +45,26 @@ public class DepDAOImpl implements DepDAO_interface {
 	
 
 	@Override
-	public void insert(DepVO depVO) {
-		// TODO Auto-generated method stub
+	public String insert(DepVO depVO) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		String pk = null;
 		
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, username, password);
-			pstmt = con.prepareStatement(INSERT_DEP);
+			pstmt = con.prepareStatement(INSERT_DEP, new String[] {"DEPOSIT_CHANGE_NO"});
 			
 			pstmt.setString(1, depVO.getDeposit_member_no());
 			pstmt.setInt(2,depVO.getDeposit_change_money());
 			pstmt.setTimestamp(3,depVO.getDeposit_change_date());
 			
 			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			rs.next();
+			pk = rs.getString(1);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -81,7 +89,7 @@ public class DepDAOImpl implements DepDAO_interface {
 				}
 			}
 		}
-		
+		return pk;
 	}
 
 	@Override
@@ -230,6 +238,82 @@ public class DepDAOImpl implements DepDAO_interface {
 		
 		return depVO;
 	}
+	
+	
+	@Override
+	public DepVO findByMem_no(String deposit_member_no) {
+		// TODO Auto-generated method stub
+		DepVO depVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, username, password);
+			pstmt = con.prepareStatement(GET_ONE_DEP_MEM_NO);
+			
+			pstmt.setString(1,deposit_member_no);
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				depVO = new DepVO();
+				depVO.setDeposit_change_no(rs.getString("deposit_change_no"));
+				depVO.setDeposit_member_no(rs.getString("deposit_member_no"));
+				depVO.setDeposit_change_money(rs.getInt("deposit_change_money"));
+				depVO.setDeposit_change_date(rs.getTimestamp("deposit_change_date"));
+				
+			}
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
+		return depVO;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public List<DepVO> getAll() {
@@ -295,6 +379,73 @@ public class DepDAOImpl implements DepDAO_interface {
 		
 		return list;
 	}
+	
+	
+	@Override
+	public List<DepVO> findByMem_no1(String deposit_member_no) {
+		// TODO Auto-generated method stub
+		List<DepVO> list = new ArrayList<DepVO>();
+		DepVO depVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, username, password);
+			pstmt = con.prepareStatement(GET_ONE_DEP_MEM_NO);
+			pstmt.setString(1, deposit_member_no);
+			rs = pstmt.executeQuery();
+			
+			
+			
+			while(rs.next()) {
+				
+				depVO = new DepVO();
+				depVO.setDeposit_change_no(rs.getString("deposit_change_no"));
+				depVO.setDeposit_member_no(rs.getString("deposit_member_no"));
+				depVO.setDeposit_change_money(rs.getInt("deposit_change_money"));
+				depVO.setDeposit_change_date(rs.getTimestamp("deposit_change_date"));
+				list.add(depVO);
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		
+		}	
+		
+		
+		return list;
+	}
+	
+	
 	
 	@Override
 	public void insertByTicketorder(DepVO depVO, Connection con) throws SQLException {
@@ -373,4 +524,8 @@ public static void main(String[]args) {
 	
 	
 	}
+
+
+
+
 }

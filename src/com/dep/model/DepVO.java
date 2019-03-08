@@ -39,6 +39,12 @@ public class DepVO implements java.io.Serializable {
 	public void setDeposit_change_date(Timestamp deposit_change_date) {
 		this.deposit_change_date = deposit_change_date;
 	}
+	@Override
+	public String toString() {
+		return "DepVO [deposit_change_no=" + deposit_change_no + ", deposit_member_no=" + deposit_member_no
+				+ ", deposit_change_money=" + deposit_change_money + ", deposit_change_date=" + deposit_change_date
+				+ "]";
+	}
 	
 		
 	

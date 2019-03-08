@@ -84,7 +84,10 @@
 		<td>${memVO.member_address}</td>
 		<td>${memVO.member_telephone}</td>
 		<td>${memVO.member_email}</td>
-		<td>${memVO.member_picture}</td>
+		<td>
+			
+			<img src='<%= request.getContextPath() %>/Front_end/mem/mem.do?member_no=${memVO.member_no}' width='200' height = '200'/>
+		</td>
 		<td>${memVO.member_credit_number}</td>
 		<td>${memVO.member_back_verification}</td>
 		<td>${memVO.member_buildday}</td>

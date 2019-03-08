@@ -14,11 +14,15 @@ public class DepService {
 	public DepVO addDep( String deposit_member_no,Integer deposit_change_money,Timestamp deposit_change_date) {
 		
 		DepVO depVO = new DepVO();
+		String pk = null;
 		
 		depVO.setDeposit_member_no(deposit_member_no);
 		depVO.setDeposit_change_money(deposit_change_money);
 		depVO.setDeposit_change_date(deposit_change_date);
-		dao.insert(depVO);
+		
+		pk = dao.insert(depVO);
+		
+		depVO.setDeposit_change_no(pk);
 		
 		
 		return depVO;
@@ -50,9 +54,21 @@ public class DepService {
 		
 	}
 	
+public DepVO getoneDep_mem_no(String deposit_member_no) {
+		
+		return dao.findByMem_no(deposit_member_no);
+		
+	}
+	
 	public List<DepVO> getAll(){
 		
 		return dao.getAll();
+		
+	}
+	
+	
+	public List<DepVO> findByMem_no1(String deposit_member_no){
+		return dao.findByMem_no1(deposit_member_no);
 		
 	}
 
