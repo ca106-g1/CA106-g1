@@ -103,7 +103,7 @@ public class MovieGenreServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("moviegenreVO", moviegenreVO); // 資料庫取出的empVO物件,存入req
-				String url = "/back-end/moviegenre/update_moviegenre_input.jsp";
+				String url = "/back-end/moviegenre/update_MovieGenre_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
@@ -232,7 +232,7 @@ public class MovieGenreServlet extends HttpServlet {
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
-				errorMsgs.add("刪除資料失敗:" + e.getMessage());
+				errorMsgs.add("刪除資料失敗:此種類有相關連電影" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/listAllMovieGenre.jsp");
 				failureView.forward(req, res);
 			}

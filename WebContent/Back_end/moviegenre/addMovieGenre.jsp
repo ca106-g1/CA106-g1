@@ -49,7 +49,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>電影種類新增</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -65,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="moviegenre.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do" name="form1">
 <table>
 	<tr>
 		<td>電影種類名稱</td>
@@ -78,10 +78,6 @@
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增"></FORM>
 </body>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {

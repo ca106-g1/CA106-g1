@@ -53,7 +53,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>所有電影類型清單</h3>
-		 <h4><a href="select_page.jsp"><img src="images/eatPopcorn.gif" width="125" height="72" border="0">  回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">  回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -82,14 +82,14 @@
 			<td>${MovieGenreVO.genre_name}</td>
 			
 			<td>
-			  <FORM METHOD="post" ACTION="moviegenre.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="genre_no"  value="${MovieGenreVO.genre_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			
 			<td>
-			  <FORM METHOD="post" ACTION="moviegenre.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="genre_no"  value="${MovieGenreVO.genre_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>

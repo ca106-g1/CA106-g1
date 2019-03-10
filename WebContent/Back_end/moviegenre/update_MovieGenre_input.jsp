@@ -3,13 +3,13 @@
 <%@ page import="com.moviegenre.model.*"%>
 
 <%
-  MovieGenreVO moviegenreVO = (MovieGenreVO) request.getAttribute("moviegenreVO");
+  MovieGenreVO moviegenreVO = (MovieGenreVO) request.getAttribute("moviegenreVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>addMovieGenre</title>
+<title>update moviegenre</title>
 
 <style>
   table#table-1 {
@@ -48,12 +48,12 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>電影種類新增</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a></h4>
+		 <h3>電影種類修改 </h3>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>資料新增:</h3>
+<h3>資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -68,16 +68,24 @@
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do" name="form1">
 <table>
 	<tr>
-		<td>電影種類名稱</td>
-		<td><input type="TEXT" name="genre_name" size="45"
-			 value="<%= (moviegenreVO==null)? "*Action" : moviegenreVO.getGenre_name()%>" /></td>
+		<td>電影種類編號:<font color=red><b>*</b></font></td>
+		<td><%=moviegenreVO.getGenre_no()%></td>
 	</tr>
-	
+	<tr>
+		<td>電影種類名稱:</td>
+		<td><input type="TEXT" name="genre_name" size="45" value="<%=moviegenreVO.getGenre_name()%>" /></td>
+	</tr>
+
 </table>
 <br>
-<input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+<input type="hidden" name="action" value="update">
+<input type="hidden" name="genre_no" value="<%=moviegenreVO.getGenre_no()%>">
+<input type="submit" value="送出修改"></FORM>
 </body>
+
+
+
+<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
@@ -85,12 +93,11 @@
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
-           width:  300px;   
+           width:  300px;   /* width:  300px; */
   }
   .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
            height: 151px;   /* height:  151px; */
   }
 </style>
-
 
 </html>

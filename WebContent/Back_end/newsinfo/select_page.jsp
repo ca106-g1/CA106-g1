@@ -48,7 +48,7 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllNewsInfo.jsp'>List</a> all NewsInfos.  <br><br></li>
+  <li><a href='<%=request.getContextPath()%>/back-end/newsinfo/listAllNewsInfo.jsp'>List</a> all NewsInfos.  <br><br></li>
   
   
   <li>
@@ -93,7 +93,7 @@
 <h3>電影新聞管理</h3>
 
 <ul>
-  <li><a href='addNewsInfo.jsp'>Add</a> a new NewsInfo.</li>
+  <li><a href='<%=request.getContextPath()%>/back-end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li>
 </ul>
 
 </body>

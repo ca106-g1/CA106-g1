@@ -11,9 +11,9 @@
 <html>
 <head>
 <!-- 寫入日曆步驟 -->
-<link   rel="stylesheet" type="text/css" href="Expansion/jquery.datetimepicker.css" />
-<script src="Expansion/jquery.js"></script>
-<script src="Expansion/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <!-- 寫入日曆步驟 -->
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -57,7 +57,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>新聞資料新增</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -117,16 +117,13 @@
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 <% 
-  java.sql.Date news_times = null;
-  try {
-	    news_times = newsinfoVO.getNews_times();
-   } catch (Exception e) {
-	    news_times = new java.sql.Date(System.currentTimeMillis());
-   }
+//   java.sql.Date news_times = null;
+//   try {
+// 	    news_times = newsinfoVO.getNews_times();
+//    } catch (Exception e) {
+// 	    news_times = new java.sql.Date(System.currentTimeMillis());
+//    }
 %>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
@@ -144,7 +141,7 @@
 	       timepicker:false,       //timepicker:true,
 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
-		   value: '<%=news_times%>', // value:   new Date(),
+<%-- 		   value: '<%=news_times%>', // value:   new Date(), --%>
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前

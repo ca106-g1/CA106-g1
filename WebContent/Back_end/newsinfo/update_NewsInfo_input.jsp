@@ -9,9 +9,9 @@
 
 <html>
 <head>
-<link   rel="stylesheet" type="text/css" href="Expansion/jquery.datetimepicker.css" />
-<script src="Expansion/jquery.js"></script>
-<script src="Expansion/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>updateNewsInfo</title>
 
@@ -53,7 +53,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>新聞資料修改</h3>
-		 <h4><a href="select_page.jsp"><img src="images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -77,7 +77,7 @@
 	</tr>
 	<tr>
 		<td>電影編號:<font color=red><b>*</b></font></td>
-		<td><input type="TEXT" name="movie_no" size="45" value="<%=newsinfoVO.getMovie_no()%>" /></td>
+		<td><input type="TEXT" name="movie_no" size="45" value="*<%=newsinfoVO.getMovie_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>新聞標題:</td>
@@ -89,7 +89,7 @@
 	</tr>
 	<tr>
 		<td>發文日期:</td>
-		<td><input name="news_times" id="f_date1" type="text" ></td>
+		<td><input name="news_times" id="f_date1" type="Text" ></td>
 	</tr>
 	<tr>
 		<td>新聞圖片:</td>
@@ -113,10 +113,6 @@
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
-
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;   /* width:  300px; */
@@ -133,7 +129,7 @@
  	       timepicker:false,       //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
  	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
- 		   value: '<%=newsinfoVO.getNews_times()%>', // value:   new Date(),
+<%--  		   value: '<%=newsinfoVO.getNews_times()%>', // value:   new Date(), --%>
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前

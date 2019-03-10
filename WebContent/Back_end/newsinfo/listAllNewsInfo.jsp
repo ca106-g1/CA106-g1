@@ -54,7 +54,8 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>所有新聞資料</h3>
-		 <h4><a href="select_page.jsp"><img src="images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp">
+		 <img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -75,8 +76,8 @@
 		<th>新聞標題</th>
 		<th>新聞作者</th>
 		<th>發文日期</th>
-		<!-- <th>新聞內容</th> -->
 		<th>新聞圖片</th>
+		<!-- <th>新聞內容</th> -->
 		<th colspan="2">操作按鈕</th>
 	</tr>
 	<%@ include file="page1.file" %> 
@@ -88,8 +89,8 @@
 			<td>${newsinfoVO.news_title}</td>
 			<td>${newsinfoVO.news_auther}</td>
 			<td>${newsinfoVO.news_times}</td>
-			<!--<td>${newsinfoVO.news_con}</td>   -->
 			<td>${newsinfoVO.news_pic}</td> 
+			<!--<td>${newsinfoVO.news_con}</td>   -->
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">

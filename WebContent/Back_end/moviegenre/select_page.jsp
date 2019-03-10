@@ -51,12 +51,12 @@ h4 {
 	</c:if>
 
 	<ul>
-		<li><a href='listAllMovieGenre.jsp'>電影種類清單</a><br>
+		<li><a href='<%=request.getContextPath()%>/back-end/moviegenre/listAllMovieGenre.jsp'>電影種類清單</a><br>
 			<br></li>
 
 
 		<li>
-			<FORM METHOD="post" ACTION="moviegenre.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do">
 				<b>輸入種類編號:</b><input type="text" name="genre_no" value="*2"> <input
 					type="hidden" name="action" value="getOne_For_Display"> <input
 					type="submit" value="送出">
@@ -67,7 +67,7 @@ h4 {
 			class="com.moviegenre.model.MovieGenreService" />
 
 		<li>
-			<FORM METHOD="post" ACTION="moviegenre.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do">
 				<b>選擇種類編號:</b> <select size="1" name="genre_no">
 					<c:forEach var="moviegenreVO" items="${moviegenreSvc.all}">
 						<option value="${moviegenreVO.genre_no}">${moviegenreVO.genre_no}
@@ -78,7 +78,7 @@ h4 {
 		</li>
 
 		<li>
-			<FORM METHOD="post" ACTION="moviegenre.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do">
 				<b>選擇種類名稱:</b> <select size="1" name="genre_no">
 					<c:forEach var="moviegenreVO" items="${moviegenreSvc.all}">
 						<option value="${moviegenreVO.genre_no}">${moviegenreVO.genre_name}
@@ -93,7 +93,7 @@ h4 {
 	<h3>電影種類新增</h3>
 
 	<ul>
-		<li><a href='addMovieGenre.jsp'>新增</a></li>
+		<li><a href='<%=request.getContextPath()%>/back-end/moviegenre/addMovieGenre.jsp'>新增</a></li>
 	</ul>
 
 </body>

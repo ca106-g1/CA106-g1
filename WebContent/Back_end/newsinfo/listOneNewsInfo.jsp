@@ -49,7 +49,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>單一電影資料</h3>
-		 <h4><a href="select_page.jsp"><img src="images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -60,8 +60,8 @@
 		<th>新聞標題</th>
 		<th>新聞作者</th>
 		<th>發文日期</th>
-		<!-- <th>新聞內容</th> -->
 		<th>新聞圖片</th>
+<!-- 		 <th>新聞內容</th>  -->
 		
 	</tr>
 	<tr>
@@ -70,8 +70,8 @@
 		<td><%=newsinfoVO.getNews_title()%></td>
 		<td><%=newsinfoVO.getNews_auther()%></td>
 		<td><%=newsinfoVO.getNews_times()%></td>
-		<!--<td><%=newsinfoVO.getNews_con()%></td>-->
 		<td><%=newsinfoVO.getNews_pic()%></td>
+<%-- 		<td><%=newsinfoVO.getNews_con()%></td> --%>
 		
 		
 	</tr>
