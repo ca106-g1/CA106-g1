@@ -43,7 +43,7 @@ public class LoginFilter implements Filter{
 		Object memVO = session.getAttribute("memVO");
 		if (memVO == null) {
 			session.setAttribute("location", req.getRequestURI());
-			res.sendRedirect(req.getContextPath()+"/Front_end/mem/Login.jsp");
+			res.sendRedirect(req.getContextPath()+"/Front_end/Login.jsp");
 			return;
 		}else {
 			chain.doFilter(request, response);

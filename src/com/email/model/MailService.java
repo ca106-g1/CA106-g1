@@ -1,4 +1,4 @@
-package com.mem.controller;
+package com.email.model;
 
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -26,8 +26,8 @@ public class MailService {
 
 		// ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
 	       // ●須將myGmail的【安全性較低的應用程式存取權】打開
-	     final String myGmail = "ixlogic.wu@gmail.com";
-	     final String myGmail_password = "BBB45678";
+	     final String myGmail = "ca106join@gmail.com";
+	     final String myGmail_password = "JOIN123456";
 		   Session session = Session.getInstance(props, new Authenticator() {
 			   protected PasswordAuthentication getPasswordAuthentication() {
 				   return new PasswordAuthentication(myGmail, myGmail_password);
@@ -57,9 +57,9 @@ public class MailService {
       
       String subject = "密碼通知";
       
-      String ch_name = "peter1";
-      String passRandom = "111";
-      String messageText = "Hello! " + ch_name + " 請謹記此密碼: " + passRandom + "\n" +" (已經啟用)"; 
+      String member_name = "親愛的會員";
+      String member_password = "您的密碼";
+      String messageText = "Hello! " + member_name + " 請謹記: " + member_password + "\n" +" (已經啟用)"+"\n"+"請點擊連結重新登入"+"http://localhost:8081/Join_Forward_Ver04/Front_end/mem/Login.jsp"; 
        
       MailService mailService = new MailService();
       mailService.sendMail(to, subject, messageText);

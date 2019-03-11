@@ -97,6 +97,8 @@
 <p>背面後三碼: 
 <input type = "text"  name = "member_back_verification" value="<%= (memVO==null)?"":memVO.getMember_back_verification()%>"> </p>
 
+<input type = "hidden"  name = "member_status" value="0"> 
+
 <p><input type = "hidden" name="action" value="insert">
    <input type = "submit" id="send" value = "送出"> &nbsp;&nbsp;
    <input type = "reset"   value = "取消">
