@@ -412,67 +412,67 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 11, 'Interstellar', '', 'Christopher Nolan',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'Interstellar', '', 'Christopher Nolan',
 'Matthew McConaughey, Anne Hathaway, Jessica Chastain', '', '2h49min', '', '', TO_DATE('2014-11-07','YYYY-MM-DD'), TO_DATE('2015-01-10','YYYY-MM-DD'),
 1200000, 55, 15, 0, 50);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 07, 'The Weather Man', '', 'Gore Verbinski',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 07, 'The Weather Man', '', 'Gore Verbinski',
 'Nicolas Cage, Hope Davis, Nicholas Hoult ', '', '1h42min', '', '', TO_DATE('2005-10-28','YYYY-MM-DD'), TO_DATE('2005-12-02','YYYY-MM-DD'),
 232000, 50, 10, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 10, 'Eternal Sunshine of the Spotless Mind', '', 'Michel Gondry',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 10, 'Eternal Sunshine of the Spotless Mind', '', 'Michel Gondry',
 'Jim Carrey, Kate Winslet, Tom Wilkinson', '', '1h48min', '', '', TO_DATE('2004-02-02','YYYY-MM-DD'), TO_DATE('2004-02-02','YYYY-MM-DD'),
 1333000, 20, 5, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 11, 'The Butterfly Effect', '', 'Eric Bress, J. Mackye Gruber',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'The Butterfly Effect', '', 'Eric Bress, J. Mackye Gruber',
 'Ashton Kutcher, Amy Smart, Melora Walters', '', '1h53min', '', '', TO_DATE('2004-04-02','YYYY-MM-DD'), TO_DATE('2004-06-01','YYYY-MM-DD'),
 1123000, 20, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 1, 'Justice League', '', 'Zack Snyder',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 1, 'Justice League', '', 'Zack Snyder',
 'Ben Affleck, Gal Gadot, Jason Momoa', '', '2h', '', '', TO_DATE('2017-11-16','YYYY-MM-DD'), TO_DATE('2018-01-01','YYYY-MM-DD'),
 23000000, 29999, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 18, 'Aquamane', '', 'James Wan',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Aquamane', '', 'James Wan',
 'Jason Momoa, Amber Heard, Willem Dafoe', '', '2h23min', '', '', TO_DATE('2018-12-12','YYYY-MM-DD'), TO_DATE('2019-01-31','YYYY-MM-DD'),
 23000000, 29999, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 12, 'Alita: Battle Angel', '', 'Robert Rodriguez',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 12, 'Alita: Battle Angel', '', 'Robert Rodriguez',
 'Rosa Salazar, Christoph Waltz, Jennifer Connelly', '', '2h23min', '', '', TO_DATE('2019-02-05','YYYY-MM-DD'), TO_DATE('2019-03-25','YYYY-MM-DD'),
 435677770, 225, 134500, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 18, 'Captain Marvel', '', 'Anna Boden, Ryan Fleck',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Captain Marvel', '', 'Anna Boden, Ryan Fleck',
 'Brie Larson, Samuel L. Jackson, Mckenna Grace', '', '2h8min', '', '', TO_DATE('2019-03-06','YYYY-MM-DD'), TO_DATE('2019-04-15','YYYY-MM-DD'),
 23500000, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 18, 'Shazan!', '', 'David F. Sandberg',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Shazan!', '', 'David F. Sandberg',
 'Brie Larson, Samuel L. Jackson, Mckenna Grace', '', '2h8min', '', '', TO_DATE('2019-04-03','YYYY-MM-DD'), TO_DATE('2019-05-10','YYYY-MM-DD'),
 23400302, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 18, 'Hell Boy', '', 'Neil Marshall',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Hell Boy', '', 'Neil Marshall',
 'Brie Larson, Samuel L. Jackson, Mckenna Grace', '', '2h28min', '', '', TO_DATE('2019-04-12','YYYY-MM-DD'), TO_DATE('2019-05-22','YYYY-MM-DD'),
 430005, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 9, 'Pet Sematary', '', 'Kevin Kolsch, Dennis Widmyer',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'Pet Sematary', '', 'Kevin Kolsch, Dennis Widmyer',
 'Jason Clarke, Amy Seimetz, John Lithgow', '', '尚未提供', '', '', TO_DATE('2019-04-12','YYYY-MM-DD'), TO_DATE('2019-05-02','YYYY-MM-DD'),
 100, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 3, 'Fate/Stay Night: Heaven''s Feel - II. Lost Butterfly', '', 'Tomonori Sudo',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 3, 'Fate/Stay Night: Heaven''s Feel - II. Lost Butterfly', '', 'Tomonori Sudo',
 'Yu Asakawa, Mai Kadowaki, Hiroshi Kamiya', '', '1h57min', '', '', TO_DATE('2019-03-15','YYYY-MM-DD'), TO_DATE('2019-03-30','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 3, 'How to Train Your Dragon: The Hidden World', '', 'Dean DeBlois',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 3, 'How to Train Your Dragon: The Hidden World', '', 'Dean DeBlois',
 'Jay Baruchel, America Ferrera, F. Murray Abrahama', '', '1h47min', '', '', TO_DATE('2019-02-22','YYYY-MM-DD'), TO_DATE('2019-04-03','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 4, 'Stan & Ollie', '', 'Jon S. Baird',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 4, 'Stan & Ollie', '', 'Jon S. Baird',
 'Shirley Henderson, John C. Reilly, Steve Coogan', '', '1h38min', '', '', TO_DATE('2019-03-22','YYYY-MM-DD'), TO_DATE('2019-04-07','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 13, '12 Suicidal Teen', '', 'Yukihiko Tsutsumi',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 13, '12 Suicidal Teen', '', 'Yukihiko Tsutsumi',
 'Hana Sugisaki, Mackenyu, Takumi Kitamura', '', '1h57min', '', '', TO_DATE('2019-04-12','YYYY-MM-DD'), TO_DATE('2019-05-03','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES(MOVIEINFO_SEQ.NEXTVAL, 9, 'Selfie from Hell', '', 'Erdal Ceylan',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'Selfie from Hell', '', 'Erdal Ceylan',
 'Alyson Walker, Tony Giroux, Meelah Adams', '', '1h13min', '', '', TO_DATE('2019-03-01','YYYY-MM-DD'), TO_DATE('2019-04-03','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
@@ -794,21 +794,21 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '1', '星際效應勇奪奧斯卡?', '凱夫向', TO_DATE('2011-10-09','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '2', '天氣人?蟻人?都幾?', '凱夫向', TO_DATE('2011-12-12','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '3', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '3', '誰是最後一位冤家', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '3', '誰是最後一個王', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '3', '誰是最後一張牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '9', '誰是最後一個家', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '9', '誰是最後一個淵', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '9', '誰是最後一12123434', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '9', '誰是最後kwejfklsdfm3', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '3', '誰是最後ffff22', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '13', '你要看嗎', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '13', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '13', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '13', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000001', '星際效應勇奪奧斯卡?', '凱夫向', TO_DATE('2011-10-09','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000002', '天氣人?蟻人?都幾?', '凱夫向', TO_DATE('2011-12-12','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一位冤家', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一個王', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一張牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後一個家', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後一個淵', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後一12123434', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後kwejfklsdfm3', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後ffff22', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '你要看嗎', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
 
 -------------------影評資訊-------------------
 CREATE TABLE REVIEWSINFO(
@@ -830,21 +830,21 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '1', '今年最火電影竟然是他', '成凱123', TO_DATE('2018-02-10','YYYY-MM-DD'), '他', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '1', '星際效應的彩蛋你找到幾個?', '成凱123', TO_DATE('2018-03-10','YYYY-MM-DD'), '我找不到', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '2', '不看別說你是台灣人', '成向凱', TO_DATE('2018-02-11','YYYY-MM-DD'), '看了也不是台灣人啦 台灣又不是國家', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '4', '蝴蝶效應觀後感', '凱向成', TO_DATE('2010-02-13','YYYY-MM-DD'), '阿飛的小蝴蝶', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '4', '莊周夢蝴蝶效應', '凱向成', TO_DATE('2016-02-13','YYYY-MM-DD'), '一切都是夢R', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '4', '蝴蝶效應的蝴蝶', '凱向成', TO_DATE('2019-02-13','YYYY-MM-DD'), '太陽餅的太陽', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '10', 'HELLLLLL BOYYYY', '凱向成', TO_DATE('2020-02-13','YYYY-MM-DD'), '黑喔波以', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '11', '禁入墳場是哪個墳場?', '凱向成', TO_DATE('2022-02-13','YYYY-MM-DD'), '墓補仔也趕去影', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '13', '訓龍高手高高手', '凱向成', TO_DATE('2022-02-13','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '14', '史丹跟歐李', '凱向成', TO_DATE('2022-02-13','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '5', '賈斯汀驪歌', '凱向成', TO_DATE('2023-02-13','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '8', 'K普燈馬佛', '凱向成', TO_DATE('2024-02-22','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '7', '戰鬥天使會戰鬥嗎', '凱向成', TO_DATE('2000-02-23','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '7', '戰鬥天使是哪個天使?', '凱向成', TO_DATE('2018-02-23','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
-INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, '7', '顫抖天使?', '凱向成', TO_DATE('2018-02-10','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000001', '今年最火電影竟然是他', '成凱123', TO_DATE('2018-02-10','YYYY-MM-DD'), '他', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000011', '星際效應的彩蛋你找到幾個?', '成凱123', TO_DATE('2018-03-10','YYYY-MM-DD'), '我找不到', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000002', '不看別說你是台灣人', '成向凱', TO_DATE('2018-02-11','YYYY-MM-DD'), '看了也不是台灣人啦 台灣又不是國家', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000004', '蝴蝶效應觀後感', '凱向成', TO_DATE('2010-02-13','YYYY-MM-DD'), '阿飛的小蝴蝶', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000004', '莊周夢蝴蝶效應', '凱向成', TO_DATE('2016-02-13','YYYY-MM-DD'), '一切都是夢R', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000004', '蝴蝶效應的蝴蝶', '凱向成', TO_DATE('2019-02-13','YYYY-MM-DD'), '太陽餅的太陽', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000010', 'HELLLLLL BOYYYY', '凱向成', TO_DATE('2020-02-13','YYYY-MM-DD'), '黑喔波以', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000011', '禁入墳場是哪個墳場?', '凱向成', TO_DATE('2022-02-13','YYYY-MM-DD'), '墓補仔也趕去影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000013', '訓龍高手高高手', '凱向成', TO_DATE('2022-02-13','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000014', '史丹跟歐李', '凱向成', TO_DATE('2022-02-13','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000005', '賈斯汀驪歌', '凱向成', TO_DATE('2023-02-13','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000008', 'K普燈馬佛', '凱向成', TO_DATE('2024-02-22','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000007', '戰鬥天使會戰鬥嗎', '凱向成', TO_DATE('2000-02-23','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000007', '戰鬥天使是哪個天使?', '凱向成', TO_DATE('2018-02-23','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
+INSERT INTO REVIEWSINFO VALUES (REVIEWSINFO_SEQ.NEXTVAL, 'MI00000007', '顫抖天使?', '凱向成', TO_DATE('2018-02-10','YYYY-MM-DD'), '寫JAVA看什麼電影', '');
 
 ------------------檢舉紀錄---------------------------
 CREATE TABLE REPORTRECORD(

@@ -24,8 +24,6 @@ public class NewsInfoServlet extends HttpServlet {
 		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
@@ -117,18 +115,18 @@ public class NewsInfoServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				Integer news_no = new Integer(req.getParameter("news_no").trim());
-
-				String movie_no = req.getParameter("movie_no");
-				String movie_noReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,10}$";
+				
+				String movie_no = req.getParameter("movie_no").trim();
 				if (movie_no == null || movie_no.trim().length() == 0) {
-					errorMsgs.add("電影編號: 請勿空白");
-				} else if (!movie_no.trim().matches(movie_noReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("電影編號: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.add("電影編號請勿空白");
 				}
 
-				String news_title = req.getParameter("news_title").trim();
+				String news_title = req.getParameter("news_title");
+				String news_titleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,30}$";
 				if (news_title == null || news_title.trim().length() == 0) {
-					errorMsgs.add("標題請勿空白");
+					errorMsgs.add("新聞名稱: 請勿空白");
+				} else if (!news_title.trim().matches(news_titleReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("新聞名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 				}
 
 				String news_auther = req.getParameter("news_auther").trim();
@@ -149,7 +147,6 @@ public class NewsInfoServlet extends HttpServlet {
 					errorMsgs.add("內容請勿空白");
 				}
 
-//寫入圖片至資料庫
 				byte[] news_pic = null;
 				try {
 					Part part = req.getPart("news_pic");
@@ -215,7 +212,7 @@ public class NewsInfoServlet extends HttpServlet {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
 				String movie_no = req.getParameter("movie_no");
-				String movie_noReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,10}$";
+				String movie_noReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,30}$";
 				if (movie_no == null || movie_no.trim().length() == 0) {
 					errorMsgs.add("電影編號: 請勿空白");
 				} else if (!movie_no.trim().matches(movie_noReg)) { // 以下練習正則(規)表示式(regular-expression)

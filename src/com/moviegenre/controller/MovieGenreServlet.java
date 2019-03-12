@@ -127,7 +127,7 @@ public class MovieGenreServlet extends HttpServlet {
 				Integer genre_no = new Integer(req.getParameter("genre_no").trim());
 
 				String genre_name = req.getParameter("genre_name");
-				String genre_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String genre_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,50}$";
 				if (genre_name == null || genre_name.trim().length() == 0) {
 					errorMsgs.add("電影編號名稱: 請勿空白");
 				} else if (!genre_name.trim().matches(genre_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
@@ -175,7 +175,7 @@ public class MovieGenreServlet extends HttpServlet {
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				String genre_name = req.getParameter("genre_name");
-				String genre_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String genre_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,50}$";
 				if (genre_name == null || genre_name.trim().length() == 0) {
 					errorMsgs.add("電影種類名稱: 請勿空白");
 				} else if (!genre_name.trim().matches(genre_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
