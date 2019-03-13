@@ -84,5 +84,15 @@ public class MemService {
 		
 	}
 	
+	
+	
+	
+
+	public void update_member_status(String member_no) {
+		// TODO Auto-generated method stub
+		
+		dao.update_member_status(member_no);
+	}
+	
 
 }

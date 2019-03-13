@@ -37,7 +37,11 @@ public class MemDAOImpl implements MemDAO_interface {
 	private static final String UPDATE = 
 			"UPDATE MEMBER set MEMBER_ACCOUNT =?,MEMBER_PASSWORD=?,MEMBER_NAME=?,MEMBER_NICK=?,MEMBER_SEX=?,MEMBER_BIRTHDAY=?,MEMBER_ADDRESS=?,MEMBER_TELEPHONE=?,MEMBER_EMAIL=?,MEMBER_PICTURE=? ,MEMBER_CREDIT_NUMBER=?,MEMBER_BACK_VERIFICATION=?,MEMBER_BUILDDAY=?,MEMBER_POINT=?,MEMBER_STATUS=? where MEMBER_NO = ?";
 	
+	private static final String UPDATE_MEMBER_STATUS = 
+			"UPDATE MEMBER SET MEMBER_STATUS = '1'  WHERE MEMBER_NO = ?";
 	
+//	private static final String UPDATE_POINT = 
+//			"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)+?) WHERE MEMBER_NO = ?";
 	//交易區間專用指令--開始
 	
 	private static final String UPDATE_MEMBER_POINT = 
@@ -50,13 +54,14 @@ public class MemDAOImpl implements MemDAO_interface {
 		// TODO Auto-generated method stub
 		
 		Connection con = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, username, password);
-			pstmt = con.prepareStatement(INSERT_MEM);
+			pstmt = con.prepareStatement(INSERT_MEM, new String[] { "MEMBER_NO" });
 			
 			pstmt.setString(1,memVO.getMember_account());
 			pstmt.setString(2,memVO.getMember_password());
@@ -75,16 +80,31 @@ public class MemDAOImpl implements MemDAO_interface {
 			pstmt.setString(15,memVO.getMember_status());
 			
 			pstmt.executeUpdate();
+			rs = pstmt.getGeneratedKeys();
+			rs.next();
+			
+			memVO.setMember_no(rs.getString(1));
+			
 			
 		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+e.getMessage());
 			
 		}catch (SQLException se) {
+			se.printStackTrace();
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 		
 	}finally {
+		if(rs != null) {
+			try {
+				rs.close();
+			}catch(SQLException se) {
+				se.printStackTrace(System.err);
+				throw new RuntimeException("Could't load database driver."
+					+se.getMessage());
+			}
+		}
 		if(pstmt != null) {
 			try {
 				pstmt.close();
@@ -515,7 +535,60 @@ public void updateMember_point(MemVO memVO, Connection con, Integer order_amount
 		
 	}
 
-
+@Override
+public void update_member_status(String member_no) {
+	// TODO Auto-generated method stub
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+		Class.forName(driver);
+		con = DriverManager.getConnection(url, username, password);
+		pstmt = con.prepareStatement(UPDATE_MEMBER_STATUS);
+		
+		
+		pstmt.setString(1,member_no);
+	
+		
+		pstmt.executeUpdate();
+		
+		
+		
+		
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		
+		throw new RuntimeException ("Could't load datebase driver "
+				+e.getMessage());
+		
+	} catch (SQLException se) {
+		// TODO Auto-generated catch block
+		
+		throw new RuntimeException ("A database error occured"
+				+se.getMessage());
+		
+	}finally {
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			}catch(SQLException se) {
+				throw new RuntimeException ("Could't load datebase driver "
+						+se.getMessage());
+			}
+		}
+		
+		if (con != null) {
+			try {
+				con.close();
+			}catch (SQLException se) {
+				throw new RuntimeException ("Could't load datebase driver "
+						+se.getMessage());
+			}
+		}
+		
+	}
+	
+}
 
 
 
@@ -629,6 +702,33 @@ public static void main(String[]args) {
 	 }
 
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

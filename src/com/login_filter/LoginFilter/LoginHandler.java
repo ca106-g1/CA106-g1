@@ -88,6 +88,24 @@ public class LoginHandler extends HttpServlet{
 					failureView.forward(req, res);
 					return;
 				}
+				
+				
+				
+				/*************************會員狀態錯誤處理******************************/
+//				String str3 = req.getParameter("member_status");
+//				if (!str3.equals("1")) {
+//					errorMsgs.add("請至EMAIL收取驗證信");
+//				}
+//
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
+//					failureView.forward(req, res);
+//					return;
+//				}
+				
+				
+				
+				
 
 				/*********************** 2.開始查詢資料 **************************/
 				MemService memSvc = new MemService();
