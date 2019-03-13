@@ -30,6 +30,13 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 	private static final String DELETE = "DELETE FROM SESSIONS WHERE SESSIONS_NO = ?";
 	private static final String UPDATE = "UPDATE SESSIONS SET MOVIE_NO=?, CINEMA_NO=?, SESSIONS_START=?, SESSIONS_STATUS=?, SESSIONS_REMAINING=? WHERE SESSIONS_NO = ?";
 
+	//交易區間專用指令--開始
+	
+		private static final String UPDATE_SESSIONS_BYTICKORDER = 
+				"UPDATE SESSIONS SET SESSIONS_STATUS=? , SESSIONS_REMAINING=? WHERE SESSIONS_NO = ?";
+		
+		//交易區間專用指令--結束
+	
 	@Override
 	public void insert(SessionsVO sessionsVO) {
 
@@ -253,6 +260,26 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void updateByTicketorder(SessionsVO sessionsVO, Connection con) throws SQLException {
+		
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement(UPDATE_SESSIONS_BYTICKORDER);
+			pstmt.setString(1, sessionsVO.getSessions_status());
+			pstmt.setInt(2, sessionsVO.getSessions_remaining());
+			pstmt.setString(3, sessionsVO.getSessions_no());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw(e);
+		} finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+		}		
 	}
 
 }

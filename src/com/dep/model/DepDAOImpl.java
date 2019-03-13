@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sessions.model.SessionsDAOImpl;
+import com.sessions.model.SessionsVO;
+
 public class DepDAOImpl implements DepDAO_interface {
 	
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -448,29 +451,38 @@ public class DepDAOImpl implements DepDAO_interface {
 	
 	
 	@Override
-	public void insertByTicketorder(DepVO depVO, Connection con) throws SQLException {
+	public void insertByTicketorder(DepVO depVO, SessionsVO sessionsVO, Connection con) throws SQLException {
 		
-	PreparedStatement pstmt = null;
-	
-		try {
-			pstmt = con.prepareStatement(INSERT_DEP_BYTICKETORDER);
-			pstmt.setString(1, depVO.getDeposit_member_no());
-			pstmt.setInt(2,depVO.getDeposit_change_money());
-			pstmt.setTimestamp(3,depVO.getDeposit_change_date());
-			
-			pstmt.executeUpdate();
-			pstmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw(e);
-		} finally {
-			if(pstmt != null) {
+		PreparedStatement pstmt = null;
+		SessionsDAOImpl sesDAO = null;
+		
+			try {
+				pstmt = con.prepareStatement(INSERT_DEP_BYTICKETORDER, new String[] { "DEPOSIT_CHANGE_NO" });
+				pstmt.setString(1, depVO.getDeposit_member_no());
+				pstmt.setInt(2,depVO.getDeposit_change_money());
+				pstmt.setTimestamp(3,depVO.getDeposit_change_date());
+				
+				pstmt.executeUpdate();
+				ResultSet rs = pstmt.getGeneratedKeys();
+				rs.next();
+				depVO.setDeposit_change_no(rs.getString(1));
+				rs.close();
 				pstmt.close();
+				
+				sesDAO = new SessionsDAOImpl();
+				sesDAO.updateByTicketorder(sessionsVO, con);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw(e);
+			} finally {
+				if(pstmt != null) {
+					pstmt.close();
+				}
 			}
-		}
+			
 		
-	
-	}
+		}
 
 
 

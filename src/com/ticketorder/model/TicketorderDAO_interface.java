@@ -2,6 +2,11 @@ package com.ticketorder.model;
 
 import java.util.*;
 
+import com.dep.model.DepVO;
+import com.mem.model.MemVO;
+import com.movieticke.model.MovieticketVO;
+import com.sessions.model.SessionsVO;
+
 
 
 public interface TicketorderDAO_interface {
@@ -11,8 +16,7 @@ public interface TicketorderDAO_interface {
     public TicketorderVO findByPrimaryKey(String order_no);
     public List<TicketorderVO> getAll();
     
-    public void ticketsTradingInterval(String member_no, Integer order_amount, String sessions_no,
-			String sessions_status, String fd_no, String[] mt_no, String[] ti_no);
+    public void insertTicketorderMain(TicketorderVO ticketorderVO, MemVO memVO, DepVO depVO, SessionsVO sessionsVO, List<MovieticketVO> ListOfMovieticketVO);
 	/* MemVO          member_no         會員編號
 	 * TicketorderVO  order_amount      訂單金額
 	 * SessionsVO     sessions_no       場次編號

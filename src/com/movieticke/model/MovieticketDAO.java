@@ -7,6 +7,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.dep.model.DepVO;
+import com.mem.model.MemDAOImpl;
+import com.mem.model.MemVO;
+import com.sessions.model.SessionsVO;
+import com.ticketorder.model.TicketorderVO;
+
 import java.sql.*;
 
 public class MovieticketDAO implements MovieticketDAO_interface {
@@ -21,16 +27,17 @@ public class MovieticketDAO implements MovieticketDAO_interface {
 		}
 	}
 	
-	private static final String INSERT_STMT = 
-			"INSERT INTO MOVIETICKET (mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share) VALUES (MOVIETICKET_seq.NEXTVAL, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = 
-			"SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET order by mt_no";
-	private static final String GET_ONE_STMT = 
-			"SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET where mt_no = ?";
-	private static final String DELETE = 
-			"DELETE FROM MOVIETICKET where mt_no = ?";
-	private static final String UPDATE = 
-			"UPDATE MOVIETICKET set order_no=?, ti_no=?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
+	private static final String INSERT_STMT = "INSERT INTO MOVIETICKET (mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share) VALUES (MOVIETICKET_seq.NEXTVAL, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET order by mt_no";
+	private static final String GET_ONE_STMT = "SELECT mt_no,order_no,ti_no,mt_qr,mt_admission,mt_share FROM MOVIETICKET where mt_no = ?";
+	private static final String DELETE = "DELETE FROM MOVIETICKET where mt_no = ?";
+	private static final String UPDATE = "UPDATE MOVIETICKET set order_no=?, ti_no=?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
+
+	// 交易區間專用指令--開始
+
+	private static final String INSERT_MOVIETICKET_BYTICKORDER = "INSERT INTO MOVIETICKET VALUES (?, ?, ?, ?, ?, ?)";
+
+	// 交易區間專用指令--結束?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
 	
 	@Override
 	public void insert(MovieticketVO movieticketVO) {
@@ -50,8 +57,6 @@ public class MovieticketDAO implements MovieticketDAO_interface {
 			pstmt.setInt(4, movieticketVO.getMt_admission());
 			pstmt.setString(5, movieticketVO.getMt_share());
 			
-			
-
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -280,7 +285,38 @@ public class MovieticketDAO implements MovieticketDAO_interface {
 		return list;
 	}
 	
-	
+	@Override
+	public void insertByTicketorder(TicketorderVO ticketorderVO, MemVO memVO, DepVO depVO, SessionsVO sessionsVO, List<MovieticketVO> ListOfMovieticketVO, Connection con) throws SQLException{
+
+		PreparedStatement pstmt = null;
+		MemDAOImpl memDAO = null;
+		try {
+			pstmt = con.prepareStatement(INSERT_MOVIETICKET_BYTICKORDER);
+			for (MovieticketVO movieticketVO : ListOfMovieticketVO) {
+				
+				pstmt.setString(1, movieticketVO.getMt_no());
+				pstmt.setString(2, ticketorderVO.getOrder_no());
+				pstmt.setString(3, movieticketVO.getTi_no());
+				pstmt.setBytes(4, movieticketVO.getMt_qr());
+				pstmt.setInt(5, movieticketVO.getMt_admission());
+				pstmt.setString(6, movieticketVO.getMt_share());
+				
+				pstmt.executeUpdate();
+			}
+			
+			memDAO = new MemDAOImpl();
+			memDAO.updateMember_point(ticketorderVO, memVO, depVO, sessionsVO, con);			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw(e);
+		} finally {
+			if(pstmt != null) {
+				pstmt.close();
+			}
+		}
+		
+	}
 	
 	
 

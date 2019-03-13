@@ -3,7 +3,7 @@ package com.farediscount.model;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class FarediscountVO implements Serializable{
+public class FarediscountVO implements Serializable, Comparable<FarediscountVO>{
 	private static final long serialVersionUID = -4550863884645708798L;
 	
 	private String fd_no;
@@ -70,6 +70,12 @@ public class FarediscountVO implements Serializable{
 	}
 	public void setFd_blob(byte[] fd_blob) {
 		this.fd_blob = fd_blob;
+	}
+	@Override
+	public int compareTo(FarediscountVO farediscountVO) {		
+		
+			return this.fd_offer - farediscountVO.getFd_offer();		
+		
 	}
 		
 }

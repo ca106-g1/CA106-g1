@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dep.model.DepDAOImpl;
+import com.dep.model.DepVO;
+import com.sessions.model.SessionsVO;
+import com.ticketorder.model.TicketorderVO;
+
 
 
 
@@ -44,10 +49,10 @@ public class MemDAOImpl implements MemDAO_interface {
 //			"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)+?) WHERE MEMBER_NO = ?";
 	//交易區間專用指令--開始
 	
-	private static final String UPDATE_MEMBER_POINT = 
-			"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)-?) WHERE MEMBER_NO = ?";
-	
-	//交易區間專用指令--結束
+		private static final String UPDATE_MEMBER_POINT = 
+				"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)-?) WHERE MEMBER_NO = ?";
+		
+		//交易區間專用指令--結束
 
 	@Override
 	public void insert(MemVO memVO) {
@@ -510,18 +515,22 @@ public class MemDAOImpl implements MemDAO_interface {
 	
 
 @Override
-public void updateMember_point(MemVO memVO, Connection con, Integer order_amount) throws SQLException {
+public void updateMember_point(TicketorderVO ticketorderVO, MemVO memVO, DepVO depVO, SessionsVO sessionsVO, Connection con) throws SQLException {
 	 
 	PreparedStatement pstmt = null;
+	DepDAOImpl depDAO = null;
 	
 		try {
 			pstmt = con.prepareStatement(UPDATE_MEMBER_POINT);
-			pstmt.setString(1,memVO.getMember_account());
-			pstmt.setInt(2,order_amount);
-			pstmt.setString(3,memVO.getMember_account());
-			
+			pstmt.setString(1,memVO.getMember_no());
+			pstmt.setInt(2,ticketorderVO.getOrder_amount());
+			pstmt.setString(3,memVO.getMember_no());
 			pstmt.executeUpdate();
 			pstmt.close();
+			
+			depDAO = new DepDAOImpl();
+			depDAO.insertByTicketorder(depVO, sessionsVO, con);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw(e);
@@ -546,14 +555,9 @@ public void update_member_status(String member_no) {
 		con = DriverManager.getConnection(url, username, password);
 		pstmt = con.prepareStatement(UPDATE_MEMBER_STATUS);
 		
-		
 		pstmt.setString(1,member_no);
 	
-		
 		pstmt.executeUpdate();
-		
-		
-		
 		
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
@@ -589,10 +593,6 @@ public void update_member_status(String member_no) {
 	}
 	
 }
-
-
-
-
 
 
 public static void main(String[]args) { 

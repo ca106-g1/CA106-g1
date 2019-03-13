@@ -8,7 +8,7 @@ public class TicketinformationVO implements java.io.Serializable {
 	
 	private String ti_no;
 	private String ti_name;
-	private String ti_price;
+	private Integer ti_price;
 	
 	public String getTi_no() {
 		return ti_no;
@@ -22,10 +22,10 @@ public class TicketinformationVO implements java.io.Serializable {
 	public void setTi_name(String ti_name) {
 		this.ti_name = ti_name;
 	}
-	public String getTi_price() {
+	public Integer getTi_price() {
 		return ti_price;
 	}
-	public void setTi_price(String ti_price) {
+	public void setTi_price(Integer ti_price) {
 		this.ti_price = ti_price;
 	}
 	

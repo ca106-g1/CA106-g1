@@ -3,6 +3,11 @@ package com.ticketorder.model;
 
 import java.util.List;
 
+import com.dep.model.DepVO;
+import com.mem.model.MemVO;
+import com.movieticke.model.MovieticketVO;
+import com.sessions.model.SessionsVO;
+
 
 
 public class TicketorderService {
@@ -66,6 +71,11 @@ public class TicketorderService {
 	
 	public List<TicketorderVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public void insertTicketorderMain(TicketorderVO ticketorderVO, MemVO memVO, DepVO depVO, SessionsVO sessionsVO, List<MovieticketVO> ListOfMovieticketVO) {
+		dao.insertTicketorderMain(ticketorderVO, memVO, depVO, sessionsVO, ListOfMovieticketVO);
+		ticketorderVO.setOrder_time(new TicketorderDAO().findByPrimaryKey(ticketorderVO.getOrder_no()).getOrder_time());
 	}
 		
 

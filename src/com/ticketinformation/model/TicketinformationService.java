@@ -11,7 +11,7 @@ public class TicketinformationService {
 		dao = new TicketinformationDAO();
 	}
 	
-	public TicketinformationVO addTicketinformation(String ti_name,String ti_price) {
+	public TicketinformationVO addTicketinformation(String ti_name,Integer ti_price) {
 
 		TicketinformationVO TicketinformationVO = new TicketinformationVO();
 		
@@ -24,7 +24,7 @@ public class TicketinformationService {
 		return TicketinformationVO;
 	}
 	
-	public TicketinformationVO updateTicketinformation(String ti_no,String ti_name,String ti_price) {
+	public TicketinformationVO updateTicketinformation(String ti_no,String ti_name,Integer ti_price) {
 
 		TicketinformationVO TicketinformationVO = new TicketinformationVO();
 		

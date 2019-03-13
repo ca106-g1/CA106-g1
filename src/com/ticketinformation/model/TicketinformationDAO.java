@@ -44,7 +44,7 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setString(1, ticketinformationVO.getTi_name());
-			pstmt.setString(2, ticketinformationVO.getTi_price());
+			pstmt.setInt(2, ticketinformationVO.getTi_price());
 			
 			pstmt.executeUpdate();
 			
@@ -81,7 +81,7 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 			pstmt = con.prepareStatement(UPDATE);
 			
 			pstmt.setString(1, ticketinformationVO.getTi_name());
-			pstmt.setString(2, ticketinformationVO.getTi_price());
+			pstmt.setInt(2, ticketinformationVO.getTi_price());
 			pstmt.setString(3, ticketinformationVO.getTi_no());
 			
 			
@@ -165,7 +165,7 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 				ticketinformationVO = new TicketinformationVO();
 				ticketinformationVO.setTi_no(rs.getString("ti_no"));
 				ticketinformationVO.setTi_name(rs.getString("ti_name"));
-				ticketinformationVO.setTi_price(rs.getString("ti_price"));
+				ticketinformationVO.setTi_price(rs.getInt("ti_price"));
 			}
 			
 		} catch (SQLException se) {
@@ -216,7 +216,7 @@ public class TicketinformationDAO implements TicketinformationDAO_interface {
 				ticketinformationVO = new TicketinformationVO();
 				ticketinformationVO.setTi_no(rs.getString("ti_no"));
 				ticketinformationVO.setTi_name(rs.getString("ti_name"));
-				ticketinformationVO.setTi_price(rs.getString("ti_price"));
+				ticketinformationVO.setTi_price(rs.getInt("ti_price"));
 				list.add(ticketinformationVO);
 			}
 			

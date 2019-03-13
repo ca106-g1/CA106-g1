@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.sessions.model.SessionsVO;
+
 public interface DepDAO_interface {
 	
 	public String insert(DepVO depVO);
@@ -14,7 +16,7 @@ public interface DepDAO_interface {
 	public List<DepVO> getAll();
 	public List<DepVO> findByMem_no1(String deposit_member_no);
 
-	public void insertByTicketorder(DepVO depVO, Connection con) throws SQLException;
+	public void insertByTicketorder(DepVO depVO, SessionsVO sessionsVO, Connection con) throws SQLException;
 	//訂票交易區間用，新增儲值異動
 	
 }
