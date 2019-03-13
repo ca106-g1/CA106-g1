@@ -1,13 +1,25 @@
 package com.adv.controller;
 
-import java.io.*; 
-import java.sql.Date;
-import java.util.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
+import java.util.LinkedList;
+import java.util.List;
 
-import javax.servlet.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+import com.adv.model.AdvDAOImpl;
 import com.adv.model.AdvService;
 import com.adv.model.AdvVO;
 
@@ -19,16 +31,15 @@ public class AdvServlet extends HttpServlet {
 	/**
 	 * 
 	 */
+	
+	public AdvServlet() {
+        super();
+    }
+	
 	private static final long serialVersionUID = -8135384290405612710L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		
-//		req.setCharacterEncoding("UTF-8");
-		
-		System.out.println("檢查點101");
-		
-		
 		doPost(req, res);
 		
 		res.setContentType("image/jpeg");
@@ -57,58 +68,23 @@ public class AdvServlet extends HttpServlet {
 		
 		
 		
-		System.out.println("檢查點104");
-		
-//		res.setContentType("image/gif");
-//		
-//    	ServletOutputStream out=res.getOutputStream();
-//    	
-//    	
-//    	byte[] printPic=null;
-//		String ad_no = req.getParameter("ad_no");
-//		AdvService advService = new AdvService();
-//		
-//		AdvVO advVO = advService.getOneAdv(ad_no);
-//		printPic = advVO.getAd_pic();
-//		if(printPic!=null) {
-//			out.write(printPic);
-//		}
-//		
-		
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
-		System.out.println("檢查點105");
-		
 		
 		req.setCharacterEncoding("UTF-8");
-		
-		System.out.println("檢查點106");
-		
 		String action = req.getParameter("action");
-		
-		System.out.println("檢查點107");
-		
 		
 		System.out.println(action);
 		
 		
-		System.out.println("檢查點108");
-		
 		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
-
 			
-			System.out.println("檢查點109");
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
-			
-			
 			
 			System.out.println("檢查點110");
 			
@@ -188,6 +164,15 @@ public class AdvServlet extends HttpServlet {
 				/***************************2.開始查詢資料****************************************/
 				AdvService advSvc = new AdvService();
 				AdvVO advVO = advSvc.getOneAdv(ad_no);
+				
+				Base64.Encoder encoder = Base64.getEncoder();
+				
+				if(advVO.getAd_pic() != null) {
+				String encodeText = encoder.encodeToString(advVO.getAd_pic());
+				req.setAttribute("encodeText", encodeText);
+				}
+				
+				
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("advVO", advVO);         // 資料庫取出的empVO物件,存入req
@@ -228,7 +213,7 @@ public class AdvServlet extends HttpServlet {
 				String ad_name = req.getParameter("ad_name");
 //				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (ad_name == null || ad_name.trim().length() == 0) {
-					errorMsgs.add("會員編號: 請勿空白");
+					errorMsgs.add("廣告名稱: 請勿空白");
 				} 
 //				else if(!ename.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
 //					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
@@ -254,15 +239,47 @@ public class AdvServlet extends HttpServlet {
 				
 				
 				
+//				Part part = req.getPart("ad_pic");
+//				byte[] ad_pic = new byte[part.getInputStream().available()];
+//				part.getInputStream().read(ad_pic);
 				
-				
-				
+				InputStream in = null;
+				byte[] ad_pic = null;
+
 				Part part = req.getPart("ad_pic");
+				if(getFileNameFromPart(part) != null) {
+					in = part.getInputStream();
+					ad_pic = new byte[in.available()];
+					in.read(ad_pic);
+					in.close();
+				}else {
+					ad_pic = new AdvService().getOneAdv(ad_no).getAd_pic();
+				}
 				
-				byte[] ad_pic = new byte[part.getInputStream().available()];
-				part.getInputStream().read(ad_pic);
 				
 				
+				
+				
+				System.out.println("檢查點112.1");
+				
+				
+				
+//				if( ad_pic == null) {
+//					AdvDAOImpl dao = new AdvDAOImpl();
+//					AdvVO advVO3 = dao.findByPrimaryKey("ad_no");
+//					AdvVO advVO2 = new AdvVO();
+//					advVO2.setAd_pic(advVO3.getAd_pic());
+//				
+//				} else {
+//				System.out.println(part);
+				
+				
+				
+//				System.out.println(ad_pic + "    00000000");
+				
+				
+				
+//				}
 				
 //				byte[] ad_pic = null;
 				
@@ -292,30 +309,43 @@ public class AdvServlet extends HttpServlet {
 				
 				
 				String ad_cont = req.getParameter("ad_cont").trim();
-				if (ad_cont == null || ad_cont.trim().length() == 0) {
-					errorMsgs.add("優惠編號 請勿空白");
-				}	
+//				if (ad_cont == null || ad_cont.trim().length() == 0) {
+//					errorMsgs.add("優惠編號 請勿空白");
+//				}	
 				
 				
+				System.out.println("檢查點112.2");
 				
-				
-				java.sql.Date ad_start = null;
+				java.sql.Timestamp ad_start = null;
 				try {
-					ad_start = java.sql.Date.valueOf(req.getParameter("ad_start").trim());
+					ad_start = java.sql.Timestamp.valueOf(req.getParameter("ad_start").trim());
 				} catch (IllegalArgumentException e) {
-					ad_start = new java.sql.Date(System.currentTimeMillis());
+					ad_start = new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期!");
 				}
 				
+				System.out.println("檢查點112.3");
 				
-				java.sql.Date ad_end = null;
+				java.sql.Timestamp ad_end = null;
 				try {
-					ad_end = java.sql.Date.valueOf(req.getParameter("ad_end").trim());
+					ad_end = java.sql.Timestamp.valueOf(req.getParameter("ad_end").trim());
 				} catch (IllegalArgumentException e) {
-					ad_end = new java.sql.Date(System.currentTimeMillis());
+					ad_end = new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期!");
 				}
-			
+				
+				System.out.println("檢查點112.4");
+				
+				Integer ad_type = null;
+				try {
+					ad_type = new Integer(req.getParameter("ad_type").trim());
+				} catch (NumberFormatException e) {
+					ad_type = 0;
+					errorMsgs.add("廣告狀態 請選擇狀態.");
+				}
+				
+				
+				System.out.println("檢查點112.5");
 
 				AdvVO advVO = new AdvVO();
 				
@@ -326,6 +356,7 @@ public class AdvServlet extends HttpServlet {
 				advVO.setAd_cont(ad_cont);
 				advVO.setAd_start(ad_start);
 				advVO.setAd_end(ad_end);
+				advVO.setAd_type(ad_type);
 				
 				
 				
@@ -353,7 +384,7 @@ public class AdvServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料*****************************************/
 				AdvService advSvc = new AdvService();
-				advVO = advSvc.updateAdv(ad_no, ad_name, ad_pic, ad_cont, ad_start, ad_end);
+				advVO = advSvc.updateAdv(ad_no, ad_name, ad_pic, ad_cont, ad_start, ad_end, ad_type);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("advVO", advVO); // 資料庫update成功後,正確的的empVO物件,存入req
@@ -377,8 +408,6 @@ public class AdvServlet extends HttpServlet {
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			System.out.println("檢查點113");
@@ -388,7 +417,7 @@ public class AdvServlet extends HttpServlet {
 				String ad_name = req.getParameter("ad_name");
 //				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (ad_name == null || ad_name.trim().length() == 0) {
-					errorMsgs.add("會員編號: 請勿空白");
+					errorMsgs.add("廣告名稱: 請勿空白");
 				} 
 //				else if(!ename.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
 //					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
@@ -397,49 +426,39 @@ public class AdvServlet extends HttpServlet {
 				
 				System.out.println("檢查點9");
 				
-//				byte[] ad_pic = null;
-//				try {
-//					Part part = req.getPart("ad_pic");
-//					if (part.getSubmittedFileName() != "") {
-//						BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
-//						ByteArrayOutputStream bao = new ByteArrayOutputStream();
-//						int len;
-//						byte[] b = new byte[8192];
-//						while ((len = bif.read(b)) != -1) {
-//							bao.write(b);
-//						}
-//						ad_pic = bao.toByteArray();
-//					}
-//				} catch (Exception e) {
-//					errorMsgs.add("上傳照片失敗，請重新上傳");
-//				}
-				
-				
-				
-				
 				
 				Part part = req.getPart("ad_pic");
-				
 				System.out.println("檢查點9.1");
-				
-				
 				byte[] ad_pic = new byte[part.getInputStream().available()];
-				
 				System.out.println("檢查點9.2");
-				
 				part.getInputStream().read(ad_pic);
-				
 				System.out.println("檢查點9.3");
+				
+				
 //				byte[] ad_pic = null;
+//				Part part = req.getPart("ad_pic");
 //				
-//				try { 
+//				
+//				Base64.Encoder encoder = Base64.getEncoder();
+//				if(getFileNameFromPart(part) != null) {
 //					InputStream in = part.getInputStream();
 //					ad_pic = new byte[in.available()];
 //					in.read(ad_pic);
 //					in.close();
-//				}catch(Exception e) {
-//					errorMsgs.add("無法取得圖片"+e.getMessage());
+//					String encodeText = encoder.encodeToString(ad_pic);
+//					req.setAttribute("encodeText", encodeText);
+//				}else {
+//					if(req.getParameter("encodeText") != null && req.getParameter("encodeText").trim().length() !=0) {
+//						Base64.Decoder decoder = Base64.getDecoder();
+//						ad_pic = decoder.decode(req.getParameter("encodeText"));
+//						String encodeText = encoder.encodeToString(ad_pic);
+//						req.setAttribute("encodeText", encodeText);
+//					}
 //				}
+				
+				
+				
+				
 				
 				
 				System.out.println("檢查點10");
@@ -449,32 +468,42 @@ public class AdvServlet extends HttpServlet {
 				
 				
 				String ad_cont = req.getParameter("ad_cont").trim();
-				if (ad_cont == null || ad_cont.trim().length() == 0) {
-					errorMsgs.add("場次編號 請勿空白");
-				}
+//				if (ad_cont == null || ad_cont.trim().length() == 0) {
+//					errorMsgs.add("場次編號 請勿空白");
+//				}
 				
 				System.out.println("檢查點11");
 				
-				java.sql.Date ad_start = null;
+				java.sql.Timestamp ad_start = null;
 				try {
-					ad_start = java.sql.Date.valueOf(req.getParameter("ad_start").trim());
+					ad_start = java.sql.Timestamp.valueOf(req.getParameter("ad_start").trim());
 				} catch (IllegalArgumentException e) {
-					ad_start = new java.sql.Date(System.currentTimeMillis());
+					ad_start = new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期!");
 				}
 				
 				System.out.println("檢查點12");
 				
 				
-				java.sql.Date ad_end = null;
+				java.sql.Timestamp ad_end = null;
 				try {
-					ad_end = java.sql.Date.valueOf(req.getParameter("ad_end").trim());
+					ad_end = java.sql.Timestamp.valueOf(req.getParameter("ad_end").trim());
 				} catch (IllegalArgumentException e) {
-					ad_end = new java.sql.Date(System.currentTimeMillis());
+					ad_end = new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期!");
 				}
 				
 				System.out.println("檢查點13");
+				
+				Integer ad_type = null;
+				try {
+					ad_type = new Integer(req.getParameter("ad_type").trim());
+				} catch (NumberFormatException e) {
+					ad_type = 0;
+					errorMsgs.add("廣告狀態 請選擇狀態.");
+				}
+				
+				
 				
 				AdvVO advVO = new AdvVO();
 				
@@ -484,6 +513,7 @@ public class AdvServlet extends HttpServlet {
 				advVO.setAd_cont(ad_cont);
 				advVO.setAd_start(ad_start);
 				advVO.setAd_end(ad_end);
+				advVO.setAd_type(ad_type);
 				
 				System.out.println("檢查點14");
 				
@@ -515,7 +545,7 @@ public class AdvServlet extends HttpServlet {
 				
 				/***************************2.開始新增資料***************************************/
 				AdvService advSvc = new AdvService();
-				advVO = advSvc.addAdv(ad_name, ad_pic, ad_cont, ad_start, ad_end);
+				advVO = advSvc.addAdv(ad_name, ad_pic, ad_cont, ad_start, ad_end, ad_type);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/Back_end/adv/listAllAdv.jsp";
@@ -571,6 +601,18 @@ public class AdvServlet extends HttpServlet {
 		
 		
 		
+	}
+
+	public String getFileNameFromPart(Part part) {
+		// TODO Auto-generated method stub
+		String header = part.getHeader("content-disposition");
+//		System.out.println("header=" + header); // 測試用
+		String filename = new File(header.substring(header.lastIndexOf("=") + 2, header.length() - 1)).getName();
+//		System.out.println("filename=" + filename); // 測試用
+		if (filename.length() == 0) {
+			return null;
+		}
+		return filename;
 	}
 	
 	

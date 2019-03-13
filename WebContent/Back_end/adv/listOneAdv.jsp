@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.adv.model.*"%>
 <%@ page import="java.util.*"%>
 
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%-- æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
-	AdvVO advVO = (AdvVO) request.getAttribute("advVO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+	AdvVO advVO = (AdvVO) request.getAttribute("advVO"); //EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 %>
 
 <html>
 <head>
-<title>­û¤u¸ê®Æ - listOneAdv.jsp</title>
+<title>å“¡å·¥è³‡æ–™ - listOneAdv.jsp</title>
 
 <style>
   table#table-1 {
@@ -49,26 +49,27 @@
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>­û¤u¸ê®Æ - ListOneAdv.jsp</h3>
-		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>å“¡å·¥è³‡æ–™ - ListOneAdv.jsp</h3>
+		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
 
 <table>
 	<tr>
-		<th>¼s§i½s¸¹</th>
-		<th>¼s§i¦WºÙ</th>
-		<th>¼s§i¹Ï¤ù</th>
-		<th>¼s§i¤º®e</th>
-		<th>¼s§i°_©l®É¶¡</th>
-		<th>¼s§i²×¤î®É¶¡</th>
+		<th>å»£å‘Šç·¨è™Ÿ</th>
+		<th>å»£å‘Šåç¨±</th>
+		<th>å»£å‘Šåœ–ç‰‡</th>
+		<th>å»£å‘Šå…§å®¹</th>
+		<th>å»£å‘Šèµ·å§‹æ™‚é–“</th>
+		<th>å»£å‘Šçµ‚æ­¢æ™‚é–“</th>
+		<th>å»£å‘Šç‹€æ…‹</th>
 	</tr>
 	
-	
+
 	
 	<tr>
 			<td>${advVO.ad_no}</td>
@@ -84,6 +85,15 @@
 			<td>${advVO.ad_cont}</td>
 			<td>${advVO.ad_start}</td>
 			<td>${advVO.ad_end}</td> 
+			<td>
+<%-- 			${advVO.ad_type} --%>
+				 <c:if test="${advVO.ad_type==0}" var="condition">
+				ä¸‹æ¶
+				</c:if>
+				<c:if test="${advVO.ad_type==1}" var="condition">
+				ä¸Šæ¶
+				</c:if>
+			</td>
 	</tr>
 	
 	

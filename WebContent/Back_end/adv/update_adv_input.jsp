@@ -49,7 +49,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料修改 - update_emp_input.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -84,13 +84,30 @@
 		<td>廣告圖片:</td>
 	<%--	<td><input type="TEXT" name="ad_pic" size="45" 
 			 value="<%= (advVO==null)? "" : advVO.getAd_pic()%>" /></td> --%>
-			 <td><input type="file" id="img" name="ad_pic" /></td> 
+			 <td>
+			 
+			    <c:if test="${empty advVO.ad_pic}" var="condition">
+				<img id="preview_progressbarTW_img" src="<%=request.getContextPath()%>/Back_end/adv/images/no_pic.jpg" width="200" height="200"/>
+				</c:if>
+			    <c:if test="${not empty advVO.ad_pic}" var="condition">
+			    <img id="preview_progressbarTW_img" src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' />
+				</c:if>
+				
+<%-- 				<input type="TEXT" name="ad_pic" size="45"  value="${advVO.ad_pic}" id="img" />  --%>
+			 
+<!-- 			 <img id="preview_progressbarTW_img" src="#"  width="100px"   height="100px"  style = "display:none"/> -->
+
+			 <input type="file" id="progressbarTWInput" name="ad_pic" id="progressbarTWInput" name="ad_pic" size="25" accept="image/gif, image/jpeg, image/png" value="${advVO.ad_pic}"/>
+
+<!-- 			 <input type="file" id="progressbarTWInput" name="ad_pic" id="progressbarTWInput" name="ad_pic" size="25" accept="image/gif, image/jpeg, image/png" value="preview_progressbarTW_img"/> -->
+			 
+			 </td> 
 	</tr>
 	
 	<tr>
 		<td>廣告內容:</td>
 		<td><input type="TEXT" name="ad_cont" size="45" 
-			 value="<%= (advVO==null)? "吳永志" : advVO.getAd_cont()%>" /></td>
+			 value="<%= (advVO.getAd_cont()==null)? "" : advVO.getAd_cont()%>" /></td>
 	</tr>
 	
 	<tr>
@@ -100,6 +117,27 @@
 	<tr>
 		<td>廣告終止時間:</td>
 		<td><input name="ad_end" id="f_date2" type="text"></td>
+	</tr>
+	<tr>
+		<td>廣告狀態:</td>
+		<td>
+<!-- 		<input type="TEXT" name="ad_type" size="45"  -->
+<%-- 			 value="<%= (advVO==null)? "" : advVO.getAd_type()%>" /> --%>
+       		<select size="1" name="ad_type">
+       			
+       			<c:if test="${advVO.ad_type==0}" var="condition">
+				<option value="0" selected>下架</option>
+				<option value="1">上架</option>
+				</c:if>
+				<c:if test="${advVO.ad_type==1}" var="condition">
+				<option value="0">下架</option>
+				<option value="1" selected>上架</option>
+				</c:if>
+				
+<!--        			<option value="0">下架</option> -->
+<!--           		<option value="1">上架</option> -->
+       		</select>
+			 </td>
 	</tr>
 
 </table>
@@ -122,19 +160,19 @@
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 <% 
-  java.sql.Date ad_start = null;
+  java.sql.Timestamp ad_start = null;
   try {
 	    ad_start = advVO.getAd_start();
    } catch (Exception e) {
-	    ad_start = new java.sql.Date(System.currentTimeMillis());
+	    ad_start = new java.sql.Timestamp(System.currentTimeMillis());
    }
 %>
 <% 
-  java.sql.Date ad_end = null;
+  java.sql.Timestamp ad_end = null;
   try {
-	  ad_end = advVO.getAd_end();
+	   ad_end = advVO.getAd_end();
    } catch (Exception e) {
-	   ad_end = new java.sql.Date(System.currentTimeMillis());
+	   ad_end = new java.sql.Timestamp(System.currentTimeMillis());
    }
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
@@ -154,27 +192,27 @@
         $.datetimepicker.setLocale('zh');
         $('#f_date1').datetimepicker({
 	       theme: '',              //theme: 'dark',
-	       timepicker:false,       //timepicker:true,
+	       timepicker:true,       //timepicker:true,
 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
 		   value: '<%=ad_start%>', // value:   new Date(),
 		   
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
-           //minDate:               '-1970-01-01', // 去除今日(不含)之前
+           minDate:               '-1970-01-01', // 去除今日(不含)之前
            //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
         });
         
         
         $('#f_date2').datetimepicker({
  	       theme: '',              //theme: 'dark',
- 	       timepicker:false,       //timepicker:true,
+ 	       timepicker:true,       //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+ 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
  		   value: '<%=ad_end%>', // value:   new Date(),
             //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
             //startDate:	            '2017/07/10',  // 起始日
-            //minDate:               $('#f_date1'), // 去除今日(不含)之前
+            minDate:              '-1970-01-01', // 去除今日(不含)之前
             //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
          });
         
@@ -229,6 +267,50 @@
         //      }});
         
 </script>
+
+
+
+
+<script>
+
+$("#progressbarTWInput").ready(function(){
+
+	  readURL(this);
+
+	});
+
+$("#progressbarTWInput").change(function(){
+
+  readURL(this);
+
+});
+
+
+
+function readURL(input){
+	
+  if(input.files && input.files[0]){
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+    	
+       $("#preview_progressbarTW_img").attr('src', e.target.result);
+       $("#preview_progressbarTW_img").removeAttr("style");
+    }
+
+    reader.readAsDataURL(input.files[0]);
+
+  }
+
+}
+
+
+
+</script>
+
+
+
 
 </html>
 

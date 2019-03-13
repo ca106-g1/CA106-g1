@@ -79,6 +79,7 @@
 		<th>廣告內容</th>
 		<th>廣告起始時間</th>
 		<th>廣告終止時間</th>
+		<th>廣告狀態</th>
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
@@ -101,9 +102,33 @@
 				
 <%-- 				<img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' /> --%>
 			</td>
-			<td>${advVO.ad_cont}</td>
+			<td>
+			${advVO.ad_cont}
+<%-- 				<c:if test="${advVO.ad_cont==0}" var="condition"> --%>
+<!-- 				下架 -->
+<%-- 				</c:if> --%>
+<%-- 				<c:if test="${advVO.ad_cont==1}" var="condition"> --%>
+<!-- 				下架 -->
+<%-- 				</c:if> --%>
+			
+			
+			</td>
 			<td>${advVO.ad_start}</td>
 			<td>${advVO.ad_end}</td> 
+			<td>
+<%-- 			${advVO.ad_type} --%>
+
+			    <c:if test="${advVO.ad_type==0}" var="condition">
+				下架
+				</c:if>
+				<c:if test="${advVO.ad_type==1}" var="condition">
+				上架
+				</c:if>
+
+<!-- 				<input type="TEXT" name="ad_cont" size="45"  -->
+<%-- 			 value="<%= (advVO.getAd_cont()==null)? "" : advVO.getAd_cont()%>" /> --%>
+
+			</td> 
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/adv/adv.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">

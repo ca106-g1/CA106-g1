@@ -1,6 +1,6 @@
 package com.adv.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class AdvService {
@@ -11,7 +11,7 @@ public class AdvService {
 		dao = new AdvDAOImpl();
 	}
 
-	public AdvVO addAdv(String ad_name, byte[] ad_pic, String ad_cont, Date ad_start, Date ad_end) {
+	public AdvVO addAdv(String ad_name, byte[] ad_pic, String ad_cont, Timestamp ad_start, Timestamp ad_end, Integer ad_type) {
 
 		AdvVO advVO = new AdvVO();
 
@@ -20,12 +20,13 @@ public class AdvService {
 		advVO.setAd_cont(ad_cont);
 		advVO.setAd_start(ad_start);
 		advVO.setAd_end(ad_end);
+		advVO.setAd_type(ad_type);
 		dao.insert(advVO);
 
 		return advVO;
 	}
 
-	public AdvVO updateAdv(String ad_no, String ad_name, byte[] ad_pic, String ad_cont, Date ad_start, Date ad_end) {
+	public AdvVO updateAdv(String ad_no, String ad_name, byte[] ad_pic, String ad_cont, Timestamp ad_start, Timestamp ad_end, Integer ad_type) {
 
 		AdvVO advVO = new AdvVO();
 		advVO.setAd_no(ad_no);
@@ -34,6 +35,7 @@ public class AdvService {
 		advVO.setAd_cont(ad_cont);
 		advVO.setAd_start(ad_start);
 		advVO.setAd_end(ad_end);
+		advVO.setAd_type(ad_type);
 		dao.update(advVO);
 
 		return advVO;

@@ -1,6 +1,6 @@
 package com.adv.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class AdvVO implements java.io.Serializable{
 	
@@ -12,8 +12,10 @@ public class AdvVO implements java.io.Serializable{
 	private String ad_name;			
 	private byte[] ad_pic;
 	private String ad_cont;	
-	private Date   ad_start;				
-	private Date   ad_end;
+	private Timestamp  ad_start;				
+	private Timestamp  ad_end;
+	private Integer ad_type;
+	
 	
 	
 	public String getAd_no() {
@@ -40,17 +42,23 @@ public class AdvVO implements java.io.Serializable{
 	public void setAd_cont(String ad_cont) {
 		this.ad_cont = ad_cont;
 	}
-	public Date getAd_start() {
+	public Timestamp getAd_start() {
 		return ad_start;
 	}
-	public void setAd_start(Date ad_start) {
+	public void setAd_start(Timestamp ad_start) {
 		this.ad_start = ad_start;
 	}
-	public Date getAd_end() {
+	public Timestamp getAd_end() {
 		return ad_end;
 	}
-	public void setAd_end(Date ad_end) {
+	public void setAd_end(Timestamp ad_end) {
 		this.ad_end = ad_end;
+	}
+	public Integer getAd_type() {
+		return ad_type;
+	}
+	public void setAd_type(Integer ad_type) {
+		this.ad_type = ad_type;
 	}
 
 	

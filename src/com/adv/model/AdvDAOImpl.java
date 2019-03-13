@@ -15,8 +15,8 @@ public class AdvDAOImpl implements AdvDAO_interface {
 	String username = "JOIN";
 	String password = "123456";
 
-	private static final String INSERT_DEP = "INSERT INTO ADVERTISEMENT VALUES (ADVERTISEMENT_seq.NEXTVAL ,?,?,?,?,?)";
-	private static final String UPDATE = "UPDATE ADVERTISEMENT set AD_NAME = ?, AD_PIC =?, AD_CONT =?, AD_START =?, AD_END =? WHERE AD_NO = ?";
+	private static final String INSERT_DEP = "INSERT INTO ADVERTISEMENT VALUES (ADVERTISEMENT_seq.NEXTVAL ,?,?,?,?,?,?)";
+	private static final String UPDATE = "UPDATE ADVERTISEMENT set AD_NAME = ?, AD_PIC =?, AD_CONT =?, AD_START =?, AD_END =?, AD_TYPE=? WHERE AD_NO = ?";
 	private static final String DELETE = "DELETE FROM ADVERTISEMENT WHERE AD_NO = ?";
 	private static final String GET_ALL_DEP = "SELECT * FROM ADVERTISEMENT";
 	private static final String GET_ONE_DEP = "SELECT * FROM ADVERTISEMENT WHERE AD_NO = ?";
@@ -39,8 +39,9 @@ public class AdvDAOImpl implements AdvDAO_interface {
 			pstmt.setString(1, advVO.getAd_name());
 			pstmt.setBytes(2, advVO.getAd_pic());
 			pstmt.setString(3, advVO.getAd_cont());
-			pstmt.setDate(4, advVO.getAd_start());
-			pstmt.setDate(5, advVO.getAd_end());
+			pstmt.setTimestamp(4, advVO.getAd_start());
+			pstmt.setTimestamp(5, advVO.getAd_end());
+			pstmt.setInt(6, advVO.getAd_type());
 
 			pstmt.executeUpdate();
 
@@ -85,9 +86,10 @@ public class AdvDAOImpl implements AdvDAO_interface {
 			pstmt.setString(1, advVO.getAd_name());
 			pstmt.setBytes(2, advVO.getAd_pic());
 			pstmt.setString(3, advVO.getAd_cont());
-			pstmt.setDate(4, advVO.getAd_start());
-			pstmt.setDate(5, advVO.getAd_end());
-			pstmt.setString(6, advVO.getAd_no());
+			pstmt.setTimestamp(4, advVO.getAd_start());
+			pstmt.setTimestamp(5, advVO.getAd_end());
+			pstmt.setInt(6, advVO.getAd_type());
+			pstmt.setString(7, advVO.getAd_no());
 
 			pstmt.executeUpdate();
 
@@ -180,8 +182,9 @@ public class AdvDAOImpl implements AdvDAO_interface {
 				advVO.setAd_name(rs.getString("AD_NAME"));
 				advVO.setAd_pic(rs.getBytes("AD_PIC"));
 				advVO.setAd_cont(rs.getString("AD_CONT"));
-				advVO.setAd_start(rs.getDate("AD_START"));
-				advVO.setAd_end(rs.getDate("AD_END"));
+				advVO.setAd_start(rs.getTimestamp("AD_START"));
+				advVO.setAd_end(rs.getTimestamp("AD_END"));
+				advVO.setAd_type(rs.getInt("AD_TYPE"));
 				//UPDATE ADVERTISEMENT set AD_NAME = ?, AD_PIC =?, AD_CONT =?, AD_START =?, AD_END =? WHERE AD_NO = ?
 
 			}
@@ -243,8 +246,9 @@ public class AdvDAOImpl implements AdvDAO_interface {
 				advVO.setAd_name(rs.getString("AD_NAME"));
 				advVO.setAd_pic(rs.getBytes("AD_PIC"));
 				advVO.setAd_cont(rs.getString("AD_CONT"));
-				advVO.setAd_start(rs.getDate("AD_START"));
-				advVO.setAd_end(rs.getDate("AD_END"));
+				advVO.setAd_start(rs.getTimestamp("AD_START"));
+				advVO.setAd_end(rs.getTimestamp("AD_END"));
+				advVO.setAd_type(rs.getInt("AD_TYPE"));
 				list.add(advVO);
 			}
 
@@ -286,31 +290,33 @@ public class AdvDAOImpl implements AdvDAO_interface {
 
 		AdvDAOImpl dao = new AdvDAOImpl();
 
-		// �s�W
+		// 新增
 		AdvVO advVO1 = new AdvVO();
 		advVO1.setAd_name("AD_NAMEinsert");
 		advVO1.setAd_pic(null);
 		advVO1.setAd_cont("AD_CONTinsert");
-		advVO1.setAd_start(new java.sql.Date(System.currentTimeMillis()));
-		advVO1.setAd_end(new java.sql.Date(System.currentTimeMillis()+24*60*60*1000));
+		advVO1.setAd_start(new java.sql.Timestamp(System.currentTimeMillis()));
+		advVO1.setAd_end(new java.sql.Timestamp(System.currentTimeMillis()+24*60*60*1000));
+		advVO1.setAd_type(0);
 
 		dao.insert(advVO1);
 
-		// �ק�
+		// 修改
 		AdvVO advVO2 = new AdvVO();
 		advVO2.setAd_no("1");
 		advVO2.setAd_name("AD_NAMEupdate");
 		advVO2.setAd_pic(null);
 		advVO2.setAd_cont("AD_CONTupdate");
-		advVO2.setAd_start(new java.sql.Date(System.currentTimeMillis()));
-		advVO2.setAd_end(new java.sql.Date(System.currentTimeMillis()+24*60*60*1000));
+		advVO2.setAd_start(new java.sql.Timestamp(System.currentTimeMillis()));
+		advVO2.setAd_end(new java.sql.Timestamp(System.currentTimeMillis()+24*60*60*1000));
+		advVO2.setAd_type(0);
 		dao.update(advVO2);
 
-		// �R��
+		// 刪除
 
 		dao.delete("16");
 
-		// �d��
+		// 查詢
 		AdvVO advVO3 = dao.findByPrimaryKey("1");
 		System.out.print(advVO3.getAd_no() + ",");
 		System.out.print(advVO3.getAd_name() + ",");
@@ -318,9 +324,10 @@ public class AdvDAOImpl implements AdvDAO_interface {
 		System.out.print(advVO3.getAd_cont());
 		System.out.print(advVO3.getAd_start());
 		System.out.print(advVO3.getAd_end());
+		System.out.print(advVO3.getAd_type());
 		System.out.println("-----------------------");
 
-		// �d��
+		// 查詢
 		List<AdvVO> list = dao.getAll();
 		for (AdvVO aDep : list) {
 
@@ -330,6 +337,7 @@ public class AdvDAOImpl implements AdvDAO_interface {
 			System.out.print(aDep.getAd_cont());
 			System.out.print(aDep.getAd_start());
 			System.out.print(aDep.getAd_end());
+			System.out.print(aDep.getAd_type());
 			System.out.println();
 		}
 
