@@ -20,6 +20,10 @@
   	<servlet-name>memberServlet</servlet-name>
   	<url-pattern>/Front_end/mem/mem.do</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+  	<servlet-name>memberServlet</servlet-name>
+  	<url-pattern>/Back_end/mem/mem.do</url-pattern>
+  </servlet-mapping>
   
    <servlet>
   	<servlet-name>EmpServlet</servlet-name>
@@ -70,6 +74,10 @@
   <servlet-mapping>
     <servlet-name>DepServlet</servlet-name>
     <url-pattern>/Front_end/dep/dep.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DepServlet</servlet-name>
+    <url-pattern>/Back_end/dep/dep.do</url-pattern>
   </servlet-mapping>
   
    <servlet>
