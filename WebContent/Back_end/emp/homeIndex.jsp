@@ -41,6 +41,12 @@
 	</td>
 
 
+<FORM METHOD="POST" ACTION = "logoutHandler.do">
+	<td><input type = "submit" value="登出">
+		<input type = "hidden" name="logout" value="logout"> 
+	</td>
+	</FORM>
+
 	<!-- 工作區結束 -->
 	
 	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
