@@ -1,5 +1,5 @@
 package com.ticketorder.model;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TicketorderVO implements java.io.Serializable{
 	
@@ -13,7 +13,7 @@ public class TicketorderVO implements java.io.Serializable{
 	private String employee_no;
 	private Integer order_group;
 	private Integer order_takemeals;
-	private Date order_time;
+	private Timestamp order_time;
 	private Integer order_amount;
 	
 	
@@ -59,10 +59,10 @@ public class TicketorderVO implements java.io.Serializable{
 	public void setOrder_takemeals(Integer order_takemeals) {
 		this.order_takemeals = order_takemeals;
 	}
-	public Date getOrder_time() {
+	public Timestamp getOrder_time() {
 		return order_time;
 	}
-	public void setOrder_time(Date order_time) {
+	public void setOrder_time(Timestamp order_time) {
 		this.order_time = order_time;
 	}
 	public Integer getOrder_amount() {

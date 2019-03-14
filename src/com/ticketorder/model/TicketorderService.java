@@ -20,7 +20,7 @@ public class TicketorderService {
 	
 	public TicketorderVO addTicketorder(String member_no, String fd_no,
 			String session_no, String employee_no, Integer order_group, 
-			Integer order_takemeals, java.sql.Date order_time, Integer order_amount) {
+			Integer order_takemeals, java.sql.Timestamp order_time, Integer order_amount) {
 		
 		TicketorderVO ticketorderVO = new TicketorderVO();
 		
@@ -40,7 +40,7 @@ public class TicketorderService {
 	
 	public TicketorderVO updateTicketorder(String order_no,String member_no, String fd_no,
 			String session_no, String employee_no, Integer order_group, 
-			Integer order_takemeals, java.sql.Date order_time, Integer order_amount) {
+			Integer order_takemeals, java.sql.Timestamp order_time, Integer order_amount) {
 		
 		TicketorderVO ticketorderVO = new TicketorderVO();
 		

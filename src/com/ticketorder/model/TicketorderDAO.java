@@ -158,7 +158,6 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 	
 	
 	
-	
 
 	@Override
 	public void insert(TicketorderVO ticketorderVO) {
@@ -178,7 +177,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			pstmt.setString(4, ticketorderVO.getEmployee_no());
 			pstmt.setInt(5, ticketorderVO.getOrder_group());
 			pstmt.setInt(6, ticketorderVO.getOrder_takemeals());
-			pstmt.setDate(7, ticketorderVO.getOrder_time());
+			pstmt.setTimestamp(7, ticketorderVO.getOrder_time());
 			pstmt.setInt(8, ticketorderVO.getOrder_amount());
 			
 
@@ -207,6 +206,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 		}
 	}
 
+
 	@Override
 	public void update(TicketorderVO ticketorderVO) {
 		Connection con = null;
@@ -223,7 +223,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 			pstmt.setString(4, ticketorderVO.getEmployee_no());
 			pstmt.setInt(5, ticketorderVO.getOrder_group());
 			pstmt.setInt(6, ticketorderVO.getOrder_takemeals());
-			pstmt.setDate(7, ticketorderVO.getOrder_time());
+			pstmt.setTimestamp(7, ticketorderVO.getOrder_time());
 			pstmt.setInt(8, ticketorderVO.getOrder_amount());
 			pstmt.setString(9, ticketorderVO.getOrder_no());
 			
@@ -318,7 +318,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 				ticketorderVO.setEmployee_no(rs.getString("employee_no"));
 				ticketorderVO.setOrder_group(rs.getInt("order_group"));
 				ticketorderVO.setOrder_takemeals(rs.getInt("order_takemeals"));
-				ticketorderVO.setOrder_time(rs.getDate("order_time"));
+				ticketorderVO.setOrder_time(rs.getTimestamp("order_time"));
 				ticketorderVO.setOrder_amount(rs.getInt("order_amount"));
 			}
 
@@ -379,7 +379,7 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 				ticketorderVO.setEmployee_no(rs.getString("employee_no"));
 				ticketorderVO.setOrder_group(rs.getInt("order_group"));
 				ticketorderVO.setOrder_takemeals(rs.getInt("order_takemeals"));
-				ticketorderVO.setOrder_time(rs.getDate("order_time"));
+				ticketorderVO.setOrder_time(rs.getTimestamp("order_time"));
 				ticketorderVO.setOrder_amount(rs.getInt("order_amount"));
 				list.add(ticketorderVO); // Store the row in the list
 			}

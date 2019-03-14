@@ -61,7 +61,7 @@ Class = SessionServlet
 
 ]
 
-package com.ticketinformation.controller;
+package com.movieticke.controller;
 Class = TicketinformationTool
 @WebServlet(name = "/movieticke/MovietickeTool", loadOnStartup = 1, urlPatterns = "/movieticke/MovietickeTool")
 [

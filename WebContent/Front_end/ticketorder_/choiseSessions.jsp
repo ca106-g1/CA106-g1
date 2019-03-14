@@ -1,4 +1,3 @@
-
 <%@page import="org.apache.naming.java.javaURLContextFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -82,9 +81,9 @@ margin:0px;
 				<p>剩餘座位</p>
 				<p id="sessions_remaining" style="hight:20px"> </p>
 				<br>
-				<form action="<%= request.getContextPath()%>/Front_end/movieticke_/chooseSeatS.jsp">
+				<form action="<%= request.getContextPath()%>/Front_end/ticketorder_/chooseSeatS.jsp">
 					<input type="hidden" id="sessions_no" name="sessions_no" value="">
-					<input class="btn btn-primary" type="submit" value="送出">
+					<input id="submit" class="btn btn-primary" type="submit" value="送出">
 				</form>
 			</div>
 
@@ -96,6 +95,7 @@ margin:0px;
 	$(document).ready(function(){
 		 $('#movie_no').change(function(){
 			 if($(this).val()==""){
+				 $('#submit').attr("disabled", true);
 				 return
 			 }
 			 $.ajax({
@@ -111,6 +111,7 @@ margin:0px;
 					$.each(data[1], function(i, item){
 						$('#date').append("<option value='"+item.date+"'>"+item.date+"</option>");
 					});
+					$('#submit').attr("disabled", true);
 			     },
 	             error: function(){alert("AJAX-grade發生錯誤囉!")}
 	         })
@@ -131,6 +132,7 @@ margin:0px;
 					 $.each(data, function(i, item){
 						 $('#sessions').append("<option value='"+data[i].sessions_no+"'>"+data[i].sessions_start.substring(11,16)+"</option>");
 					 });
+					 
 			     },
 	            error: function(){alert("AJAX-class發生錯誤囉!")}
 	        })
@@ -149,7 +151,7 @@ margin:0px;
 				 success: function (data){
 					 clearSelect3();
 					 $('#sessions_remaining').text(data.sessions_remaining);
-					
+					 $('#submit').attr("disabled", false);					
 			     },
 	            error: function(){alert("AJAX-class發生錯誤囉!")}
 	        })
@@ -172,13 +174,21 @@ margin:0px;
 		
 	}
 	function clearSelect2(){
+		$('#submit').attr("disabled", true);
 		$('#sessions').empty();
 		$('#sessions').append("<option value='-1'>請選擇</option>");
 		$('#sessions_remaining').text("");
 	}
 	function clearSelect3(){
+		$('#submit').attr("disabled", true);
 		$('#sessions_remaining').text("");
 	}
+	
+	function init() {
+		$('#submit').attr("disabled", true);
+	}
+	
+	window.onload = init;
 	</script>
 	<!-- 工作區結束 -->
 

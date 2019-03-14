@@ -17,7 +17,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.websocket.Session;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
