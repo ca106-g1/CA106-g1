@@ -1,14 +1,17 @@
 package com.emp.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.emp.model.EmpService;
 import com.emp.model.EmpVO;
@@ -409,6 +412,60 @@ if ("delete".equals(action)) { // 來自listAllEmp.jsp的請求
 	
 
 	}
+
+
+	if("listEmps_ByCompositeQuery".equals(action)) {
+		List<String> errorMsgs = new LinkedList<String>();
+		req.setAttribute("errorMsgs", errorMsgs);
+		
+		try {
+			
+			/**************************1.將資料轉為MAP**************/
+			
+			HttpSession session = req.getSession();
+			Map<String,String[]> map = (Map<String,String[]>)session.getAttribute("map");
+			if (req.getParameter("whichPage")==null) {
+				HashMap<String,String[]>map1 = new HashMap<String,String[]>(req.getParameterMap());
+				session.setAttribute("map", map1);
+				map = map1;
+			}
+			
+			/******************************2.開始複合查詢*************************/
+			EmpService empSvc = new EmpService();
+			List<EmpVO> list = empSvc.getAll(map);
+			
+			/*****************3.查詢完成 準備轉交**********************/
+			req.setAttribute("listEmps_ByCompositeQuery",list);
+			RequestDispatcher successView = req.getRequestDispatcher("/Back_end/emp/listEmps_ByCompositeQuery.jsp");
+			successView.forward(req, res);	
+		}catch(Exception e) {
+			errorMsgs.add(e.getMessage());
+			RequestDispatcher failureView = req
+					.getRequestDispatcher("/Back_end/emp/select_page.jsp");
+			failureView.forward(req, res);
+		}
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
   }

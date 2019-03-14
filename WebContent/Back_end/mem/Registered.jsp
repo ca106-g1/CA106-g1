@@ -102,8 +102,7 @@
 <p><input type = "hidden" name="action" value="insert">
    <input type = "submit" id="send" value = "送出"> &nbsp;&nbsp;
    <input type = "reset"   value = "取消">
-  
-   <a href = "<%=request.getContextPath()%>/Front_end/Login.jsp">回到首頁</a>
+   <a href = 'Login.jsp'>回到首頁</a>
 </p>
 
 

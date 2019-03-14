@@ -1,6 +1,7 @@
 package com.emp.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class EmpService {
 	
@@ -58,6 +59,11 @@ public class EmpService {
 	}
 	
 	public List<EmpVO> getAll(){
+		return dao.getAll();
+	}
+	
+	
+	public List<EmpVO> getAll(Map<String,String[]> map){
 		return dao.getAll();
 	}
 

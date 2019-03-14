@@ -24,6 +24,8 @@
 	<tr><td><h3>JOIN影城 員工管理首頁 </h3></td></tr>
 </table>
 
+<h4><a href = "<%=request.getContextPath()%>/Back_end/emp/homeIndex.jsp">回員工後台首頁</a></h4>
+
 <h3>資料查詢:</h3>
 
 <%--錯誤表列 --%>
@@ -77,6 +79,40 @@
 	</FORM>
 </li>
 </ul>
+
+
+<%--萬用複合查詢 --%>
+<ul>
+	<li>
+		<FORM METHOD="post" ACTION="emp.do" name="form1">
+		<b><font color=blue>萬用複合查詢:</font></b><br>
+		<b>選擇員工性別:</b>
+		<input type="radio" name="employee_sex" value="1" checked>男性
+		<input type="radio" name="employee_sex" value="0" >女性<br>
+		
+		<b>輸入員工編號:</b>
+		<input type="text" name="employee_no" value="1"><br>
+		
+		<b>輸入員工名稱:</b>
+		<input type="text" name="employee_name" value="DAVID"><br>
+		
+		<b>輸入員工職位:</b>
+		<input type="text" name="employee_ability" value="文書"><br>
+		
+		<b>選擇員工狀態:</b>
+		<input type="radio" name="employee_status" value="1" checked>在職
+		<input type="radio" name="employee_status" value="0" >已離職<br>
+		
+		<b>選擇員工到職日期:</b>
+		<td><input  name="employee_builddate"  id="f_date1" type="DATE" value="2018-01-01"><br>
+		
+		<input type = "submit" value="送出">
+		<input type = "hidden" name="action" value="listEmps_ByCompositeQuery">
+		
+		</FORM>	
+	</li>
+</ul>
+
 
 <h3>員工管理:</h3>
 

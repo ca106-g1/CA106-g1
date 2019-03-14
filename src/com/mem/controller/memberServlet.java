@@ -86,113 +86,7 @@ public class memberServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-//		if ("getone_for_login".equals(action)) { // 來自Login.jsp的請求
-//
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-//
-//			try {
-//				/************* 1.接收請求參數 輸入格式的錯誤處理 ***********/
-//				/* 帳號錯誤處理 */
-//				String str1 = req.getParameter("member_account");
-//				if (str1 == null || (str1.trim()).length() == 0) {
-//					errorMsgs.add("請輸入帳號");
-//				}
-//
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
-//					failureView.forward(req, res);
-//					return;
-//				}
-//
-//				String member_account = null;
-//				try {
-//					member_account = new String(str1);
-//				} catch (Exception e) {
-//					errorMsgs.add("會員帳號格式不正確");
-//				}
-//
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
-//					failureView.forward(req, res);
-//					return;
-//				}
-//
-//				/* 密碼錯誤處理 */
-//
-//				String str2 = req.getParameter("member_password");
-//				if (str2 == null || (str2.trim()).length() == 0) {
-//					errorMsgs.add("請輸入密碼");
-//				}
-//
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
-//					failureView.forward(req, res);
-//					return;
-//				}
-//
-//				String member_password = null;
-//				try {
-//					member_password = new String(str2);
-//				} catch (Exception e) {
-//					errorMsgs.add("會員密碼格式不正確");
-//				}
-//
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
-//					failureView.forward(req, res);
-//					return;
-//				}
-//
-//				/*********************** 2.開始查詢資料 **************************/
-//				MemService memSvc = new MemService();
-//				MemVO memVO = memSvc.getoneByAccountMem(member_account);
-//				if (memVO == null) {
-//					errorMsgs.add("帳號輸入錯誤");
-//
-//				} 
-//					
-//				else if (!memVO.getMember_password().equals(req.getParameter("member_password"))) {
-//						errorMsgs.add("密碼輸入錯誤");
-//					}
-//				
-//
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
-//					failureView.forward(req, res);
-//					return;
-//				}
-//
-//				/************************* 3.查詢完成 準備轉交 ***********************************/
-//				req.getSession().setAttribute("memVO", memVO); // 資料庫取出的empVO物件，存入reqi
-////				HttpSession session = req.getSession();
-////				session.setAttribute("memVO", memVO);
-//				
-//				
-//				//try {
-////					String location =(String) req.getAttribute("location");
-////					if (location !=null) {
-////						req.removeAttribute("location");
-////						res.sendRedirect(location);
-////						return;
-//				//	}
-//			//	}catch( Exception ignored) { }
-//				
-//				
-//				//res.sendRedirect(req.getContextPath()+"/Front_end/mem/select_page.jsp");
-//				String url = "/Front_end/mem/select_page.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交至LoginSucess.jsp
-//				successView.forward(req, res);
-//				
-//				/***********************其他可能錯誤處理*************/
-//
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得資料:" + e.getMessage());
-//				RequestDispatcher failView = req.getRequestDispatcher("/Front_end/mem/Login.jsp");
-//				failView.forward(req, res);
-//
-//			}
-//		}
+
 		
 		
 		if("getOne_For_Display".equals(action)) {
@@ -216,20 +110,7 @@ public class memberServlet extends HttpServlet {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		
@@ -482,65 +363,7 @@ public class memberServlet extends HttpServlet {
 	
 		}
 		
-//		if("update_member_status".equals(action)) {
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-//			
-////try {
-//	
-//			MemVO memVO1 = 	(MemVO)req.getSession().getAttribute("memVO");
-//			String member_no = memVO1.getMember_no();
-//				System.out.println(member_no);
-//			
-//			/***************會員狀態*************************/
-//						
-//						String member_status = null;
-//						System.out.println("檢查點17");		
-//						
-//						
-//						
-//						MemVO memVO = new MemVO();
-//						memVO.setMember_no(member_no);
-//						
-//						memVO.setMember_status(member_status);
-//				
-//						if(!errorMsgs.isEmpty()) {
-//							req.setAttribute("memVO",memVO);//含有錯誤格式的memVO物件 也存入req
-//							RequestDispatcher failureView = req
-//									.getRequestDispatcher("/Front_end/mem/update_mem_input.jsp");
-//							failureView.forward(req,res);
-//							return;
-//						}
-//						System.out.println("檢查點20");
-//						/****************************2開始新增資料******************************/
-//						MemService memSvc = new MemService();
-//						memVO = memSvc.update_member_status(member_no,member_status);
-//						
-//						System.out.println("檢查點21");
-//						/****************************3.新增完成 準備轉交***********************/
-//						
-//						//req.getSession().setAttribute("updateMem",updateMem);
-//						req.setAttribute("memVO",memVO);
-//						String url = "/Front_end/mem/listOneMem.jsp";
-//						RequestDispatcher successView = req.getRequestDispatcher(url);
-//						successView.forward(req, res);
-//						
-//						System.out.println("檢查點22");
-//						/******************其他可能的錯誤處理************************/
-//						
-//					
-////						}catch(Exception e) {
-////							
-////							errorMsgs.add(e.getMessage());
-////							RequestDispatcher failureView = req
-////									.getRequestDispatcher("/Front_end/mem/update_mem_input.jsp");
-////							failureView.forward(req, res);
-////							
-////							System.out.println("檢查點23");
-////							e.printStackTrace();
-////						}
-//	
-//		}
+
 	
 		if("insert".equals(action)) {
 			System.out.println("檢查點1");
@@ -815,6 +638,31 @@ public class memberServlet extends HttpServlet {
 			}
 			
 		}
+		
+		
+		/***************************************************************後台***************************************************/
+		
+if("getOne_For_Display_Back".equals(action)) {
+			
+			String member_no = req.getParameter("member_no");
+			
+			MemService memSvc = new MemService();
+			MemVO memVO = memSvc.getoneMem(member_no);
+			
+			req.setAttribute("memVO",memVO);
+			String url="/Back_end/mem/listOneMem.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+				
+			
+			
+		}
+		
+		
+		
+		
+		
+		
 		
 	}
 	

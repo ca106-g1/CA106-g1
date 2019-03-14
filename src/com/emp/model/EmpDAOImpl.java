@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Emp2;
 
 public class EmpDAOImpl implements EmpDAO_interface {
 	
@@ -395,24 +398,105 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		return list;
 	}
 	
+	
+	@Override
+	public List<EmpVO> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		List<EmpVO> list = new ArrayList<EmpVO>();
+		EmpVO empVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, username, password);
+			String finalSQL = "select * from EMPLOYEE "
+			          + jdbcUtil_CompositeQuery_Emp2.get_WhereCondition(map)
+			          + "order by employee_no";
+				pstmt = con.prepareStatement(finalSQL);
+				System.out.println("●●finalSQL(by DAO) = "+finalSQL);
+			
+			
+			rs =pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				
+				empVO = new EmpVO();
+				empVO.setEmployee_no(rs.getString("employee_no"));
+				empVO.setEmployee_name(rs.getString("employee_name"));
+				empVO.setEmployee_sex(rs.getInt("employee_sex"));
+				empVO.setEmployee_builddate(rs.getDate("employee_builddate"));
+				empVO.setEmployee_quitdate(rs.getDate("employee_quitdate"));
+				empVO.setEmployee_ability(rs.getString("employee_ability"));
+				empVO.setEmployee_status(rs.getString("employee_status"));
+				empVO.setEmployee_password(rs.getString("employee_password"));
+				list.add(empVO);
+				
+			}
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Couldn't load database driver."
+					+e.getMessage());
+		} catch (SQLException se) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("A database error ocurried."
+					+se.getMessage());
+		}finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list;
+		
+	}
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
 		
 		EmpDAOImpl dao = new EmpDAOImpl();
 		
-		//新增
+		//�憓�
 		
 		EmpVO empVO1 = new EmpVO();
 		empVO1.setEmployee_name("Android");
 		empVO1.setEmployee_sex(new Integer(0));
 		empVO1.setEmployee_builddate(java.sql.Date.valueOf("2018-09-14"));
 		empVO1.setEmployee_quitdate(java.sql.Date.valueOf("2019-11-04"));
-		empVO1.setEmployee_ability("德文");
+		empVO1.setEmployee_ability("敺瑟��");
 		empVO1.setEmployee_status("1");
 		empVO1.setEmployee_password("123456");
 		dao.insert(empVO1);
 		
 		
-		//修改
+		//靽格
 		
 		EmpVO empVO2 = new EmpVO();
 		empVO2.setEmployee_no("15");
@@ -420,16 +504,16 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		empVO2.setEmployee_sex(new Integer(1));
 		empVO2.setEmployee_builddate(java.sql.Date.valueOf("2018-09-14"));
 		empVO2.setEmployee_quitdate(java.sql.Date.valueOf("2019-11-04"));
-		empVO2.setEmployee_ability("英文");
+		empVO2.setEmployee_ability("����");
 		empVO2.setEmployee_status("1");
 		empVO2.setEmployee_password("123456");
 		dao.update(empVO2);
 		
-		//刪除
+		//��
 		
 		dao.delete("16");
 		
-		//查詢
+		//�閰�
 		EmpVO empVO3 = dao.findByPrimaryKey("10");
 		System.out.print(empVO3.getEmployee_no()+",");
 		System.out.print(empVO3.getEmployee_name()+",");
@@ -442,7 +526,7 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		System.out.println("-------------------------");
 		
 		
-		//查詢
+		//�閰�
 		List<EmpVO> list = dao.getAll();
 		for (EmpVO aEmp : list ) {
 			System.out.print(aEmp.getEmployee_no()+",");
@@ -459,6 +543,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		}
 		
 	}
+
+	
 
 	
 	

@@ -28,6 +28,11 @@ public class DepServlet extends HttpServlet {
 		
 	  req.setCharacterEncoding("UTF-8");
 	  String action = req.getParameter("action");
+	
+	  
+	  /*************************************************前台*****************************************************/
+	  
+	  
 	  
 	  if ("getOne_For_Display".equals(action)) {
 		  
@@ -281,7 +286,74 @@ if("mem_insert".equals(action)) {
 	  
 	  
 	  
-	  
+/******************************************************後台************************************************************/
+	 if ("getOne_For_Display_Back".equals(action)) {
+		  
+		  List<String> errorMsgs = new LinkedList<String>();
+		  req.setAttribute("errorMsgs",errorMsgs);
+		  
+		  try {
+			  /**********1.接收請求參數*************************/
+			  System.out.println("檢查點1");
+			  String str = req.getParameter("deposit_change_no");
+			  if (str==null || (str.trim()).length()==0) {
+				  
+				  errorMsgs.add("請輸入儲值明細編號");
+			  }
+			  System.out.println("檢查點2");
+			  if(!errorMsgs.isEmpty()) {
+				  RequestDispatcher failureView = req
+						  .getRequestDispatcher("/Back_end/dep/select_page.jsp");
+				  failureView.forward(req, res);
+				  return;
+			  }
+			  System.out.println("檢查點3");
+			  String deposit_change_no = null;
+			  try {
+				  deposit_change_no = new String(str);
+			  }catch(Exception e) {
+				  errorMsgs.add("儲值編號格式不正確");
+			  }
+			  System.out.println("檢查點4");
+			  if(!errorMsgs.isEmpty()) {
+				  RequestDispatcher failureView =req
+						  .getRequestDispatcher("/Back_end/dep/select_page.jsp");
+				  failureView.forward(req, res);
+				  return;
+			  }
+			  
+			  /***************2.開始查詢資料***************************/
+			  System.out.println("檢查點5");
+			  DepService depSvc = new DepService();
+			  DepVO depVO = depSvc.getoneDep(deposit_change_no);
+			  if(depVO == null) {
+				  errorMsgs.add("查無資料");
+			  }
+			  System.out.println("檢查點6");
+			  if(!errorMsgs.isEmpty()){
+				  RequestDispatcher failureView = req
+						  .getRequestDispatcher("/Back_end/dep/select_page.jsp");
+				  failureView.forward(req, res);
+				  return;
+			  }
+		  
+		  
+			  /******************3.查詢完成 準備轉交********************************/
+			  req.setAttribute("depVO", depVO);
+			  String url="/Back_end/dep/listOneDep.jsp";
+			  RequestDispatcher successView = req.getRequestDispatcher(url);
+			  successView.forward(req, res);
+			  System.out.println("檢查點8");
+			  /***********其他可能的錯誤處理*************/
+		  }catch(Exception e) {
+			  errorMsgs.add("無法取得資料" + e.getMessage());
+			  RequestDispatcher failureView = req
+					  .getRequestDispatcher("/Back_end/dep/select_page.jsp");
+			  failureView.forward(req, res);
+			  System.out.println("檢查點9");
+		  }
+	  }
+	
 	  
 	  
 	  
