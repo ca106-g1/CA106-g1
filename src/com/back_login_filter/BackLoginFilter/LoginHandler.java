@@ -137,7 +137,7 @@ System.out.println("檢查點6");
 				
 System.out.println("檢查點7");		
 
-				res.sendRedirect(req.getContextPath()+"/Back_end/emp/select_page.jsp");
+				res.sendRedirect(req.getContextPath()+"/Back_end/emp/homeIndex.jsp");
 				
 System.out.println("檢查點8");	
 
