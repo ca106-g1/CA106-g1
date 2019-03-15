@@ -52,7 +52,7 @@
 			<tr>
 				<td><h3>後台-電影種類新增</h3></td>
 				<td><h4>
-					<a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a>
+					<a href="<%=request.getContextPath()%>/Back-end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/Back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a>
 				</h4></td>
 			</tr>
 		</table>
@@ -69,7 +69,7 @@
 			</ul>
 		</c:if>
 		
-		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do" name="form1">
+		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back-end/moviegenre/moviegenre.do" name="form1">
 		<table>
 			<tr>
 				<td>電影種類名稱</td>
