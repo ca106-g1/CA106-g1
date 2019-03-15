@@ -8,15 +8,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.sessions.model.SessionsDAOImpl;
 import com.sessions.model.SessionsVO;
 
 public class DepDAOImpl implements DepDAO_interface {
 	
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String username = "JOIN";
-	String password = "123456";
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+//	String username = "JOIN";
+//	String password = "123456";
 			
 	private static final String INSERT_DEP =
 			"INSERT INTO DEPOSITDETAIL (DEPOSIT_CHANGE_NO,DEPOSIT_MEMBER_NO,DEPOSIT_CHANGE_MONEY,DEPOSIT_CHANGE_DATE) VALUES ('D'||LPAD(to_char(DEPOSITDETAIL_seq.NEXTVAL),6,'0'),?,?,?)";
@@ -55,8 +75,8 @@ public class DepDAOImpl implements DepDAO_interface {
 		String pk = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_DEP, new String[] {"DEPOSIT_CHANGE_NO"});
 			
 			pstmt.setString(1, depVO.getDeposit_member_no());
@@ -69,9 +89,6 @@ public class DepDAOImpl implements DepDAO_interface {
 			rs.next();
 			pk = rs.getString(1);
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,8 +120,8 @@ public class DepDAOImpl implements DepDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url,username,password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
 			
@@ -114,9 +131,6 @@ public class DepDAOImpl implements DepDAO_interface {
 			
 			pstmt.executeUpdate();
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,17 +162,14 @@ public class DepDAOImpl implements DepDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, deposit_change_no);
 			pstmt.executeUpdate();
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -191,8 +202,8 @@ public class DepDAOImpl implements DepDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_DEP);
 			
 			pstmt.setString(1,deposit_change_no);
@@ -208,9 +219,6 @@ public class DepDAOImpl implements DepDAO_interface {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -252,8 +260,8 @@ public class DepDAOImpl implements DepDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+		
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_DEP_MEM_NO);
 			
 			pstmt.setString(1,deposit_member_no);
@@ -269,9 +277,6 @@ public class DepDAOImpl implements DepDAO_interface {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -331,8 +336,8 @@ public class DepDAOImpl implements DepDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_DEP);
 			rs = pstmt.executeQuery();
 			
@@ -348,9 +353,6 @@ public class DepDAOImpl implements DepDAO_interface {
 				list.add(depVO);
 			}
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -395,8 +397,8 @@ public class DepDAOImpl implements DepDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_DEP_MEM_NO);
 			pstmt.setString(1, deposit_member_no);
 			rs = pstmt.executeQuery();
@@ -413,9 +415,6 @@ public class DepDAOImpl implements DepDAO_interface {
 				list.add(depVO);
 			}
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

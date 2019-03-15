@@ -8,6 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.dep.model.DepDAOImpl;
 import com.dep.model.DepVO;
 import com.sessions.model.SessionsVO;
@@ -20,10 +25,21 @@ import com.ticketorder.model.TicketorderVO;
 
 public class MemDAOImpl implements MemDAO_interface {
 	
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String username = "JOIN";
-	String password = "123456";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+//	String username = "JOIN";
+//	String password = "123456";
 	
 	private static final String INSERT_MEM = 
 			"INSERT INTO MEMBER (MEMBER_NO,MEMBER_ACCOUNT,MEMBER_PASSWORD,MEMBER_NAME,MEMBER_NICK,MEMBER_SEX,MEMBER_BIRTHDAY,MEMBER_ADDRESS,MEMBER_TELEPHONE,MEMBER_EMAIL,MEMBER_PICTURE,MEMBER_CREDIT_NUMBER,MEMBER_BACK_VERIFICATION,MEMBER_BUILDDAY,MEMBER_POINT,MEMBER_STATUS) VALUES ('M'||LPAD(to_char(MEMBER_seq.NEXTVAL),6,'0'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -64,8 +80,8 @@ public class MemDAOImpl implements MemDAO_interface {
 		
 		try {
 			
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_MEM, new String[] { "MEMBER_NO" });
 			
 			pstmt.setString(1,memVO.getMember_account());
@@ -90,10 +106,6 @@ public class MemDAOImpl implements MemDAO_interface {
 			
 			memVO.setMember_no(rs.getString(1));
 			
-			
-		}catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+e.getMessage());
 			
 		}catch (SQLException se) {
 			se.printStackTrace();
@@ -149,8 +161,8 @@ public class MemDAOImpl implements MemDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_MEM);
 			
 			pstmt.setString(1,member_no);
@@ -178,9 +190,6 @@ public class MemDAOImpl implements MemDAO_interface {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -226,8 +235,8 @@ public class MemDAOImpl implements MemDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_MEM);
 			rs = pstmt.executeQuery();
 			
@@ -251,12 +260,6 @@ public class MemDAOImpl implements MemDAO_interface {
 				memVO.setMember_status(rs.getString("member_status"));
 				list.add(memVO);
 			}
-			
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Could't load database driver"
-					+ e.getMessage());
 			
 			
 		} catch (SQLException se) {
@@ -308,8 +311,8 @@ public class MemDAOImpl implements MemDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
 
@@ -334,12 +337,6 @@ public class MemDAOImpl implements MemDAO_interface {
 			
 			
 			
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			
-			throw new RuntimeException ("Could't load datebase driver "
-					+e.getMessage());
 			
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
@@ -391,8 +388,8 @@ public class MemDAOImpl implements MemDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url,username,password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, member_no);
@@ -401,10 +398,6 @@ public class MemDAOImpl implements MemDAO_interface {
 			
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException ("Could't load datebase driver "
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			
@@ -442,8 +435,8 @@ public class MemDAOImpl implements MemDAO_interface {
 		
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_BY_ACCOUNT_MEM);
 			
 			pstmt.setString(1, member_account);
@@ -470,9 +463,6 @@ public class MemDAOImpl implements MemDAO_interface {
 				memVO.setMember_status(rs.getString("member_status"));
 			
 			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -551,19 +541,13 @@ public void update_member_status(String member_no) {
 	PreparedStatement pstmt = null;
 	
 	try {
-		Class.forName(driver);
-		con = DriverManager.getConnection(url, username, password);
+		
+		con = ds.getConnection();
 		pstmt = con.prepareStatement(UPDATE_MEMBER_STATUS);
 		
 		pstmt.setString(1,member_no);
 	
 		pstmt.executeUpdate();
-		
-	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		
-		throw new RuntimeException ("Could't load datebase driver "
-				+e.getMessage());
 		
 	} catch (SQLException se) {
 		// TODO Auto-generated catch block

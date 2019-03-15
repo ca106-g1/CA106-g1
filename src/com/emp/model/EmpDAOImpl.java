@@ -9,14 +9,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Emp2;
 
 public class EmpDAOImpl implements EmpDAO_interface {
 	
-	 String driver = "oracle.jdbc.driver.OracleDriver";
-	 String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	 String username = "JOIN";
-	 String password = "123456";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+//	 String driver = "oracle.jdbc.driver.OracleDriver";
+//	 String url = "jdbc:oracle:thin:@localhost:1521:XE";
+//	 String username = "JOIN";
+//	 String password = "123456";
 	 
 	 private static final String INSERT_EMP =
 			 "INSERT INTO EMPLOYEE (employee_no,employee_name,employee_sex,employee_builddate,employee_quitdate,employee_ability,employee_status,employee_password) VALUES (EMPLOYEE_seq.NEXTVAL,?,?,?,?,?,?,?)";
@@ -43,8 +59,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con=DriverManager.getConnection(url,username,password);
+			
+			con=ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_EMP);
 			
 			pstmt.setString(1, empVO.getEmployee_name());
@@ -59,10 +75,6 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Couldn't load database driver."
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("A database error ocurred."
@@ -94,8 +106,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
 			pstmt.setString(1, empVO.getEmployee_name());
@@ -110,10 +122,6 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			pstmt.executeUpdate();
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Couldn't load database driver."
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("A database error ocurried"
@@ -145,8 +153,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, employee_no);
@@ -154,10 +162,6 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			pstmt.executeUpdate();
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Couldn't load database driver."
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("A database error ocurried."
@@ -191,8 +195,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_EMP);
 			
 			pstmt.setString(1,employee_no);
@@ -214,10 +218,6 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException ("Couldn't load database ocurried."
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException ("A database error ocurrid."
@@ -264,8 +264,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_BY_EMPLOYEE_NAME);
 			
 			pstmt.setString(1,employee_name);
@@ -287,10 +287,6 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException ("Couldn't load database ocurried."
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException ("A database error ocurrid."
@@ -340,8 +336,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_EMP);
 			
 			rs =pstmt.executeQuery();
@@ -363,10 +359,6 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Couldn't load database driver."
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("A database error ocurried."
@@ -410,8 +402,8 @@ public class EmpDAOImpl implements EmpDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			
+			con = ds.getConnection();
 			String finalSQL = "select * from EMPLOYEE "
 			          + jdbcUtil_CompositeQuery_Emp2.get_WhereCondition(map)
 			          + "order by employee_no";
@@ -438,10 +430,6 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Couldn't load database driver."
-					+e.getMessage());
 		} catch (SQLException se) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("A database error ocurried."
