@@ -28,7 +28,7 @@
 
 驗證成功!<br>
 
-<h4><a href = "select_page.jsp">回首頁</a></h4>
+<h4><a href = "<%=request.getContextPath()%>/Front_end/Login.jsp">回首頁</a></h4>
 
 <script>
 $(document).ready(function() {
