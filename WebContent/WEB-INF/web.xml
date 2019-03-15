@@ -101,6 +101,15 @@
 		<servlet-name>Cus_serServlet</servlet-name>
 		<url-pattern>/Front_end/cus_ser/cus_ser.do</url-pattern>
 	</servlet-mapping>
+	
+   <servlet>
+     <servlet-name>Json2Read</servlet-name>
+     <servlet-class>com.address.controller.Json2Read</servlet-class>
+   </servlet>
+   <servlet-mapping>
+     <servlet-name>Json2Read</servlet-name>
+     <url-pattern>/Front_end/mem/Json2Read</url-pattern>
+   </servlet-mapping>
 
 
 	<servlet>
