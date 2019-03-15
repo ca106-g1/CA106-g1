@@ -1,8 +1,8 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%@ page import = "com.mem.model.*" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import = "com.mem.model.* , java.util.*"  %>
 
 <%
 	MemVO memVO = (MemVO) request.getAttribute("memVO");
@@ -78,9 +78,45 @@
 <input type="date" name="member_birthday" id="f_date" value="<%= (memVO==null)? member_birthday:memVO.getMember_birthday()%>"></p>
 
 
+<% String[] arrayCity  = new String[] {"台北市","基隆市","新北市","桃園市","新竹市","新竹縣","苗栗縣","台中市","彰化縣","南投縣","雲林縣","嘉義縣","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣","澎湖縣","金門縣","連江縣"};
+ 	List<String> listCity = Arrays.asList(arrayCity);  
+ 	pageContext.setAttribute("listCity", listCity);
+ %>
+
 
 <p>*地址:
-<input type = "text"  name = "member_address" value="<%= (memVO==null)?"":memVO.getMember_address()%>"> </p>
+<div class="container" >
+	<div class="row">
+    	<div class="col">
+			<div class="dropdown">
+	  
+	  <select id="twCityName">
+			  <option >--請選擇縣市--</option>
+			  <c:forEach var="city" items="${listCity}">
+			  	<option value="${city}">${city}</option>
+			  </c:forEach>
+	  </select>
+	  
+	  <select id="CityAreaName" >
+			  <option >--請選擇區域--</option>
+	  </select>
+			    
+      <select id="AreaRoadName" >
+			  <option >--請選擇路名--</option>
+	  </select>	    
+	  
+	  <input type="text" placeholder="請輸入門牌號碼" id="num">
+	  
+	  <input type="button" value="確認" id="btnLoc">		    			    
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		 <input id="addressTotal" type="text" name="member_address" size="50" >   
+	</div>
+
+	</div>
+	</p>
 
 <p>*電話:
 <input type = "tel"  name = "member_telephone" value="<%= (memVO==null)?"":memVO.getMember_telephone()%>"> </p>
@@ -117,12 +153,82 @@
 
 	<!-- 工作區結束 -->
 	
+	
+	
+	
+	
+	
+	
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script> 
+
+$(document).ready(function(){
+	
+	$("#twCityName").change(function(){
+		$.ajax({
+			 type: "POST",
+			 url: "<%=request.getContextPath()%>/Json2Read",
+			 data: {"action":"twCityName",
+				 	"twCityName":$('#twCityName option:selected').val()},
+			 dataType: "json",
+			 success: function(result){
+				 $("#CityAreaName").empty();
+				
+				 $("#CityAreaName").append("<option >--請選擇區域--</option>")
+				 for(var i=0; i<result.length; i++){
+				 	$("#CityAreaName").append('<option value="'+result[i]+'">'+result[i]+'</option>');
+				 }
+			 },
+	         error: function(){
+	        	 alert("AJAX-grade發生錯誤囉!")
+	        	 }
+	    });
+	});
+	
+	$("#CityAreaName").change(function(){
+		$.ajax({
+			 type: "POST",
+			 url: "<%=request.getContextPath()%>/Json2Read",
+			 data: {"action":"CityAreaName",
+				 	"twCityName":$('#twCityName option:selected').val(),
+				 	"CityAreaName":$('#CityAreaName option:selected').val()},
+			 dataType: "json",
+			 success: function(result){
+				 $("#AreaRoadName").empty();
+				 $("#AreaRoadName").append("<option >--請選擇區域--</option>")
+				 for(var i=0; i<result.length; i++){
+				 	$("#AreaRoadName").append('<option value="'+result[i]+'">'+result[i]+'</option>');
+				 }
+			 },
+	         error: function(){
+	        	 alert("AJAX-grade發生錯誤囉!")
+	        	 }
+	    });
+	});
+	
+	
+	$("#btnLoc").click(function(){
+		
+		var twCityName = ($('#twCityName').get(0).selectedIndex)>0? $('#twCityName option:selected').val() :'';
+		
+		var CityAreaName = ($('#CityAreaName').get(0).selectedIndex)>0? $('#CityAreaName option:selected').val() :'';
+		
+		var AreaRoadName = ($('#AreaRoadName').get(0).selectedIndex)>0? $('#AreaRoadName option:selected').val() :'' ;
+		
+		var num = $('#num').val().trim().length != 0 ? $('#num').val()+"號" :'' ; 
+
+		var locTotal = twCityName+CityAreaName+AreaRoadName+num;
+		$("#addressTotal").attr("value",locTotal);
+		
+	});	
+})
+
+
+</script>
+	
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
 		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
 		crossorigin="anonymous"></script>
