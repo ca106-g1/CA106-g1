@@ -79,7 +79,15 @@
 		<td><input type = "text" name="deposit_change_money" size="45"
 			value="<%= (depVO==null)?"":""%>" /></td>
 	</tr>
+	<tr>
+		<td>信用卡密碼</td>
+		<td><input type = "text" name="member_credit_number" size="45"></td>
+	</tr>
 	
+	<tr>
+		<td>驗證末三碼</td>
+		<td><input type = "text" name="member_back_verification" size="45"></td>
+	</tr>
 	<tr>
 	<td><input type = "hidden" name="deposit_change_date" value="<%=(depVO==null)?"":depVO.getDeposit_change_date()%>" /></td>
 	
