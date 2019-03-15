@@ -1,13 +1,21 @@
+<%@page import="java.sql.Date"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.movieinfo.model.*"%>
+<%@ page import="com.moviegenre.model.*"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
+
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-    MovieInfoService movieinfoSvc = new MovieInfoService();
-    List<MovieInfoVO> list = movieinfoSvc.getAll();
-    pageContext.setAttribute("list",list);
+MovieInfoService movieinfoSvc = new MovieInfoService();
+List<MovieInfoVO> list = movieinfoSvc.getAll();
+pageContext.setAttribute("list",list);
+
+MovieGenreService moviegenreSvc = new MovieGenreService();
+pageContext.setAttribute("msc",moviegenreSvc);
+
 %>
 
 
@@ -17,7 +25,7 @@
 
 <style>
   table#table-1 {
-	background-color: #CCCCFF;
+	background-color: #00caca;
     border: 2px solid black;
     text-align: center;
   }
@@ -46,6 +54,15 @@
     padding: 5px;
     text-align: center;
   }
+  img, #level{
+  	width:50px;
+  	hight:50px;
+  }
+  
+  img, #pic{
+  	width:135px;
+  	hight:200px;
+  }
 </style>
 
 </head>
@@ -53,7 +70,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>所有電影資料</h3>
+		 <h3>後台-電影資料清單</h3>
 		 <h4><a href="select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -71,38 +88,56 @@
 <table>
 	<tr>
 		<th>電影編號</th>
-		<th>電影種類</th>
 		<th>電影名稱</th>
+		<th>電影種類</th>
+		<th>電影封面</th>
 		<th>電影分級</th>
 		<th>電影導演</th>
 		<th>電影演員</th>
+		<th>電影片長</th>
 		<th>電影簡介</th>
-		<th>片長</th>
-		<th>預告片</th>
-		<th>封面</th>
-		<th>上映時間</th>
-		<th>下映時間</th>
-		<th>票房</th>
-		<th>期待度</th>
-		<th>不期待度</th>
-		<th>點擊次數</th>
-		<th>票價加價</th>
-		<th colspan="2">操作按鈕</th>
+		<th>電影預告片</th>
+		<th>電影上映時間</th>
+		<th>電影下映時間</th>
+		<th>電影票房</th>
+		<th>電影期待度</th>
+		<th>電影不期待度</th>
+		<th>電影點擊次數</th>
+		<th>電影票價加價</th>
+		<th colspan="2">編輯</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="movieinfoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
 			<td>${movieinfoVO.movie_no}</td>
-			<td>${movieinfoVO.genre_no}</td>
 			<td>${movieinfoVO.movie_name}</td>
-			<td>${movieinfoVO.movie_level}</td>
+			<td>${msc.getOneGenre(movieinfoVO.genre_no).genre_name}</td>
+<!-- 新增movie_pic			 -->
+			<c:set var="movie_pic" value="${movieinfoVO.movie_pic}"></c:set>
+			<%
+				byte b[]= (byte[])pageContext.getAttribute("movie_pic");
+				String encode = null;
+				if(b != null){
+					encode = Base64.encode(b);
+			%>
+			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
+			<%}else{%><td></td><%}%>
+<!-- 新增movie_level -->			
+			<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
+			<%
+				byte c[]= (byte[])pageContext.getAttribute("movie_level");
+				String encode1 = null;
+				if(c != null){
+					encode1 = Base64.encode(c);
+			%>
+			<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
+			<%}else{%><td></td><%}%>
 			<td>${movieinfoVO.movie_director}</td>
 			<td>${movieinfoVO.movie_cast}</td> 
-			<td>${movieinfoVO.movie_intro}</td>
 			<td>${movieinfoVO.movie_length}</td>
+			<td>${movieinfoVO.movie_intro}</td>
 			<td>${movieinfoVO.movie_trailer}</td>
-			<td>${movieinfoVO.movie_pic}</td>
 			<td>${movieinfoVO.movie_in}</td>
 			<td>${movieinfoVO.movie_out}</td> 
 			<td>${movieinfoVO.movie_count}</td>

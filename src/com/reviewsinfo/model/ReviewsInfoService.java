@@ -54,12 +54,12 @@ public class ReviewsInfoService {
 		return reviewsinfoVO;
 	}
 
-	public void deleteReviewsInfo(Integer Reviews_no) {
-		dao.delete(Reviews_no);
+	public void deleteReviewsInfo(Integer reviews_no) {
+		dao.delete(reviews_no);
 	}
 
-	public ReviewsInfoVO getOneReviewsInfo(Integer Reviews_no) {
-		return dao.findByPrimaryKey(Reviews_no);
+	public ReviewsInfoVO getOneReviewsInfo(Integer reviews_no) {
+		return dao.findByPrimaryKey(reviews_no);
 	}
 
 	public List<ReviewsInfoVO> getAll() {

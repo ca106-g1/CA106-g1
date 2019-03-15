@@ -56,12 +56,12 @@ public class NewsInfoService {
 		return newsinfoVO;
 	}
 
-	public void deleteNewsInfo(Integer newsinfo_no) {
-		dao.delete(newsinfo_no);
+	public void deleteNewsInfo(Integer news_no) {
+		dao.delete(news_no);
 	}
 
-	public NewsInfoVO getOneNewsInfo(Integer newsinfo_no) {
-		return dao.findByPrimaryKey(newsinfo_no);
+	public NewsInfoVO getOneNewsInfo(Integer news_no) {
+		return dao.findByPrimaryKey(news_no);
 	}
 
 	public List<NewsInfoVO> getAll() {

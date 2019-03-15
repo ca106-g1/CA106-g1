@@ -21,7 +21,7 @@
 
 <style>
   table#table-1 {
-	background-color: #CCCCFF;
+	background-color: #00caca;
     border: 2px solid black;
     text-align: center;
   }
@@ -56,12 +56,12 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>新聞資料新增</h3></td><td>
+		 <h3>專欄資料新增</h3></td><td>
 		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>新聞資料新增:</h3>
+<h3>專欄資料新增:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -82,27 +82,27 @@
 			 value="<%= (newsinfoVO==null)? "*1" : newsinfoVO.getMovie_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>新聞標題:</td>
+		<td>專欄標題:</td>
 		<td><input type="TEXT" name="news_title" size="45"
-			 value="<%= (newsinfoVO==null)? "這是一個新聞標題" : newsinfoVO.getNews_title()%>" /></td>
+			 value="<%= (newsinfoVO==null)? "這是一個專欄標題" : newsinfoVO.getNews_title()%>" /></td>
 	</tr>
 	<tr>
-		<td>新聞作者:</td>
+		<td>專欄作者:</td>
 		<td><input type="TEXT" name="news_auther" size="45"
-			 value="<%= (newsinfoVO==null)? "這是一個新聞作者" : newsinfoVO.getNews_auther()%>" /></td>
+			 value="<%= (newsinfoVO==null)? "這是一個專欄作者" : newsinfoVO.getNews_auther()%>" /></td>
 	</tr>
 	<tr>
 		<td>發文日期:</td>
 		<td><input name="news_times" id="f_date1" type="text"></td>
 	</tr>
 	<tr>
-		<td>新聞圖片:</td>
+		<td>專欄圖片:</td>
 		<td><input type="file" name="news_pic"></td>
 	</tr>
 	<tr>
-		<td>新聞內容:</td>
+		<td>專欄內容:</td>
 		<td><input type="TEXT" name="news_con" size="45"
-			 value="<%= (newsinfoVO==null)? "這是一篇新聞內容" : newsinfoVO.getNews_con()%>" /></td>
+			 value="<%= (newsinfoVO==null)? "這是一篇專欄內容" : newsinfoVO.getNews_con()%>" /></td>
 	</tr>
 
 

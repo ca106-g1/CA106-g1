@@ -8,7 +8,7 @@
 <style>
   table#table-1 {
 	width: 450px;
-	background-color: #CCCCFF;
+	background-color: #00caca;
 	margin-top: 5px;
 	margin-bottom: 10px;
     border: 3px ridge Gray;
@@ -30,12 +30,18 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>IBM MovieInfo: Home</h3></td></tr>
+   <tr><td><h3>Back-end MovieInfo: Home</h3></td></tr>
+   <tr>
+		<td><h4>
+			<a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp">電影種類編輯</a>
+  			<a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp">新聞專欄編輯</a>
+		</h4></td>
+	</tr>
+  
 </table>
 
-<p>This is the Home page for IBM MovieInfo: Home</p>
 
-<h3>電影資料查詢:</h3>
+<h3>電影資料編輯:</h3>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -48,13 +54,22 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllMovieInfo.jsp'>List</a> all MovieInfos.  <br><br></li>
-  
+  <li>All Movieinfos    
+ 	 <a href='listAllMovieInfo.jsp'>EDIT</a>.<br><br>
+  </li>
+ 	 
+  <li>In Theaters Movieinfos   
+  	 <a href='listAllMovieIn.jsp'>EDIT</a>.<br><br>
+  </li>
+  	 
+  <li>
+  	 <a href='addMovieInfo.jsp'>Add</a> a new MovieInfo.<br><br>
+  </li>
   
   <li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" >
-        <b>輸入電影編號 (如1):</b>
-        <input type="text" name="movie_no">
+        <b>電影編號查詢 :</b>
+        <input type="text" name="movie_no" value="MI">
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="送出">
     </FORM>
@@ -64,7 +79,7 @@
    
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" >
-       <b>選擇電影編號:</b>
+       <b>電影編號查詢:</b>
        <select size="1" name="movie_no">
          <c:forEach var="movieinfoVO" items="${movieinfoSvc.all}" > 
           <option value="${movieinfoVO.movie_no}">${movieinfoVO.movie_no}
@@ -77,7 +92,7 @@
   
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" >
-       <b>選擇電影名稱:</b>
+       <b>電影名稱查詢:</b>
        <select size="1" name="movie_no">
          <c:forEach var="movieinfoVO" items="${movieinfoSvc.all}" > 
           <option value="${movieinfoVO.movie_no}">${movieinfoVO.movie_name}
@@ -87,13 +102,6 @@
        <input type="submit" value="送出">
      </FORM>
   </li>
-</ul>
-
-
-<h3>電影資訊管理</h3>
-
-<ul>
-  <li><a href='addMovieInfo.jsp'>Add</a> a new MovieInfo.</li>
 </ul>
 
 </body>

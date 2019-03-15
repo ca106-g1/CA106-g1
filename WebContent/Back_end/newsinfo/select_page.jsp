@@ -8,7 +8,7 @@
 <style>
   table#table-1 {
 	width: 450px;
-	background-color: #CCCCFF;
+	background-color: #00caca;
 	margin-top: 5px;
 	margin-bottom: 10px;
     border: 3px ridge Gray;
@@ -30,12 +30,16 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>IBM NewsInfo: Home</h3></td></tr>
+   <tr><td><h3>Back-end NewsInfo: Home</h3></td></tr>
+   <tr>
+		<td><h4>
+			<a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp">電影種類編輯</a>
+			<a href="<%=request.getContextPath()%>/back-end/movieinfo/select_page.jsp">電影資訊編輯</a>
+		</h4></td>
+	</tr>
 </table>
 
-<p>This is the Home page for IBM NewsInfo: Home</p>
-
-<h3>新聞資料查詢:</h3>
+<h3>新聞專欄編輯:</h3>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -48,12 +52,12 @@
 </c:if>
 
 <ul>
-  <li><a href='<%=request.getContextPath()%>/back-end/newsinfo/listAllNewsInfo.jsp'>List</a> all NewsInfos.  <br><br></li>
-  
+  <li>All Newsinfo    <a href='<%=request.getContextPath()%>/back-end/newsinfo/listAllNewsInfo.jsp'>EDIT</a>.<br><br></li>
+  <li><a href='<%=request.getContextPath()%>/back-end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li><br>
   
   <li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" >
-        <b>輸入新聞編號 (如1):</b>
+        <b>輸入專欄編號 (如1):</b>
         <input type="text" name="news_no">
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="送出">
@@ -64,7 +68,7 @@
    
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" >
-       <b>選擇新聞編號:</b>
+       <b>選擇專欄編號:</b>
        <select size="1" name="news_no">
          <c:forEach var="newsinfoVO" items="${newsinfoSvc.all}" > 
           <option value="${newsinfoVO.news_no}">${newsinfoVO.news_no}
@@ -77,7 +81,7 @@
   
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" >
-       <b>選擇新聞名稱:</b>
+       <b>選擇專欄名稱:</b>
        <select size="1" name="news_no">
          <c:forEach var="newsinfoVO" items="${newsinfoSvc.all}" > 
           <option value="${newsinfoVO.news_no}">${newsinfoVO.news_title}
@@ -87,13 +91,6 @@
        <input type="submit" value="送出">
      </FORM>
   </li>
-</ul>
-
-
-<h3>電影新聞管理</h3>
-
-<ul>
-  <li><a href='<%=request.getContextPath()%>/back-end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li>
 </ul>
 
 </body>

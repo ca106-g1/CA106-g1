@@ -17,7 +17,7 @@
 
 <style>
   table#table-1 {
-	background-color: #CCCCFF;
+	background-color: #00caca;
     border: 2px solid black;
     text-align: center;
   }

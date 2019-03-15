@@ -777,7 +777,7 @@ INSERT INTO MEALSORDERDETAIL VALUES ('TO_000015', 'MEALS015', 0);
 
 CREATE TABLE NEWSINFO(
     NEWS_NO             NUMBER(10)                NOT NULL,
-    MOVIE_NO            VARCHAR2(10CHAR)          NOT NULL,
+    MOVIE_NO            VARCHAR2(10CHAR)          ,
     NEWS_TITLE          VARCHAR2(30CHAR)          NOT NULL,
     NEWS_AUTHER         VARCHAR2(30CHAR)          NOT NULL,
     NEWS_TIMES          DATE                      NOT NULL,

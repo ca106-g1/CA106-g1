@@ -163,7 +163,7 @@ public class MovieInfoServlet extends HttpServlet {
 				byte[] movie_trailer = null;
 				try {
 					Part part = req.getPart("movie_trailer");
-					if (part.getSubmittedFileName() != "") {
+					if (part.getSubmittedFileName() != ""||part.getSize() != 0) {
 						BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
 						ByteArrayOutputStream bao = new ByteArrayOutputStream();
 						int len;
