@@ -9,9 +9,9 @@
 
 <html>
 <head>
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/Back-end/movieinfo/Expansion/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/Back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>updateNewsInfo</title>
 
@@ -53,7 +53,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>新聞資料修改</h3>
-		 <h4><a href="<%=request.getContextPath()%>/Back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -69,7 +69,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back-end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>新聞編號:<font color=red><b>*</b></font></td>

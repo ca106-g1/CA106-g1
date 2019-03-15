@@ -159,6 +159,36 @@
 		<servlet-name>AdvServlet</servlet-name>
 		<url-pattern>/Back_end/adv/adv.do</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 電影種類(後台) -->
+	<servlet>
+		<servlet-name>MovieGenreServlet</servlet-name>
+		<servlet-class>com.moviegenre.controller.MovieGenreServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieGenreServlet</servlet-name>
+		<url-pattern>/Back_end/moviegenre/moviegenre.do</url-pattern>
+	</servlet-mapping>
+		
+	<!-- 電影資訊(後台) -->
+	<servlet>
+		<servlet-name>MovieInfoServlet</servlet-name>
+		<servlet-class>com.movieinfo.controller.MovieInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieInfoServlet</servlet-name>
+		<url-pattern>/Back_end/movieinfo/movieinfo.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 專欄新聞(後台) -->
+	<servlet>
+		<servlet-name>NewsInfoServlet</servlet-name>
+		<servlet-class>com.newsinfo.controller.NewsInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewsInfoServlet</servlet-name>
+		<url-pattern>/Back_end/newsinfo/newsinfo.do</url-pattern>
+	</servlet-mapping>
 
 	<!-- servlet註冊區結束，以下 filter註冊開始 -->
 

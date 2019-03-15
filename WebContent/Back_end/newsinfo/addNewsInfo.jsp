@@ -11,9 +11,9 @@
 <html>
 <head>
 <!-- 寫入日曆步驟 -->
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/Back-end/movieinfo/Expansion/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/Back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <!-- 寫入日曆步驟 -->
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -57,7 +57,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>專欄資料新增</h3></td><td>
-		 <h4><a href="<%=request.getContextPath()%>/Back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -74,7 +74,7 @@
 </c:if>
 
 <!-- 寫入圖片步驟2 傳送方式用Post 並設定傳送格式enctype-->
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back-end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>電影編號:</td>
