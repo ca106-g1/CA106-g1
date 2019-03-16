@@ -386,6 +386,7 @@ CREATE TABLE MOVIEINFO(
     MOVIE_NO            VARCHAR2(10CHAR)        NOT NULL,
     GENRE_NO            NUMBER(3)               NOT NULL,
     MOVIE_NAME          VARCHAR2(100CHAR)       NOT NULL,
+    MOVIE_SCORE         NUMBER(5,2)             ,	
     MOVIE_LEVEL         BLOB                    ,
     MOVIE_DIRECTOR      VARCHAR2(50CHAR)        NOT NULL,
     MOVIE_CAST          VARCHAR2(100CHAR)       NOT NULL,
@@ -412,67 +413,67 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'Interstellar', '', 'Christopher Nolan',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'Interstellar',8.6, '', 'Christopher Nolan',
 'Matthew McConaughey, Anne Hathaway, Jessica Chastain', '', '2h49min', '', '', TO_DATE('2014-11-07','YYYY-MM-DD'), TO_DATE('2015-01-10','YYYY-MM-DD'),
 1200000, 55, 15, 0, 50);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 07, 'The Weather Man', '', 'Gore Verbinski',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 07, 'The Weather Man',6.6, '', 'Gore Verbinski',
 'Nicolas Cage, Hope Davis, Nicholas Hoult ', '', '1h42min', '', '', TO_DATE('2005-10-28','YYYY-MM-DD'), TO_DATE('2005-12-02','YYYY-MM-DD'),
 232000, 50, 10, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 10, 'Eternal Sunshine of the Spotless Mind', '', 'Michel Gondry',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 10, 'Eternal Sunshine of the Spotless Mind',8.3, '', 'Michel Gondry',
 'Jim Carrey, Kate Winslet, Tom Wilkinson', '', '1h48min', '', '', TO_DATE('2004-02-02','YYYY-MM-DD'), TO_DATE('2004-02-02','YYYY-MM-DD'),
 1333000, 20, 5, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'The Butterfly Effect', '', 'Eric Bress, J. Mackye Gruber',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'The Butterfly Effect',7.7, '', 'Eric Bress, J. Mackye Gruber',
 'Ashton Kutcher, Amy Smart, Melora Walters', '', '1h53min', '', '', TO_DATE('2004-04-02','YYYY-MM-DD'), TO_DATE('2004-06-01','YYYY-MM-DD'),
 1123000, 20, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 1, 'Justice League', '', 'Zack Snyder',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 1, 'Justice League',6.5, '', 'Zack Snyder',
 'Ben Affleck, Gal Gadot, Jason Momoa', '', '2h', '', '', TO_DATE('2017-11-16','YYYY-MM-DD'), TO_DATE('2018-01-01','YYYY-MM-DD'),
 23000000, 29999, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Aquamane', '', 'James Wan',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Aquamane',7.3, '', 'James Wan',
 'Jason Momoa, Amber Heard, Willem Dafoe', '', '2h23min', '', '', TO_DATE('2018-12-12','YYYY-MM-DD'), TO_DATE('2019-01-31','YYYY-MM-DD'),
 23000000, 29999, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 12, 'Alita: Battle Angel', '', 'Robert Rodriguez',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 12, 'Alita: Battle Angel',7.6, '', 'Robert Rodriguez',
 'Rosa Salazar, Christoph Waltz, Jennifer Connelly', '', '2h23min', '', '', TO_DATE('2019-02-05','YYYY-MM-DD'), TO_DATE('2019-03-25','YYYY-MM-DD'),
 435677770, 225, 134500, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Captain Marvel', '', 'Anna Boden, Ryan Fleck',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Captain Marvel',7.1, '', 'Anna Boden, Ryan Fleck',
 'Brie Larson, Samuel L. Jackson, Mckenna Grace', '', '2h8min', '', '', TO_DATE('2019-03-06','YYYY-MM-DD'), TO_DATE('2019-04-15','YYYY-MM-DD'),
 23500000, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Shazan!', '', 'David F. Sandberg',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Shazan!','', '', 'David F. Sandberg',
 'Brie Larson, Samuel L. Jackson, Mckenna Grace', '', '2h8min', '', '', TO_DATE('2019-04-03','YYYY-MM-DD'), TO_DATE('2019-05-10','YYYY-MM-DD'),
 23400302, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Hell Boy', '', 'Neil Marshall',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 18, 'Hell Boy', '', '', 'Neil Marshall',
 'Brie Larson, Samuel L. Jackson, Mckenna Grace', '', '2h28min', '', '', TO_DATE('2019-04-12','YYYY-MM-DD'), TO_DATE('2019-05-22','YYYY-MM-DD'),
 430005, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'Pet Sematary', '', 'Kevin Kolsch, Dennis Widmyer',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'Pet Sematary', '', '', 'Kevin Kolsch, Dennis Widmyer',
 'Jason Clarke, Amy Seimetz, John Lithgow', '', '尚未提供', '', '', TO_DATE('2019-04-12','YYYY-MM-DD'), TO_DATE('2019-05-02','YYYY-MM-DD'),
 100, 45002, 50, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 3, 'Fate/Stay Night: Heaven''s Feel - II. Lost Butterfly', '', 'Tomonori Sudo',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 3, 'Fate/Stay Night: Heaven''s Feel - II. Lost Butterfly', '', '', 'Tomonori Sudo',
 'Yu Asakawa, Mai Kadowaki, Hiroshi Kamiya', '', '1h57min', '', '', TO_DATE('2019-03-15','YYYY-MM-DD'), TO_DATE('2019-03-30','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 3, 'How to Train Your Dragon: The Hidden World', '', 'Dean DeBlois',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 3, 'How to Train Your Dragon: The Hidden World', '', '', 'Dean DeBlois',
 'Jay Baruchel, America Ferrera, F. Murray Abrahama', '', '1h47min', '', '', TO_DATE('2019-02-22','YYYY-MM-DD'), TO_DATE('2019-04-03','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 4, 'Stan & Ollie', '', 'Jon S. Baird',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 4, 'Stan & Ollie', '', '', 'Jon S. Baird',
 'Shirley Henderson, John C. Reilly, Steve Coogan', '', '1h38min', '', '', TO_DATE('2019-03-22','YYYY-MM-DD'), TO_DATE('2019-04-07','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 13, '12 Suicidal Teen', '', 'Yukihiko Tsutsumi',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 13, '12 Suicidal Teen', '', '', 'Yukihiko Tsutsumi',
 'Hana Sugisaki, Mackenyu, Takumi Kitamura', '', '1h57min', '', '', TO_DATE('2019-04-12','YYYY-MM-DD'), TO_DATE('2019-05-03','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
-INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'Selfie from Hell', '', 'Erdal Ceylan',
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'Selfie from Hell', '', '', 'Erdal Ceylan',
 'Alyson Walker, Tony Giroux, Meelah Adams', '', '1h13min', '', '', TO_DATE('2019-03-01','YYYY-MM-DD'), TO_DATE('2019-04-03','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
 
