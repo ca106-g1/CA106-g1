@@ -385,7 +385,7 @@ INSERT INTO MOVIEGENRE VALUES (MOVIEGENRE_SEQ.NEXTVAL, 'HERO FILM');
 CREATE TABLE MOVIEINFO(
     MOVIE_NO            VARCHAR2(10CHAR)        NOT NULL,
     GENRE_NO            NUMBER(3)               NOT NULL,
-    MOVIE_NAME          VARCHAR2(100CHAR)        NOT NULL,
+    MOVIE_NAME          VARCHAR2(100CHAR)       NOT NULL,
     MOVIE_LEVEL         BLOB                    ,
     MOVIE_DIRECTOR      VARCHAR2(50CHAR)        NOT NULL,
     MOVIE_CAST          VARCHAR2(100CHAR)       NOT NULL,
@@ -395,11 +395,11 @@ CREATE TABLE MOVIEINFO(
     MOVIE_PIC           BLOB                    ,
     MOVIE_IN            DATE                    NOT NULL,
     MOVIE_OUT           DATE                    NOT NULL,
-    MOVIE_COUNT         NUMBER(10)              NOT NULL,
-    MOVIE_EXP           NUMBER(10)              NOT NULL,
-    MOVIE_NOEXP         NUMBER(10)              NOT NULL,
+    MOVIE_COUNT         NUMBER(10)              ,
+    MOVIE_EXP           NUMBER(10)              ,
+    MOVIE_NOEXP         NUMBER(10)              ,
     MOVIE_TOUCH         NUMBER(10)              ,               
-    MOVIE_TICKET        NUMBER(10)              NOT NULL,
+    MOVIE_TICKET        NUMBER(10)              ,
 CONSTRAINT MOVIENO_PK    PRIMARY KEY(MOVIE_NO),
 CONSTRAINT MOVIEGENRE_GENRENO_FK FOREIGN KEY (GENRE_NO) REFERENCES MOVIEGENRE (GENRE_NO)
 );
