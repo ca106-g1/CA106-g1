@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.mem.model.MemVO;
 import com.sessions.model.SessionsVO;
 
 public interface DepDAO_interface {
@@ -18,5 +19,7 @@ public interface DepDAO_interface {
 
 	public void insertByTicketorder(DepVO depVO, SessionsVO sessionsVO, Connection con) throws SQLException;
 	//訂票交易區間用，新增儲值異動
+	
+	public void insertDepositMain (DepVO depVO , MemVO memVO);
 	
 }

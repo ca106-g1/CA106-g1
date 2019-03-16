@@ -243,6 +243,13 @@ if("mem_insert".equals(action)) {
 		  depVO.setDeposit_change_money(deposit_change_money);
 		  depVO.setDeposit_change_date(deposit_change_date);
 		  
+System.out.println("檢查點1");		  
+
+		  MemVO memVO = (MemVO)req.getSession().getAttribute("memVO");
+		  
+		  
+System.out.println("檢查點2");
+
 		  if (!errorMsgs.isEmpty()) {
 			  req.setAttribute("depVO",depVO);
 			  RequestDispatcher failureView = req
@@ -250,11 +257,20 @@ if("mem_insert".equals(action)) {
 			  failureView.forward(req,res);
 			  return;
 		  }
-		  
+System.out.println("檢查點3");		  
 		  /*******************2.開始新增資料*************************/
 		  DepService depSvc = new DepService();
-		  depVO = depSvc.addDep(deposit_member_no, deposit_change_money,deposit_change_date);
+		  //depVO = depSvc.addDep(deposit_member_no, deposit_change_money,deposit_change_date);
+		  depSvc.insertDepositMain(depVO,memVO);
+		  
+System.out.println("檢查點4");		  
+
 		  req.setAttribute("depVO", depVO);
+		  
+		  
+		  memVO.setMember_point(new MemService().getoneMem(memVO.getMember_no()).getMember_point());
+		  
+System.out.println("檢查點5");
 		  /******************3.新增完成 準備轉交*******************/
 		  
 		  String url = "/Front_end/dep/listOneDep.jsp";
@@ -269,7 +285,7 @@ if("mem_insert".equals(action)) {
 	    			.getRequestDispatcher("/Front_end/dep/addDep.jsp");
 	    	failureView.forward(req, res);
 	    }
-		  
+System.out.println("檢查點6");		  
 	  }
 
 

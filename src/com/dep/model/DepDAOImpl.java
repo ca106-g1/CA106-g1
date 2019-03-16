@@ -13,6 +13,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.mem.model.MemDAOImpl;
+import com.mem.model.MemVO;
 import com.sessions.model.SessionsDAOImpl;
 import com.sessions.model.SessionsVO;
 
@@ -483,6 +485,80 @@ public class DepDAOImpl implements DepDAO_interface {
 		
 		}
 
+	@Override
+	public void insertDepositMain(DepVO depVO, MemVO memVO) {
+		// TODO Auto-generated method stub
+		
+			
+	
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			MemDAOImpl memDAO = null;
+			
+			try {
+				con=ds.getConnection();
+				con.setAutoCommit(false);
+				
+				pstmt = con.prepareStatement(INSERT_DEP , new String[] {"deposit_change_no"});
+				pstmt.setString(1, depVO.getDeposit_member_no());
+				pstmt.setInt(2,depVO.getDeposit_change_money());
+				pstmt.setTimestamp(3,depVO.getDeposit_change_date());
+				
+				pstmt.executeUpdate();
+				
+				rs = pstmt.getGeneratedKeys();
+				rs.next();
+				
+				depVO.setDeposit_change_no(rs.getString(1));
+				
+				rs.close();
+				pstmt.close();
+				
+				memDAO = new MemDAOImpl();
+				memDAO.updateDeposit_point(depVO, memVO, con);
+				
+				con.commit();
+				con.setAutoCommit(true);
+			
+		}catch(SQLException se) {
+		se.printStackTrace();
+		try {
+			con.rollback();
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("A database error occured." +e.getMessage());
+		}
+		throw new RuntimeException("A database error occured." +se.getMessage());
+		
+	}finally {
+		if(rs!=null) {
+			try {
+				rs.close();
+			}catch(SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+		
+		if(pstmt!=null) {
+			try {
+				pstmt.close();
+			}catch(SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+		
+		if(con!=null) {
+			try {
+				con.close();
+			}catch(Exception e) {
+				e.printStackTrace(System.err);
+			}
+		}
+	}
+		
+	}
 
 
 public static void main(String[]args) {
@@ -535,6 +611,8 @@ public static void main(String[]args) {
 	
 	
 	}
+
+
 
 
 

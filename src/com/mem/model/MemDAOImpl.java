@@ -61,8 +61,8 @@ public class MemDAOImpl implements MemDAO_interface {
 	private static final String UPDATE_MEMBER_STATUS = 
 			"UPDATE MEMBER SET MEMBER_STATUS = '1'  WHERE MEMBER_NO = ?";
 	
-//	private static final String UPDATE_POINT = 
-//			"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)+?) WHERE MEMBER_NO = ?";
+	private static final String UPDATE_DEPOSIT_POINT = 
+			"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)+?) WHERE MEMBER_NO = ?";
 	//交易區間專用指令--開始
 	
 		private static final String UPDATE_MEMBER_POINT = 
@@ -579,6 +579,31 @@ public void update_member_status(String member_no) {
 }
 
 
+@Override
+public void updateDeposit_point(DepVO depVO, MemVO memVO, Connection con) throws SQLException {
+	// TODO Auto-generated method stub
+	
+	PreparedStatement pstmt = null;
+	DepDAOImpl depDAO = null;
+	
+	try {
+		pstmt=con.prepareStatement(UPDATE_DEPOSIT_POINT);
+		pstmt.setString(1, memVO.getMember_no());
+		pstmt.setInt(2,depVO.getDeposit_change_money());
+		pstmt.setString(3,memVO.getMember_no());
+		pstmt.executeUpdate();
+//pstmt.close();
+	}catch(SQLException e) {
+		e.printStackTrace();
+		throw(e);
+	} finally {
+		if(pstmt != null) {
+			pstmt.close();
+		}
+	}
+}
+
+
 public static void main(String[]args) { 
 	MemDAOImpl dao = new MemDAOImpl();
 	
@@ -686,6 +711,15 @@ public static void main(String[]args) {
 	 }
 
   }
+
+
+
+
+
+
+
+
+
 
 
 

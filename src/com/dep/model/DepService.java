@@ -3,6 +3,8 @@ package com.dep.model;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.mem.model.MemVO;
+
 public class DepService {
 	
 	private DepDAO_interface dao;
@@ -70,6 +72,11 @@ public DepVO getoneDep_mem_no(String deposit_member_no) {
 	public List<DepVO> findByMem_no1(String deposit_member_no){
 		return dao.findByMem_no1(deposit_member_no);
 		
+	}
+	
+	
+	public void insertDepositMain(DepVO depVO , MemVO memVO) {
+		dao.insertDepositMain(depVO,memVO);
 	}
 
 }

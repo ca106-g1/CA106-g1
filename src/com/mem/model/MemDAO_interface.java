@@ -20,4 +20,7 @@ public interface MemDAO_interface {
 
 	public void updateMember_point(TicketorderVO ticketorderVO, MemVO memVO, DepVO depVO, SessionsVO sessionsVO, Connection con) throws SQLException;
 	//訂票交易區間用，更新點數
+	
+	public void updateDeposit_point(DepVO depVO, MemVO memVO, Connection con) throws SQLException;
+	//訂票交易區間用，從儲值更新會員點數
 }
