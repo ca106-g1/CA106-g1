@@ -29,13 +29,7 @@
 
 
 
-<ul>
 
-	<li><a href = 'listAllMem.jsp'> 全部會員清單</a></li>
-	
-
-
-</ul>
 
 <td>
 	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/mem/mem.do">
