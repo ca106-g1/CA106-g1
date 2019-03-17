@@ -20,8 +20,6 @@ import com.cinema.model.*;
 public class CinemaServlet extends HttpServlet {
 	private static final long serialVersionUID = -6487812844357722812L;
 
-	private List<CinemaVO> list;
-	private Map<String, CinemaVO> map;
 	private CinemaService cinemaService;
 
 	private static final int CINEMA_NAME_LENGTH = 10;
@@ -40,29 +38,8 @@ public class CinemaServlet extends HttpServlet {
 	public void init() throws ServletException {
 
 		cinemaService = new CinemaService();
-		list = new Vector<CinemaVO>();
-		map = new Hashtable<String, CinemaVO>();
-
-		ServletContext sc = getServletContext();
-
-		sc.setAttribute("cinemaList", list);
-		sc.setAttribute("cinemaMap", map);
-
-		fresh();
-
 	}
 
-	private void fresh() {
-
-		list.clear();
-		map.clear();
-
-		for (CinemaVO cinemaVO : cinemaService.getAll()) {
-			list.add(cinemaVO);
-			map.put(cinemaVO.getCinema_no(), cinemaVO);
-		}
-
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -131,7 +108,6 @@ public class CinemaServlet extends HttpServlet {
 			}
 
 			cinemaService.updateCin(cinema_no, cinema_type, cinema_size, cinema_name, cinema_correct, cinema_status);
-			fresh();
 			req.getRequestDispatcher("/Back_end/cinema/ListAllCinema.jsp").forward(req, res);
 		}
 
@@ -195,7 +171,6 @@ public class CinemaServlet extends HttpServlet {
 			}
 
 			cinemaService.addCin(cinema_type, cinema_size, cinema_name, cinema_correct, cinema_status);
-			fresh();
 			req.getRequestDispatcher("/Back_end/cinema/ListAllCinema.jsp").forward(req, res);
 		}
 

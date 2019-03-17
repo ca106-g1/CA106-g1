@@ -33,7 +33,7 @@ z-index:999;
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/sessions/listAllSessions.jsp?action=all">瀏覽所有場次</a> 
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/sessions/listAllSessions.jsp?action=effect">瀏覽有效場次</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/sessions/SessionServlet?action=insert_need">新增場次</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/sessions/select_date.jsp">新增場次</a> 
 				</div>
 					<!-- 以上管理場次-->
 					
@@ -43,7 +43,7 @@ z-index:999;
 			</div>
 		</div>
 	</header>
-	<div style="height:40px;">
+	<div style="height:80px;">
 	</div>
 
 </body>

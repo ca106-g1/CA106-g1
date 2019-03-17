@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cinema.model.CinemaService;
 import com.cinema.model.CinemaVO;
 import com.movieinfo.model.*;
 import com.sessions.model.*;
@@ -32,9 +33,6 @@ public class SessionServlet extends HttpServlet {
 	private static final long serialVersionUID = 6787696732983961662L;
 
 	private SessionsService sessionsService;
-	private List<SessionsVO> list_all;
-	private Map<String, SessionsVO> map;
-	private Map<String, MovieInfoVO> movieMap;
 	private MovieInfoService movieInfoService;
 
 	@Override
@@ -42,48 +40,9 @@ public class SessionServlet extends HttpServlet {
 
 		sessionsService = new SessionsService();
 		movieInfoService = new MovieInfoService();
-
-		list_all = new Vector<SessionsVO>();
-		map = new Hashtable<String, SessionsVO>();
-		movieMap = new Hashtable<String, MovieInfoVO>();
-
-		ServletContext context = getServletContext();
-
-		context.setAttribute("sessionList_all", list_all);
-		context.setAttribute("sessionMap", map);
-		context.setAttribute("movieMap", movieMap);
-
-		freshSessions();
-		freshMovieInfoVO();
 	}
 
-	private void freshSessions() {
 
-		list_all.clear();
-
-		long time = System.currentTimeMillis();
-
-		for (SessionsVO sessionsVO : sessionsService.getAll()) {
-
-			list_all.add(sessionsVO);
-
-			if (sessionsVO.getSessions_start().getTime() > time) {
-				map.put(sessionsVO.getSessions_no(), sessionsVO);
-			}
-
-		}
-
-	}
-
-	private void freshMovieInfoVO() {
-		movieMap.clear();
-
-		for (MovieInfoVO movieInfoVO : movieInfoService.getAll()) {
-
-			movieMap.put(movieInfoVO.getMovie_no(), movieInfoVO);
-		}
-
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -97,7 +56,7 @@ public class SessionServlet extends HttpServlet {
 
 			String[] sessionss = req.getParameterValues("sessions");
 
-			Map<String, CinemaVO> map = (Map<String, CinemaVO>) getServletContext().getAttribute("cinemaMap");
+			CinemaService cinemaService = new CinemaService();
 
 			for (String string : sessionss) {
 
@@ -113,22 +72,25 @@ public class SessionServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 
-				ss.addSes(strs[0], strs[1], new java.sql.Timestamp(udate.getTime()), map.get(strs[1]).getCinema_type(),
-						map.get(strs[1]).getCinema_size());
+				CinemaVO cinemaVO = cinemaService.getOneCin(strs[1]);
+				
+				ss.addSes(strs[0], strs[1], new java.sql.Timestamp(udate.getTime()), cinemaVO.getCinema_type(),
+						cinemaVO.getCinema_size());
 
 			}
 
-			freshSessions();
 
 			MyRequest myRequest = new MyRequest(req);
 
-			if ((list_all.size() % 10) == 0) {
+			int size = sessionsService.getAll().size();
+			
+			if ((size % 10) == 0) {
 
-				myRequest.setMyParameter("whichPage", String.valueOf(list_all.size() / 10));
+				myRequest.setMyParameter("whichPage", String.valueOf(size / 10));
 
 			} else {
 
-				myRequest.setMyParameter("whichPage", String.valueOf((list_all.size() / 10) + 1));
+				myRequest.setMyParameter("whichPage", String.valueOf((size / 10) + 1));
 
 			}
 

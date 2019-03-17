@@ -13,7 +13,7 @@ bottom:0px;
 </style>
 </head>
 <body>
-<div style="height:40px;">
+<div style="height:120px;">
 	</div>
 <footer class="container-fluid">
 <p>我是Footer</p>

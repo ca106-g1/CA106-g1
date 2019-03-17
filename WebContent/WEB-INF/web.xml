@@ -206,10 +206,15 @@
 		<dispatcher>ASYNC</dispatcher>
 	</filter-mapping>
 
-<!-- 開始gary註冊第二購票頁面需經過前端濾器-->
+	<!-- 開始gary註冊第二購票頁面需經過前端濾器 -->
+
+	<filter>
+		<filter-name>LoginFilter_for_chooseSeatS</filter-name>
+		<filter-class>com.login_filter.LoginFilter.LoginFilter_for_chooseSeatS</filter-class>
+	</filter>
 
 	<filter-mapping>
-		<filter-name>LoginFilter</filter-name>
+		<filter-name>LoginFilter_for_chooseSeatS</filter-name>
 		<url-pattern>/Front_end/ticketorder_/chooseSeatS.jsp</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
@@ -218,7 +223,7 @@
 		<dispatcher>ASYNC</dispatcher>
 	</filter-mapping>
 
-<!-- 開始gary註冊第二購票頁面需經過前端濾器-->
+	<!-- 結束gary註冊第二購票頁面需經過前端濾器 -->
 
 	<filter>
 		<filter-name>BackLoginFilter</filter-name>

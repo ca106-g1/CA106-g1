@@ -6,9 +6,6 @@
 <%@ page import="com.movieinfo.model.*"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.text.DateFormat"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -51,12 +48,11 @@
 	<jsp:useBean id="movieInfoVOList" scope="page" class="java.util.ArrayList"/>
 	<jsp:useBean id="cinemaSvc" class="com.cinema.model.CinemaService" scope="page"/>
 	<%
-	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-	Date theDate = df.parse(request.getParameter("theDate"));
+	long now = System.currentTimeMillis();
 	
 	for(MovieInfoVO movieInfoVO : movieInfoSvc.getAll()){
 		
-		if(movieInfoVO.getMovie_in().before(theDate) && movieInfoVO.getMovie_out().after(theDate)){
+		if(movieInfoVO.getMovie_in().getTime()<now && movieInfoVO.getMovie_out().getTime()>now){
 			movieInfoVOList.add(movieInfoVO);
 		}
 	}
@@ -83,7 +79,7 @@
 					
 					<!-- 以上錯誤訊息處理 -->
 						<div>
-							<input name="hiredate" id="f_date1" type="text" value="${param.theDate}" disabled/>
+							<input name="hiredate" id="f_date1" type="text" value="${param.theDate}"/>
 						</div>
 					
 					<!-- 以上日期輸入 -->
@@ -116,7 +112,7 @@
 						<div>
 						<select size="1" id="movie_no" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:178px;">
 							<c:forEach var="movieInfoVO" items="${movieInfoVOList}">
-								<option value="${movieInfoVO.movie_no}" <c:if test="${param.movie_no eq movieInfoVO.movie_no}">selected</c:if>>${movieInfoVO.movie_name}
+								<option value="${movieInfoVO.movie_no}" >${movieInfoVO.movie_name}
 							</c:forEach>
 						</select>
 						</div>
@@ -204,6 +200,7 @@
     	
     	if(count == 0 ){
     		
+    		$id("f_date1").disabled="";
         	$id("upOrDown").disabled="";
         	$id("time").disabled="";
         	$id("half").disabled="";
@@ -250,6 +247,7 @@
     		
     	}    	
     	
+    	$id("f_date1").disabled="disabled";
     	$id("upOrDown").disabled="disabled";
     	$id("time").disabled="disabled";
     	$id("half").disabled="disabled";
@@ -340,6 +338,33 @@
 <% 
   java.sql.Date hiredate =new java.sql.Date(System.currentTimeMillis()+24*60*60*1000);
 %>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/sessions/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/Back_end/sessions/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/Back_end/sessions/datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<style>
+  .xdsoft_datetimepicker .xdsoft_datepicker {
+           width:  300px;   /* width:  300px; */
+  }
+  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+           height: 151px;   /* height:  151px; */
+  }
+</style>
+
+<script>
+        $.datetimepicker.setLocale('zh');
+        $('#f_date1').datetimepicker({
+ 	       theme: '',              //theme: 'dark',
+	       timepicker:false,       //timepicker:true,
+	       //step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+		   value: '<%=hiredate%>', // value:   new Date(),
+           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
+           //startDate:	            '2017/07/10',  // 起始日
+           minDate:               '<%=hiredate%>', // 去除今日(不含)之前
+           //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+        });
+</script>
 
 
 	<!-- 工作區結束 -->
@@ -347,9 +372,15 @@
 	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script	src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>

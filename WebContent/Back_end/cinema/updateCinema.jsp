@@ -25,15 +25,14 @@
 	<h1>設定廳院</h1>
 
 	<!-- 工作區開始 -->
-
+	<jsp:useBean id="cinemaSvc" class="com.cinema.model.CinemaService" scope="page"/>
 	<%
 	CinemaVO cinemaVO ;
 	Object object = request.getAttribute("cinemaVO");
 	
 	if(object == null){
-		Map cinemaMap = (Map) application.getAttribute("cinemaMap");
-		cinemaVO = (CinemaVO) (cinemaMap.get(request.getParameter("cinema_no")));
-		request.setAttribute("cinemaVO", cinemaVO);
+		cinemaVO = cinemaSvc.getOneCin(request.getParameter("cinema_no"));
+		pageContext.setAttribute("cinemaVO", cinemaVO);
 	} else{
 		cinemaVO = (CinemaVO)object;
 	}

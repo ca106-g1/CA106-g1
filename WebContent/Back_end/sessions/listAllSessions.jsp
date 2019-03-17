@@ -43,6 +43,10 @@
 
 	<!-- 工作區開始 -->
 	
+	<jsp:useBean id="sessionsSvc" scope="page" class="com.sessions.model.SessionsService"/>
+	<jsp:useBean id="movieInfoSvc" scope="page" class="com.movieinfo.model.MovieInfoService"/>
+	<jsp:useBean id="cinemaSvc" class="com.cinema.model.CinemaService" scope="page"/>
+	
 	<%
 	
 	List<SessionsVO> list;
@@ -50,14 +54,14 @@
 	
 	if("all".equals(request.getParameter("action"))){
 		
-		list = (List<SessionsVO>)application.getAttribute("sessionList_all");
+		list = sessionsSvc.getAll();
 		
 	}else{
 		list = new ArrayList<SessionsVO>();
 		
 		long time = System.currentTimeMillis();
 		
-		for(SessionsVO sessionsVO : (List<SessionsVO>)application.getAttribute("sessionList_all")){
+		for(SessionsVO sessionsVO : sessionsSvc.getAll()){
 			if(sessionsVO.getSessions_start().getTime() > time){
 				list.add(sessionsVO);
 			}
@@ -86,8 +90,8 @@
 			<tr>
 			
 				<td>${sessionsVO.sessions_no}</td>
-				<td>${movieMap[ sessionsVO.movie_no ].movie_name }</td>
-				<td>${cinemaMap[ sessionsVO.cinema_no ].cinema_name}</td>
+				<td>${movieInfoSvc.getOneMovieInfo(sessionsVO.movie_no).movie_name }</td>
+				<td>${cinemaSvc.getOneCin(sessionsVO.cinema_no).cinema_name}</td>
 				<td>${sessionsVO.sessions_start}</td>
 				<td>${sessionsVO.sessions_remaining}</td>
 				<td><a class = "btn btn-primary" href="<%=request.getContextPath()%>/Back_end/session/checkOneSession.jsp?sessions_no=${sessionsVO.sessions_no}">查看</a></td>
