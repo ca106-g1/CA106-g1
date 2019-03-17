@@ -28,6 +28,8 @@ import javax.servlet.http.Part;
 import com.mem.model.MemService;
 import com.mem.model.MemVO;
 import com.email.model.*;
+import com.ticketorder.model.*;
+import com.movieticke.model.*;
 @MultipartConfig
 public class memberServlet extends HttpServlet {
 
@@ -43,14 +45,26 @@ public class memberServlet extends HttpServlet {
 			List<String>errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			String member_no = new String(req.getParameter("member_no").trim());
-			System.out.println(member_no);
+			MemVO memVO = new MemVO();
 			MemService memSvc = new MemService();
-			MemVO memVO = memSvc.getoneMem(member_no);
-			if (memVO.getMember_status().equals("0")) {
-				memSvc.update_member_status(member_no);
-				
-				//res.sendRedirect("/Front_end/Login.jsp");
+			
+			String member_status = req.getParameter("verification");
+			System.out.println(member_status);
+			memSvc.getAll()
+			.stream()
+			.filter( _memVO -> member_status.equals(_memVO.getMember_status()))
+			.forEach( 
+					_memVO -> 
+						{
+							memVO.setMember_no(_memVO.getMember_no());
+							memVO.setMember_status(_memVO.getMember_status());
+						}
+					);
+			
+			System.out.println(memVO.getMember_no());
+			if (memVO.getMember_no() != null) {
+				System.out.println("阿母，我成功了!!!!");
+				memSvc.update_member_status(memVO.getMember_no());
 				RequestDispatcher successView = req.getRequestDispatcher("/Front_end/mem/pressToStatusChange.jsp");
 				successView.forward(req, res);
 				return;
@@ -524,7 +538,7 @@ public class memberServlet extends HttpServlet {
 						
 			/***************會員狀態*************************/
 						
-						String member_status = "0";
+						String member_status = new Double((Math.random()*Math.pow(10, 20))/Math.pow(10, 20)).toString();
 						
 						
 						
@@ -580,8 +594,9 @@ public class memberServlet extends HttpServlet {
 					      
 //					    String member_name = "親愛的會員";
 //					    String member_password = "您的密碼";
-					    String messageText = "Hello! " + member_name + " 請謹記您的密碼: " + member_password + "\n" +" (已經啟用)"+"\n"+"請點擊連結重新登入"+"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/Front_end/mem/mem.do"+"?action=verified&"+"member_no="+memVO.getMember_no(); 
-					      
+					  //String messageText = "Hello! " + member_name + " 請謹記您的密碼: " + member_password + "\n" +" (已經啟用)"+"\n"+"請點擊連結重新登入"+"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/Front_end/mem/mem.do"+"?action=verified&"+"member_no="+memVO.getMember_no(); 
+					    String messageText = "Hello! " + member_name + " 請謹記您的密碼: " + member_password + "\n" +" (已經啟用)"+"\n"+"請點擊連結重新登入"+"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/Front_end/mem/mem.do?action=verified&verification="+member_status;  
+					    
 					    MailService mailService = new MailService();
 					    mailService.sendMail(to, subject, messageText);
 						
@@ -659,13 +674,45 @@ if("getOne_For_Display_Back".equals(action)) {
 		}
 		
 		
+//20190317更新
+	if("getOne_For_Display_Tic_Mem".equals(action)) {
+		
+		String member_no = req.getParameter("member_no");
 		
 		
+		TicketorderService ticketorderSvc = new TicketorderService();
+		List<TicketorderVO> list = ticketorderSvc.findByMem_no1(member_no);
 		
+		req.setAttribute("list",list);
+		String url="/Front_end/ticketorder_/listOneTic_Mem.jsp";
+		RequestDispatcher successView = req.getRequestDispatcher(url);
+		successView.forward(req, res);
 		
 		
 	}
 	
+	
+	if("getOne_For_Display_Tic_Mov".equals(action)) {
+		
+		String order_no = req.getParameter("order_no");
+		
+		MovieticketService movieticketSvc = new MovieticketService();
+		List<MovieticketVO> list = movieticketSvc.findByOrder_no(order_no);
+		
+		req.setAttribute("list", list);
+		String url = "/Front_end/movieticke_/listOneTic_Mov.jsp";
+		RequestDispatcher successView = req.getRequestDispatcher(url);
+		successView.forward(req, res);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}
 	public class MailService {
 		
 		// 設定傳送郵件:至收信人的Email信箱,Email主旨,Email內容

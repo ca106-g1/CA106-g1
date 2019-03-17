@@ -76,20 +76,16 @@
 </td>
 
 <td>
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/ticketorder/ticketorder.do">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/mem/mem.do">
 		<input type = "submit" value="購票紀錄查詢">
 		<input type = "hidden" name="member_no" value="${memVO.member_no}">
-		<input type = "hidden" name="action" value="getOneTicketorder"></FORM>
+		<input type = "hidden" name="action" value="getOne_For_Display_Tic_Mem"></FORM>
 </td>
 
 
 
 
-	會員基本資料管理
 	
-	
-	
-	訂票紀錄查詢
 	
 	<FORM METHOD="POST" ACTION = "logoutHandler.do">
 	<td><input type = "submit" value="登出">

@@ -79,4 +79,10 @@ public class TicketorderService {
 	}
 		
 
+	//20190317更新
+	
+	public List<TicketorderVO> findByMem_no1(String member_no){
+		return dao.findByMem_no1(member_no);
+	}
+	
 }

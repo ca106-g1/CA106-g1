@@ -16,5 +16,8 @@ public interface MovieticketDAO_interface {
 	public MovieticketVO findByPrimaryKey(String mt_no);
 	public List<MovieticketVO> getAll();
 	
+	// 20190317更新
+	public List<MovieticketVO> findByOrder_no(String order_no);
+	
 	public void insertByTicketorder(TicketorderVO ticketorderVO, MemVO memVO, DepVO depVO, SessionsVO sessionsVO, List<MovieticketVO> ListOfMovieticketVO, Connection con)throws SQLException;
 }

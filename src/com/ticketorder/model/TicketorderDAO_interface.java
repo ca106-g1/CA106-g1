@@ -16,6 +16,9 @@ public interface TicketorderDAO_interface {
     public TicketorderVO findByPrimaryKey(String order_no);
     public List<TicketorderVO> getAll();
     
+    //20190317 新增
+    public List<TicketorderVO> findByMem_no1(String member_no);
+    
     public void insertTicketorderMain(TicketorderVO ticketorderVO, MemVO memVO, DepVO depVO, SessionsVO sessionsVO, List<MovieticketVO> ListOfMovieticketVO);
 	/* MemVO          member_no         會員編號
 	 * TicketorderVO  order_amount      訂單金額

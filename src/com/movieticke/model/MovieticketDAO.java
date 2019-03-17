@@ -39,6 +39,12 @@ public class MovieticketDAO implements MovieticketDAO_interface {
 
 	// 交易區間專用指令--結束?, mt_qr=?, mt_admission=?, mt_share=? where mt_no = ?";
 	
+	
+	//20190317更新
+	private static final String GET_ONE_TIC_ORD_NO=
+			"SELECT * FROM MOVIETICKET WHERE ORDER_NO=?";
+	
+	
 	@Override
 	public void insert(MovieticketVO movieticketVO) {
 
@@ -316,6 +322,70 @@ public class MovieticketDAO implements MovieticketDAO_interface {
 			}
 		}
 		
+	}
+
+	//20190317更新
+	@Override
+	public List<MovieticketVO> findByOrder_no(String order_no) {
+		// TODO Auto-generated method stub
+		List<MovieticketVO> list = new ArrayList<MovieticketVO>();
+		MovieticketVO movieticketVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_TIC_ORD_NO);
+			pstmt.setString(1, order_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				movieticketVO = new MovieticketVO();
+				movieticketVO.setMt_no(rs.getString("mt_no"));
+				movieticketVO.setOrder_no(rs.getString("order_no"));
+				movieticketVO.setTi_no(rs.getString("ti_no"));
+				movieticketVO.setMt_qr(rs.getBytes("mt_qr"));
+				movieticketVO.setMt_admission(rs.getInt("mt_admission"));
+				movieticketVO.setMt_share(rs.getString("mt_share"));
+				list.add(movieticketVO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
+		
+		
+		return list;
 	}
 	
 	

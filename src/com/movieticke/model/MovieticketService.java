@@ -58,6 +58,10 @@ public class MovieticketService {
 		return dao.getAll();
 	}
 	
+	public List<MovieticketVO> findByOrder_no(String order_no){
+		return dao.findByOrder_no(order_no);
+		
+	}
 	
 	
 	

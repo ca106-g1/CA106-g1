@@ -39,7 +39,9 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 	private static final String UPDATE = 
 			"UPDATE TICKETORDER set member_no=?, fd_no=?, sessions_no=?, employee_no=?, order_group=?, order_takemeals=?, order_time=?, order_amount=? where order_no = ?";
 	
-	
+	//20190317更新
+	private static final String GET_ONE_TC_MEM_NO=
+			"SELECT * FROM TICKETORDER WHERE MEMBER_NO=?";
 	
 	
 	//交易區間專用指令--開始
@@ -412,6 +414,97 @@ public class TicketorderDAO implements TicketorderDAO_interface {
 				}
 			}
 		}
+		return list;
+	}
+
+
+	//20190317新增
+
+	@Override
+	public List<TicketorderVO> findByMem_no1(String member_no) {
+		// TODO Auto-generated method stub
+		
+//System.out.println("檢查點1");		
+		
+		List<TicketorderVO> list = new ArrayList<TicketorderVO>();
+		TicketorderVO ticketorderVO = null;
+		
+//System.out.println("檢查點2");		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+//System.out.println("檢查點3");	
+		
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_TC_MEM_NO);
+			pstmt.setString(1, member_no);
+			rs = pstmt.executeQuery();
+			
+//System.out.println("檢查點4");	
+			
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				ticketorderVO = new TicketorderVO();
+				ticketorderVO.setOrder_no(rs.getString("order_no"));
+				ticketorderVO.setMember_no(rs.getString("member_no"));
+				ticketorderVO.setFd_no(rs.getString("fd_no"));
+				ticketorderVO.setSession_no(rs.getString("sessions_no"));
+				ticketorderVO.setEmployee_no(rs.getString("employee_no"));
+				ticketorderVO.setOrder_group(rs.getInt("order_group"));
+				ticketorderVO.setOrder_takemeals(rs.getInt("order_takemeals"));
+				ticketorderVO.setOrder_time(rs.getTimestamp("order_time"));
+				ticketorderVO.setOrder_amount(rs.getInt("order_amount"));
+				list.add(ticketorderVO); // Store the row in the list
+			}
+			
+//System.out.println("檢查點5");	
+			
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return list;
 	}
 
