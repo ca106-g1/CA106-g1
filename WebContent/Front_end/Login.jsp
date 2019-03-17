@@ -72,6 +72,7 @@ display: inline;
 <p><input type = "hidden" name="action" value="getone_for_login">
    <input type = "submit"  value = "送出">
    <input type = "reset"   value = "取消">
+   <input type = "submit"  value = "忘記密碼">
 </p>
 </form>
 
