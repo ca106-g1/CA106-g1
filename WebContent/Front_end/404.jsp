@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div>
-	<img id="hot" src="<%=request.getContextPath() %>/back-end/movieinfo/images/hot.jpg">
+	<img id="hot" src="<%=request.getContextPath() %>/Back_end/movieinfo/images/hot.jpg">
 	</div>
 </body>
 </html>
