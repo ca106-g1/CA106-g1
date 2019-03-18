@@ -116,7 +116,7 @@
 <%-- 			 value="<%= (advVO==null)? "0" : advVO.getAd_type()%>" /></td> --%>
 		<td>
        		<select size="1" name="ad_type">
-       			<option></option>
+       			<option>-----</option>
        			<option value="0">下架</option>
           		<option value="1">上架</option>
        		</select>
@@ -146,7 +146,7 @@
 <% 
   java.sql.Timestamp ad_start = null;
   try {
-	  ad_start = advVO.getAd_start();
+	    ad_start = advVO.getAd_start();
    } catch (Exception e) {
 	    ad_start = new java.sql.Timestamp(System.currentTimeMillis());
    }

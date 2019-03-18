@@ -113,8 +113,8 @@
 			
 			
 			</td>
-			<td>${advVO.ad_start}</td>
-			<td>${advVO.ad_end}</td> 
+			<td>${advVO.getAd_start().toString().substring(0,19)}</td>
+			<td>${advVO.getAd_end().toString().substring(0,19)}</td> 
 			<td>
 <%-- 			${advVO.ad_type} --%>
 

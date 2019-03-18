@@ -170,7 +170,7 @@
 <% 
   java.sql.Timestamp ad_end = null;
   try {
-	   ad_end = advVO.getAd_end();
+	  ad_end = advVO.getAd_end();
    } catch (Exception e) {
 	   ad_end = new java.sql.Timestamp(System.currentTimeMillis());
    }
