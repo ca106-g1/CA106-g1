@@ -129,7 +129,7 @@ public class LoginHandler extends HttpServlet{
 						errorMsgs.add("密碼輸入錯誤");
 					}
 				
-				else if (memVO.getMember_status().equals ("0")) {
+				else if (!memVO.getMember_status().equals ("1")) {
 					errorMsgs.add("帳號未驗證，請至信箱收取驗證信");
 				}
 				
