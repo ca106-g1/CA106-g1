@@ -63,15 +63,18 @@ public class LoginFilter_for_chooseSeatS implements Filter{
 			return;
 			
 		}else {
-
-			MyRequest myRequest = new MyRequest(req);
 			
 			Map<String, String> requestS = reqs.get(session);
+			
+			MyRequest myRequest = new MyRequest(req);
+			
+			if(requestS != null) {
 			
 			requestS.forEach((k,v) -> myRequest.setMyParameter(k, v));
 			
 			reqs.remove(session);
 			
+			}
 			chain.doFilter(myRequest, response);
 		}
 		
