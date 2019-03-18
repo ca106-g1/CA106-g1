@@ -33,8 +33,8 @@
    <tr><td><h3>Back-end MovieInfo: Home</h3></td></tr>
    <tr>
 		<td><h4>
-			<a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp">電影種類編輯</a>
-  			<a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp">新聞專欄編輯</a>
+			<a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">電影種類編輯</a>
+  			<a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp">新聞專欄編輯</a>
 		</h4></td>
 	</tr>
   
@@ -67,7 +67,7 @@
   </li>
   
   <li>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" >
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" >
         <b>電影編號查詢 :</b>
         <input type="text" name="movie_no" placeholder="ex:MI00000001">
         <input type="hidden" name="action" value="getOne_For_Display">
@@ -78,7 +78,7 @@
   <jsp:useBean id="movieinfoSvc" scope="page" class="com.movieinfo.model.MovieInfoService" />
    
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" >
        <b>電影編號查詢:</b>
        <select size="1" name="movie_no">
          <c:forEach var="movieinfoVO" items="${movieinfoSvc.all}" > 
@@ -91,7 +91,7 @@
   </li>
   
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" >
        <b>電影名稱查詢:</b>
        <select size="1" name="movie_no">
          <c:forEach var="movieinfoVO" items="${movieinfoSvc.all}" > 

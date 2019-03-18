@@ -19,11 +19,11 @@
 <head>
 
 <link	rel=
-	"stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
+	"stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
 <script src=
-	"<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.js"></script>
+	"<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
 <script src=
-	"<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+	"<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>addMovieInfo</title>
@@ -71,7 +71,7 @@ th, td {
 		<tr>
 			<td><h3>後台-電影資料新增</h3></td>
 			<td><h4>
-					<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg"
+					<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg"
 					   width="52" height="62" border="0">回首頁</a>
 			</h4></td>
 		</tr>
@@ -91,7 +91,7 @@ th, td {
 
 	<!-- 寫入圖片步驟2 傳送方式用Post 並設定傳送格式enctype-->
 	<FORM METHOD="post"
-		ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do"
+		ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do"
 		name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
