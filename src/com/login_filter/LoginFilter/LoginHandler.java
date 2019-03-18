@@ -129,29 +129,33 @@ public class LoginHandler extends HttpServlet{
 						errorMsgs.add("密碼輸入錯誤");
 					}
 				
+				else if (memVO.getMember_status().equals ("0")) {
+					errorMsgs.add("帳號未驗證，請至信箱收取驗證信");
+				}
+				
 
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
 					failureView.forward(req, res);
 					return;
 				}
-System.out.println("檢查點1");
+
 				/************************* 3.查詢完成 準備轉交 ***********************************/
-				//req.getSession().setAttribute("memVO", memVO); // 資料庫取出的empVO物件，存入reqi
-System.out.println("檢查點2");
+				
+
 				
 				HttpSession session = req.getSession();
 				session.setAttribute("memVO", memVO);
 				
-System.out.println("檢查點3");				
+				
 				try {
 				
-System.out.println("檢查點4");
+
 
 					String location =(String) session.getAttribute("location");
 					if (location !=null) {
 						
-System.out.println("檢查點5");
+
 
 						session.removeAttribute("location");
 						res.sendRedirect(location);
@@ -159,15 +163,15 @@ System.out.println("檢查點5");
 
 					}
 					
-System.out.println("檢查點6");				
+				
 
 				}catch( Exception ignored) { }
 				
-System.out.println("檢查點7");		
+	
 
 				res.sendRedirect(req.getContextPath()+"/Front_end/mem/select_page.jsp");
 				
-System.out.println("檢查點8");	
+	
 
 //				String url = "/Front_end/mem/select_page.jsp";
 //				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交至LoginSucess.jsp
