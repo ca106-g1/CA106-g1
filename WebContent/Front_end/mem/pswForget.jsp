@@ -12,34 +12,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
-<title>JOIN影城登入系統</title>
-
-<style>
-
-table#table-1{
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top:5px;
-	margin-bottom:10px;
-	border:3px ridge Gray;
-	height: 80px;
-	text-align: center;
-}
-table#table-1 h4{
-
-color:red;
-display:block;
-margin-bottom:1px;
-}
-h4{
-color:blue;
-display: inline;
-}
-
-</style>
-
-
-
+<title></title>
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -47,14 +20,7 @@ display: inline;
 
 	<!-- 工作區開始 -->
 	
-	
-	<table id = "table-1">
-
-		<tr><td><h3>Join揪影影城登入系統</h3></td></tr>
-
-	</table>
-
-<%--錯誤表列 --%>
+	<%--錯誤表列 --%>
 <c:if test="${not empty errorMsgs }">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -63,31 +29,25 @@ display: inline;
 			</c:forEach>
 	</ul>
 </c:if >
-	
 
 <form  method = "post"   action = "loginHandler.do"  >
 
 <p>帳號: <input type = "text"  name = "member_account"  ></p>
-<p>密碼: <input type = "password"  name = "member_password" ></p>
-<p><input type = "hidden" name="action" value="getone_for_login">
+<p>信箱: <input type = "email"  name = "member_email" ></p>
+<p><input type = "hidden" name="action" value="getone_for_pswForget">
    <input type = "submit"  value = "送出">
    <input type = "reset"   value = "取消">
-   <a href="<%=request.getContextPath()%>/Front_end/mem/pswForget.jsp">忘記密碼</a>
 </p>
 </form>
 
-<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 
-*如果您還未註冊會員 請點擊<a href="<%=request.getContextPath()%>/Front_end/mem/Registered.jsp">註冊</a>
 
 	<!-- 工作區結束 -->
 	
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
 		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
 		crossorigin="anonymous"></script>

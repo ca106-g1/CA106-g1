@@ -129,6 +129,7 @@
 	<servlet-mapping>
 		<servlet-name>LoginHandler</servlet-name>
 		<url-pattern>/Front_end/loginHandler.do</url-pattern>
+		<url-pattern>/Front_end/mem/loginHandler.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
