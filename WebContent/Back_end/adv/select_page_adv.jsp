@@ -2,9 +2,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
+
+
+
+
 <title>IBM Adv: Home</title>
 
 <style>
@@ -30,6 +43,11 @@
 
 </head>
 <body bgcolor='white'>
+
+
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
+
+
 
 <table id="table-1">
    <tr><td><h3>IBM Adv: Home</h3><h4>( MVC )</h4></td></tr>
@@ -98,6 +116,21 @@
 <ul>
   <li><a href='addAdv.jsp'>Add</a> a new Adv.</li>
 </ul>
+
+
+
+	<!-- 工作區結束 -->
+	
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+
 
 
 </body>

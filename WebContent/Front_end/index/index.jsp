@@ -1,14 +1,30 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--  <%@ page import="java.util.*" %> --%>
 
 
 
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> -->
+
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
+
+
+
+
+
+
 <title>員工資料新增 - addEmp.jsp</title>
 
 <style>
@@ -55,7 +71,7 @@
 
 
 <body onload="connect();" onunload="disconnect();">
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 
 <!-- <FORM METHOD="post" ACTION="adv.do" name="form1" enctype="multipart/form-data"> -->
@@ -132,6 +148,16 @@
 <!-- <p>asdf</p> -->
 
 
+
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 
 </body>
@@ -254,7 +280,7 @@ function readURL(input){
 	
 
     
-    var MyPoint = "/MyEchoServer/peter/309";
+    var MyPoint = "/MyEchoServer/pet";
     var host = window.location.host;
     var path = window.location.pathname;
     var webCtx = path.substring(0, path.indexOf('/', 1));

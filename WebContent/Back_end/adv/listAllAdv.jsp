@@ -11,9 +11,21 @@
     pageContext.setAttribute("list",list);
 %>
 
-
-<html>
+<!doctype html>
+<html  lang="en">
 <head>
+
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
+
+
 <title>所有員工資料 - listAllAdv.jsp</title>
 
 <style>
@@ -51,6 +63,9 @@
 
 </head>
 <body bgcolor='white'>
+
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
+
 
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
@@ -150,6 +165,21 @@
 </table>
 <%@ include file="page2.file" %>
 
+
+
+
+
+	<!-- 工作區結束 -->
+	
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 
 

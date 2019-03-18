@@ -11,9 +11,21 @@
     pageContext.setAttribute("list",list);
 %>
 
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
+
+
+
 <title>所有員工資料 - listAllAdv.jsp</title>
 
 <style>
@@ -51,11 +63,13 @@
 
 </head>
 <body bgcolor='white' onload="connect();">
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
-<h4>此頁練習採用 EL 的寫法取值:</h4>
+
+<!-- <h4>此頁練習採用 EL 的寫法取值:</h4> -->
 <table id="table-1">
 	<tr><td>
-		 <h3>所有員工資料 - listAllAdv.jsp</h3>
+		 <h3>所有廣告資料 - listAllAdv.jsp</h3>
 <!-- 		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 	</td></tr>
 </table>
@@ -179,6 +193,20 @@
 
 
 
+	<!-- 工作區結束 -->
+	
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+
+
+
 </body>
 </html>
 
@@ -226,7 +254,7 @@ function ShowTime(){
 	
 
     
-    var MyPoint = "/MyEchoServer/peter/309";
+    var MyPoint = "/MyEchoServer/peter";
     var host = window.location.host;
     var path = window.location.pathname;
     var webCtx = path.substring(0, path.indexOf('/', 1));

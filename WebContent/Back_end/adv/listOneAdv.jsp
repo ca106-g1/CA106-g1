@@ -9,9 +9,22 @@
 	AdvVO advVO = (AdvVO) request.getAttribute("advVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
 
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>員工資料 - listOneAdv.jsp</title>
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
+
+
+
+<title>廣告資料 - listOneAdv.jsp</title>
 
 <style>
   table#table-1 {
@@ -48,6 +61,10 @@
 
 </head>
 <body bgcolor='white' onload="connect();">
+
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
+
+
 
 <h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
@@ -109,6 +126,20 @@
 
 
 
+	<!-- 工作區結束 -->
+	
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+
+
+
 </body>
 </html>
 
@@ -119,7 +150,7 @@
 	
 
     
-    var MyPoint = "/MyEchoServer/peter/309";
+    var MyPoint = "/MyEchoServer/peter";
     var host = window.location.host;
     var path = window.location.pathname;
     var webCtx = path.substring(0, path.indexOf('/', 1));

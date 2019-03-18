@@ -1,5 +1,5 @@
 package serverEndpoint;
-import java.io.*; 
+import java.io.*;  
 import java.nio.ByteBuffer;
 import java.util.*;
 
@@ -15,23 +15,27 @@ import javax.websocket.OnError;
 import javax.websocket.OnClose;
 import javax.websocket.CloseReason;
 
-@ServerEndpoint("/MyEchoServer/{myName}/{myRoom}")
+@ServerEndpoint("/MyEchoServer/{myName}")
 public class MyEchoServer {
 	
 private static final Set<Session> allSessions = Collections.synchronizedSet(new HashSet<Session>());
-	
+private static final Map<Session, String> map = Collections.synchronizedMap(new HashMap<>());
+
+
+
 	@OnOpen
-	public void onOpen(@PathParam("myName") String myName, @PathParam("myRoom") int myRoom, Session userSession) throws IOException {
+	public void onOpen(@PathParam("myName") String myName,  Session userSession) throws IOException {
 		allSessions.add(userSession);
+		map.put(userSession, myName);
 		System.out.println(userSession.getId() + ": 已連線");
 		System.out.println(myName + ": 已連線");
-		System.out.println(myRoom + ": 房號");
+//		System.out.println(myRoom + ": 房號");
 //		userSession.getBasicRemote().sendText("WebSocket 連線成功");
 	}
 
 	
 	@OnMessage
-	public void onMessage(Session userSession, String message) {
+	public void onMessage(@PathParam("myName") String myName, Session userSession, String message) {
 		
 
 			 
@@ -40,7 +44,7 @@ private static final Set<Session> allSessions = Collections.synchronizedSet(new 
 		
 		
 		for (Session session : allSessions) {
-			if (session.isOpen())
+			if (session.isOpen() && map.get(session).equals(myName))
 				session.getAsyncRemote().sendText(message);
 //				session.getAsyncRemote().sendText(js.toString());
 		}

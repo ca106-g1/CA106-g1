@@ -5,10 +5,21 @@
 <%
   AdvVO advVO = (AdvVO) request.getAttribute("advVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+<!-- Required meta tags -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
+
+
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> -->
 <title>員工資料修改 - update_emp_input.jsp</title>
 
 <style>
@@ -45,6 +56,10 @@
 
 </head>
 <body bgcolor='white'>
+
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
+
+
 
 <table id="table-1">
 	<tr><td>
@@ -145,6 +160,30 @@
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="ad_no" value="<%=advVO.getAd_no()%>">
 <input type="submit" value="送出修改"></FORM>
+
+
+
+
+	<!-- 工作區結束 -->
+	
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+
+
+
+
+
+
+
+
+
 </body>
 
 
