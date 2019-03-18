@@ -34,7 +34,7 @@
 	</ul>
 </c:if >
 
-<FORM METHOD="post" ACTION="mem.do" name="form1">
+<FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data">
 <table>
 
 <p>*密碼: 
@@ -42,7 +42,26 @@
 
 <p>*再次確認密碼:
 <input type = "password"  name = "member_password1" value="<%= (memVO==null)?"":""%>"  required> </p>
+
+
+
+<%
+	java.sql.Date member_birthday = null;
+	try{
+		member_birthday = memVO.getMember_birthday();
+	}catch (Exception e){
+		member_birthday = new java.sql.Date(System.currentTimeMillis());
+	}
+%>
+
+
+<input type="hidden" name="member_birthday" id="f_date" value="<%= (memVO==null)? member_birthday:memVO.getMember_birthday()%>">
 </table>
+
+<input type = "hidden" id = "img" name = "member_picture"> </p>
+<input type = "hidden"  name = "member_back_verification" value="${memVO.member_back_verification}"> </p>
+
+
 
 <br>
 <input type = "hidden" name="action" value="update_psw">

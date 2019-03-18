@@ -6,6 +6,8 @@
 
 <jsp:useBean id="memVO" class="com.mem.model.MemVO" scope="session"/>
 
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -131,7 +133,7 @@
 <input type = "text"  name = "member_credit_number" value="${memVO.member_credit_number}"> </p> 
 
 <p>背面後三碼: 
-<input type = "text"  name = "member_back_verification" value="<%= (memVO==null)?"":memVO.getMember_back_verification()%>"> </p>
+<input type = "text"  name = "member_back_verification" value="${memVO.member_back_verification}"> </p>
 
 </table>
 <br>
