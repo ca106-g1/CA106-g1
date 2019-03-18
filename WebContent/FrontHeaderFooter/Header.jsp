@@ -22,14 +22,10 @@ z-index:999;
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">線上訂票</a> 
 					</div>
 				</div>
-			</div>
-		</div>
-	</header>
-	<div style="height:40px;">
-	</div>
+				
 				<!-- 以上是訂票功能 -->
-	
-			<div class="col-1">
+				
+				<div class="col-1">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">電影簡介</button>						
@@ -51,6 +47,15 @@ z-index:999;
 					</div>
 			</div>
 					<!-- 以上是影視新聞功能-->
+				
+				
+			</div>
+		</div>
+	</header>
+	<div style="height:40px;">
+	</div>
+	
+			
 
 	
 
