@@ -121,7 +121,7 @@ z-index:999;
 						aria-haspopup="true" aria-expanded="false">會員管理</button>						
 					<div class="dropdown-menu" aria-labelledby="EmployeeButton">
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/mem/select_page.jsp">管理首頁</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/emp/listAllMem.jsp">會員瀏覽</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/mem/listAllMem.jsp">會員瀏覽</a> 
 					</div>
 				</div>
 					
