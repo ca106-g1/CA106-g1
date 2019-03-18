@@ -76,6 +76,19 @@ z-index:999;
 					<!-- 以上管理影視新聞-->
 					
 					
+				<div class="col-1">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownAdvButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">廣告管理</button>						
+					<div class="dropdown-menu" aria-labelledby="dropdownAdvButton">
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/adv/listAllAdv.jsp">瀏覽所有廣告</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/adv/addAdv.jsp">新增廣告</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/adv/select_page_adv.jsp">廣告管理</a> 
+					</div>
+				</div>
+					<!-- 以上管理廣告-->
+					
+					
 					
 			</div>
 		</div>
