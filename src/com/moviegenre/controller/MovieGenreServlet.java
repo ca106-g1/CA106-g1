@@ -41,7 +41,7 @@ public class MovieGenreServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -54,7 +54,7 @@ public class MovieGenreServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -67,21 +67,21 @@ public class MovieGenreServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/moviegenre/listOneMovieGenre.jsp");
+							.getRequestDispatcher("/Back_end/moviegenre/listOneMovieGenre.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("moviegenreVO", moviegenreVO); // 資料庫取出的empVO物件,存入req
-				String url = "/back-end/moviegenre/listOneMovieGenre.jsp";
+				String url = "/Back_end/moviegenre/listOneMovieGenre.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -103,14 +103,14 @@ public class MovieGenreServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("moviegenreVO", moviegenreVO); // 資料庫取出的empVO物件,存入req
-				String url = "/back-end/moviegenre/update_MovieGenre_input.jsp";
+				String url = "/Back_end/moviegenre/update_MovieGenre_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/listAllMovieGenre.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/listAllMovieGenre.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -142,7 +142,7 @@ public class MovieGenreServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("moviegenreVO", moviegenreVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/moviegenre/update_MovieGenre_input.jsp");
+							.getRequestDispatcher("/Back_end/moviegenre/update_MovieGenre_input.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -153,14 +153,14 @@ public class MovieGenreServlet extends HttpServlet {
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("moviegenreVO", moviegenreVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/back-end/moviegenre/listOneMovieGenre.jsp";
+				String url = "/Back_end/moviegenre/listOneMovieGenre.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/update_MovieGenre_input.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("Back_end/moviegenre/update_MovieGenre_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -188,7 +188,7 @@ public class MovieGenreServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("moviegenreVO", moviegenreVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/addMovieGenre.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/addMovieGenre.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -198,14 +198,14 @@ public class MovieGenreServlet extends HttpServlet {
 				moviegenreVO = moviegenreSvc.addMovieGenre(genre_name);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/back-end/moviegenre/listAllMovieGenre.jsp";
+				String url = "/Back_end/moviegenre/listAllMovieGenre.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/addMovieGenre.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/addMovieGenre.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -226,14 +226,14 @@ public class MovieGenreServlet extends HttpServlet {
 				moviegenreSvc.deleteMovieGenre(genre_no);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/back-end/moviegenre/listAllMovieGenre.jsp";
+				String url = "/Back_end/moviegenre/listAllMovieGenre.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:此種類有相關連電影" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/moviegenre/listAllMovieGenre.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/listAllMovieGenre.jsp");
 				failureView.forward(req, res);
 			}
 		}
