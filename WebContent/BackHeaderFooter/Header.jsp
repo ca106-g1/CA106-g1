@@ -35,11 +35,48 @@ z-index:999;
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/sessions/listAllSessions.jsp?action=effect">瀏覽有效場次</a> 
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/sessions/select_date.jsp">新增場次</a> 
 				</div>
+				</div>
 					<!-- 以上管理場次-->
 					
-					
-					
+				<div class="col-1">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">電影種類管理</button>						
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/moviegenre/listAllMovieGenre.jsp">瀏覽所有電影種類</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/moviegenre/addMovieGenre.jsp">新增電影種類</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">電影種類管理</a> 
+					</div>
 				</div>
+					<!-- 以上管理電影種類-->
+
+				<div class="col-1">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">電影資訊管理</button>						
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/listAllMovieInfo.jsp">瀏覽所有電影</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/listAllMovieIn.jsp">瀏覽有效電影</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/addMovieInfo.jsp">新增電影</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/select_page.jsp">電影管理</a> 
+					</div>
+				</div>
+					<!-- 以上管理電影資訊-->
+
+				<div class="col-1">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">影視新聞管理</button>						
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp">瀏覽所有新聞</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/NewsInfo/addNewsInfo.jsp">新增新聞</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp">新聞管理</a> 
+					</div>
+				</div>
+					<!-- 以上管理影視新聞-->
+					
+					
+					
 			</div>
 		</div>
 	</header>
