@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ page import="com.emp.model.*" %>
 <!DOCTYPE html>
@@ -40,64 +41,10 @@ z-index:999;
 				</div>
 					<!-- 以上管理場次-->
 					
-				<div class="col-1">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						id="dropdownMenuButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">電影種類管理</button>						
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/moviegenre/listAllMovieGenre.jsp">瀏覽所有電影種類</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/moviegenre/addMovieGenre.jsp">新增電影種類</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">電影種類管理</a> 
-					</div>
-				</div>
-					<!-- 以上管理電影種類-->
-
-				<div class="col-1">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						id="dropdownMenuButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">電影資訊管理</button>						
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/listAllMovieInfo.jsp">瀏覽所有電影</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/listAllMovieIn.jsp">瀏覽有效電影</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/addMovieInfo.jsp">新增電影</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/movieinfo/select_page.jsp">電影管理</a> 
-					</div>
-				</div>
-					<!-- 以上管理電影資訊-->
-
-				<div class="col-1">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						id="dropdownMenuButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">影視新聞管理</button>						
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp">瀏覽所有新聞</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/addNewsInfo.jsp">新增新聞</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp">新聞管理</a> 
-					</div>
-				</div>
-					<!-- 以上管理影視新聞-->
-					
-					
-				<div class="col-1">
-					<button class="btn btn-secondary dropdown-toggle" type="button"
-						id="dropdownAdvButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">廣告管理</button>						
-					<div class="dropdown-menu" aria-labelledby="dropdownAdvButton">
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/adv/listAllAdv.jsp">瀏覽所有廣告</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/adv/addAdv.jsp">新增廣告</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/adv/select_page_adv.jsp">廣告管理</a> 
-					</div>
-				</div>
-					<!-- 以上管理廣告-->
 					
 					
 					
-					
-<!-- 子傑開始	 -->
-					
-					
-					
-				<div class="col-1">
+					<div class="col-1">
 				
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="EmployeeButton" data-toggle="dropdown"
@@ -161,6 +108,23 @@ z-index:999;
 					<!-- 以上員工登入 -->
 					
 					<c:if test="${not empty empVO}">
+					
+					
+					
+					
+					<div class="col-1">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMemIndexButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" >回首頁</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMemIndexButton">
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/emp/homeIndex.jsp">回員工首頁</a>  
+					</div>
+				</div>
+					
+					
+					
+					
+					
 					<li><a>Hello:
 					<font color=#ea7500>${empVO.employee_name}</font>您好
 					</a></li>
@@ -189,9 +153,8 @@ z-index:999;
 					
 					
 					
-					<!-- 以上員工登出 -->	
+					<!-- 以上員工登出 -->
 					
-<!-- 子傑結束	 -->					
 					
 					
 					
