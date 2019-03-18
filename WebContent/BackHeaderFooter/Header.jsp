@@ -69,7 +69,7 @@ z-index:999;
 						aria-haspopup="true" aria-expanded="false">影視新聞管理</button>						
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp">瀏覽所有新聞</a> 
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/NewsInfo/addNewsInfo.jsp">新增新聞</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsInfo/addNewsInfo.jsp">新增新聞</a> 
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp">新聞管理</a> 
 					</div>
 				</div>
