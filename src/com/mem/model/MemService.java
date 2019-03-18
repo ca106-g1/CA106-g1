@@ -94,5 +94,12 @@ public class MemService {
 		dao.update_member_status(member_no);
 	}
 	
+	
+	public void update_member_password(String member_account , String member_password) {
+		// TODO Auto-generated method stub
+		
+		dao.updateMember_password(member_account,member_password);
+	}
+	
 
 }

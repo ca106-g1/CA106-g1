@@ -23,4 +23,8 @@ public interface MemDAO_interface {
 	
 	public void updateDeposit_point(DepVO depVO, MemVO memVO, Connection con) throws SQLException;
 	//訂票交易區間用，從儲值更新會員點數
+	
+	
+	//20190318更新
+	public void updateMember_password(String member_account ,String member_password);
 }

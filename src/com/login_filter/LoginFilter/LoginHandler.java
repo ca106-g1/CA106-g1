@@ -41,7 +41,7 @@ public class LoginHandler extends HttpServlet{
 		res.setContentType("text/html; charset=UTF-8");
 		String action = req.getParameter("action");
 		
-		if ("getone_for_login".equals(action)) { // 來自Login.jsp的請求
+		if ("getone_for_login".equals(action)) { // 來自pswForget.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -222,8 +222,8 @@ System.out.println("檢查點10");
 
 				/* 信箱錯誤處理 */
 
-				String str2 = req.getParameter("member_email");
-				if (str2 == null || (str2.trim()).length() == 0) {
+				String member_email = req.getParameter("member_email");
+				if (member_email == null || (member_email.trim()).length() == 0) {
 					errorMsgs.add("請輸入信箱");
 				}
 
@@ -272,21 +272,23 @@ System.out.println("檢查點1");
 System.out.println("檢查點2");
 				
 				HttpSession session = req.getSession();
-				session.setAttribute("memVO", memVO);
 				
 				/***************************************信箱發送********************************************/
 //				
-//				String to = member_email;
-//			      
-//			    String subject = "修改密碼通知";
-//			      
-////			    String member_name = "親愛的會員";
-////			    String member_password = "您的密碼";
-//			  //String messageText = "Hello! " + member_name + " 請謹記您的密碼: " + member_password + "\n" +" (已經啟用)"+"\n"+"請點擊連結重新登入"+"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/Front_end/mem/mem.do"+"?action=verified&"+"member_no="+memVO.getMember_no(); 
-//			    String messageText = "Hello! " + member_name +"\n"+"請點擊連結修改密碼"+"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/Front_end/mem/mem.do?action=verified&verification="+member_status;  
-//			    
-//			    MailService mailService = new MailService();
-//			    mailService.sendMail(to, subject, messageText);
+				//String member_password = new Double((Math.random()*Math.pow(10, 20))/Math.pow(10, 20)).toString();  
+				String member_password = new Integer((int) (Math.random()*900001+100000)).toString();
+				MemService memSvc2 = new MemService();
+				memSvc2.update_member_password(str1,member_password);
+				
+				String subject = "修改密碼通知";
+			      
+//			    String member_name = "親愛的會員";
+//			    String member_password = "您的密碼";
+			  //String messageText = "Hello! " + member_name + " 請謹記您的密碼: " + member_password + "\n" +" (已經啟用)"+"\n"+"請點擊連結重新登入"+"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/Front_end/mem/mem.do"+"?action=verified&"+"member_no="+memVO.getMember_no(); 
+			    String messageText = "Hello! " + memVO.getMember_name() +" 請謹記您的新密碼: " + member_password +"\n"+"請點擊連結重返登入畫面"+"http://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/Front_end/Login.jsp";  
+			    
+			    MailService mailService = new MailService();
+			    mailService.sendMail(member_email, subject, messageText);
 
 
 					req.setAttribute("memVO",memVO);

@@ -69,6 +69,12 @@ public class MemDAOImpl implements MemDAO_interface {
 				"UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE MEMBER_NO = ?)-?) WHERE MEMBER_NO = ?";
 		
 		//交易區間專用指令--結束
+		
+		
+	//20190318更新
+		private static final String UPDATE_MEMBER_PASSWORD = 
+				"UPDATE MEMBER SET MEMBER_PASSWORD = ? WHERE MEMBER_ACCOUNT = ?";
+		
 
 	@Override
 	public void insert(MemVO memVO) {
@@ -604,6 +610,71 @@ public void updateDeposit_point(DepVO depVO, MemVO memVO, Connection con) throws
 }
 
 
+
+
+@Override
+public void updateMember_password(String member_account ,String member_password) {
+	// TODO Auto-generated method stub
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+		
+		con = ds.getConnection();
+		pstmt = con.prepareStatement(UPDATE_MEMBER_PASSWORD);
+		
+
+		
+		pstmt.setString(1,member_password);
+		pstmt.setString(2,member_account);
+		pstmt.executeUpdate();
+		
+		
+		
+		
+		
+	} catch (SQLException se) {
+		// TODO Auto-generated catch block
+		
+		throw new RuntimeException ("A database error occured"
+				+se.getMessage());
+		
+	}finally {
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			}catch(SQLException se) {
+				throw new RuntimeException ("Could't load datebase driver "
+						+se.getMessage());
+			}
+		}
+		
+		if (con != null) {
+			try {
+				con.close();
+			}catch (SQLException se) {
+				throw new RuntimeException ("Could't load datebase driver "
+						+se.getMessage());
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+}
+
+
 public static void main(String[]args) { 
 	MemDAOImpl dao = new MemDAOImpl();
 	
@@ -711,6 +782,15 @@ public static void main(String[]args) {
 	 }
 
   }
+
+
+
+
+
+
+
+
+
 
 
 
