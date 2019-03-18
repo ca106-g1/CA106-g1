@@ -60,8 +60,8 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>所有新聞資料</h3>
-		 <h4><a href="<%=request.getContextPath()%>/front-end/Home.jsp">
-		 <img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/Front_end/Home.jsp">
+		 <img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -102,7 +102,7 @@
 			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
 			<%}else{%><td></td><%}%>  
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="繼續閱讀">
 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Display"></FORM>

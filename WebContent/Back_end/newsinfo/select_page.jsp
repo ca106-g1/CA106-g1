@@ -53,7 +53,7 @@
 
 <ul>
   <li>All Newsinfo    <a href='<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp'>EDIT</a>.<br><br></li>
-  <li><a href='<%=request.getContextPath()%>/back-end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li><br>
+  <li><a href='<%=request.getContextPath()%>/Back_end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li><br>
   
   <li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" >

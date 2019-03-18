@@ -52,7 +52,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>單一電影資料</h3>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/listAllNewsInfo.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 

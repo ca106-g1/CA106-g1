@@ -64,7 +64,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>電影簡介</h3>
-		 <h4><a href="<%=request.getContextPath()%>/front-end/Home.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/Front_end/Home.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
