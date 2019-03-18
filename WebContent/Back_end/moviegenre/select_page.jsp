@@ -34,12 +34,12 @@ h4 {
 
 	<table id="table-1">
 		<tr>
-			<td><h3>Back_end MovieGenre: Home</h3></td>
+			<td><h3>Back-end MovieGenre: Home</h3></td>
 		</tr>
 		<tr>
 			<td><h4>
-				<a href="<%=request.getContextPath()%>/Back_end/movieinfo/select_page.jsp">電影資訊編輯</a>
-				<a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp">新聞專欄編輯</a>
+				<a href="<%=request.getContextPath()%>/back-end/movieinfo/select_page.jsp">電影資訊編輯</a>
+				<a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp">新聞專欄編輯</a>
 			</h4></td>
 		</tr>
 	</table>
@@ -59,17 +59,17 @@ h4 {
 
 	<ul>
 		<li>
-			Movie Genre<a href='<%=request.getContextPath()%>/Back_end/moviegenre/listAllMovieGenre.jsp'>    EDIT</a>.
+			Movie Genre<a href='<%=request.getContextPath()%>/back-end/moviegenre/listAllMovieGenre.jsp'>    EDIT</a>.
 		</li><br>
 			
 		<li>
-			<a href='<%=request.getContextPath()%>/Back_end/moviegenre/addMovieGenre.jsp'>ADD</a>    a Movie Genre.
+			<a href='<%=request.getContextPath()%>/back-end/moviegenre/addMovieGenre.jsp'>ADD</a>    a Movie Genre.
 		</li><br>
 			
 		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/moviegenre/moviegenre.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do">
 				<b>輸入種類編號:</b>
-				<input type="text" name="genre_no" value=""> 
+				<input type="text" name="genre_no" placeholder="ex:1"> 
 				<input type="hidden" name="action" value="getOne_For_Display"> 
 				<input type="submit" value="送出">
 			</FORM>
@@ -79,7 +79,7 @@ h4 {
 
 
 		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/moviegenre/moviegenre.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do">
 				<b>選擇種類名稱:</b> 
 				<select size="1" name="genre_no">
 					<c:forEach var="moviegenreVO" items="${moviegenreSvc.all}">

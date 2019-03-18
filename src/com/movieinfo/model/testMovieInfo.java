@@ -81,9 +81,10 @@ public class testMovieInfo extends HttpServlet {
 //		System.out.println(vo.getMovie_touch());
 //		System.out.println(vo.getMovie_ticket());
 		
-		List<MovieInfoVO> list = service.getAll();
+		List<MovieInfoVO> list = service.getAllByScore();
 		for(MovieInfoVO a:list) {
-			System.out.println(a.getMovie_no());
+			System.out.println("電影名稱:"+a.getMovie_name());
+			System.out.println(a.getMovie_score());
 		}
 	}
 }

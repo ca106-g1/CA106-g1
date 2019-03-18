@@ -52,7 +52,7 @@
 			<tr>
 				<td><h3>後台-電影種類新增</h3></td>
 				<td><h4>
-					<a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a>
+					<a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a>
 				</h4></td>
 			</tr>
 		</table>
@@ -69,12 +69,12 @@
 			</ul>
 		</c:if>
 		
-		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/moviegenre/moviegenre.do" name="form1">
+		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/moviegenre/moviegenre.do" name="form1">
 		<table>
 			<tr>
-				<td>電影種類名稱</td>
+				<td>電影種類名稱:<font color=red size="2"><b>*</b></font></td>
 				<td>
-					<input type="TEXT" name="genre_name" size="45" value="<%= (moviegenreVO==null)? "" : moviegenreVO.getGenre_name()%>" />
+					<input type="TEXT" name="genre_name" size="45" placeholder="ex:Action" />
 				</td>
 			</tr>
 			

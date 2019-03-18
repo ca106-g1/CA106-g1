@@ -8,5 +8,6 @@ public interface MovieInfoDAO_interface {
     public void delete(String movie_no);
     public MovieInfoVO findByPrimaryKey(String movie_no);
     public List<MovieInfoVO> getAll();
+    public List<MovieInfoVO> getAllByScore();
 
 }

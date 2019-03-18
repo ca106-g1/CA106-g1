@@ -1,22 +1,29 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.movieinfo.model.*"%>
+<%@ page import="com.moviegenre.model.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
 <!-- 寫入圖片步驟1 -->
 
 <%
 	MovieInfoVO movieinfoVO = (MovieInfoVO) request.getAttribute("movieinfoVO");
+
+	MovieGenreService moviegenreSvc = new MovieGenreService();
+	List<MovieGenreVO> listgenre = moviegenreSvc.getAll();
+	pageContext.setAttribute("listgenre",listgenre);
 %>
 
 <html>
 <head>
 
 <link	rel=
-	"stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+	"stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
 <script src=
-	"<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
+	"<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.js"></script>
 <script src=
-	"<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+	"<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>addMovieInfo</title>
@@ -64,7 +71,7 @@ th, td {
 		<tr>
 			<td><h3>後台-電影資料新增</h3></td>
 			<td><h4>
-					<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg"
+					<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg"
 					   width="52" height="62" border="0">回首頁</a>
 			</h4></td>
 		</tr>
@@ -84,47 +91,50 @@ th, td {
 
 	<!-- 寫入圖片步驟2 傳送方式用Post 並設定傳送格式enctype-->
 	<FORM METHOD="post"
-		ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do"
+		ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do"
 		name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td>電影種類:</td>
-				<td><input type="TEXT" name="genre_no" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入電影種類" : movieinfoVO.getGenre_no()%>" /></td>
-			</tr>
+				<td>電影種類:<font color=red size="2"><b>*</b></font></td>
+<!-- 				利用varStatus="s" 將value變成數字(index從0開始,count從1開始) -->
+				<td><select size="1" name="genre_no">		
+						<c:forEach var="genrename" items="${listgenre}" varStatus="s"> 
+	          				<option value="${s.count}">${genrename.genre_name}</option>
+	          			</c:forEach> 
+          			</select>
+         		</td>
+			</tr>		
 			<tr>
-				<td>電影名稱:</td>
+				<td>電影名稱:<font color=red size="2"><b>*</b></font></td>
 				<td><input type="TEXT" name="movie_name" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影名稱" : movieinfoVO.getMovie_name()%>" /></td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td>電影分級:</td> -->
-<!-- 				<td> -->
-<!-- 					<input type="file" name="movie_level"onchange='readURL(this)' /><br> -->
-<%-- 					<img class='pic' src="data:img/png;base64,${encodeText}"${(movieinfoVO.movie_level==null)? 'style="display:nome"' : '' }> --%>
-<!-- 				</td> -->
-<!-- 			</tr> -->
 			<tr>
-				<td>電影分級:</td>
+				<td>電影分數:</td>
+				<td><input type="TEXT" name="movie_score" size="45"
+					value="<%=(movieinfoVO == null) ? "請輸入IMDB分數" : movieinfoVO.getMovie_score()%>" /></td>
+			</tr>
+			<tr>
+				<td>電影分級:<font color=red size="2"><b>*</b></font></td>
 				<td><input type="file" name="movie_level"></td>
 			</tr>
 			<tr>
-				<td>電影導演:</td>
+				<td>電影導演:<font color=red size="2"><b>*</b></font></td>
 				<td><input type="TEXT" name="movie_director" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影導演" : movieinfoVO.getMovie_director()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影演員:</td>
+				<td>電影演員:<font color=red size="2"><b>*</b></font></td>
 				<td><input type="TEXT" name="movie_cast" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影演員" : movieinfoVO.getMovie_cast()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影簡介:</td>
+				<td>電影簡介:<font color=red size="2"><b>*</b></font></td>
 				<td><input type="TEXT" name="movie_intro" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影片長:</td>
+				<td>電影片長:<font color=red size="2"><b>*</b></font></td>
 				<td><input type="TEXT" name="movie_length" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影片長" : movieinfoVO.getMovie_length()%>" /></td>
 			</tr>
@@ -137,12 +147,12 @@ th, td {
 				<td><input type="file" name="movie_pic"></td>
 			</tr>
 			<tr>
-				<td>電影上映時間:</td>
+				<td>電影上映時間:<font color=red size="2"><b>*</b></font></td>
 				<td><input name="movie_in" class="f_date1" type="text"
 					value="<%=(movieinfoVO == null) ? "請輸入上映時間" : movieinfoVO.getMovie_in()%>"></td>
 			</tr>
 			<tr>
-				<td>電影下映時間:</td>
+				<td>電影下映時間:<font color=red size="2"><b>*</b></font></td>
 				<td><input name="movie_out" class="f_date1" type="text" 
 					value="<%=(movieinfoVO == null) ? "請輸入下映時間" : movieinfoVO.getMovie_out()%>"></td>
 			</tr>
@@ -171,6 +181,7 @@ th, td {
 				<td><input type="TEXT" name="movie_ticket" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入片長加價" : movieinfoVO.getMovie_touch()%>" /></td>
 			</tr>
+			
 		</table>
 			<br>
 			<input type="hidden" name="action" value="insert"> 

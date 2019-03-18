@@ -9,9 +9,9 @@
 
 <html>
 <head>
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>updateNewsInfo</title>
 
@@ -53,7 +53,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>新聞資料修改</h3>
-		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -69,26 +69,26 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>新聞編號:<font color=red><b>*</b></font></td>
 		<td><%=newsinfoVO.getNews_no()%></td>
 	</tr>
 	<tr>
-		<td>電影編號:<font color=red><b>*</b></font></td>
-		<td><input type="TEXT" name="movie_no" size="45" value="*<%=newsinfoVO.getMovie_no()%>" /></td>
+		<td>電影編號:</td>
+		<td><input type="TEXT" name="movie_no" size="45" value="<%=newsinfoVO.getMovie_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>新聞標題:</td>
+		<td>新聞標題:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_title" size="45" value="<%=newsinfoVO.getNews_title()%>" /></td>
 	</tr>
 	<tr>
-		<td>新聞作者:</td>
+		<td>新聞作者:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_auther" size="45"	value="<%=newsinfoVO.getNews_auther()%>" /></td>
 	</tr>
 	<tr>
-		<td>發文日期:</td>
+		<td>發文日期:<font color=red><b>*</b></font></td>
 		<td><input name="news_times" id="f_date1" type="Text" ></td>
 	</tr>
 	<tr>
@@ -96,7 +96,7 @@
 		<td><input type="file" name="news_pic"></td>
 	</tr>
 	<tr>
-		<td>新聞內容:</td>
+		<td>新聞內容:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_con" size="45"	value="<%= (newsinfoVO==null)? "這是一篇新聞內容" : newsinfoVO.getNews_con()%>" /></td>
 	</tr>
 	

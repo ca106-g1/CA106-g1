@@ -6,6 +6,7 @@ public class MovieInfoVO implements java.io.Serializable {
 	private String movie_no;
 	private Integer genre_no;
 	private String movie_name;
+	private Double movie_score;
 	private byte[] movie_level;
 	private String movie_director;
 	private String movie_cast;
@@ -39,6 +40,12 @@ public class MovieInfoVO implements java.io.Serializable {
 	}
 	public void setMovie_name(String movie_name) {
 		this.movie_name = movie_name;
+	}
+	public Double getMovie_score() {
+		return movie_score;
+	}
+	public void setMovie_score(Double movie_score) {
+		this.movie_score = movie_score;
 	}
 	public byte[] getMovie_level() {
 		return movie_level;

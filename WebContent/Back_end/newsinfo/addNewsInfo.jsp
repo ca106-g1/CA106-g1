@@ -11,9 +11,9 @@
 <html>
 <head>
 <!-- 寫入日曆步驟 -->
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/back-end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <!-- 寫入日曆步驟 -->
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -56,12 +56,12 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>專欄資料新增</h3></td><td>
-		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
+		 <h3>新聞專欄新增</h3></td><td>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>專欄資料新增:</h3>
+<h3>新聞專欄新增:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -74,25 +74,25 @@
 </c:if>
 
 <!-- 寫入圖片步驟2 傳送方式用Post 並設定傳送格式enctype-->
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>電影編號:</td>
 		<td><input type="TEXT" name="movie_no" size="45" 
-			 value="<%= (newsinfoVO==null)? "*1" : newsinfoVO.getMovie_no()%>" /></td>
+			 placeholder="ex:1" /></td>
 	</tr>
 	<tr>
-		<td>專欄標題:</td>
+		<td>專欄標題:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_title" size="45"
 			 value="<%= (newsinfoVO==null)? "這是一個專欄標題" : newsinfoVO.getNews_title()%>" /></td>
 	</tr>
 	<tr>
-		<td>專欄作者:</td>
+		<td>專欄作者:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_auther" size="45"
 			 value="<%= (newsinfoVO==null)? "這是一個專欄作者" : newsinfoVO.getNews_auther()%>" /></td>
 	</tr>
 	<tr>
-		<td>發文日期:</td>
+		<td>發文日期:<font color=red><b>*</b></font></td>
 		<td><input name="news_times" id="f_date1" type="text"></td>
 	</tr>
 	<tr>
@@ -100,7 +100,7 @@
 		<td><input type="file" name="news_pic"></td>
 	</tr>
 	<tr>
-		<td>專欄內容:</td>
+		<td>專欄內容:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_con" size="45"
 			 value="<%= (newsinfoVO==null)? "這是一篇專欄內容" : newsinfoVO.getNews_con()%>" /></td>
 	</tr>

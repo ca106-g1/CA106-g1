@@ -77,7 +77,7 @@ pageContext.setAttribute("msc",moviegenreSvc);
 <table id="table-1">
 	<tr><td>
 		 <h3>後台-電影資料清單</h3>
-		 <h4><a href="select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
+		 <h4><a href="select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -143,7 +143,16 @@ pageContext.setAttribute("msc",moviegenreSvc);
 			<td>${movieinfoVO.movie_cast}</td> 
 			<td>${movieinfoVO.movie_length}</td>
 			<td>${movieinfoVO.movie_intro}</td>
-			<td>${movieinfoVO.movie_trailer}</td>
+<!-- 新增movie_trailer -->			
+			<c:set var="movie_trailer" value="${movieinfoVO.movie_trailer}"></c:set>
+			<%
+				byte a[]= (byte[])pageContext.getAttribute("movie_trailer");
+				String encode2 = null;
+				if(a != null){
+					encode2 = Base64.encode(a);
+			%>
+			<td><video id="trailer" src="data:video/mp4;base64,<%=encode2%>"></video></td>
+			<%}else{%><td></td><%}%>
 			<td>${movieinfoVO.movie_in}</td>
 			<td>${movieinfoVO.movie_out}</td> 
 			<td>${movieinfoVO.movie_count}</td>
@@ -152,13 +161,13 @@ pageContext.setAttribute("msc",moviegenreSvc);
 			<td>${movieinfoVO.movie_touch}</td>
 			<td>${movieinfoVO.movie_ticket}</td> 
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>

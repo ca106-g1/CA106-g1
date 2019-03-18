@@ -13,6 +13,7 @@ public class MovieInfoService {
 	public MovieInfoVO addMovieInfo(
 			Integer genre_no,
 			String movie_name,
+			Double movie_score,
 			byte[] movie_level,
 			String movie_director,
 			String movie_cast,
@@ -32,6 +33,7 @@ public class MovieInfoService {
 
 		movieinfoVO.setGenre_no(genre_no);
 		movieinfoVO.setMovie_name(movie_name);
+		movieinfoVO.setMovie_score(movie_score);
 		movieinfoVO.setMovie_level(movie_level);
 		movieinfoVO.setMovie_director(movie_director);
 		movieinfoVO.setMovie_cast(movie_cast);
@@ -55,6 +57,7 @@ public class MovieInfoService {
 			String movie_no,
 			Integer genre_no,
 			String movie_name,
+			Double movie_score,
 			byte[] movie_level,
 			String movie_director,
 			String movie_cast,
@@ -75,6 +78,7 @@ public class MovieInfoService {
 		movieinfoVO.setMovie_no(movie_no);
 		movieinfoVO.setGenre_no(genre_no);
 		movieinfoVO.setMovie_name(movie_name);
+		movieinfoVO.setMovie_score(movie_score);
 		movieinfoVO.setMovie_level(movie_level);
 		movieinfoVO.setMovie_director(movie_director);
 		movieinfoVO.setMovie_cast(movie_cast);
@@ -104,6 +108,10 @@ public class MovieInfoService {
 
 	public List<MovieInfoVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public List<MovieInfoVO> getAllByScore() {
+		return dao.getAllByScore();
 	}
 
 }

@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.newsinfo.model.*"%>
 <%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
-
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -19,7 +18,7 @@
 
 <style>
   table#table-1 {
-	background-color: #00caca;
+	background-color: #CCCCFF;
     border: 2px solid black;
     text-align: center;
   }
@@ -32,7 +31,8 @@
     color: blue;
     display: inline;
   }
-  #pic {
+  
+   img, #pic{
   	width:135px;
   	hight:200px;
   }
@@ -59,8 +59,8 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>所有專欄資料</h3>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp">
+		 <h3>所有新聞資料</h3>
+		 <h4><a href="<%=request.getContextPath()%>/front-end/Home.jsp">
 		 <img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -77,21 +77,17 @@
 
 <table>
 	<tr>
-		<th>專欄編號</th>
-		<th>電影編號</th>
-		<th>專欄標題</th>
-		<th>專欄作者</th>
+		<th>新聞標題</th>
+		<th>新聞作者</th>
 		<th>發文日期</th>
-		<th>專欄圖片</th>
-		<!-- <th>專欄內容</th> -->
-		<th colspan="2">編輯</th>
+		<th>新聞圖片</th>
+		<th>操作按鈕</th>
+		
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="newsinfoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${newsinfoVO.news_no}</td>
-			<td>${newsinfoVO.movie_no}</td>
 			<td>${newsinfoVO.news_title}</td>
 			<td>${newsinfoVO.news_auther}</td>
 			<td>${newsinfoVO.news_times}</td>
@@ -104,20 +100,14 @@
 					encode = Base64.encode(b);
 			%>
 			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
-			<%}else{%><td></td><%}%> 
-			<!--<td>${newsinfoVO.news_con}</td>   -->
+			<%}else{%><td></td><%}%>  
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
+			     <input type="submit" value="繼續閱讀">
 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			     <input type="hidden" name="action"	value="getOne_For_Display"></FORM>
 			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
-			     <input type="hidden" name="action" value="delete"></FORM>
-			</td>
+			
 		</tr>
 	</c:forEach>
 </table>

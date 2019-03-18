@@ -49,8 +49,8 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>後台-單一電影種類查詢</h3>
-		 <h4><a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">
-		 	 <img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp">
+		 	 <img src="<%=request.getContextPath()%>/back-end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a>
 		 </h4>
 	</td></tr>
 </table>
@@ -58,7 +58,7 @@
 <table>
 	<tr>
 		<th>電影種類編號</th>
-		<th>電影種類姓名</th>
+		<th>電影種類名稱</th>
 	</tr>
 	<tr>
 		<td><%=moviegenreVO.getGenre_no()%></td>

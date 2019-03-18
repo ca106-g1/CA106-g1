@@ -30,11 +30,11 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>Back_end NewsInfo: Home</h3></td></tr>
+   <tr><td><h3>Back-end NewsInfo: Home</h3></td></tr>
    <tr>
 		<td><h4>
-			<a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">電影種類編輯</a>
-			<a href="<%=request.getContextPath()%>/Back_end/movieinfo/select_page.jsp">電影資訊編輯</a>
+			<a href="<%=request.getContextPath()%>/back-end/moviegenre/select_page.jsp">電影種類編輯</a>
+			<a href="<%=request.getContextPath()%>/back-end/movieinfo/select_page.jsp">電影資訊編輯</a>
 		</h4></td>
 	</tr>
 </table>
@@ -52,22 +52,35 @@
 </c:if>
 
 <ul>
-  <li>All Newsinfo    <a href='<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp'>EDIT</a>.<br><br></li>
-  <li><a href='<%=request.getContextPath()%>/Back_end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li><br>
+  <li>All Newsinfo    <a href='<%=request.getContextPath()%>/back-end/newsinfo/listAllNewsInfo.jsp'>EDIT</a>.<br><br></li>
+  <li><a href='<%=request.getContextPath()%>/back-end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li><br>
   
   <li>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" >
-        <b>輸入專欄編號 (如1):</b>
-        <input type="text" name="news_no">
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" >
+        <b>輸入專欄編號 :</b>
+        <input type="text" name="news_no" placeholder="ex:1">
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="送出">
     </FORM>
   </li>
 
+<!-- 		  <li> -->
+<%-- 		     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" > --%>
+<!-- 		       <b>選擇電影編號:</b> -->
+<!-- 		       <select size="1" name="movie_no"> -->
+<%-- 		         <c:forEach var="newsinfoVO" items="${newsinfoSvc.all}" >  --%>
+<%-- 		          <option value="${newsinfoVO.news_no}">${newsinfoVO.movie_no} --%>
+<%-- 		         </c:forEach>    --%>
+<!-- 		       </select> -->
+<!-- 		       <input type="hidden" name="action" value="getOne_For_Display"> -->
+<!-- 		       <input type="submit" value="送出"> -->
+<!-- 		    </FORM> -->
+<!-- 		  </li> -->
+
   <jsp:useBean id="newsinfoSvc" scope="page" class="com.newsinfo.model.NewsInfoService" />
    
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" >
        <b>選擇專欄編號:</b>
        <select size="1" name="news_no">
          <c:forEach var="newsinfoVO" items="${newsinfoSvc.all}" > 
@@ -80,7 +93,7 @@
   </li>
   
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/newsinfo/newsinfo.do" >
        <b>選擇專欄名稱:</b>
        <select size="1" name="news_no">
          <c:forEach var="newsinfoVO" items="${newsinfoSvc.all}" > 

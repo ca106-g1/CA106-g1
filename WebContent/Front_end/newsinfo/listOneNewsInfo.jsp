@@ -3,11 +3,10 @@
 <%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-  NewsInfoVO newsinfoVO = (NewsInfoVO) request.getAttribute("newsinfoVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+  NewsInfoVO newsinfoVO = (NewsInfoVO) request.getAttribute("newsinfoVO"); 
 %>
 
 <html>
@@ -16,7 +15,7 @@
 
 <style>
   table#table-1 {
-	background-color: #00caca;
+	background-color: #CCCCFF;
     border: 2px solid black;
     text-align: center;
   }
@@ -28,10 +27,6 @@
   h4 {
     color: blue;
     display: inline;
-  }
-  #pic {
-  	width:135px;
-  	hight:200px;
   }
 </style>
 
@@ -56,30 +51,25 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>listOneNewsInfo</h3>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
+		 <h3>單一電影資料</h3>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/newsinfo/listAllNewsInfo.jsp"><img src="<%=request.getContextPath()%>/back-end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>專欄編號</th>
-		<th>電影編號</th>
-		<th>專欄標題</th>
-		<th>專欄作者</th>
+		<th>新聞標題</th>
+		<th>新聞作者</th>
 		<th>發文日期</th>
-		<th>專欄圖片</th>
-<!-- 		 <th>專欄內容</th>  -->
+		<th>新聞圖片</th>
+		<th>新聞內容</th> 
 		
 	</tr>
 	<tr>
-		<td><%=newsinfoVO.getNews_no()%></td>
-		<td><%=newsinfoVO.getMovie_no()%></td>
 		<td><%=newsinfoVO.getNews_title()%></td>
 		<td><%=newsinfoVO.getNews_auther()%></td>
 		<td><%=newsinfoVO.getNews_times()%></td>
-		<!-- 新增圖片			 -->
-			<c:set var="news_pic" value="${newsinfoVO.news_pic}"></c:set>
+		<c:set var="news_pic" value="${newsinfoVO.news_pic}"></c:set>
 			<%
 				byte b[]= (byte[])pageContext.getAttribute("news_pic");
 				String encode = null;
@@ -87,10 +77,9 @@
 					encode = Base64.encode(b);
 			%>
 			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
-			<%}else{%><td></td><%}%> 
-<%-- 		<td><%=newsinfoVO.getNews_con()%></td> --%>
-		
-		
+			<%}else{%><td></td><%}%>  
+			<td>
+		<td><%=newsinfoVO.getNews_con()%></td>
 	</tr>
 </table>
 
