@@ -20,6 +20,7 @@ z-index:999;
 						aria-haspopup="true" aria-expanded="false">訂票</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">線上訂票</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/prompt.jsp">訂票須知</a> 
 					</div>
 				</div>
 				
