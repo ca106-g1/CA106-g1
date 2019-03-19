@@ -54,8 +54,11 @@
 <p>*密碼: 
 <input type = "password"  name = "member_password" value="<%= (memVO==null)?"":""%>"  required> </p>
 
-<p>*再次確認密碼:
+<p>*新密碼:
 <input type = "password"  name = "member_password1" value="<%= (memVO==null)?"":""%>"  required> </p>
+
+<p>*再次確認新密碼:
+<input type = "password"  name = "member_password2" value="<%= (memVO==null)?"":""%>"  required> </p>
 
 <p>*姓名:
 <input type = "text"  name = "member_name" value="<%= (memVO==null)?"":memVO.getMember_name()%>"> </p>
