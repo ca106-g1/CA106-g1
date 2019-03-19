@@ -182,38 +182,38 @@ public class memberServlet extends HttpServlet {
 //					}
 				System.out.println("檢查點1");
 			/***********會員密碼*******************/
-				String member_password = req.getParameter("member_password");
+				String member_password2 = req.getParameter("member_password2");
 				String member_passwordReg = "^[(a-zA-Z0-9)]{2,20}$";
 				//System.out.println(!member_password.trim().matches(member_passwordReg));
-					if(member_password==null || member_password.trim().length()==0) {
+					if(member_password2==null || member_password2.trim().length()==0) {
 						errorMsgs.add("會員密碼: 請勿空白");
-					}else if (!member_password.trim().matches(member_passwordReg)) {
+					}else if (!member_password2.trim().matches(member_passwordReg)) {
 						errorMsgs.add("會員密碼: 只能是英文、數字，且長度必須在2~10之間");
 					}
 				
 				
-					if(!member_password.equals(memVO1.getMember_password())) {
+					if(!member_password2.equals(memVO1.getMember_password())) {
 						errorMsgs.add("請確認舊密碼是否正確無誤");
 					}
 				
 			/***********會員新密碼*****************/	
 					
-					String member_password1 = req.getParameter("member_password1");
+					String member_password = req.getParameter("member_password");
 					String member_passwordReg1 = "^[(a-zA-Z0-9)]{2,20}$";
 					//System.out.println(!member_password.trim().matches(member_passwordReg));
-						if(member_password1==null || member_password1.trim().length()==0) {
+						if(member_password==null || member_password.trim().length()==0) {
 							errorMsgs.add("會員密碼: 請勿空白");
-						}else if (!member_password1.trim().matches(member_passwordReg1)) {
+						}else if (!member_password.trim().matches(member_passwordReg1)) {
 							errorMsgs.add("會員密碼: 只能是英文、數字，且長度必須在2~10之間");
 						}
 				System.out.println("檢查點2");
 			/***********再次確認會員新密碼*****************/			
-						String member_password2 = req.getParameter("member_password2");
+						String member_password1 = req.getParameter("member_password1");
 						String member_passwordReg2 = "^[(a-zA-Z0-9)]{2,20}$";
 						//System.out.println(!member_password1.trim().matches(member_passwordReg1));
-							if(member_password2==null || member_password2.trim().length()==0) {
+							if(member_password1==null || member_password1.trim().length()==0) {
 								errorMsgs.add("會員密碼: 請勿空白");
-							}else if (!member_password2.trim().matches(member_passwordReg2)) {
+							}else if (!member_password1.trim().matches(member_passwordReg2)) {
 								errorMsgs.add("會員密碼: 只能是英文、數字，且長度必須在2~10之間");
 							}
 						
@@ -221,7 +221,7 @@ public class memberServlet extends HttpServlet {
 						
 							
 							
-						if (!member_password1 .equals (member_password2)) {
+						if (!member_password .equals (member_password1)) {
 								errorMsgs.add("會員密碼輸入不一致 請重新輸入");
 							}
 				System.out.println("檢查點3");			
@@ -376,7 +376,8 @@ public class memberServlet extends HttpServlet {
 						/****************************3.新增完成 準備轉交***********************/
 						
 						//req.getSession().setAttribute("updateMem",updateMem);
-						req.setAttribute("memVO",memVO);
+						HttpSession session = req.getSession();
+						session.setAttribute("memVO",memVO);
 						String url = "/Front_end/mem/listOneMem.jsp";
 						RequestDispatcher successView = req.getRequestDispatcher(url);
 						successView.forward(req, res);
