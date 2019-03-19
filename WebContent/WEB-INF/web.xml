@@ -241,6 +241,13 @@
 	</filter-mapping>
 
 	<!-- filter註冊區結束 -->
-
+	
+	
+	
+	<context-param>
+    <param-name>org.apache.tomcat.websocket.textBufferSize</param-name>
+    <param-value>30720000</param-value>
+  </context-param>
+<!-- 聊天室上傳圖片大小限制註冊區結束 -->
 
 </web-app>
