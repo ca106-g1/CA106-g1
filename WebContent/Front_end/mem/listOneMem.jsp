@@ -60,7 +60,7 @@
 		<td><%=memVO.getMember_password()%></td>
 		<td><%=memVO.getMember_name()%></td>
 		<td><%=memVO.getMember_nick()%></td>
-		<td><%=memVO.getMember_sex()%></td>
+		<td>${memVO.member_sex eq 0?"女":"男"}</td>
 		<td><%=memVO.getMember_birthday()%></td>
 		<td><%=memVO.getMember_address()%></td>
 		<td><%=memVO.getMember_telephone()%></td>
@@ -72,7 +72,7 @@
 		<td><%=memVO.getMember_back_verification()%></td>
 		<td><%=memVO.getMember_buildday()%></td>
 		<td><%=memVO.getMember_point()%></td>
-		<td><%=memVO.getMember_status()%></td>
+		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
 		
 	</tr>
 	

@@ -79,7 +79,7 @@
 		<td>${memVO.member_password}</td>
 		<td>${memVO.member_name}</td>
 		<td>${memVO.member_nick}</td>
-		<td>${memVO.member_sex}</td>
+		<td>${memVO.member_sex eq 0?"女":"男"}</td>
 		<td>${memVO.member_birthday}</td>
 		<td>${memVO.member_address}</td>
 		<td>${memVO.member_telephone}</td>
@@ -92,7 +92,7 @@
 		<td>${memVO.member_back_verification}</td>
 		<td>${memVO.member_buildday}</td>
 		<td>${memVO.member_point}</td>
-		<td>${memVO.member_status}</td>
+		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
 		<img src ="<%= request.getContextPath() %>/memberServlet?member_no=${memVO.member_no}">
 		
 		<td>

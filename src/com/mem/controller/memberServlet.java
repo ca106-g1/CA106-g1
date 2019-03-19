@@ -182,28 +182,46 @@ public class memberServlet extends HttpServlet {
 //					}
 				System.out.println("檢查點1");
 			/***********會員密碼*******************/
+				String member_password = req.getParameter("member_password");
+				String member_passwordReg = "^[(a-zA-Z0-9)]{2,20}$";
+				//System.out.println(!member_password.trim().matches(member_passwordReg));
+					if(member_password==null || member_password.trim().length()==0) {
+						errorMsgs.add("會員密碼: 請勿空白");
+					}else if (!member_password.trim().matches(member_passwordReg)) {
+						errorMsgs.add("會員密碼: 只能是英文、數字，且長度必須在2~10之間");
+					}
+				
+				
+					if(!member_password.equals(memVO1.getMember_password())) {
+						errorMsgs.add("請確認舊密碼是否正確無誤");
+					}
+				
+			/***********會員新密碼*****************/	
 					
-					String member_password = req.getParameter("member_password");
-					String member_passwordReg = "^[(a-zA-Z0-9)]{2,20}$";
+					String member_password1 = req.getParameter("member_password1");
+					String member_passwordReg1 = "^[(a-zA-Z0-9)]{2,20}$";
 					//System.out.println(!member_password.trim().matches(member_passwordReg));
-						if(member_password==null || member_password.trim().length()==0) {
+						if(member_password1==null || member_password1.trim().length()==0) {
 							errorMsgs.add("會員密碼: 請勿空白");
-						}else if (!member_password.trim().matches(member_passwordReg)) {
+						}else if (!member_password1.trim().matches(member_passwordReg1)) {
 							errorMsgs.add("會員密碼: 只能是英文、數字，且長度必須在2~10之間");
 						}
 				System.out.println("檢查點2");
-			/***********再次確認會員密碼*****************/			
-						String member_password1 = req.getParameter("member_password1");
-						String member_passwordReg1 = "^[(a-zA-Z0-9)]{2,20}$";
+			/***********再次確認會員新密碼*****************/			
+						String member_password2 = req.getParameter("member_password2");
+						String member_passwordReg2 = "^[(a-zA-Z0-9)]{2,20}$";
 						//System.out.println(!member_password1.trim().matches(member_passwordReg1));
-							if(member_password1==null || member_password1.trim().length()==0) {
+							if(member_password2==null || member_password2.trim().length()==0) {
 								errorMsgs.add("會員密碼: 請勿空白");
-							}else if (!member_password1.trim().matches(member_passwordReg1)) {
+							}else if (!member_password2.trim().matches(member_passwordReg2)) {
 								errorMsgs.add("會員密碼: 只能是英文、數字，且長度必須在2~10之間");
 							}
+						
+							
+						
 							
 							
-						if (!member_password .equals (member_password1)) {
+						if (!member_password1 .equals (member_password2)) {
 								errorMsgs.add("會員密碼輸入不一致 請重新輸入");
 							}
 				System.out.println("檢查點3");			
@@ -301,19 +319,19 @@ public class memberServlet extends HttpServlet {
 				System.out.println("檢查點13");
 			/*************背面末三碼*******************************/
 						
-						Integer member_back_verification =null;
-						member_back_verification = new Integer(req.getParameter("member_back_verification").trim());
+						//Integer member_back_verification =null;
+						Integer member_back_verification = new Integer(req.getParameter("member_back_verification").trim());
 				System.out.println("檢查點14");
 			/***************會員被建立日期*********************************/
 					
 						java.sql.Date member_buildday = new java.sql.Date(System.currentTimeMillis());
 				System.out.println("檢查點15");
 			/***************會員點數*************************/
-						Integer member_point = 0;
+						Integer member_point = memVO1.getMember_point();
 						System.out.println("檢查點16");		
 			/***************會員狀態*************************/
 						
-						String member_status = null;
+						String member_status = memVO1.getMember_status();
 						System.out.println("檢查點17");		
 						
 						
@@ -350,6 +368,9 @@ public class memberServlet extends HttpServlet {
 						/****************************2開始新增資料******************************/
 						MemService memSvc = new MemService();
 						memVO = memSvc.updateMem(member_no,member_account,member_password,member_name,member_nick,member_sex,member_birthday,member_address,member_telephone,member_email,member_picture,member_credit_number,member_back_verification,member_buildday,member_point,member_status);
+						
+						
+						
 						
 						System.out.println("檢查點21");
 						/****************************3.新增完成 準備轉交***********************/

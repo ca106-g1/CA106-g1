@@ -24,7 +24,7 @@
 <title></title>
 </head>
 <body>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
@@ -60,7 +60,7 @@
 		<td><%=memVO.getMember_password()%></td>
 		<td><%=memVO.getMember_name()%></td>
 		<td><%=memVO.getMember_nick()%></td>
-		<td><%=memVO.getMember_sex()%></td>
+		<td>${memVO.member_sex eq 0?"女":"男"}</td>
 		<td><%=memVO.getMember_birthday()%></td>
 		<td><%=memVO.getMember_address()%></td>
 		<td><%=memVO.getMember_telephone()%></td>
@@ -72,7 +72,7 @@
 		<td><%=memVO.getMember_back_verification()%></td>
 		<td><%=memVO.getMember_buildday()%></td>
 		<td><%=memVO.getMember_point()%></td>
-		<td><%=memVO.getMember_status()%></td>
+		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
 		
 	</tr>
 	
@@ -81,7 +81,7 @@
 
 	<!-- 工作區結束 -->
 	
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
