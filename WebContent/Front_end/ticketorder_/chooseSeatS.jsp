@@ -20,7 +20,8 @@
 <title>訂票</title>
 <style>
 p {
-	margin: 0px
+	margin: 0px;
+	font-family: inherit;
 }
 </style>
 </head>
@@ -29,72 +30,77 @@ p {
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-	<jsp:useBean id="tfSer" class="com.ticketinformation.model.TicketinformationService"></jsp:useBean>
-	
 	<%
 	String sessions_no = request.getParameter("sessions_no");
-	request.setAttribute("sessions_no", sessions_no); %>
+	request.setAttribute("sessions_no", sessions_no); 
+	%>
+	<jsp:useBean id="tfSer"  class="com.ticketinformation.model.TicketinformationService" scope="page"/>
 	<jsp:useBean id="sesSer" class="com.sessions.model.SessionsService" scope="page"/>
 	<jsp:useBean id="movSer" class="com.movieinfo.model.MovieInfoService" scope="page"/>
+	<jsp:useBean id="cinSer" class="com.cinema.model.CinemaService" scope="page"/>
+	<c:set var="sessionsVO" value="${sesSer.getOneSes(sessions_no)}" scope="page"  ></c:set>
+	<jsp:useBean id="sessionsVO" class="com.sessions.model.SessionsVO" scope="page"/>
+	
 
 	<div class="container">
 		<div class="row justify-content">
 
 			<div class="col-4">
 				<div class="row justify-content">
-					<div class="col-6">
+					<div class="col-4">
 
-						<h5>電影名稱：</h5>
-						<h5>日 期：</h5>
-						<h5>時 間：</h5>
+						<p>電影名稱：</p>
+						<p>日 期：</p>
+						<p>時 間：</p>
 					</div>
 
-					<div class="col-6">
-						<h5>${movSer.getOneMovieInfo(sesSer.getOneSes(sessions_no).movie_no).movie_name}</h5>
-						<h5>${sesSer.getOneSes(sessions_no).sessions_start.toString().substring(0,10) }</h5>
-						<h5>${sesSer.getOneSes(sessions_no).sessions_start.toString().substring(10,16) }</h5>
+					<div class="col-8">
+						<p>${movSer.getOneMovieInfo(sessionsVO.movie_no).movie_name}</p>
+						<p>${sessionsVO.sessions_start.toString().substring(0,10) }</p>
+						<p>${sessionsVO.sessions_start.toString().substring(10,16) }</p>
 					</div>
 				</div>
 				
 				<br>
 				<div class="row justify-content">
-					<div class="col-6">
-						<h5>餘額</h5>
-						<hr>
-						<h5>總額</h5>
-						<hr>
-						<h5>折扣名稱</h5>
-						<hr>
-						<h5>折扣內容</h5>
+					<div class="col-4">
+						<p>餘額</p>
+						<p>總額</p>
+						<p>折扣名稱</p>
+						<p>折扣內容</p>
 					</div>
 
-					<div class="col-6">
-						<h5 id="member_point">${memVO.member_point }</h5>
-						<hr>
-						<h5 id="order_amount">0</h5>
-						<hr>
-						<h5 id="fd_name"></h5>
-						<hr>
-						<h5 id="fd_offer">0</h5>
+					<div class="col-8">
+						<p id="member_point">${memVO.member_point }</p>
+						<p id="order_amount">0</p>
+						<p id="fd_name">　</p>
+						<p id="fd_offer">　</p>
 					</div>
 				</div>
+				<div class="row justify-content">
 				<div class="col-6">
 				
 				<form id="form" method="post" action="<%= request.getContextPath()%>/ticketorder/TicketorderServlet_">
 					<p id="ajax_ti_no" style="display:none;"></p>
-					<input type="hidden" name="sessions_no" value="<%=sessions_no%>">
+					<input type="hidden" name="sessions_no" value="${sessions_no}">
 					<input type="hidden" name="action" value="insert">
 					<input id="submit" class="btn btn-primary" type="submit" value="結帳去">
 				</form>
 				
 				</div>
+				<div class="col-6">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+				  價格資訊
+				</button>
+				</div>
+				</div>
 				<div class="row justify-content">
 					<div class="col-6" id="ti">
-						<h5>票種</h5>
+						<p>票種</p>
 					</div>
 
 					<div class="col-6" id="mt">
-						<h5>位置</h5>
+						<p>位置</p>
 					</div>
 				</div>
 
@@ -137,7 +143,7 @@ p {
 
 					<%
 						List<List<Integer>> sitList = new ArrayList<List<Integer>>();
-						String cinema_type = sesSer.getOneSes(sessions_no).getSessions_status();
+						String cinema_type = sessionsVO.getSessions_status();
 
 						for (int i = 0; i < 20; i++) {
 							List<Integer> list = new ArrayList<Integer>();
@@ -212,8 +218,8 @@ p {
 				</div>
 							
 							
-							<!-- ---------------------以上現有座位---------------------- -->
 				</nav>
+							<!-- ---------------------以上現有座位---------------------- -->
 			<nav class="row justify-content">
 				
 					<div class="col-12">
@@ -228,13 +234,59 @@ p {
 								</div>
 						</c:forEach>
 					</div>
-								<!-- ---------------------以上影廳type---------------------- -->
 				</nav>
+								<!-- ---------------------以上影廳type---------------------- -->
 			
 			</div>
 
 		</div>
 	</div>
+	<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+		    <div class="row">
+		      <div class="col-md-6">
+		      
+		      <p>電影票價加價</p>
+		      <p>影廳票價加價</p>
+		      
+		      <c:forEach items="${tfSer.all}" var="tfVO">
+		      <p>${tfVO.ti_name}</p>
+		      </c:forEach>
+		      
+		      </div>
+		      
+		      <div class="col-md-6">
+		      
+		      <p>${movSer.getOneMovieInfo(sessionsVO.movie_no).movie_ticket}</p>
+		      <p>${cinSer.getOneCin(sessionsVO.cinema_no).cinema_correct}</p>
+		      
+		      <c:forEach items="${tfSer.all}" var="tfVO">
+		      <p>${tfVO.ti_price}</p>
+		      </c:forEach>
+		      
+		      </div>
+		    </div>
+	    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -259,7 +311,7 @@ p {
 		webSocket = new WebSocket(endPointURL);
 
 		webSocket.onopen = function(event) {
-			alert("i'm start.");
+// 			alert("i'm start.");
 		};
 
 		webSocket.onmessage = function(event) {
@@ -274,7 +326,6 @@ p {
 				//如果是給這個會員的
 				$('#member_point').text(jsonArray[1].member_point);
 				//設定新的剩餘點數
-				alert(jsonArray[1].message);		
 			}
 			
 			if(action == "everyone"){
@@ -332,24 +383,20 @@ p {
 				 dataType: "json",
 				 success: function (data){
 					$('#order_amount').text(data.order_amount);
-					//刷新剩餘點數
-					$('#fd_name').text(data.fd_name);
+					//刷新總金額點數
+						$('#fd_name').text(data.fd_name);
 					//刷新優惠種類
-					$('#fd_offer').text(data.fd_offer);
+						$('#fd_offer').text(data.fd_offer);
 					//刷新優惠內容
 					testMember_pointOrder_amount();
 					//依據剩餘點數與訂單總額檢查是否為可送出的訂單
-					
 			     },
 	             error: function(){alert("AJAX-grade發生錯誤囉!")}
 	         })
 		 }
 	
 	function creatQueryString(ti_no){
-		
-		console.log("sessions_no:<%=sessions_no%>"+"ti_no:"+ti_no);
 		var queryString= {"sessions_no":"<%=sessions_no%>", "ti_no":ti_no};
-		
 		return queryString;
 	}
 	
@@ -416,8 +463,8 @@ p {
 	    	$bgc(e.target,$id("color").style.backgroundColor);
 	    	$('#form').append('<input type="hidden" id=mt_no'+e.target.id.substring(3)+' name="mt_no" value='+e.target.id.substring(3)+'>');
 	    	$('#form').append('<input type="hidden" id=ti_no'+e.target.id.substring(3)+' name="ti_no" value='+$id("color").getAttribute("data-sitType")+'>');
-	    	$('#mt').append('<h6 id="mt'+e.target.id.substring(3)+'">'+Math.ceil(parseInt(e.target.id.substring(3))/25)+'-'+(parseInt(e.target.id.substring(3))%25+1)+'</h4>');
-	    	$('#ti').append('<h6 id="ti'+e.target.id.substring(3)+'">'+$id("color").getAttribute("data-sitStr")+'</h4>');
+	    	$('#mt').append('<p id="mt'+e.target.id.substring(3)+'">'+Math.ceil(parseInt(e.target.id.substring(3))/25)+'-'+(parseInt(e.target.id.substring(3))%25+1)+'</p>');
+	    	$('#ti').append('<p id="ti'+e.target.id.substring(3)+'">'+$id("color").getAttribute("data-sitStr")+'</p>');
 	    	
 	    	clickAjax(creatTi_no, e);
 	    	

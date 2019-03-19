@@ -341,5 +341,12 @@ public class MovieInfoJDBCDAO implements MovieInfoDAO_interface{
 		return list;
 	}
 
+	@Override
+	public List<MovieInfoVO> getAllByScore() {
+		
+		System.out.println("getAllByScore : 我沒有實作");
+		return null;
+	}
+
 
 }

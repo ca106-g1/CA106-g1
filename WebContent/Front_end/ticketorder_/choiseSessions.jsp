@@ -72,14 +72,18 @@ margin:0px;
 			</div>
 			<div class="col-4">
 				<p>片名</p>
-				<p id="movie_name"></p>
+				<p id="movie_name">　</p>
 				<br>
 				<p>敘述</p>
 				<P id="movie_intro"></P>
 			</div>
 			<div class="col-4">
 				<p>剩餘座位</p>
-				<p id="sessions_remaining" style="hight:20px"> </p>
+				<p id="sessions_remaining" style="hight:20px">　</p>
+				<p>電影票價加價</p>
+				<p id="movie_ticket">0</p>
+				<p>影廳票價加價</p>
+				<p id="cinema_correct">0</p>
 				<br>
 				<form action="<%= request.getContextPath()%>/Front_end/ticketorder_/chooseSeatS.jsp">
 					<input type="hidden" id="sessions_no" name="sessions_no" value="">
@@ -95,6 +99,7 @@ margin:0px;
 	$(document).ready(function(){
 		 $('#movie_no').change(function(){
 			 if($(this).val()==""){
+				 clearSelect();
 				 $('#submit').attr("disabled", true);
 				 return
 			 }
@@ -107,6 +112,7 @@ margin:0px;
 					clearSelect();
 					 $('#movie_pic').attr("src",data[0].path);
 					 $('#movie_name').text(data[0].movie_name);
+					 $('#movie_ticket').text(data[0].movie_ticket);
 					 $('#movie_intro').text(data[0].movie_intro);
 					$.each(data[1], function(i, item){
 						$('#date').append("<option value='"+item.date+"'>"+item.date+"</option>");
@@ -151,6 +157,7 @@ margin:0px;
 				 success: function (data){
 					 clearSelect3();
 					 $('#sessions_remaining').text(data.sessions_remaining);
+					 $('#cinema_correct').text(data.cinema_correct);
 					 $('#submit').attr("disabled", false);					
 			     },
 	            error: function(){alert("AJAX-class發生錯誤囉!")}
@@ -168,7 +175,7 @@ margin:0px;
 		$('#date').append("<option value='-1'>請選擇</option>");
 		$('#sessions').empty();
 		$('#sessions').append("<option value='-1'>請選擇</option>");
-		$('#sessions_remaining').text("");
+		$('#sessions_remaining').text("　");
 		$('#movie_name').text("");
 		$('#movie_intro').text("");
 		
@@ -177,11 +184,11 @@ margin:0px;
 		$('#submit').attr("disabled", true);
 		$('#sessions').empty();
 		$('#sessions').append("<option value='-1'>請選擇</option>");
-		$('#sessions_remaining').text("");
+		$('#sessions_remaining').text("　");
 	}
 	function clearSelect3(){
 		$('#submit').attr("disabled", true);
-		$('#sessions_remaining').text("");
+		$('#sessions_remaining').text("　");
 	}
 	
 	function init() {

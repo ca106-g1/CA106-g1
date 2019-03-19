@@ -180,7 +180,6 @@ public class SessionsDAOImpl implements SessionsDAO_interface{
 				//UPDATE SESSIONS SET MOVIE_NO=?, CINEMA_NO=?, SESSIONS_START=?, SESSIONS_STATUS=?, SESSIONS_REMAINING=? WHERE SESSIONS_NO = ?
 
 			}
-			System.out.println(sessionsVO);
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {

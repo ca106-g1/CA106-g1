@@ -103,10 +103,22 @@ th, td {
 			<div class="col-6">
 				<div style="height:50px">
 				</div>
-				<iframe id="iframe" src="<%=request.getContextPath()%>/Back_end/sessions/checkOneSessions.jsp?sessions_no=SESSIONS00000017" style="width: 800px; border-width: 0px; height:800px">
+				<iframe id="iframe" src="<%=request.getContextPath()%>/Back_end/sessions/checkOneSessions.jsp?sessions_no=SESSIONS00000017" style="width: 800px; border-width: 0px; height:450px">
 				</iframe>
-	<%-- 			<iframe src="<%=request.getContextPath()%>/Back_end/sessions/checkOneSessions.jsp" style="width: 750px;"> --%>
-	<!-- 			</iframe> -->
+				<nav class="row justify-content">
+					<div class="col-12">
+						<c:forEach var="var" items="${statusOfSitList}">
+								${var.str}
+								<div 
+									class="btn disabled "
+									data-sitType = "${var.type}"
+									data-sitStr = "${var.str}"
+									id = "type${var.type}"
+									style="background-color:${var.coller}; border-color:#000; margin-right:10px">
+								</div>
+						</c:forEach>
+					</div>
+				</nav>
 			</div>
 		</div>
 	</div>

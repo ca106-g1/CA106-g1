@@ -30,6 +30,7 @@ import com.mem.model.MemVO;
 import com.movieinfo.model.*;
 import com.movieticke.model.MovieticketVO;
 import com.sessions.model.*;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.ticketinformation.model.TicketinformationService;
 import com.ticketorder.model.TicketorderService;
 import com.ticketorder.model.TicketorderVO;
@@ -62,6 +63,7 @@ public class TicketorderServlet_ extends HttpServlet {
 			try {
 				jsonObject.put("movie_name", movieInfoVO.getMovie_name());
 				jsonObject.put("movie_intro", movieInfoVO.getMovie_intro());
+				jsonObject.put("movie_ticket", movieInfoVO.getMovie_ticket());
 				jsonObject.put("path",
 						req.getContextPath() + "/ToolClasses/Images?action=movie_pic&movie_no=" + movie_no);
 			} catch (JSONException e1) {
@@ -133,9 +135,10 @@ public class TicketorderServlet_ extends HttpServlet {
 		if ("getsessions_remaining".equals(action)) {
 			JSONObject jsonObject = new JSONObject();
 			String sessions_no = req.getParameter("sessions_no");
-			SessionsService sessionsService = new SessionsService();
+			SessionsVO sessionsVO = new SessionsService().getOneSes(sessions_no);
 			try {
-				jsonObject.put("sessions_remaining", sessionsService.getOneSes(sessions_no).getSessions_remaining());
+				jsonObject.put("sessions_remaining", sessionsVO.getSessions_remaining());
+				jsonObject.put("cinema_correct", new CinemaService().getOneCin(sessionsVO.getCinema_no()).getCinema_correct());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -153,19 +156,22 @@ public class TicketorderServlet_ extends HttpServlet {
 			String sessions_no = req.getParameter("sessions_no");
 			String[] ti_no = req.getParameter("ti_no").split(";");
 			//要處理ti_no為空的問題
-			
 			for (int i = 0; i < ti_no.length; i++) {
 				ti_no[i] = map.get(ti_no[i]);
-
+			}
+			
+			int count;
+			if(ti_no[0] == null) {
+				count = 0;
+			}else {
+				count = ti_no.length;
 			}
 			
 			SessionsService sessionsService = new SessionsService();
 			
 			SessionsVO sessionsVO = sessionsService.getOneSes(sessions_no);
-			
-			FarediscountVO farediscountVO = whitchFd(ti_no.length, sessionsVO.getSessions_start());
+			FarediscountVO farediscountVO = whitchFd(count, sessionsVO.getSessions_start());
 			int order_amount = calculatOrder_amount(ti_no, sessionsVO, farediscountVO);
-			
 			
 			JSONObject jsonObject = new JSONObject();
 			try {
@@ -173,8 +179,8 @@ public class TicketorderServlet_ extends HttpServlet {
 					jsonObject.put("fd_name", farediscountVO.getFd_name());
 					jsonObject.put("fd_offer", farediscountVO.getFd_offer());
 				} else {
-					jsonObject.put("fd_name", "");
-					jsonObject.put("fd_offer", "");
+					jsonObject.put("fd_name", "　");
+					jsonObject.put("fd_offer", "　");
 				}
 				jsonObject.put("order_amount", order_amount);
 			} catch (JSONException e) {
@@ -216,6 +222,7 @@ public class TicketorderServlet_ extends HttpServlet {
 			SessionsVO sessionsVO = new SessionsService().getOneSes(sessions_no);
 			//取得場次值物件
 			String sessions_status = sessionsVO.getSessions_status();
+			String sessions_status2 = new String(sessions_status);
 			sessionsVO.setSessions_remaining(sessionsVO.getSessions_remaining()-count);
 
 			for (String sit : mt_no) {
@@ -244,8 +251,11 @@ public class TicketorderServlet_ extends HttpServlet {
 			
 			for (int i = 0; i < count; i++) {
 
+				Integer mt_no_int = Integer.parseInt(mt_no[i]);
+				String mt_no_str = (mt_no_int/25+1)+"-"+(mt_no_int%25+1);
+				
 				MovieticketVO movieticketVO = new MovieticketVO();
-				movieticketVO.setMt_no(mt_no[i]);
+				movieticketVO.setMt_no(mt_no_str);
 				movieticketVO.setTi_no(ti_no[i]);
 				movieticketVO.setMt_admission(0);
 
@@ -258,7 +268,12 @@ public class TicketorderServlet_ extends HttpServlet {
 			//計算優惠種類
 			
 			TicketorderVO ticketorderVO = new TicketorderVO();
-
+			TicketorderVO ticketorderVO_ = (TicketorderVO)req.getSession().getAttribute("ticketorderVO_");
+			
+			if(ticketorderVO_ != null) {
+			ticketorderVO.setOrder_time(ticketorderVO_.getOrder_time());
+			}
+			
 			ticketorderVO.setMember_no(memVO.getMember_no());
 			if (farediscountVO != null) {
 				ticketorderVO.setFd_no(farediscountVO.getFd_no());
@@ -275,12 +290,15 @@ public class TicketorderServlet_ extends HttpServlet {
 			depVO.setDeposit_change_money(-order_amount);
 			//設定儲值異動明細
 			
-			TicketorderService ts = new TicketorderService();
-			ts.insertTicketorderMain(ticketorderVO, memVO, depVO, sessionsVO, list);
+			if(!sessions_status.equals(sessions_status2)) {
+				//防止重新整理重複送出請求重複產生訂單造成資料異常
+				TicketorderService ts = new TicketorderService();
+				ts.insertTicketorderMain(ticketorderVO, memVO, depVO, sessionsVO, list);
+			}
 			//進行資料更新，交易區間貫穿五個model
 			
-			req.setAttribute("ticketorderVO", ticketorderVO);
-			req.setAttribute("farediscountVO", farediscountVO);
+			req.getSession().setAttribute("ticketorderVO_", ticketorderVO);
+			req.setAttribute("farediscountVO_", farediscountVO);
 			req.setAttribute("list", list);
 			
 			memVO.setMember_point(new MemService().getoneMem(memVO.getMember_no()).getMember_point());
@@ -313,11 +331,11 @@ public class TicketorderServlet_ extends HttpServlet {
 			jsonArray_amember.put(jsonObject_amember);
 			
 			String text_amember = jsonArray_amember.toString();
-			
-			for (Session session : set) {
-				if (session.isOpen())
-//						session.getBasicRemote().sendText(text_amember);
-				session.getBasicRemote().sendText(text_amember);
+			if(set != null) {
+				for (Session session : set) {
+					if (session.isOpen())
+					session.getBasicRemote().sendText(text_amember);
+				}
 			}
 			//推播警示單一會員有新的購票紀錄
 			
