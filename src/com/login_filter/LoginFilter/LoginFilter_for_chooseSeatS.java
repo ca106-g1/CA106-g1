@@ -23,15 +23,12 @@ public class LoginFilter_for_chooseSeatS implements Filter{
 	
 	public void init(FilterConfig config) {
 		this.config = config;
-		reqs = new HashMap<HttpSession, Map<String, String>>();
 	}
 	
 	public void destroy() {
 		config = null;
-		reqs = null;
 	}
 	
-	private Map<HttpSession, Map<String, String>> reqs;
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -57,22 +54,21 @@ public class LoginFilter_for_chooseSeatS implements Filter{
 				
 			}
 			
-			reqs.put(session, requestS);
+			session.setAttribute(session.getId(), requestS);			
 			session.setAttribute("location", req.getRequestURI());
+			
 			res.sendRedirect(req.getContextPath()+"/Front_end/Login.jsp");
 			return;
 			
 		}else {
 			
-			Map<String, String> requestS = reqs.get(session);
+			Map<String, String> requestS = (Map<String, String>)session.getAttribute(session.getId());
 			
 			MyRequest myRequest = new MyRequest(req);
 			
 			if(requestS != null) {
 			
 			requestS.forEach((k,v) -> myRequest.setMyParameter(k, v));
-			
-			reqs.remove(session);
 			
 			}
 			chain.doFilter(myRequest, response);
