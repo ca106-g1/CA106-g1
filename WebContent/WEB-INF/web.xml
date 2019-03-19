@@ -170,7 +170,17 @@
 		<servlet-name>MovieGenreServlet</servlet-name>
 		<url-pattern>/Back_end/moviegenre/moviegenre.do</url-pattern>
 	</servlet-mapping>
-		
+	
+	<!-- 電影資訊(前台) -->
+	<servlet>
+		<servlet-name>MovieInfoServletF</servlet-name>
+		<servlet-class>com.movieinfo.controller.MovieInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MovieInfoServlet</servlet-name>
+		<url-pattern>/Front_end/movieinfo/movieinfo.do</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 電影資訊(後台) -->
 	<servlet>
 		<servlet-name>MovieInfoServlet</servlet-name>
@@ -179,6 +189,16 @@
 	<servlet-mapping>
 		<servlet-name>MovieInfoServlet</servlet-name>
 		<url-pattern>/Back_end/movieinfo/movieinfo.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 專欄新聞(前台) -->
+	<servlet>
+		<servlet-name>NewsInfoServletF</servlet-name>
+		<servlet-class>com.newsinfo.controller.NewsInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewsInfoServlet</servlet-name>
+		<url-pattern>/Front_end/newsinfo/newsinfo.do</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 專欄新聞(後台) -->
