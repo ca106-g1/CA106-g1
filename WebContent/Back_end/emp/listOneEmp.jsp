@@ -48,11 +48,11 @@
 	<tr>
 		<td><%=empVO.getEmployee_no()%></td>
 		<td><%=empVO.getEmployee_name()%></td>
-		<td><%=empVO.getEmployee_sex()%></td>
+		<td>${empVO.employee_sex eq 0?"女":"男"}</td>
 		<td><%=empVO.getEmployee_builddate()%></td>
 		<td><%=empVO.getEmployee_quitdate()%></td>
 		<td><%=empVO.getEmployee_ability()%></td>
-		<td><%=empVO.getEmployee_status()%></td>
+		<td>${empVO.employee_status eq 0?"已離職":"在職中"}</td>
 		<td><%=empVO.getEmployee_password()%></td>
 	</tr>
 

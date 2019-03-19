@@ -93,11 +93,11 @@
 	<tr>
 		<td>${empVO.employee_no}</td>
 		<td>${empVO.employee_name}</td>
-		<td>${empVO.employee_sex}</td>
+		<td>${empVO.employee_sex eq 0?"女":"男"}</td>
 		<td>${empVO.employee_builddate}</td>
 		<td>${empVO.employee_quitdate}</td>
 		<td>${empVO.employee_ability}</td>
-		<td>${empVO.employee_status}</td>
+		<td>${empVO.employee_status eq 0?"已離職":"在職中"}</td>
 		<td>${empVO.employee_password}</td>
 		<td>
 			<FORM METHOD = "post" ACTION="<%=request.getContextPath()%>/Back_end/emp/emp.do" style="margin-bottom: 0px;">
