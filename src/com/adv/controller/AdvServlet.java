@@ -54,7 +54,8 @@ public class AdvServlet extends HttpServlet {
 			
 			System.out.println("檢查點102");
 			
-		}catch(Exception e) {
+		}
+		catch(Exception e) {
 			InputStream in = getServletContext().getResourceAsStream("");
 			byte[] buf = new byte[in.available()];
 			in.read(buf);
@@ -142,6 +143,75 @@ public class AdvServlet extends HttpServlet {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/Back_end/adv/select_page_adv.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
+		/***************************廣告的HTML**********************/
+		
+		if ("getOne_For_Display_HTML".equals(action)) { // 來自select_page.jsp的請求
+			
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			System.out.println("檢查點110");
+			
+			
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				String str = req.getParameter("ad_no");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入編號");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/Front_end/adv/listAllAdv.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				String ad_no = null;
+				try {
+					ad_no = new String(str);
+				} catch (Exception e) {
+					errorMsgs.add("編號格式不正確");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/Front_end/adv/listAllAdv.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************2.開始查詢資料*****************************************/
+				AdvService advSvc = new AdvService();
+				AdvVO advVO = advSvc.getOneAdv(ad_no);
+				if (advVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/Front_end/adv/listAllAdv.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("advVO", advVO); // 資料庫取出的empVO物件,存入req
+				String url = "/Front_end/adv/adv1.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/Front_end/adv/listAllAdv.jsp");
 				failureView.forward(req, res);
 			}
 		}

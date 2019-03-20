@@ -9,7 +9,7 @@
 	AdvService advSvc = new AdvService();
     List<AdvVO> list = advSvc.getAll();
     pageContext.setAttribute("list",list);
-%>
+%> 
 
 <!doctype html>
 <html lang="en">
@@ -122,12 +122,26 @@
 				
 				 
 				 <c:if test="${not empty advVO.ad_cont}" var="condition">
-			    <h4><a href="${advVO.ad_cont}"> <img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/></a></h4>
+<%-- 				 <jsp:useBean id="advSvc" scope="page" class="com.adv.model.AdvService" /> --%>
+				 <FORM METHOD="post" ACTION="adv.do" >
+				 <input type="image" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='200' />
+<%-- 			    <h4><a href="templated-caminar/adv${advVO.ad_type}.html"> <img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/></a></h4> --%>
+<%-- 			    <c:forEach var="advVO" items="${advSvc.all}" >  --%>
+<%--           			<option value="${advVO.ad_no}">${advVO.ad_no} --%>
+<%--          		</c:forEach> --%>
+<%-- 				${advVO.ad_no} --%>
+<!-- 				<FORM METHOD="post" ACTION="adv.do" > -->
+				<input type="hidden" name="ad_no" value="${advVO.ad_no}">  
+			    <input type="hidden" name="action" value="getOne_For_Display_HTML">    
+<!-- 			    <input type="submit" value="送出"> -->
+			    </FORM>
 				</c:if>
 				
 				
 				 <c:if test="${empty advVO.ad_cont}" var="condition">
+				 <FORM>
 				<h4><img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/></h4>
+				</FORM>
 				</c:if>
 				
 				<script>

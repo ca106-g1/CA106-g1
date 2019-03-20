@@ -159,6 +159,7 @@
 	<servlet-mapping>
 		<servlet-name>AdvServlet</servlet-name>
 		<url-pattern>/Back_end/adv/adv.do</url-pattern>
+		<url-pattern>/Front_end/adv/adv.do</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 電影種類(後台) -->
