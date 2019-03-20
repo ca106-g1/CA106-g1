@@ -117,27 +117,6 @@ JOIN影城將依一般合理之技術及方式，維持系統及服務之正常�
 本約定書之解釋與適用，以及與本約定書有關的爭議，均應依照中華民國法律予以處理，除法律另有規定者外，雙方並同意以台灣士林地方法院為第一審管理法庭。
 				</pre>
 				
-				<%--錯誤表列 --%>
-			<c:if test="${not empty errorMsgs }">
-				
-			<ul>
-				<c:forEach var = "message"  items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-			</c:forEach>
-			</ul>
-			</c:if >
-				
-				
-				<FORM METHOD="post" ACTION="mem.do">
-				<p>
-				<input type = "checkbox" name="registinformation" id="registinformation" value="true">我已閱讀並同意會員約定條款說明<br><br><br>
-				<input type = "submit" name = "registgo" id="registgo" value="確認送出" checked>
-				<input type="hidden" name="action" value="registstart">
-				<input type="reset"  name = "registreset" id="registreset" value="取消重填">
-				<a href="<%=request.getContextPath()%>/Front_end/Login.jsp">回到首頁</a>
-				</p>
-				
-				</FORM>
 			</div>
 		</div>
 	</div>

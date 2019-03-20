@@ -6,7 +6,7 @@
 <%@ page import="com.mem.model.* , java.util.*"%>
 
 <%
-	MemVO memVO = (MemVO) request.getAttribute("memVO");
+	MemVO memVO = (MemVO) request.getAttribute("_memVO");
 %>
 
 <!doctype html>
@@ -168,10 +168,10 @@
 						value="0">
 
 					<p>
-						<input type="hidden" name="action" value="insert"> <input
-							type="submit" id="send" value="送出"> &nbsp;&nbsp; <input
-							type="reset" value="取消"> <a
-							href="<%=request.getContextPath()%>/Front_end/Login.jsp">回到首頁</a>
+						<input type="hidden" name="action" value="insert">
+						 <input type="submit" id="send" value="送出"> &nbsp;&nbsp; 
+						 <input type="reset" value="取消"> 
+						 <a href="<%=request.getContextPath()%>/Front_end/Login.jsp">回到首頁</a>
 					</p>
 
 

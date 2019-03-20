@@ -565,22 +565,22 @@ public class memberServlet extends HttpServlet {
 						
 						
 						
-						MemVO memVO = new MemVO();
-						memVO.setMember_account(member_account);
-						memVO.setMember_password(member_password);
-						memVO.setMember_name(member_name);
-						memVO.setMember_nick(member_nick);
-						memVO.setMember_sex(member_sex);
-						memVO.setMember_birthday(member_birthday);
-						memVO.setMember_address(member_address);
-						memVO.setMember_telephone(member_telephone);
-						memVO.setMember_email(member_email);
-						memVO.setMember_picture(member_picture);
-						memVO.setMember_credit_number(member_credit_number);
-						memVO.setMember_back_verification(member_back_verification);
-						memVO.setMember_buildday(member_buildday);
-						memVO.setMember_point(member_point);
-						memVO.setMember_status(member_status);
+						MemVO _memVO = new MemVO();
+						_memVO.setMember_account(member_account);
+						_memVO.setMember_password(member_password);
+						_memVO.setMember_name(member_name);
+						_memVO.setMember_nick(member_nick);
+						_memVO.setMember_sex(member_sex);
+						_memVO.setMember_birthday(member_birthday);
+						_memVO.setMember_address(member_address);
+						_memVO.setMember_telephone(member_telephone);
+						_memVO.setMember_email(member_email);
+						_memVO.setMember_picture(member_picture);
+						_memVO.setMember_credit_number(member_credit_number);
+						_memVO.setMember_back_verification(member_back_verification);
+						_memVO.setMember_buildday(member_buildday);
+						_memVO.setMember_point(member_point);
+						_memVO.setMember_status(member_status);
 						System.out.println("檢查點13");
 						/*****************帳號重複判斷*****************************/
 						MemService memSvc = new MemService();
@@ -594,7 +594,7 @@ public class memberServlet extends HttpServlet {
 						System.out.println("檢查點14");
 						
 						if(!errorMsgs.isEmpty()) {
-							req.setAttribute("memVO",memVO);//含有錯誤格式的memVO物件 也存入req
+							req.setAttribute("_memVO",_memVO);//含有錯誤格式的memVO物件 也存入req
 							RequestDispatcher failureView = req
 									.getRequestDispatcher("/Front_end/mem/Registered.jsp");
 							failureView.forward(req,res);
@@ -607,7 +607,7 @@ public class memberServlet extends HttpServlet {
 						
 						/****************************2開始新增資料******************************/
 					
-						memVO = memSvc.addMem(member_account,member_password,member_name,member_nick,member_sex,member_birthday,member_address,member_telephone,member_email,member_picture,member_credit_number,member_back_verification,member_buildday,member_point,member_status);
+						_memVO = memSvc.addMem(member_account,member_password,member_name,member_nick,member_sex,member_birthday,member_address,member_telephone,member_email,member_picture,member_credit_number,member_back_verification,member_buildday,member_point,member_status);
 						
 						//
 						String to = member_email;
@@ -680,12 +680,27 @@ public class memberServlet extends HttpServlet {
 		//20190320更新
 		
 if("registstart".equals(action)) {
+	List<String> errorMsgs = new LinkedList<String>();
+	req.setAttribute("errorMsgs", errorMsgs);
+	
+			String registinformation=req.getParameter("registinformation");
+			
+			if(registinformation != null) {
+				
+				String url="/Front_end/mem/Registered.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+				
+			}else  {
+				
+				errorMsgs.add("請確認已同意服務條款，如不同意請返回首頁頁面");
+				
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/Front_end/mem/member_regestinfomation.jsp");
+				failureView.forward(req, res);
+			}
 			
 			
-			
-			String url="/Front_end/mem/Registered.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
 				
 			
 			

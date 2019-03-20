@@ -71,10 +71,12 @@ z-index:999;
 			
 				<div class="col-1">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
-						id="dropdownLoginButton" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false" >登入</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownLoginButton">
-						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/Login.jsp">會員登入</a> 
+						id="dropdownMemButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" >會員個人資料</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMemButton">
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">會員首頁</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/listOneMem.jsp">會員資料查看</a> 
+						<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/update_mem_input.jsp">會員資料修改</a> 
 					</div>
 				</div>
 			
