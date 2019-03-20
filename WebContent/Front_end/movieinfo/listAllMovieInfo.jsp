@@ -119,6 +119,13 @@
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Display_Front"></FORM>
 			</td>
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="CHAT ROOM">
+			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
+			     <input type="hidden" name="action"	value="getOne_For_Display_Front_Chatroom"></FORM>
+			</td>
+			
 <!-- 			<td> -->
 <%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;"> --%>
 <!-- 			     <input type="submit" value="MOVIE INFO"> -->

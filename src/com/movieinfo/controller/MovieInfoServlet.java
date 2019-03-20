@@ -112,6 +112,36 @@ public class MovieInfoServlet extends HttpServlet {
 
 		}
 		
+		/*********************************前台電影院單一查詢************************************************/		
+		if ("getOne_For_Display_Front_Chatroom".equals(action)) { // 來自select_page.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str = req.getParameter("movie_no");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入電影編號");
+				}
+
+				String movie_no = null;
+				movie_no = new String(str);
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				MovieInfoService movieinfoSvc = new MovieInfoService();
+				MovieInfoVO movieinfoVO = movieinfoSvc.getOneMovieInfo(movie_no);
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("movieinfoVO", movieinfoVO); // 資料庫取出的empVO物件,存入req
+				String url = "/Front_end/chatroom/chatroom.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+		}
+		
 /*********************************前台未上映單一查詢************************************************/		
 		if ("getOne_For_Display_FrontUpComing".equals(action)) { // 來自select_page.jsp的請求
 
