@@ -677,6 +677,21 @@ public class memberServlet extends HttpServlet {
 		}
 		
 		
+		//20190320更新
+		
+if("registstart".equals(action)) {
+			
+			
+			
+			String url="/Front_end/mem/Registered.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+				
+			
+			
+		}
+		
+		
 		/***************************************************************後台***************************************************/
 		
 if("getOne_For_Display_Back".equals(action)) {
