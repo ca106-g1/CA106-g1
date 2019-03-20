@@ -1,10 +1,24 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.movieinfo.model.*"%>
+<%@ page import="com.moviegenre.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
+
 <%--  <%@ page import="java.util.*" %> --%>
 
+<%
+  MovieInfoVO movieinfoVO = new MovieInfoService().getOneMovieInfo(request.getParameter("movie_no")); 
+  
+  MovieGenreService moviegenreSvc = new MovieGenreService();
+  pageContext.setAttribute("msc",moviegenreSvc);
+  pageContext.setAttribute("movieinfoVO",movieinfoVO);
+%>
 
-
+<%
+	MemVO memVO = (MemVO)session.getAttribute("memVO");
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,7 +39,7 @@
 
 
 
-<title>員工資料新增 - addEmp.jsp</title>
+<title>聊天室 - addEmp.jsp</title>
 
 <style>
   table#table-1 {
@@ -86,6 +100,49 @@
 <!-- <input type="submit" value="送出新增"> -->
 <!-- </FORM> -->
 
+<table>
+	<tr>
+		<th>電影名稱</th>
+		<th>電影種類</th>
+		<th>電影封面</th>
+		<th>電影分級</th>
+		<th>電影導演</th>
+		<th>電影演員</th>
+		<th>電影片長</th>
+		<th>電影預告片</th>
+		<th>電影簡介</th>
+	</tr>
+	
+	<tr>
+			<td>${movieinfoVO.movie_name}</td>
+<%-- 			<td>${msc.getOneGenre(movieinfoVO.genre_no).genre_name}</td> --%>
+<!-- 新增movie_pic			 -->
+			<c:set var="movie_pic" value="${movieinfoVO.movie_pic}"></c:set>
+			<%
+				byte b[]= (byte[])pageContext.getAttribute("movie_pic");
+				String encode = null;
+				if(b != null){
+					encode = Base64.encode(b);
+			%>
+			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
+			<%}else{%><td></td><%}%>
+<!-- 新增movie_level -->			
+			<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
+			<%
+				byte c[]= (byte[])pageContext.getAttribute("movie_level");
+				String encode1 = null;
+				if(c != null){
+					encode1 = Base64.encode(c);
+			%>
+			<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
+			<%}else{%><td></td><%}%>
+			<td>${movieinfoVO.movie_director}</td>
+			<td>${movieinfoVO.movie_cast}</td> 
+			<td>${movieinfoVO.movie_length}</td>
+			<td>${movieinfoVO.movie_trailer}</td>
+			<td>${movieinfoVO.movie_intro}</td>
+	</tr>
+</table>
 
 		<h1> Chat Room </h1>
 	    <h3 id="statusOutput" class="statusOutput"></h3>
@@ -99,8 +156,8 @@
         
         
         <div class="panel input-area">
-            <input id="userName" class="text-field" type="text" placeholder="使用者名稱"/>
-            
+<%--             <input id="userName" class="text-field" type="text" placeholder="使用者名稱" value="${memVO.member_no}"/> --%>
+           <h5> ${memVO.member_name}</h5>
             
             
         <form name = 'form' action = '#' method='post'>
@@ -280,7 +337,7 @@ function readURL(input){
 	
 
     
-    var MyPoint = "/MyEchoServer/pet";
+    var MyPoint = "/MyEchoServer/${param.movie_no}";
     var host = window.location.host;
     var path = window.location.pathname;
     var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -288,6 +345,13 @@ function readURL(input){
     
 	var statusOutput = document.getElementById("statusOutput");
 	var webSocket;
+	
+	alert(MyPoint);
+	
+// 	var My = "${memVO.member_no}" 
+// 		alert(My);
+	
+	
 	
 	function connect() {
 		// 建立 websocket 物件
@@ -326,7 +390,8 @@ function readURL(input){
 	inputUserName.focus();
 	
 	function sendMessage() {
-	    var userName = inputUserName.value.trim();
+// 	    var userName = inputUserName.value.trim();
+		var userName = "${memVO.member_name}"
 	    if (userName === ""){
 	        alert ("使用者名稱請勿空白!");
 	        inputUserName.focus();	
