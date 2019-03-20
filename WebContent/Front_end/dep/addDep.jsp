@@ -76,17 +76,17 @@
 	
 	<tr>
 		<td>異動金額</td>
-		<td><input type = "text" name="deposit_change_money" size="45"
+		<td><input type = "text" name="deposit_change_money" id="deposit_change_money" size="45"
 			value="<%= (depVO==null)?"":""%>" /></td>
 	</tr>
 	<tr>
 		<td>信用卡密碼</td>
-		<td><input type = "text" name="member_credit_number" size="45"></td>
+		<td><input type = "text" name="member_credit_number" id="member_credit_number" size="45"></td>
 	</tr>
 	
 	<tr>
 		<td>驗證末三碼</td>
-		<td><input type = "text" name="member_back_verification" size="45"></td>
+		<td><input type = "text" name="member_back_verification" id="member_back_verification" size="45"></td>
 	</tr>
 	<tr>
 	<td><input type = "hidden" name="deposit_change_date" value="<%=(depVO==null)?"":depVO.getDeposit_change_date()%>" /></td>
@@ -98,14 +98,32 @@
 </table>
 <br>
 <input type ="hidden" name="action" value="mem_insert">
-<input type = "submit" value="送出新增"></FORM>
+<input type = "submit" value="送出新增">
 
 
 
 
 
 
+</FORM>
 
+
+
+<img src = "img/popcorn.jpg" height="20" width="20" onclick="iddo(this)">
+
+
+<script>
+
+	function iddo(name){
+		
+		form1.deposit_change_money.value="2000";
+		form1.member_credit_number.value="139687495312";
+		form1.member_back_verification.value="398";
+		
+	}
+
+
+</script>
 
 
 

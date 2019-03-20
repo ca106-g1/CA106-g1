@@ -52,19 +52,19 @@
 
 
 <p>*密碼: 
-<input type = "password"  name = "member_password2" value="<%= (memVO==null)?"":""%>"  required> </p>
+<input type = "password"  name = "member_password2" name = "member_password2" id = "member_password2" value="<%= (memVO==null)?"":""%>"  required> </p>
 
 <p>*新密碼:
-<input type = "password"  name = "member_password" value="<%= (memVO==null)?"":""%>"  required> </p>
+<input type = "password"  name = "member_password" id = "member_password" value="<%= (memVO==null)?"":""%>"  required> </p>
 
 <p>*再次確認新密碼:
-<input type = "password"  name = "member_password1" value="<%= (memVO==null)?"":""%>"  required> </p>
+<input type = "password"  name = "member_password1" id = "member_password1" value="<%= (memVO==null)?"":""%>"  required> </p>
 
 <p>*姓名:
-<input type = "text"  name = "member_name" value="<%= (memVO==null)?"":memVO.getMember_name()%>"> </p>
+<input type = "text"  name = "member_name" id = "member_name" value="<%= (memVO==null)?"":memVO.getMember_name()%>"> </p>
 
 <p>暱稱:
-<input type = "text"  name = "member_nick" value="<%= (memVO==null)?"":memVO.getMember_nick()%>"> </p>
+<input type = "text"  name = "member_nick" id = "member_nick" value="<%= (memVO==null)?"":memVO.getMember_nick()%>"> </p>
 
 <p>*性別:<input type = "radio" name = "member_sex" value = "1" ${(memVO.member_sex==1)? "checked": ""} >男性
 	   <input type = "radio" name = "member_sex" value = "0" ${(memVO.member_sex==0)? "checked": ""} >女性
@@ -124,24 +124,54 @@
 	</div>
 	</p>
 <p>*電話:
-<input type = "tel"  name = "member_telephone" value="<%= (memVO==null)?"":memVO.getMember_telephone()%>"> </p>
+<input type = "tel"  name = "member_telephone" id = "member_telephone" value="<%= (memVO==null)?"":memVO.getMember_telephone()%>"> </p>
 
 <p>*信箱: 
-<input type = "email"  name = "member_email" value="<%= (memVO==null)?"":memVO.getMember_email()%>"> </p>
+<input type = "email"  name = "member_email" id = "member_email" value="<%= (memVO==null)?"":memVO.getMember_email()%>"> </p>
 
 <p>會員圖像: 
 <input type = "file" id = "img" name = "member_picture"> </p>
 
 <p>信用卡號碼:
-<input type = "text"  name = "member_credit_number" value="${memVO.member_credit_number}"> </p> 
+<input type = "text"  name = "member_credit_number" id = "member_credit_number" value="${memVO.member_credit_number}"> </p> 
 
 <p>背面後三碼: 
-<input type = "text"  name = "member_back_verification" value="${memVO.member_back_verification}"> </p>
+<input type = "text"  name = "member_back_verification" id = "member_back_verification" value="${memVO.member_back_verification}"> </p>
 
 </table>
 <br>
 <input type = "hidden" name="action" value="update">
-<input type = "submit" value = "送出修改"> </FORM>
+<input type = "submit" value = "送出修改"> 
+
+
+
+<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite(this)">
+
+	<script>
+	function idwrite(name){
+		
+		
+		form1.member_password.value="5201314";
+		form1.member_password1.value="5201314";
+		form1.member_name.value="大吳";
+		form1.member_nick.value="大神";
+		form1.member_sex.value="1";
+		form1.f_date.value="2018-03-29";
+		form1.member_address.value="桃園市中壢區中大路1號";
+		form1.member_telephone.value="0982102271";
+		form1.member_email.value="zxxl3617@gmail.com";
+		form1.member_credit_number.value="498231678597";
+		form1.member_back_verification.value="798";
+		
+	}
+
+</script>
+
+
+
+
+</FORM>
 
 
 

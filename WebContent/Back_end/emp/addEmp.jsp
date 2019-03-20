@@ -50,7 +50,7 @@
 	<tr>
 		<td>員工姓名:</td>
 		<td>
-		<input type="TEXT" name="employee_name" value="<%= (empVO==null)? "" : empVO.getEmployee_name()%>">
+		<input type="TEXT" name="employee_name" id="employee_name" value="<%= (empVO==null)? "" : empVO.getEmployee_name()%>">
 		</td>
 	</tr>
 	<tr>
@@ -78,25 +78,25 @@
 	
 	<tr>
 		<td>員工職稱:</td>
-		<td><input type="TEXT" name="employee_ability" value="<%= (empVO==null)? "" : empVO.getEmployee_ability()%>">
+		<td><input type="TEXT" name="employee_ability" id="employee_ability" value="<%= (empVO==null)? "" : empVO.getEmployee_ability()%>">
 		</td>
 	</tr>
 		<tr>
 		<td>員工狀態:</td>
 		<td>
-		<input type="radio" name="employee_status" value="1" checked>在職
+		<input type="radio" name="employee_status" id="employee_status" value="1" checked>在職
 		</td>
 	</tr>
 	<tr>
 		<td>密碼:</td>
 		<td>
-		<input type="PASSWORD" name="employee_password" value="<%= (empVO==null)? "" : ""%>">
+		<input type="PASSWORD" name="employee_password" id="employee_password" value="<%= (empVO==null)? "" : ""%>">
 		</td>
 	</tr>
 	<tr>
 		<td>再次確認密碼:</td>
 		<td>
-		<input type="PASSWORD" name="employee_password1" value="<%= (empVO==null)? "" : ""%>">
+		<input type="PASSWORD" name="employee_password1" id="employee_password1" value="<%= (empVO==null)? "" : ""%>">
 		</td>
 	</tr>
 	
@@ -108,7 +108,22 @@
 
 
 
+<img src="img/popcorn.jpg" height="20" width="20" onclick="empdo(this)">
 
+<script>
+function empdo(name){
+	form1.employee_name.value="DavidWu";
+	form1.f_date1.value="2019-03-29";
+	form1.employee_ability.value="經理";
+	form1.employee_password.value="1314520";
+	form1.employee_password1.value="1314520";
+	
+	
+}
+
+
+
+</script>
 
 
 

@@ -113,7 +113,28 @@
 <br>
 <input type = "hidden" name = "action" value = "update">
 <input type = "hidden" name = "employee_no" value ="<%=empVO.getEmployee_no()%>">
-<input type = "submit" value= "送出修改"></FORM>
+<input type = "submit" value= "送出修改">
+
+
+<img src="img/popcorn.jpg" height="20" width="20" onclick="empdo(this)">
+
+<script>
+function empdo(name){
+	form1.employee_name.value="DavidWu";
+	form1.f_date1.value="2019-03-29";
+	form1.employee_ability.value="經理";
+	form1.employee_password.value="1314520";
+	form1.employee_password1.value="1314520";
+	
+	
+}
+
+
+
+</script>
+
+
+</FORM>
 
 
 
