@@ -8,14 +8,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class AdvDAOImpl implements AdvDAO_interface {
 
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String username = "JOIN";
-	String password = "123456";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/JOIN");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
-	private static final String INSERT_DEP = "INSERT INTO ADVERTISEMENT VALUES (ADVERTISEMENT_seq.NEXTVAL ,?,?,?,?,?,?)";
+	private static final String INSERT_DEP = "INSERT INTO ADVERTISEMENT VALUES ('A'||LPAD(ADVERTISEMENT_seq.NEXTVAL,6,'0')  ,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE ADVERTISEMENT set AD_NAME = ?, AD_PIC =?, AD_CONT =?, AD_START =?, AD_END =?, AD_TYPE=? WHERE AD_NO = ?";
 	private static final String DELETE = "DELETE FROM ADVERTISEMENT WHERE AD_NO = ?";
 	private static final String GET_ALL_DEP = "SELECT * FROM ADVERTISEMENT";
@@ -29,8 +39,7 @@ public class AdvDAOImpl implements AdvDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_DEP);
 
 			//INSERT INTO ADVERTISEMENT VALUES (ADVERTISEMENT_seq.NEXTVAL ,?,?,?,?,?)
@@ -45,9 +54,6 @@ public class AdvDAOImpl implements AdvDAO_interface {
 
 			pstmt.executeUpdate();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,8 +85,7 @@ public class AdvDAOImpl implements AdvDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, advVO.getAd_name());
@@ -93,9 +98,6 @@ public class AdvDAOImpl implements AdvDAO_interface {
 
 			pstmt.executeUpdate();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,16 +129,12 @@ public class AdvDAOImpl implements AdvDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, ad_no);
 			pstmt.executeUpdate();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -169,8 +167,7 @@ public class AdvDAOImpl implements AdvDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_DEP);
 
 			pstmt.setString(1, ad_no);
@@ -189,9 +186,6 @@ public class AdvDAOImpl implements AdvDAO_interface {
 
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -234,8 +228,7 @@ public class AdvDAOImpl implements AdvDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, username, password);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_DEP);
 			rs = pstmt.executeQuery();
 
@@ -252,9 +245,6 @@ public class AdvDAOImpl implements AdvDAO_interface {
 				list.add(advVO);
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

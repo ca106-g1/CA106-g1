@@ -55,16 +55,7 @@
 				</div>
 						<!-- 以上是影視新聞功能-->
 	
-	
-				<div class="col-1">
-						<button class="btn btn-secondary dropdown-toggle" type="button"
-							id="dropdownIndexButton" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">聊天室</button>						
-						<div class="dropdown-menu" aria-labelledby="dropdownIndexButton">
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/index/room.jsp">聊天室列表</a> 
-						</div>
-				</div>
-						<!-- 以上是聊天室功能-->	
+		
 	
 	
 	<!-- 子傑開始	 -->					

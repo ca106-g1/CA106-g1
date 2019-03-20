@@ -121,8 +121,9 @@
 	
 	<tr>
 		<td>廣告內容:</td>
-		<td><input type="TEXT" name="ad_cont" size="45" 
-			 value="<%= (advVO.getAd_cont()==null)? "" : advVO.getAd_cont()%>" /></td>
+		<td> 
+		<textarea name="content" id="content" rows="10" cols="80" ></textarea></td>
+		<td style = "display:none"><input type="TEXT" name="ad_cont" size="45"  id="ad_cont" style = "display:none" /></td>
 	</tr>
 	
 	<tr>
@@ -159,7 +160,7 @@
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="ad_no" value="<%=advVO.getAd_no()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" value="送出修改" onclick="sendMessage();"></FORM>
 
 
 
@@ -189,6 +190,40 @@
 
 
 
+
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script>
+
+<script>
+			CKEDITOR.replace( 'content', {});
+</script>
+
+
+
+
+
+
+<script>
+function sendMessage() {
+	var message = CKEDITOR.instances.content.getData()
+	document.getElementById("ad_cont").value=message;
+
+}
+</script>
+
+
+<script>
+
+	alert("!");
+	var ad_cont = '<%=advVO.getAd_cont()%>';
+	alert(ad_cont);
+	CKEDITOR.instances.content.setData(ad_cont);
+	
+
+</script>
 
 
 

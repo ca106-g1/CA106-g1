@@ -113,9 +113,10 @@
 	</tr>
 	
 	<tr>
-		<td>廣告內容:</td>
-		<td><input type="TEXT" name="ad_cont" size="45" 
-			 value="<%= (advVO==null)? "" : advVO.getAd_cont()%>" /></td>
+		<td >廣告內容:</td>
+		<td> <textarea name="content" id="content" rows="10" cols="80"></textarea></td>
+		<td style = "display:none"><input type="TEXT" name="ad_cont" size="45"   id="ad_cont"
+			 value="<%= (advVO==null)? "" : advVO.getAd_cont()%>"  style = "display:none"/></td>
 	</tr>
 	
 	<tr>
@@ -152,7 +153,7 @@
 
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增">
+<input type="submit" value="送出新增" onclick="sendMessage();">
 </FORM>
 
 
@@ -174,6 +175,22 @@
 
 
 </body>
+
+<script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script>
+
+<script>
+			CKEDITOR.replace( 'content', {});
+</script>
+
+
+<script>
+function sendMessage() {
+	var message = CKEDITOR.instances.content.getData()
+	document.getElementById("ad_cont").value=message;
+
+}
+</script>
+
 
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
