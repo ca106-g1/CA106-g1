@@ -237,6 +237,7 @@
 	<filter-mapping>
 		<filter-name>LoginFilter_for_chooseSeatS</filter-name>
 		<url-pattern>/Front_end/ticketorder_/chooseSeatS.jsp</url-pattern>
+		<url-pattern>/Front_end/chatroom/chatroom.jsp</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
