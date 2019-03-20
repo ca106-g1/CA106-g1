@@ -206,7 +206,7 @@ p {
 						
 						<%if((i * 20 + j)>375 && count2>=10){ %>
 						
-						padding-left:3.43px;padding-right:3.43px;
+						padding-left:3.43px;padding-right:3.36px;
 						
 						<% }else if((i * 20 + j)>375 && count2<10){%>
 						
@@ -301,7 +301,6 @@ p {
         </button>
       </div>
       <div class="modal-body" id="fdDescription_modal-body">
-      你我他測試
       </div>
       <div class="modal-footer">
         <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -550,14 +549,8 @@ p {
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
-	<script
-		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>
