@@ -40,6 +40,10 @@
   	width:135px;
   	hight:200px;
   }
+  iframe{
+	width:300px;
+	hight:168px;  
+  }
 </style>
 
 <style>
@@ -56,15 +60,7 @@
     padding: 5px;
     text-align: center;
   }
-  img, #a2{
-  	width:50px;
-  	hight:50px;
-  }
-  
-  img, #a3{
-  	width:135px;
-  	hight:200px;
-  }
+ 
 </style>
 
 </head>
@@ -94,7 +90,6 @@
 		<th>電影票房</th>
 		<th>電影期待度</th>
 		<th>電影不期待度</th>
-		<th>電影點擊次數</th>
 		<th>電影票價加價</th>
 		<th colspan="2">編輯</th>
 	</tr>
@@ -127,13 +122,15 @@
 			<td>${movieinfoVO.movie_cast}</td> 
 			<td>${movieinfoVO.movie_length}</td>
 			<td>${movieinfoVO.movie_intro}</td>
-			<td>${movieinfoVO.movie_trailer}</td>
+			
+			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+			
+			
 			<td>${movieinfoVO.movie_in}</td>
 			<td>${movieinfoVO.movie_out}</td> 
 			<td>${movieinfoVO.movie_count}</td>
 			<td>${movieinfoVO.movie_exp}</td>
 			<td>${movieinfoVO.movie_noexp}</td>
-			<td>${movieinfoVO.movie_touch}</td>
 			<td>${movieinfoVO.movie_ticket}</td> 
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">

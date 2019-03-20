@@ -48,6 +48,15 @@
 		</tr>
 	</table>
 	
+	<table class="table">
+		<tr>
+			<h3><td>最新優惠</td></h3>
+			 <td>
+			 	<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">最新優惠</a></h4>
+			 </td>
+		</tr>
+	</table>
+	
 	
 	<table class="table">
 		<tr>
@@ -55,9 +64,8 @@
 			 <td>
 				 <h4><a href="<%=request.getContextPath()%>/Front_end/movieinfo/upComingListAll.jsp">即將上映</a></h4>
 				 <h4><a href="<%=request.getContextPath()%>/Front_end/movieinfo/listAllMovieInfo.jsp">熱映中</a></h4>
-				 <h4><a href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">影視新聞</a></h4>
 				 <h4><a href="<%=request.getContextPath()%>/Front_end/movieinfo/hotMovie.jsp">熱門電影推薦</a></h4>
-				 <h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">年度電影推薦</a></h4>
+				 <h4><a href="<%=request.getContextPath()%>/Front_end/movieinfo/rankMovieList.jsp">年度電影推薦</a></h4>
 			 </td>
 		</tr>
 	</table>
@@ -66,7 +74,6 @@
 		<tr>
 			<h3><td>線上購票</td></h3>
 			<td>
-				<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">最新優惠</a></h4>
 				<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">電影票價</a></h4>
 				<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">場次資訊</a></h4>
 				<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">訂票查詢/取消</a></h4>
@@ -76,15 +83,23 @@
 	
 	<table class="table">
 		<tr>
-			<h3><td>會員中心</td></h3>
+			 <h3><td>影視新聞</td></h3>
 			 <td>
-			 	<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">註冊/登入會員</a></h4>
-			 	<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">會員中心</a></h4>
-			 	<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">Q&A</a></h4>
+				 <h4><a href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">影視新聞</a></h4>
 			 </td>
 		</tr>
 	</table>
 	
+	<table class="table">
+		<tr>
+			<h3><td>會員中心</td></h3>
+			 <td>
+			 	<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">註冊/登入會員</a></h4>
+			 	<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">會員資料查看</a></h4>
+			 	<h4><a href="<%=request.getContextPath()%>/Front_end/404.jsp">Q&A</a></h4>
+			 </td>
+		</tr>
+	</table>
 
 </body>
 </html>

@@ -43,23 +43,24 @@ public class testMovieInfo extends HttpServlet {
 //		private Integer movie_touch;
 //		private Integer movie_ticket;
 		
-//		vo.setGenre_no(3);
-//		vo.setMovie_name("testttt");
-//		vo.setMovie_level(null);
-//		vo.setMovie_director("me");
-//		vo.setMovie_cast("123");
-//		vo.setMovie_intro("111");
-//		vo.setMovie_length("111");
-//		vo.setMovie_trailer(null);
-//		vo.setMovie_pic(null);
-//		vo.setMovie_in(java.sql.Date.valueOf("1991-10-01"));
-//		vo.setMovie_out(java.sql.Date.valueOf("1991-10-02"));
-//		vo.setMovie_count(2);
-//		vo.setMovie_exp(2);
-//		vo.setMovie_noexp(3);
-//		vo.setMovie_touch(200);
-//		vo.setMovie_ticket(50);
-//		vo.setMovie_no(18);
+		vo.setGenre_no(3);
+		vo.setMovie_name("testttt");
+		vo.setMovie_score(1.8);
+		vo.setMovie_level(null);
+		vo.setMovie_director("me");
+		vo.setMovie_cast("123");
+		vo.setMovie_intro("111");
+		vo.setMovie_length("111");
+		vo.setMovie_trailer(null);
+		vo.setMovie_pic(null);
+		vo.setMovie_in(java.sql.Date.valueOf("1991-10-01"));
+		vo.setMovie_out(java.sql.Date.valueOf("1991-10-02"));
+		vo.setMovie_count(2);
+		vo.setMovie_exp(2);
+		vo.setMovie_noexp(3);
+		vo.setMovie_touch(200);
+		vo.setMovie_ticket(50);
+		dao.insert(vo);
 		
 //		dao.update(vo);
 //		vo = dao.findByPrimaryKey(2);
@@ -81,10 +82,15 @@ public class testMovieInfo extends HttpServlet {
 //		System.out.println(vo.getMovie_touch());
 //		System.out.println(vo.getMovie_ticket());
 		
-		List<MovieInfoVO> list = service.getAllByScore();
-		for(MovieInfoVO a:list) {
-			System.out.println("電影名稱:"+a.getMovie_name());
-			System.out.println(a.getMovie_score());
-		}
+		
+//		Date aa = java.sql.Date.valueOf("2011-09-08");
+//		Date bb = java.sql.Date.valueOf("2019-09-08");
+//		System.out.println(aa);
+//		System.out.println(bb);
+//		List<MovieInfoVO> list = service.getAllByScore(aa, bb);
+//		for(MovieInfoVO a:list) {
+//			System.out.println("電影名稱:"+a.getMovie_name());
+//			System.out.println(a.getMovie_score());
+//		}
 	}
 }

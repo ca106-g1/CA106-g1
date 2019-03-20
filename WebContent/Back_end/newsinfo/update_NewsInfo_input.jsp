@@ -30,6 +30,15 @@
     color: blue;
     display: inline;
   }
+  img, #level{
+  	width:50px;
+  	hight:50px;
+  }
+  
+  img, #pic{
+  	width:135px;
+  	hight:200px;
+  }
 </style>
 
 <style>
@@ -52,12 +61,11 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>新聞資料修改</h3>
+		 <h3>影視專欄修改</h3>
 		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>新聞資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -72,7 +80,7 @@
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
-		<td>新聞編號:<font color=red><b>*</b></font></td>
+		<td>專欄編號:<font color=red><b>*</b></font></td>
 		<td><%=newsinfoVO.getNews_no()%></td>
 	</tr>
 	<tr>
@@ -80,11 +88,11 @@
 		<td><input type="TEXT" name="movie_no" size="45" value="<%=newsinfoVO.getMovie_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>新聞標題:<font color=red><b>*</b></font></td>
+		<td>專欄標題:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_title" size="45" value="<%=newsinfoVO.getNews_title()%>" /></td>
 	</tr>
 	<tr>
-		<td>新聞作者:<font color=red><b>*</b></font></td>
+		<td>專欄作者:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_auther" size="45"	value="<%=newsinfoVO.getNews_auther()%>" /></td>
 	</tr>
 	<tr>
@@ -92,11 +100,13 @@
 		<td><input name="news_times" id="f_date1" type="Text" ></td>
 	</tr>
 	<tr>
-		<td>新聞圖片:</td>
-		<td><input type="file" name="news_pic"></td>
+		<td>專欄圖片:</td>
+		<td><input type="file" name="news_pic" onchange='readURL(this)'>
+					<img id="pic" class='pic' src='data:img/png;base64,${encodeText}'
+					${(newsinfoVO.news_pic==null) ? 'style="display:none"' : ''}></td>
 	</tr>
 	<tr>
-		<td>新聞內容:<font color=red><b>*</b></font></td>
+		<td>專欄內容:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_con" size="45"	value="<%= (newsinfoVO==null)? "這是一篇新聞內容" : newsinfoVO.getNews_con()%>" /></td>
 	</tr>
 	
@@ -185,6 +195,18 @@
         //              }
         //              return [true, ""];
         //      }});
+        
+        //         立即顯示圖片
+        function readURL(input) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".pic").attr('src', e.target.result).css("display", "");
+
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+        
+</script>
         
 </script>
 </html>

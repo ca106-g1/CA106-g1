@@ -45,6 +45,26 @@ h4 {
 	color: blue;
 	display: inline;
 }
+
+img, #level{
+  	width:50px;
+  	hight:50px;
+  }
+  
+  img, #pic{
+  	width:135px;
+  	hight:200px;
+  }
+  
+  img, #button{
+  	width:20;
+  	hight:20;
+  }
+  
+  iframe{
+	width:500px;
+	hight:281px;  
+  }
 </style>
 
 <style>
@@ -106,87 +126,130 @@ th, td {
 			</tr>		
 			<tr>
 				<td>電影名稱:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" name="movie_name" size="45"
+				<td><input type="TEXT" id="movie_name" name="movie_name" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影名稱" : movieinfoVO.getMovie_name()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影分數:</td>
-				<td><input type="TEXT" name="movie_score" size="45"
+				<td>電影分數(ex:8.0):</td>
+				<td><input type="TEXT" id="movie_score" name="movie_score" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入IMDB分數" : movieinfoVO.getMovie_score()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影分級:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="file" name="movie_level"></td>
+				<td><input type="file" id="movie_level" name="movie_level" onchange='readURL(this)'>
+					<img id="level" class='pic' src='data:img/png;base64,${encodeText}'
+					${(movieinfoVO.movie_level==null) ? 'style="display:none"' : ''}></td>
 			</tr>
 			<tr>
 				<td>電影導演:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" name="movie_director" size="45"
+				<td><input type="TEXT" id="movie_director" name="movie_director" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影導演" : movieinfoVO.getMovie_director()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影演員:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" name="movie_cast" size="45"
+				<td><input type="TEXT" id="movie_cast" name="movie_cast" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影演員" : movieinfoVO.getMovie_cast()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影簡介:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" name="movie_intro" size="45"
+				<td><input type="TEXT" id="movie_intro" name="movie_intro" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影片長:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" name="movie_length" size="45"
+				<td><input type="TEXT" id="movie_length" name="movie_length" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入電影片長" : movieinfoVO.getMovie_length()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影預告片:</td>
-				<td><input type="file" name="movie_trailer"></td>
+				<td>電影預告:</td>
+				<td><input type="TEXT" name="movie_trailer" size="45"
+					value='<%=(movieinfoVO == null) ? "請輸入預告網址" : movieinfoVO.getMovie_trailer()%>' /></td>
 			</tr>
 			<tr>
 				<td>電影封面:</td>
-				<td><input type="file" name="movie_pic"></td>
+				<td><input type="file" name="movie_pic" onchange='readURL2(this)'>
+				<img id="pic" class='pic2' src='data:img/png;base64,${encodeText2}'
+					${(movieinfoVO.movie_pic==null) ? 'style="display:none"' : ''}>
+				</td>
 			</tr>
 			<tr>
 				<td>電影上映時間:<font color=red size="2"><b>*</b></font></td>
-				<td><input name="movie_in" class="f_date1" type="text"
+				<td><input name="movie_in" id="movie_in" class="f_date1" type="text"
 					value="<%=(movieinfoVO == null) ? "請輸入上映時間" : movieinfoVO.getMovie_in()%>"></td>
 			</tr>
 			<tr>
 				<td>電影下映時間:<font color=red size="2"><b>*</b></font></td>
-				<td><input name="movie_out" class="f_date1" type="text" 
+				<td><input name="movie_out" id="movie_out" class="f_date1" type="text" 
 					value="<%=(movieinfoVO == null) ? "請輸入下映時間" : movieinfoVO.getMovie_out()%>"></td>
 			</tr>
 			<tr>
 				<td>電影票房:</td>
 				<td><input type="TEXT" name="movie_count" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入票房" : movieinfoVO.getMovie_exp()%>" /></td>
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影期待度:</td>
-				<td><input type="TEXT" name="movie_exp" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入期待度" : movieinfoVO.getMovie_exp()%>" /></td>
+				<td><input type="TEXT" id="movie_exp" name="movie_exp" size="45"
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影不期待度:</td>
-				<td><input type="TEXT" name="movie_noexp" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入不期待度" : movieinfoVO.getMovie_noexp()%>" /></td>
-			</tr>
-			<tr>
-				<td>電影點擊次數:</td>
-				<td><input type="TEXT" name="movie_touch" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入點擊次數" : movieinfoVO.getMovie_touch()%>" /></td>
+				<td><input type="TEXT" id="movie_noexp" name="movie_noexp" size="45"
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_noexp()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影片長加價:</td>
-				<td><input type="TEXT" name="movie_ticket" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入片長加價" : movieinfoVO.getMovie_touch()%>" /></td>
+				<td><input type="TEXT" id="movie_ticket" name="movie_ticket" size="45"
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_touch()%>" /></td>
 			</tr>
 			
 		</table>
 			<br>
 			<input type="hidden" name="action" value="insert"> 
 			<input type="submit" value="送出新增">
+			
+			<img id="button" width="20" height="20" src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" onclick="movieinsert(this)">
+			
 	</FORM>
+	
+	<script>
+		function readURL(input) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".pic").attr('src', e.target.result).css("display", "");
+
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+		
+		function readURL2(input) {
+			var reader2 = new FileReader();
+			reader2.onload = function(e) {
+				$(".pic2").attr('src', e.target.result).css("display", "");
+
+			}
+			reader2.readAsDataURL(input.files[0]);
+		}
+		
+		function movieinsert(name){
+			form1.movie_name.value="資策會的秘密約會";
+			form1.movie_score.value="9.9";
+			form1.movie_director.value="賴柏松";
+			form1.movie_cast.value="蔣家駿, 陳彥彰";
+			form1.movie_intro.value="一段愛與勇氣的故事";
+			form1.movie_length.value="1:48";
+			form1.movie_trailer.value="https://www.youtube.com/embed/q6EoRBvdVPQ";
+			form1.movie_in.value="2019-03-22";
+			form1.movie_out.value="2019-04-22";
+			form1.movie_count.value="0";
+			form1.movie_exp.value="0";
+			form1.movie_noexp.value="0";
+			form1.movie_ticket.value="300";
+			
+			
+			
+		}
+	</script>
 </body>
 
 

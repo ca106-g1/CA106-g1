@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import com.movieinfo.model.MovieInfoService;
 import com.newsinfo.model.*;
 
 @MultipartConfig
@@ -30,7 +31,7 @@ public class NewsInfoServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String str = req.getParameter("news_no");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入新聞編號");
+					errorMsgs.add("請輸入專欄編號");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -43,7 +44,7 @@ public class NewsInfoServlet extends HttpServlet {
 				try {
 					news_no = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("新聞編號格式不正確");
+					errorMsgs.add("專欄編號格式不正確");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -78,6 +79,7 @@ public class NewsInfoServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
 
 		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
 
@@ -93,6 +95,14 @@ public class NewsInfoServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 ****************************************/
 				NewsInfoService newsinfoSvc = new NewsInfoService();
 				NewsInfoVO newsinfoVO = newsinfoSvc.getOneNewsInfo(news_no);
+				
+				Base64.Encoder encoder = Base64.getEncoder();
+
+
+				if (newsinfoVO.getNews_pic() != null) {
+					String encodeText = encoder.encodeToString(newsinfoVO.getNews_pic());
+					req.setAttribute("encodeText", encodeText);
+				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("newsinfoVO", newsinfoVO); // 資料庫取出的empVO物件,存入req
@@ -124,9 +134,9 @@ public class NewsInfoServlet extends HttpServlet {
 				String news_title = req.getParameter("news_title");
 				String news_titleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,30}$";
 				if (news_title == null || news_title.trim().length() == 0) {
-					errorMsgs.add("新聞名稱: 請勿空白");
+					errorMsgs.add("專欄標題: 請勿空白");
 				} else if (!news_title.trim().matches(news_titleReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("新聞名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.add("專欄標題: 只能是中、英文字母、數字和_ , 且長度必需在1到30之間");
 				}
 
 				String news_auther = req.getParameter("news_auther").trim();
@@ -159,6 +169,8 @@ public class NewsInfoServlet extends HttpServlet {
 							bao.write(b);
 						}
 						news_pic = bao.toByteArray();
+					}else {
+						news_pic = new NewsInfoService().getOneNewsInfo(news_no).getNews_pic();
 					}
 				} catch (Exception e) {
 					errorMsgs.add("上傳照片失敗，請重新上傳");
@@ -172,6 +184,13 @@ public class NewsInfoServlet extends HttpServlet {
 				newsinfoVO.setNews_times(news_times);
 				newsinfoVO.setNews_con(news_con);
 				newsinfoVO.setNews_pic(news_pic);
+				
+				Base64.Encoder encoder = Base64.getEncoder();
+
+				if (newsinfoVO.getNews_pic() != null) {
+					String encodeText = encoder.encodeToString(newsinfoVO.getNews_pic());
+					req.setAttribute("encodeText", encodeText);
+				}
 
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("newsinfoVO", newsinfoVO); // 含有輸入格式錯誤的empVO物件,也存入req

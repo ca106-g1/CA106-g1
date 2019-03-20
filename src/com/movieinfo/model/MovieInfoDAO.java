@@ -25,18 +25,22 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 	}
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO movieinfo (movie_no, genre_no, movie_name, movie_score, movie_level, movie_director, movie_cast, movie_intro, movie_length, movie_trailer, movie_pic, movie_in, movie_out, movie_count, movie_exp, movie_noexp, movie_touch, movie_ticket) VALUES ('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			"INSERT INTO movieinfo (movie_no, genre_no, movie_name, movie_score, movie_level, movie_director, movie_cast, movie_intro, movie_length, movie_trailer, movie_pic, movie_in, movie_out, movie_count, movie_exp, movie_noexp, movie_touch, movie_ticket) VALUES ('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 			"SELECT * FROM movieinfo order by movie_no";
 	private static final String GET_ALL_STMT_SCORE = 
-			"SELECT * FROM movieinfo where rownum < 11 order by movie_score desc ";
+			"SELECT * FROM movieinfo where rownum < 11 and movie_in BETWEEN ? AND ? order by movie_score desc ";
 	private static final String GET_ONE_STMT = 
 			"SELECT * FROM movieinfo where movie_no = ?";
 	private static final String DELETE = 
 			"DELETE FROM movieinfo where movie_no = ?";
 	private static final String UPDATE = 
 			"UPDATE movieinfo set genre_no=?, movie_name=?, movie_score=?, movie_level=?, movie_director=?, movie_cast=?, movie_intro=?, movie_length=?, movie_trailer=?, movie_pic=?, movie_in=?, movie_out=?, movie_count=?, movie_exp=?, movie_noexp=?, movie_touch=?, movie_ticket=? where movie_no = ?";
-
+	private static final String UPDATE_EXP =
+			"UPDATE movieinfo set movie_exp=? where movie_no = ?";
+	private static final String UPDATE_NOEXP =
+			"UPDATE movieinfo set movie_noexp=? where movie_no = ?";
+	
 	@Override
 	public void insert(MovieInfoVO movieinfoVO) {
 
@@ -56,7 +60,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 			pstmt.setString(6, movieinfoVO.getMovie_cast());
 			pstmt.setString(7, movieinfoVO.getMovie_intro());
 			pstmt.setString(8, movieinfoVO.getMovie_length());
-			pstmt.setBytes(9, movieinfoVO.getMovie_trailer());
+			pstmt.setString(9, movieinfoVO.getMovie_trailer());
 			pstmt.setBytes(10, movieinfoVO.getMovie_pic());
 			pstmt.setDate(11, movieinfoVO.getMovie_in());
 			pstmt.setDate(12, movieinfoVO.getMovie_out());
@@ -73,7 +77,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 		} catch (SQLException se) {
 			se.printStackTrace();
 			
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+//			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -113,7 +117,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 			pstmt.setString(6, movieinfoVO.getMovie_cast());
 			pstmt.setString(7, movieinfoVO.getMovie_intro());
 			pstmt.setString(8, movieinfoVO.getMovie_length());
-			pstmt.setBytes(9, movieinfoVO.getMovie_trailer());
+			pstmt.setString(9, movieinfoVO.getMovie_trailer());
 			pstmt.setBytes(10, movieinfoVO.getMovie_pic());
 			pstmt.setDate(11, movieinfoVO.getMovie_in());
 			pstmt.setDate(12, movieinfoVO.getMovie_out());
@@ -217,7 +221,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 				movieinfoVO.setMovie_cast(rs.getString("movie_cast"));
 				movieinfoVO.setMovie_intro(rs.getString("movie_intro"));
 				movieinfoVO.setMovie_length(rs.getString("movie_length"));
-				movieinfoVO.setMovie_trailer(rs.getBytes("movie_trailer"));
+				movieinfoVO.setMovie_trailer(rs.getString("movie_trailer"));
 				movieinfoVO.setMovie_pic(rs.getBytes("movie_pic"));
 				movieinfoVO.setMovie_in(rs.getDate("movie_in"));
 				movieinfoVO.setMovie_out(rs.getDate("movie_out"));
@@ -286,7 +290,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 				movieinfoVO.setMovie_cast(rs.getString("movie_cast"));
 				movieinfoVO.setMovie_intro(rs.getString("movie_intro"));
 				movieinfoVO.setMovie_length(rs.getString("movie_length"));
-				movieinfoVO.setMovie_trailer(rs.getBytes("movie_trailer"));
+				movieinfoVO.setMovie_trailer(rs.getString("movie_trailer"));
 				movieinfoVO.setMovie_pic(rs.getBytes("movie_pic"));
 				movieinfoVO.setMovie_in(rs.getDate("movie_in"));
 				movieinfoVO.setMovie_out(rs.getDate("movie_out"));
@@ -330,7 +334,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 	}
 	
 	@Override
-	public List<MovieInfoVO> getAllByScore() {
+	public List<MovieInfoVO> getAllByScore(java.sql.Date stdate, java.sql.Date enddate) {
 		List<MovieInfoVO> list = new ArrayList<MovieInfoVO>();
 		MovieInfoVO movieinfoVO = null;
 
@@ -342,6 +346,10 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT_SCORE);
+			
+			pstmt.setDate(1, stdate);
+			pstmt.setDate(2, enddate);
+			
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -357,7 +365,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 				movieinfoVO.setMovie_cast(rs.getString("movie_cast"));
 				movieinfoVO.setMovie_intro(rs.getString("movie_intro"));
 				movieinfoVO.setMovie_length(rs.getString("movie_length"));
-				movieinfoVO.setMovie_trailer(rs.getBytes("movie_trailer"));
+				movieinfoVO.setMovie_trailer(rs.getString("movie_trailer"));
 				movieinfoVO.setMovie_pic(rs.getBytes("movie_pic"));
 				movieinfoVO.setMovie_in(rs.getDate("movie_in"));
 				movieinfoVO.setMovie_out(rs.getDate("movie_out"));
@@ -372,8 +380,7 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
+			se.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -399,4 +406,77 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 		}
 		return list;
 	}
+
+	@Override
+	public void changeExp(String movie_no, Integer movie_exp) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_EXP);
+
+			pstmt.setInt(1, movie_exp);
+			pstmt.setString(2, movie_no);
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		}
+		
+		@Override
+		public void changeNoExp(String movie_no, Integer movie_noexp) {
+
+			Connection con = null;
+			PreparedStatement pstmt = null;
+
+			try {
+
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(UPDATE_NOEXP);
+
+				pstmt.setInt(1, movie_noexp);
+				pstmt.setString(2, movie_no);
+
+				pstmt.executeUpdate();
+
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+	}
+	
 }

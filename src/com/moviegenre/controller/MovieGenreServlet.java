@@ -160,7 +160,7 @@ public class MovieGenreServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("Back_end/moviegenre/update_MovieGenre_input.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/update_MovieGenre_input.jsp");
 				failureView.forward(req, res);
 			}
 		}

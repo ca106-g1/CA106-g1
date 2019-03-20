@@ -19,7 +19,7 @@ public class MovieInfoService {
 			String movie_cast,
 			String movie_intro,
 			String movie_length,
-			byte[] movie_trailer,
+			String movie_trailer,
 			byte[] movie_pic,
 			Date movie_in,
 			Date movie_out,
@@ -63,7 +63,7 @@ public class MovieInfoService {
 			String movie_cast,
 			String movie_intro,
 			String movie_length,
-			byte[] movie_trailer,
+			String movie_trailer,
 			byte[] movie_pic,
 			Date movie_in,
 			Date movie_out,
@@ -110,8 +110,15 @@ public class MovieInfoService {
 		return dao.getAll();
 	}
 	
-	public List<MovieInfoVO> getAllByScore() {
-		return dao.getAllByScore();
+	public List<MovieInfoVO> getAllByScore(java.sql.Date stdate, java.sql.Date enddate) {
+		return dao.getAllByScore(stdate, enddate);
 	}
-
+	
+	public void updateExp(String movie_no, Integer movie_exp) {
+		dao.changeExp(movie_no, movie_exp);
+	}
+	
+	public void updateNoExp(String movie_no, Integer movie_noexp) {
+		dao.changeNoExp(movie_no, movie_noexp);
+	}
 }

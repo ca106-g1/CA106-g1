@@ -1,11 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.newsinfo.model.*"%>
 <%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
 <!-- 寫入圖片步驟1 -->
 
 <%
   NewsInfoVO newsinfoVO = (NewsInfoVO) request.getAttribute("newsinfoVO");
+
 %>
 
 <html>
@@ -34,6 +36,15 @@
     color: blue;
     display: inline;
   }
+  img, #level{
+  	width:50px;
+  	hight:50px;
+  }
+  
+  img, #pic{
+  	width:135px;
+  	hight:200px;
+  }
 </style>
 
 <style>
@@ -56,12 +67,12 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>新聞專欄新增</h3></td><td>
+		 <h3>影視專欄新增</h3></td><td>
 		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>新聞專欄新增:</h3>
+<h3>影視專欄新增:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -79,17 +90,17 @@
 	<tr>
 		<td>電影編號:</td>
 		<td><input type="TEXT" name="movie_no" size="45" 
-			 placeholder="ex:1" /></td>
+			 placeholder="ex:MI00000001" /></td>
 	</tr>
 	<tr>
 		<td>專欄標題:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_title" size="45"
-			 value="<%= (newsinfoVO==null)? "這是一個專欄標題" : newsinfoVO.getNews_title()%>" /></td>
+			 value="<%= (newsinfoVO==null)? "請輸入專欄標題" : newsinfoVO.getNews_title()%>" /></td>
 	</tr>
 	<tr>
 		<td>專欄作者:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_auther" size="45"
-			 value="<%= (newsinfoVO==null)? "這是一個專欄作者" : newsinfoVO.getNews_auther()%>" /></td>
+			 value="<%= (newsinfoVO==null)? "請輸入專欄作者" : newsinfoVO.getNews_auther()%>" /></td>
 	</tr>
 	<tr>
 		<td>發文日期:<font color=red><b>*</b></font></td>
@@ -97,12 +108,14 @@
 	</tr>
 	<tr>
 		<td>專欄圖片:</td>
-		<td><input type="file" name="news_pic"></td>
+		<td><input type="file" name="news_pic" onchange='readURL(this)'>
+					<img id="pic" class='pic' src='data:img/png;base64,${encodeText}'
+					${(newsinfoVO.news_pic==null) ? 'style="display:none"' : ''}></td>
 	</tr>
 	<tr>
 		<td>專欄內容:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_con" size="45"
-			 value="<%= (newsinfoVO==null)? "這是一篇專欄內容" : newsinfoVO.getNews_con()%>" /></td>
+			 value="<%= (newsinfoVO==null)? "請輸入專欄內容" : newsinfoVO.getNews_con()%>" /></td>
 	</tr>
 
 
@@ -110,6 +123,7 @@
 <br>
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增"></FORM>
+
 </body>
 
 
@@ -199,6 +213,17 @@
         //              }
         //              return [true, ""];
         //      }});
+        
+        
+//         立即顯示圖片
+        function readURL(input) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".pic").attr('src', e.target.result).css("display", "");
+
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
         
 </script>
 </html>

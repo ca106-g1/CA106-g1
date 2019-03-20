@@ -12,7 +12,7 @@ public class MovieInfoVO implements java.io.Serializable {
 	private String movie_cast;
 	private String movie_intro;
 	private String movie_length;
-	private byte[] movie_trailer;
+	private String movie_trailer;
 	private byte[] movie_pic;
 	private Date movie_in;
 	private Date movie_out;
@@ -77,10 +77,10 @@ public class MovieInfoVO implements java.io.Serializable {
 	public void setMovie_length(String movie_length) {
 		this.movie_length = movie_length;
 	}
-	public byte[] getMovie_trailer() {
+	public String getMovie_trailer() {
 		return movie_trailer;
 	}
-	public void setMovie_trailer(byte[] movie_trailer) {
+	public void setMovie_trailer(String movie_trailer) {
 		this.movie_trailer = movie_trailer;
 	}
 	public byte[] getMovie_pic() {

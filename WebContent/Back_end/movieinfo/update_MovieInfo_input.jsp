@@ -36,6 +36,16 @@
     color: blue;
     display: inline;
   }
+  
+	img, #level{
+	  	width:50px;
+	  	hight:50px;
+	  }
+  
+  	img, #pic{
+	  width:135px;
+	  hight:200px;
+  }
 </style>
 
 <style>
@@ -93,13 +103,16 @@
 					value="<%=(movieinfoVO == null) ? "請輸入電影名稱" : movieinfoVO.getMovie_name()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影分數:</td>
+				<td>電影分數(ex:8.0):</td>
 				<td><input type="TEXT" name="movie_score" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入IMDB分數" : movieinfoVO.getMovie_score()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影分級:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="file" name="movie_level"></td>
+				<td>電影分級:</td>
+				<td><input type="file" name="movie_level" onchange='readURL(this)'>
+					<img id="level" class='pic' src='data:img/png;base64,${encodeText}'
+					${(movieinfoVO.movie_level==null) ? 'style="display:none"' : ''}>
+				</td>
 			</tr>
 			<tr>
 				<td>電影導演:<font color=red size="2"><b>*</b></font></td>
@@ -122,12 +135,17 @@
 					value="<%=(movieinfoVO == null) ? "請輸入片長" : movieinfoVO.getMovie_length()%>" /></td>
 			</tr>
 			<tr>
-				<td>預告片:</td>
-				<td><input type="file" name="movie_trailer"></td>
+				<td>電影預告:</td>
+				<td><input type="TEXT" name="movie_trailer" size="45"
+					value='<%=(movieinfoVO == null) ? "請輸入預告網址" : movieinfoVO.getMovie_trailer()%>' /></td>
 			</tr>
 			<tr>
 				<td>封面:</td>
-				<td><input type="file" name="movie_pic"></td>
+				<td><input type="file" name="movie_pic" onchange='readURL2(this)'>
+				<img id="pic" class='pic2' src='data:img/png;base64,${encodeText2}'
+					${(movieinfoVO.movie_pic==null) ? 'style="display:none"' : ''}>
+				</td>
+				</td>
 			</tr>
 			<tr>
 				<td>上映時間:<font color=red size="2"><b>*</b></font></td>
@@ -142,33 +160,49 @@
 			<tr>
 				<td>票房:</td>
 				<td><input type="TEXT" name="movie_count" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入票房" : movieinfoVO.getMovie_count()%>" /></td>
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_count()%>" /></td>
 			</tr>
 			<tr>
 				<td>期待度:</td>
 				<td><input type="TEXT" name="movie_exp" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入期待度" : movieinfoVO.getMovie_exp()%>" /></td>
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td>
 			</tr>
 			<tr>
 				<td>不期待度:</td>
 				<td><input type="TEXT" name="movie_noexp" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入不期待度" : movieinfoVO.getMovie_noexp()%>" /></td>
-			</tr>
-			<tr>
-				<td>點擊次數:</td>
-				<td><input type="TEXT" name="movie_touch" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入點擊次數" : movieinfoVO.getMovie_touch()%>" /></td>
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_noexp()%>" /></td>
 			</tr>
 			<tr>
 				<td>片長加價:</td>
 				<td><input type="TEXT" name="movie_ticket" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入片長加價" : movieinfoVO.getMovie_touch()%>" /></td>
+					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_touch()%>" /></td>
 			</tr>
 		</table>
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="movie_no" value="<%=movieinfoVO.getMovie_no()%>">
 <input type="submit" value="送出修改"></FORM>
+
+<script>
+		function readURL(input) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".pic").attr('src', e.target.result).css("display", "");
+
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+		
+		function readURL2(input) {
+			var reader2 = new FileReader();
+			reader2.onload = function(e) {
+				$(".pic2").attr('src', e.target.result).css("display", "");
+
+			}
+			reader2.readAsDataURL(input.files[0]);
+		}
+	</script>
+
 </body>
 
 

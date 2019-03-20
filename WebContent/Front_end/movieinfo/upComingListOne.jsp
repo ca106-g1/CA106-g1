@@ -110,22 +110,38 @@
 			<td>${movieinfoVO.movie_director}</td>
 			<td>${movieinfoVO.movie_cast}</td> 
 			<td>${movieinfoVO.movie_length}</td>
-			<td>${movieinfoVO.movie_trailer}</td>
+			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 			<td>${movieinfoVO.movie_intro}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="期待">
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-			     <input type="hidden" name="action"	value="expect"></FORM>
+			     <input type="hidden" name="action"	value="exp"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="不期待">
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-			     <input type="hidden" name="action"	value="noexpect"></FORM>
+			     <input type="hidden" name="action"	value="noexp"></FORM>
 			</td>
 	</tr>
 </table>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

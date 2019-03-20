@@ -102,7 +102,7 @@
 			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
 			<%}else{%><td></td><%}%>  
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="繼續閱讀">
 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Display"></FORM>

@@ -74,6 +74,7 @@
 		<th>電影種類</th>
 		<th>電影封面</th>
 		<th>電影分級</th>
+		<th>片長加價</th>
 		<th>電影導演</th>
 		<th>電影演員</th>
 		<th>電影片長</th>
@@ -104,10 +105,11 @@
 			%>
 			<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
 			<%}else{%><td></td><%}%>
+			<td>${movieinfoVO.movie_ticket}</td>
 			<td>${movieinfoVO.movie_director}</td>
 			<td>${movieinfoVO.movie_cast}</td> 
 			<td>${movieinfoVO.movie_length}</td>
-			<td>${movieinfoVO.movie_trailer}</td>
+			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 			<td>${movieinfoVO.movie_intro}</td>
 	</tr>
 </table>

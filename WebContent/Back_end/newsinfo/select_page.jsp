@@ -39,7 +39,7 @@
 	</tr>
 </table>
 
-<h3>新聞專欄編輯:</h3>
+<h3>影視專欄編輯:</h3>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
