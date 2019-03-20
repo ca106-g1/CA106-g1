@@ -391,7 +391,7 @@ CREATE TABLE MOVIEINFO(
     MOVIE_CAST          VARCHAR2(100CHAR)       NOT NULL,
     MOVIE_INTRO         CLOB                    ,
     MOVIE_LENGTH        VARCHAR2(10CHAR)        NOT NULL,
-    MOVIE_TRAILER       CLOB       ,
+    MOVIE_TRAILER       CLOB                    ,
     MOVIE_PIC           BLOB                    ,
     MOVIE_IN            DATE                    NOT NULL,
     MOVIE_OUT           DATE                    NOT NULL,
@@ -475,6 +475,86 @@ INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 1
 INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'Selfie from Hell', '', '', 'Erdal Ceylan',
 'Alyson Walker, Tony Giroux, Meelah Adams', '', '1h13min', '', '', TO_DATE('2019-03-01','YYYY-MM-DD'), TO_DATE('2019-04-03','YYYY-MM-DD'),
 8967777, 34044, 100, 0, 0);
+
+---近期上映---
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'The Prodigy', '', '', 'Nicholas McCarthy',
+'Jackson Robert Scott, Taylor Schilling, Peter Mooney', '', '1h32min', '', '', TO_DATE('2019-02-08','YYYY-MM-DD'), TO_DATE('2019-03-03','YYYY-MM-DD'),
+678889, 44, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'The Aftermath', '', '', 'James Kent',
+'Keira Knightley, Ned Wills, Pandora Colin', '', '1h48min', '', '', TO_DATE('2019-03-01','YYYY-MM-DD'), TO_DATE('2019-04-11','YYYY-MM-DD'),
+678889, 44, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'Masquerade Hotel', '', '', 'Masayuki Suzuki',
+'Takuya Kimura, Masami Nagasawa, Nozomi de Lencquesaing', '', '2h13min', '', '', TO_DATE('2019-03-15','YYYY-MM-DD'), TO_DATE('2019-04-09','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 7, 'THE UPSIDE', '0.0', '', 'Neil Burger',
+'Kevin Hart, Nicole Kidman, Bryan Cranston', '', '2h06min', '', '', TO_DATE('2019-03-15','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 2, 'REMI SANS FAMILLE', '0.0', '', 'Antoine Blossier',
+'Maleaume Paquin, Daniel Auteuil', '', '1h49min', '', '', TO_DATE('2019-03-15','YYYY-MM-DD'), TO_DATE('2019-04-10','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 7, 'VOX LUX', '0.0', '', 'Brady Corbet',
+'Willem Dafoe, Jude Law, Natalie Portman', '', '1h54min', '', '', TO_DATE('2019-03-08','YYYY-MM-DD'), TO_DATE('2019-04-10','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'FRIEND ZONE', '0.0', '', 'Hayanop Boonprakob',
+'Naphat Siangsomboon, Pimchanok Leuwisetpaiboon', '', '2h00min', '', '', TO_DATE('2019-03-08','YYYY-MM-DD'), TO_DATE('2019-04-02','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 7, 'INNOCENT WITNESS', '0.0', '', 'Han Lee',
+'Woo-sung Jung, Hyang-gi Kim', '', '2h09min', '', '', TO_DATE('2019-02-27','YYYY-MM-DD'), TO_DATE('2019-03-20','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 12, 'ESCAPE ROOM
+', '0.0', '', 'Adam Robitel',
+'Taylor Russell, Logan Miller', '', '1h40min', '', '', TO_DATE('2019-02-27','YYYY-MM-DD'), TO_DATE('2019-03-20','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 1, 'EXTREME JOB', '0.0', '', 'Byeong-Heon Lee',
+'Seung-ryong Ryu, Dong-Hwi Lee', '', '1h52min', '', '', TO_DATE('2019-02-22','YYYY-MM-DD'), TO_DATE('2019-04-03','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 11, 'FALL IN LOVE AT FIRST KISS', '0.0', '', 'Yu-Shan Chen',
+'Yun Lin, Darren Wang', '', '2h02min', '', '', TO_DATE('2019-02-14','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 1, 'COLD PURSUIT', '0.0', '', 'Hans Petter Moland',
+'Emmy Rossum, Liam Neeson, Laura Dern', '', '1h59min', '', '', TO_DATE('2019-02-27','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 7, 'GREEN BOOK
+', '0.0', '', 'Peter Farrelly',
+'Mahershala Ali, Viggo Mortensen', '', '2h10min', '', '', TO_DATE('2019-01-25','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 7, 'IT COMES', '0.0', '', 'Tetsuya Nakashima',
+'Nana Komatsu, Jun ichi Okada, Haru Kuroki, Satoshi Tsumabuki', '', '2h15min', '', '', TO_DATE('2019-03-22','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 4, 'THE MAN WHO FEELS NO PAIN', '0.0', '', 'Vasan Bala',
+'Abhimanyu Dasani, Gulshan Devaiah, Radhika Madan', '', '2h14min', '', '', TO_DATE('2019-03-22','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 13, 'US', '0.0', '', 'Jordan Peele',
+'Lupita Nyongo, Shahadi Wright Joseph, Winston Duke', '', '1h57min', '', '', TO_DATE('2019-03-22','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'RESIDE', '0.0', '', 'Wisit Sasanatieng',
+'Ananda Everingham', '', '1h43min', '', '', TO_DATE('2019-03-28','YYYY-MM-DD'), TO_DATE('2019-04-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 7, 'FIGHTING WITH MY FAMILY', '0.0', '', 'Stephen Merchant',
+'Dwayne Johnson, Florence Pugh, Jack Lowden', '', '1h57min', '', '', TO_DATE('2019-04-04','YYYY-MM-DD'), TO_DATE('2019-05-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
+
+INSERT INTO MOVIEINFO VALUES('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), 9, 'THE CURSE OF LA LLORONA', '0.0', '', 'Michael Chaves',
+'Raymond Cruz, Patricia Velasquez, Linda Cardellini', '', '1h33min', '', '', TO_DATE('2019-04-17','YYYY-MM-DD'), TO_DATE('2019-05-01','YYYY-MM-DD'),
+678889, 12221, 100, 0, 0);
 
 -------------------場次資料------------------
 
@@ -794,21 +874,143 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000001', '星際效應勇奪奧斯卡?', '凱夫向', TO_DATE('2011-10-09','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000002', '天氣人?蟻人?都幾?', '凱夫向', TO_DATE('2011-12-12','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一位冤家', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一個王', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後一張牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後一個家', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後一個淵', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後一12123434', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000009', '誰是最後kwejfklsdfm3', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000003', '誰是最後ffff22', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '你要看嗎', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
-INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, 'MI00000013', '誰是最後一張王牌', '凱夫向', TO_DATE('2011-10-06','YYYY-MM-DD'), '', '');
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '《復仇者4》導演嚴防劇透　預告藏假畫面', '凱夫向', TO_DATE('2019-03-20','YYYY-MM-DD'), '《復仇者4》導演嚴防劇透　預告藏假畫面
+
+《復仇者聯盟》第4集即將在4月下旬上映。每當有新的預告畫面曝光，影迷都會仔細分析每個畫面，就是希望能猜出一點劇情。沒想到導演羅素兄弟接受美國媒體專訪時透露，第4集預告部分畫面，並不會出現在電影裡，暗藏假畫面就是要給觀眾進影廳時保留驚喜。
+
+電影《復仇者聯盟4：終局之戰》：「世界已經變了，沒人能回到從前。」
+
+《復仇聯盟：終局之戰》正式預告推出不到一個禮拜，點閱率已經突破7000萬。不少影迷會重複瀏覽，就是希望能從畫面找到蛛絲馬跡提前預測劇情，但導演羅素兄弟早就預料到影迷會這麼做。日前接受雜誌專訪時透露，部分預告畫面並不會出現在電影裡。
+
+
+網路媒體：「文章報導提到，我們（羅素兄弟）把預告片和電影分開來看。現在的觀眾太會猜了，所以你必須很聰明的剪接預告片。因為觀眾會看了預告片之後就猜得到電影劇情。」
+
+
+居然摻進了假預告！羅素兄弟提到小時候沒看過《星際大戰》預告片就去看電影，讓他們深深被劇情打動，因此想要還原這種感受給觀眾。消息一出，果然影迷又開始分析哪些畫面是他們口中的假畫面。
+
+
+部落客：「我也覺得布魯斯看著失蹤夥伴的照片也是假的。有可能是《復仇者3》的畫面，他們根本不知道誰消失了、誰還存在。」
+
+
+同時間迪士尼正式收購「21世紀福斯」，金額高達2兆台幣。網友惡搞無限手套，嘲諷迪士尼一手掌握星際大戰、漫威、皮克斯，萊恩雷諾斯更在推特轉發一張頭戴著米奇帽子的死侍照片。好萊塢6大片商如今變5間，外界期待迪士尼未來如何把《X戰警》併入《復仇者聯盟》系列。', '');
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '「超殺女」新作《侵密室友》被肖婆影后變態囚木箱', '凱夫向', TO_DATE('2019-03-18','YYYY-MM-DD'), '近年頻頻挑戰戲路的甜美「超殺女」克蘿伊摩蕾茲Chloe Grace Moretz在即將於4月3日上映的驚悚電影《侵密室友》（Greta）中，飾演好心沒好報的善良女孩，因撿到一只手提包而結識由伊莎貝雨蓓Isabelle Huppert飾演的寂寞寡婦，誰知一切都是早有預謀，看似仁慈的寡婦更在東窗事發後翻臉變成甩都甩不掉的瘋女人。克蘿伊摩蕾茲透露，雨蓓在戲裡做盡恐怖閨蜜變態行為，甚至把她迷昏囚禁木箱，想永遠跟她在一起，但戲外的雨蓓卻非常溫暖，摩蕾茲說：「因為我本身有幽閉恐懼症，所以一直很害怕拍攝那場被關在木箱裡的戲，但雨蓓說她會用一根手指壓在木箱的蓋子下，讓木箱不會完全密合，只要看到她的手指，就表示一切沒事。因此正式拍攝時，我躺在箱子裡看到她露出的手指，就覺得很安心。」
+
+童星時期就與許多明星和知名導演合作，堪稱「明星蒐集器」的克蘿伊摩蕾茲直呼能跟影壇傳奇伊莎貝雨蓓合作，根本就是美夢成真，因為雨蓓是她夢想成為的女星典範，能一起演出這麼多對手戲可說是莫大光榮，她說：「最令人折服的是，儘管雨蓓的演技已經出神入化，她還在持續學習，也從未把我當後輩，總是樂於跟我討論每一場戲。」而演技也有目共睹的摩蕾茲在《侵密室友》中飾演高級餐廳服務生，為了熟悉餐廳作業流程，她曾祕密潛入真正的高級餐廳實習一星期，她說：「在餐廳服務顧客比演任何一部電影都還要緊張，我一開始根本無法妥善為顧客結帳或是短時間記下顧客的點餐，全天下的服務生都太厲害了。」
+
+《侵密室友》描述善良女孩法蘭西絲（克蘿伊摩蕾茲 飾）在地鐵上撿到一只手提包，歸還皮包時結識了熱愛古典樂的寡婦葛莉塔（伊莎貝雨蓓 飾），同樣失去至親而孤單寂寞的兩人，迅速成為如膠似漆的親密好友，某天法蘭西絲卻發現葛莉塔竟有著不為人知的駭人祕密，因而想要逃離她，但葛莉塔用盡一切恐怖手段，就是要她一輩子陪著她…。', '');
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '見證歷史！迪士尼、福斯正式合併 死侍、X戰警回歸漫威', '凱夫向', TO_DATE('2019-03-22','YYYY-MM-DD'), '就在美東時間20日凌晨12點2分，好萊塢完成了歷史上相當重要的合併案，華特迪士尼（Walt Disney Co.）正式收購21世紀福斯（21st Century Fox）約三分之二的股份，大大改變了娛樂產業的格局。
+
+迪士尼以713億美元收購了福斯一系列的電影及電視資產，包括二十世紀福斯（20th Century Fox）、福斯探照燈影業（Fox Searchlight Pictures）、福斯家庭頻道、20世紀福斯動畫，以及FX、國家地理頻道、天空公司（Sky plc）、星空傳媒印度公司（Star India）、線上影音串流平台Hulu等。
+
+不過最受全球粉絲關注的，便是X戰警、死侍、驚奇四超人等角色的電影權利也都回到漫威手中，福斯原有的人氣作品《阿凡達》、《金牌特務》、《異形》等也將歸迪士尼所有。
+
+如此一來，迪士尼不只在電影，在網路串流上也將更加強大，尤其接下來將推出自己的影音串流平台Disney+。
+
+迪士尼董事長兼首席執行官Bob Iger 19日在聲明中指出，「結合迪士尼和21世紀福斯豐富的創意內容和成熟的人才資產，創造了卓越的全球娛樂公司，有利於在充滿活力和變革的時代中??領先。」迪士尼也強調，該交易是在幫助公司「增加在國際上的足跡」以及「擴大直接面對消費者的商品」。
+
+不過交易過後，兩家公司裁員人數可能高達四千人。如此一來，好萊塢六大片商迪士尼、福斯、派拉蒙、索尼、華納、環球，將正式縮減為「五大電影公司」。
+
+飾演死侍的萊恩雷諾斯（Ryan Reynolds）也在推特發文，分享該角色加入迪士尼這個新家庭的幽默感言。', '');
+
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '恐怖電影真實上演！宅宅最大盛會「血腥祭」竟成殺戮遊戲！', '凱夫向', TO_DATE('2019-03-06','YYYY-MM-DD'), '恐怖電影有些人喜歡有些人不喜歡，不過喜歡的人通常都會變成狂熱份子。在國外甚至有大大小小琳瑯滿目數不清的恐怖電影專門影展，如英國倫敦恐怖電影節（London FrightFest Film Festival）、紐約市恐怖影展（New York City Horror Film Festival）、多倫多暗夜影展（Toronto After Dark Film Festival）等。而恐怖電影拍了這麼多年，也衍生出一種「以恐怖電影為主題」的恐怖電影次類型，近期即將上映的美國電影《血祭歐買尬》（英文片名：Blood Fest）便是一例。《血祭歐買尬》故事講述「血腥祭」原本是恐怖片迷的年度盛事，但今年卻演變成一場大屠殺！《血祭歐買尬》由英國新銳導演歐文艾格頓（Owen Egerton）執導，卡司找來在美劇《童話鎮》中飾演彼得潘的英國年輕男星羅比凱（Robbie Kay）領演主演，其他演員陣容包括以《蜘蛛人：返校日》爆紅的夏威夷出生「重量級」男星雅各貝塔隆（Jacob Batalon），以及曾演出《異裂》導演奈沙馬蘭的《降世神通：最後的氣宗》美國女星賽雀兒蓋柏莉（Seychelle Gabriel）。《血祭歐買尬》將於3月29日在台群魔亂舞上映。
+
+入選全球各大影展！ 《沙贊！》柴克萊威驚喜現身《血祭歐買尬》
+創意爆表的《血祭歐買尬》在極具盛名的SXSW美國南方音樂節全球首映，隨後還入選了包括克里夫蘭國際影展、愛丁堡國際電影節等各大影展。不只影展觀眾喜愛，諸如好萊塢報導者、奧斯汀紀事報、國際電影期刊（Film Journal International）等權威影評也對《血祭歐買尬》大加盛讚。《血祭歐買尬》敘述恐怖片宅宅們齊聚年度恐怖片迷盛事「血腥祭」，卻渾然不知暗藏在這項活動背後的恐怖動機；當與會者一個個死去，三名青少年必須運用他們畢生累積的恐怖片知識，闖過活動設計的層層關卡才能逃出生天。除了上述三位年輕主要演員外，《血祭歐買尬》也請到《亞果出任務》艾美獎得主泰特唐納文（Tate Donovan），曾在《X戰警：未來昔日》、《飢餓遊戲》等片擔任聲音演員的尼古拉斯瑞瑟福德（Nicholas Rutherford）等資深演員助陣。另外即將上映的DC超級英雄大片《沙贊！》男主角柴克萊威，也在《血祭歐買尬》中驚喜現身飾演他自己，《血祭歐買尬》即將於3月29日在台「嚇」映。
+
+恐怖片宅宅們齊聚年度恐怖片迷盛事「血腥祭」，卻渾然不知暗藏在這項活動背後的恐怖動機。當與會者一個個死去，三名青少年必須運用他們畢生累積的恐怖片知識，闖過活動設計的層層關卡才能逃出生天……', '');
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '《驚奇隊長》早期概念照曝光！ 「耳下短髮」網讚也很美', '凱夫向', TO_DATE('2019-03-03','YYYY-MM-DD'), '《驚奇隊長》全台突破3億元，尤其近日《復仇者聯盟：終局之戰》的正式預告也釋出，究竟該角色會如何發揮，協助拯救世界，粉絲都相當期待。其實，本片在上映前，卡蘿丹弗斯的造型始終是焦點之一，隨著電影上映，早期的藝術概念照也陸續曝光。
+
+概念藝術家Aleksi Briclot在IG曝光多張設計，和原著漫畫有著極大差異，戰袍把卡蘿丹弗斯緊緊包住，他解釋這些是卡蘿在克里軍隊的造型，為了保持神秘感，這些戰袍外型看起來就像外星人，但誰知道一打開，裡面竟然是個人類，其中兩套服裝上頭，更印有克里帝國的「Hala」標誌。
+
+此外，漫威首席藝術概念設計師Andy Park也分享了《驚奇隊長》早期的概念藝術，可以看到卡蘿丹弗斯頂著一頭短髮，俐落有型，和最終的模樣相差許多。
+
+先前在拍攝時，女主角布麗拉森（Brie Larson）穿著綠色服裝，當時就被推測是克里人的戰袍，直到她認同自己的身份後，才轉換成紅、藍為主的服裝。', '');
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '全台瘋《雞不可失》票房狂飆9000萬 破億在即', '凱夫向', TO_DATE('2019-03-06','YYYY-MM-DD'), '韓國影史最賣座喜劇《雞不可失》在台上映熱度不減，從頭一路笑到尾的瘋狂爆笑好評持續發燒，而許多餐飲業者更看好電影帶動的商「雞」，跟風舉辦票根限定優惠活動，甚至仿照片中令所有觀眾垂涎的「水原牛肋排炸雞」推出同款新菜色，讓觀眾看得到也吃得到。全台一起瘋《雞不可失》的現象，也讓電影票房再衝高，全台累積飆破9000萬，破億在即。
+
+大受歡迎的喜劇《雞不可失》不只紅了炸雞，由影帝柳承龍、李哈妮、陳善圭、李東輝和孔明共組的魯蛇緝毒組，成員們也跟著人氣飆升，讓影迷看完電影上網狂搜。其中戲裡擁有黑皮膚小鬍子的李東輝和熱血呆萌的菜鳥孔明，戲外竟分別是眼鏡潮男和鮮肉花美男，真面目讓影迷又驚又喜。李東輝說：「我想改變我的既定形象，所以蓄鬍、拿掉眼鏡，會曬黑皮膚是因為我去警察局觀察真正的警探。但拍攝期間每天都只能穿同一套戲服，實在太悶太委屈，所以趁著上武術課的空檔偷偷血拼了一下。」孔明說：「我一直在想要以怎樣的新造型亮相，最後決定故意剪短劉海。」', '');
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '《我們》古老「分身靈」傳說挖掘人心最原始的恐懼', '凱夫向', TO_DATE('2019-03-01','YYYY-MM-DD'), '繼導演處女作《逃出絕命鎮》令當代影壇驚為天人、並為反諷社會議題類型的驚悚片樹立新標竿後，奧斯卡金像獎得主喬登皮爾即將帶來自編自導的全新原創驚悚作品。《我們》以北加州海岸為拍攝背景，由猴掌製作公司（Monkeypaw Productions）製作，女主角由奧斯卡最佳女配角得主露琵塔尼詠歐所飾演，描述了一個和樂的美國家庭在一夜之間必須挺身對抗一群難以解釋敵人 : 他們自己的分身！台灣於3月22日與美國同步上映。
+
+早在2017年那部深入探討美國種族與特權議題，榮獲奧斯卡肯定的票房大片《逃出絕命鎮》拍攝完成前，身兼編導與製片的喬登皮爾已發想出一部全新電影，保證與《逃出絕命鎮》同樣深刻，卻更加恐怖。「這部電影的概念來自深植人心對分身靈（Doppelganger）的恐懼，」喬登皮爾表示。「我酷愛分身靈傳說，和探討這個主題的電影，我想向『邪惡分身』這類電影聖殿獻祭。『我們是自己最大的敵人』這概念讓我深深著迷，那是我們都心知肚明，卻也傾向掩埋的真相，我們傾向責怪外人，責怪『他人』，而在這部電影裡，鬼怪長得跟我們一模一樣。」分身靈，或稱活人的神祕分身，是個相當古老的傳說，幾乎所有民間故事和神話都有它的蹤影。據說可追溯至古埃及「卡（ka）」這個說法，意思是靈魂分身的實際形體，與本尊擁有相同的記憶、體驗與感受。
+
+這類早期敘事原型正是古今文學作品裡所謂「邪惡雙胞胎」角色的始祖，除少數例外，分身的出現通常不是什麼好現象。「分身一直都是恐懼的源頭，」喬登皮爾說到。「我想是因為會讓人聯想到死亡：兩個不能同時存在，其中一個必須消失。神話故事中，分身通常代表著惡兆或預告著死亡，我想針對這種原始恐懼發展出一個故事。」為了指出我們的原始恐懼，以及可能代表的意義，喬登皮爾以挑釁之姿挖掘人類心靈深處，探究美國國家認同。「我傾向從自身恐懼中汲取靈感，有時我會問自己：『最害怕什麼？』答案是看到我自己，然後我會思考其中意義，為什麼看到自己這麼可怕，沒人想看到自己的錯誤、自己的愧疚、自己的惡魔，我們只想往外看。」這種將自身恐懼、焦慮與憤怒向外投射的傾向也是美國文化中普遍存在的特性。「這個國家，以及這國家看待世界的方式，我們害怕外人，」喬登皮爾表示「因此造就了種種恐懼，包括對恐怖主義和外來移民。喬治羅梅洛的《活死人之夜》就是一部探討原始恐懼、蘊含強烈社會思考的經典電影，劇情並未真正談論種族議題，卻能表達相關概念，我想遵循這樣的手法。」
+
+《我們》故事描述一位女子雅德蕾德威爾森和她的先生蓋比 （《黑豹》溫斯頓杜克 飾） ，帶著兩個孩子（莎哈蒂萊特喬瑟夫、伊凡艾利克斯 飾）一起回到她小時候住的海濱房子，打算度過一個恬靜的夏天。但一段過去難以啟口的傷痛卻如鬼魅般出現在眼前，接二連三的怪異巧合也相繼發生，對於家人即將遭遇不幸事件的強烈預感，讓雅德蕾德恐懼到達臨界點。當他們和朋友泰勒斯一家（艾美獎得主伊莉莎白摩斯、提姆海德克爾、卡莉薛頓、娜亞薛頓 飾）共度一個令人緊繃的海邊聚會後，雅德蕾德和先生及孩子們回到度假小屋休息，卻在進入黑夜的房子前，看見令人毛骨悚然的四個人影，正手牽手站立在他們的車道上…。', '');
+
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '「美魔女」丁國琳「挺」《乳．房》二度造訪花蓮', '凱夫向', TO_DATE('2019-02-26','YYYY-MM-DD'), '《乳．房》已於全台戲院現正熱映中。花蓮縣長徐榛蔚於今日參與《乳．房》在花蓮新天堂的放映，不僅表明力挺花蓮出身的導演及男主角謝毅宏，且呼籲鄉親支持國片《乳．房》！且導演謝志文回應必會找機會回來花蓮取景拍攝新片。另外劇中「美魔女」丁國琳也一同來到花蓮，並和花蓮觀眾分享電影拍攝心路歷程，並向觀眾傳達樂觀的精神。欲前往觀賞電影的花蓮觀眾，更多有關放映場次的消息請隨時關注【乳．房】電影粉絲頁及威秀官方網站。
+
+「美魔女」丁國琳「挺」《乳．房》二度造訪花蓮
+「美魔女」丁國琳，第二度來到花蓮，上次來到花蓮拍戲是拍大愛電視台的劇，雖待了長達兩個多月卻仍沒吃到在地名產公正包子和麻糬。這次特地來到花蓮定會把握機會好好品嘗！電影映後丁國琳分享在片中飾演得關鍵角色二手家具店的老闆娘，劇中她也是位「術後重建」的患者，且鼓勵遭癌症切除乳房的女性患者們，不管遭遇多少難關也能懷抱夢想，樂觀積極正面的態度。同時也希望這部年度最具歸屬感的動人國片《乳．房》可以帶給所有人重新尋回自我、擁有自信！《乳．房》已於全台戲院現正熱映中，花蓮新天堂威秀影城也將推出限量場次，敬請把握機會前往觀賞。更多有關電影相關資訊請加入【乳．房】粉絲頁。
+
+《乳．房》演員丁國琳與縣長徐榛蔚合影
+導演喊話縣長新片必造訪當地取景
+今日花蓮新天堂威秀影城放映年度最具歸屬感的動人國片《乳．房》，不僅花蓮縣長徐榛蔚親自蒞臨觀賞之外，導演謝志文、男主角謝毅宏、「資深美魔女」丁國琳也來和觀眾分享拍攝心路歷程。《乳．房》上映首週零負評，就連花蓮縣長徐榛蔚也親自蒞臨新天堂威秀影城觀賞本片，話題熱度持續升溫！花蓮縣場徐榛蔚呼籲在地民眾，支持台灣好電影，應該多多進戲院觀賞。另外男主角謝毅宏也同為花蓮人，兒時就讀海星國小，今天當地許多親友皆進場支持他的大銀幕處女作！同樣出身花蓮的導演謝志文也來到現場，並向大家表示未來必定會來到花蓮取景拍攝下一部新片。《乳．房》已於全台正式熱映，欲知電影相關第一手資訊請隨時關注【乳．房】粉絲頁。', '');
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '峰迴路轉！詹姆斯岡恩將回鍋執導《星際異攻隊 3》', '凱夫向', TO_DATE('2019-03-16','YYYY-MM-DD'), '根據外媒報導，在《星際異攻隊 2》導演 詹姆斯岡恩（James Gunn）於去年因不當言論遭迪士尼閃電解雇後，事情有了驚人轉折，那就是迪士尼將給予他「第二次機會」，重新聘用他擔任《星際異攻隊 3》（Guardians Of The Galaxy 3）導演，而該消息目前已經獲得本人確認。
+
+詹姆斯岡恩在去年七月被人挖掘出數年前在社群媒體上，關於戀童以及強暴的不當貼文後，遭到迪士尼快刀斬亂麻的開除，而在此之後，迪士尼高層曾多次與 詹姆斯岡恩討論此事，由於他的公開道歉，以及事後的處理態度 – 坦然認錯、並從不於公開諷刺或否認自己的過失，讓迪士尼的決策大轉彎，同意重新聘雇 岡恩。
+
+漫威電影的其中一項優點，便是容許導演將自身的特色注入旗下作品，而 詹姆斯岡恩就是最好的例子，他所拍攝的兩部《星際異攻隊》系列電影，全球票房超過 16 億美元，且續集的表現超越了首集。在遭解雇前，詹姆斯岡恩已經完成《星際異攻隊 3》劇本，並通過高層審核，而在解雇後，漫威工作室以及其他「星際異攻隊」成員尚未見過或考慮其他導演，儘管過去曾有輿論猜測《雷神索爾 3：諸神黃昏》塔伊加維迪提（Taika Waititi）以及《蟻人》亞當麥凱（Adam McKay）是潛在選項。
+
+詹姆斯岡恩在日前已從華納手中接下 DC 電影《自殺突擊隊》（Suicide Squad）續集的執導筒與編劇工作，而《星際異攻隊 3》則將會在 岡恩完成《自殺突擊隊》續集後開始製作。
+
+詹姆斯岡恩回歸的消息必然會引起一些反彈，但對於「星際異攻隊」的演員群來說，無疑是一個令人開心的好消息，「星爵」克里斯普瑞特（Chris Pratt）、「葛摩拉」柔伊桑達娜（Zoey Saldana）、「德克斯」巴帝斯塔（Dave Bautista）、「格魯特」馮迪索（Vin Diesel）、「火箭浣熊」布萊德利庫柏（Bradley Cooper）、「克雷林」西恩岡恩（Sean Gunn）等人都曾在一封公開信中表達愛與支持，並請求岡恩的回歸，粉絲也曾主動發起請願，希望可以將聲音傳達給迪士尼高層。
+
+回任消息釋出後，詹姆斯岡恩於推特發表感想並證實了此傳言：「我由衷地感謝每一位在過去幾個月支持我的每一個人。我一直持續在學習並嘗試成為一個更好的人，我深深地感謝迪士尼所做的這個決定，而我也相當興奮可以繼續拍攝電影，探究這些使人們緊緊相繫、充滿愛的羈絆，在大家的愛與支持下，我會繼續保持謙虛，我發自內心地感謝大家，我愛你們。」', '');
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '7年來最打動對岸的國片　《比悲傷》中國賣破9.8億台幣', '凱夫向', TO_DATE('2019-03-11','YYYY-MM-DD'), '國片《比悲傷更悲傷的故事》去年票房賣破2億台幣，不僅異軍突起，超越《角頭2》成為2018年的國片票房冠軍，如今在中國上映才4天，就狂拿2.14億人民幣（約9.8億台幣），更讓對岸觀眾直呼「這是7年來最打動我的台灣片，上一部是《那些年，我們一起追的女孩》」，網友紛紛在微博吐露看到一把眼淚一把鼻涕的心得。
+
+
+《比悲傷更悲傷的故事》的故事雖然改編自韓國同名電影，但片中俊男美女的選角，以及更灑狗血的情節，再加上以男主角的角度描述愛情，不僅讓台灣男男女女觀眾在戲院哭得唏哩嘩啦，現在連中國觀眾也無法逃過「淚崩」的下場，直言太好哭了，提醒其他人去看之前記得多帶衛生紙。
+
+
+有網友大讚男女主角劉以豪和陳意涵的演技，更蒐羅片中的戳心台詞，讓大家又再哭了一回～～
+
+
+「我們都喜歡在冬天吃冰，喜歡雨，喜歡有著彼此的季節」
+
+
+「人一旦習慣了孤獨，那才是比悲傷更悲傷的事」
+
+
+「人為什麼要結婚啊？大概是當你老的時候，或是需要被照顧的時候，那個人可以理直氣壯的一直陪在你身邊」
+
+
+「我不喜歡永遠，因為兩個人其中一個人不在了，就不是永遠了」
+
+
+「你知道嗎？我要的不是守護我的人，而是陪我一起冒險的人。我要的不是別人，是你」
+
+
+「愛情如果可以解釋的話，就不會有人為此痛苦了」
+
+
+「仙人掌的花語-永恆不變的愛 孤獨的堅強」
+
+
+「如果有下輩子，你想做什麼？下輩子的話，做個戒指、眼鏡、筆記本或者棉被，這樣就可以一直陪著你了」。', '');
+
+
+
+INSERT INTO NEWSINFO VALUES(NEWSINFO_SEQ.NEXTVAL, '', '張震要和薩諾斯、水行俠合作！ 「這部片有超神卡司」', '凱夫向', TO_DATE('2019-03-20','YYYY-MM-DD'), '重啟的科幻電影《沙丘魔堡》（Dune）完整卡司逐漸成形，豪華陣容令人期待，現在更傳出張震也將加盟演出。
+
+據《THR》報導，張震目前正在商談加入本片，可能會扮演Dr. Yueh，該角色在小說中是Atreides家族的醫生。張震因為《臥虎藏龍》在好萊塢有一定的知名度，更和李安、王家衛、楊德昌、侯孝賢、吳宇森、金基德等亞洲導演合作過，磨練出精湛演技，在2018年擔任坎城影展評審，成為去年唯一一位華人評審。
+
+《沙丘魔堡》目前確定的演員包括堤摩西柴勒梅德（Timothee Chalamet）、蕾貝卡弗格森（Rebecca Ferguson）、奧斯卡伊薩克（Oscar Isaac）、喬許布洛林（Josh Brolin）、史戴倫史柯斯嘉（Stellan Skarsgard）、巴帝斯塔（Dave Bautista）、贊達亞（Zendaya）、傑森摩莫亞（Jason Momoa）、哈維爾巴登（Javier Bardem）、夏綠蒂蘭普琳（Charlotte Rampling）等人，導演則為Denis Villeneuve，將於2020年11月20日在北美上映。', '');
 
 -------------------影評資訊-------------------
 CREATE TABLE REVIEWSINFO(
