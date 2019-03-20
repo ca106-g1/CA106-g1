@@ -243,7 +243,6 @@ public class FarediscountDAOImpl implements FarediscountDAO_interface {
 				//FD_LOWER=?, FD_BLOB=? WHERE FD_NO = ?
 				list.add(farediscountVO);
 			}
-			System.out.println(list);
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {

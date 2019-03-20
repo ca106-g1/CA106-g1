@@ -133,7 +133,7 @@ z-index:999;
 			</div>
 		</div>
 	</header>
-	<div style="height:40px;">
+	<div style="height:80px;">
 	</div>
 
 </body>

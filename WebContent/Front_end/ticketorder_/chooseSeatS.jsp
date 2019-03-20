@@ -38,7 +38,10 @@ p {
 	<jsp:useBean id="sesSer" class="com.sessions.model.SessionsService" scope="page"/>
 	<jsp:useBean id="movSer" class="com.movieinfo.model.MovieInfoService" scope="page"/>
 	<jsp:useBean id="cinSer" class="com.cinema.model.CinemaService" scope="page"/>
-	<c:set var="sessionsVO" value="${sesSer.getOneSes(sessions_no)}" scope="page"  ></c:set>
+	<c:set var="sessionsVO" value="${sesSer.getOneSes(sessions_no)}" scope="page"></c:set>
+	<c:set var="all" value="${tfSer.all}" scope="page"></c:set>
+	<c:set var="movie_ticket" value="${movSer.getOneMovieInfo(sessionsVO.movie_no).movie_ticket}" scope="page"></c:set>
+	<c:set var="cinema_correct" value="${cinSer.getOneCin(sessionsVO.cinema_no).cinema_correct}" scope="page"></c:set>
 	<jsp:useBean id="sessionsVO" class="com.sessions.model.SessionsVO" scope="page"/>
 	
 
@@ -61,6 +64,8 @@ p {
 					</div>
 				</div>
 				
+<!-- 				以上場次基本資訊 -->
+				
 				<br>
 				<div class="row justify-content">
 					<div class="col-4">
@@ -77,23 +82,32 @@ p {
 						<p id="fd_offer">　</p>
 					</div>
 				</div>
+				
+<!-- 				以上訂單基本資訊 -->
+				
 				<div class="row justify-content">
-				<div class="col-6">
+					<div class="col-4">
+					
+						<form id="form" method="post" action="<%= request.getContextPath()%>/ticketorder/TicketorderServlet_">
+							<p id="ajax_ti_no" style="display:none;"></p>
+							<input type="hidden" name="sessions_no" value="${sessions_no}">
+							<input type="hidden" name="action" value="insert">
+							<input id="submit" class="btn btn-primary" type="submit" value="結帳去">
+						</form>
+					
+					</div>
+<!-- 					以上結帳按鈕 -->
+					
+					<div class="col-4">
+						<button id="openpriceDescription" type="button" class="btn btn-primary" data-toggle="modal" data-target="#priceDescription">
+						 	 價格資訊
+						</button>
+					</div>
+					
+<!-- 					以上價格資訊 -->
+					
+				</div>
 				
-				<form id="form" method="post" action="<%= request.getContextPath()%>/ticketorder/TicketorderServlet_">
-					<p id="ajax_ti_no" style="display:none;"></p>
-					<input type="hidden" name="sessions_no" value="${sessions_no}">
-					<input type="hidden" name="action" value="insert">
-					<input id="submit" class="btn btn-primary" type="submit" value="結帳去">
-				</form>
-				
-				</div>
-				<div class="col-6">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-				  價格資訊
-				</button>
-				</div>
-				</div>
 				<div class="row justify-content">
 					<div class="col-6" id="ti">
 						<p>票種</p>
@@ -103,14 +117,16 @@ p {
 						<p>位置</p>
 					</div>
 				</div>
-
+				
+<!-- 				以上訂單明細資訊 -->
+				
 			</div>
 
 			<div class="col-8">
 			<nav class="row justify-content">
 				
 					<div class="col-9">
-						<c:forEach var="tf" items="${tfSer.all}">
+						<c:forEach var="tf" items="${all}">
 								${tf.ti_name}
 								<div 
 									class="btn"
@@ -245,44 +261,21 @@ p {
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="priceDescription" tabindex="-1" role="dialog" aria-labelledby="priceDescriptionTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
+    	
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="priceDescriptionTitle">票價說明</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-		    <div class="row">
-		      <div class="col-md-6">
-		      
-		      <p>電影票價加價</p>
-		      <p>影廳票價加價</p>
-		      
-		      <c:forEach items="${tfSer.all}" var="tfVO">
-		      <p>${tfVO.ti_name}</p>
-		      </c:forEach>
-		      
-		      </div>
-		      
-		      <div class="col-md-6">
-		      
-		      <p>${movSer.getOneMovieInfo(sessionsVO.movie_no).movie_ticket}</p>
-		      <p>${cinSer.getOneCin(sessionsVO.cinema_no).cinema_correct}</p>
-		      
-		      <c:forEach items="${tfSer.all}" var="tfVO">
-		      <p>${tfVO.ti_price}</p>
-		      </c:forEach>
-		      
-		      </div>
-		    </div>
-	    </div>
+      <div class="modal-body" id="priceDescription_modal-body">
+      
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -482,8 +475,16 @@ p {
     	
     }
     
+    function openpriceDescription(e){
+    	$('#priceDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/ticketorder_/priceDescription.jsp?movie_no=${sessionsVO.movie_no}&cinema_no=${sessionsVO.cinema_no}');
+    }
+    function closeiframe(e){
+//     	$('.modal-body').load('');
+    }
+    
+    
     function init() {
-		var statusOfSitList_size = ${tfSer.all.size()};
+		var statusOfSitList_size = ${all.size()};
 		var sit_size = <%= cinema_type.length()%>;
     	
 		$('#submit').attr("disabled", true);
@@ -504,6 +505,9 @@ p {
        	
        	$('#submit').click(submit);
        	//送出之後設定接下來收到的伺服器推播是自己發出的
+       	
+       	$('#openpriceDescription').click(openpriceDescription);
+       	$('#closeiframe').click(closeiframe);
        	
        	connect();
        	//ws連線

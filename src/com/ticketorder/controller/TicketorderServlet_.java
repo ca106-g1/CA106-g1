@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -22,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cinema.model.CinemaService;
+import com.cinema.model.CinemaVO;
 import com.dep.model.DepVO;
 import com.farediscount.model.FarediscountService;
 import com.farediscount.model.FarediscountVO;
@@ -387,31 +389,17 @@ public class TicketorderServlet_ extends HttpServlet {
 
 	private int calculatOrder_amount(String[] ti_no, SessionsVO sessionsVO, FarediscountVO farediscountVO) {
 
-		class Sum {
-			private Integer sum;
-
-			public Integer getSum() {
-				return sum;
-			}
-
-			public void setSum(Integer sum) {
-				this.sum = sum;
-			}
-
-		}
-
-		Sum sumObject = new Sum();
-		sumObject.setSum(0);
+		TicketinformationService ticketinformationService = new TicketinformationService();
+		CinemaVO cinemaVO = new CinemaService().getOneCin(sessionsVO.getCinema_no());
+		MovieInfoVO movieInfoVO = new MovieInfoService().getOneMovieInfo(sessionsVO.getMovie_no());
 		
-		Arrays.asList(ti_no)
-		.stream()
-		.filter(str -> str != null)
-		.forEach(str -> {
-			sumObject.setSum(sumObject.getSum() + calculatTicketPrice(str, sessionsVO));
-			});
+		int sum = 
+				Arrays.asList(ti_no)
+				.stream()
+				.filter(str -> str != null)
+				.mapToInt(str -> calculatTicketPrice(str, ticketinformationService, cinemaVO, movieInfoVO))
+				.sum();
 		
-		int sum = sumObject.getSum();
-
 		if (farediscountVO != null) {
 			sum += ti_no.length * farediscountVO.getFd_offer();
 		}
@@ -420,11 +408,11 @@ public class TicketorderServlet_ extends HttpServlet {
 	}
 	// 以上算訂單總價
 
-	private int calculatTicketPrice(String ti_no, SessionsVO sessionsVO) {
+	private int calculatTicketPrice(String ti_no, TicketinformationService ticketinformationService, CinemaVO cinemaVO, MovieInfoVO movieInfoVO) {
 		int anser = 0;
-		anser += new TicketinformationService().getOneTicketinformation(ti_no).getTi_price();
-		anser += new CinemaService().getOneCin(sessionsVO.getCinema_no()).getCinema_correct();
-		anser += new MovieInfoService().getOneMovieInfo(sessionsVO.getMovie_no()).getMovie_ticket();
+		anser += ticketinformationService.getOneTicketinformation(ti_no).getTi_price();
+		anser += cinemaVO.getCinema_correct();
+		anser += movieInfoVO.getMovie_ticket();
 
 		return anser;
 	}
@@ -434,26 +422,19 @@ public class TicketorderServlet_ extends HttpServlet {
 
 		FarediscountService fs = new FarediscountService();
 
-		List<FarediscountVO> list = new ArrayList<FarediscountVO>();
-
-		fs.getAll()
+		Optional<FarediscountVO> fd = 
+			fs.getAll()
 			.stream()
 			.filter(farediscountVO -> farediscountVO.getFd_start().before(sessions_start))
 			.filter(farediscountVO -> farediscountVO.getFd_end().after(sessions_start))
 			.filter(farediscountVO -> farediscountVO.getFd_lower() <= count)
 			.filter(farediscountVO -> farediscountVO.getFd_upper() >= count)
-			.forEach(farediscountVO -> list.add(farediscountVO));
-
-		Collections.sort(list);
-
-		if (list.size() == 0) {
-
+			.min(FarediscountVO :: compareTo);
+		
+		if(fd.isPresent()) {
+			return fd.get();
+		}else {
 			return null;
-
-		} else {
-
-			return list.get(0);
-
 		}
 
 	}
