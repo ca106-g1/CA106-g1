@@ -104,8 +104,15 @@ p {
 						</button>
 					</div>
 					
-<!-- 					以上價格資訊 -->
+<!-- 					以上票價計算資訊 -->
 					
+					<div class="col-4">
+						<button id="openfdDescription" type="button" class="btn btn-primary" data-toggle="modal" data-target="#fdDescription">
+						 	 優惠資訊
+						</button>
+					</div>
+					
+<!-- 					以上優惠資訊 -->
 				</div>
 				
 				<div class="row justify-content">
@@ -281,7 +288,29 @@ p {
   </div>
 </div>
 
+<!-- 以上票價計算資訊 -->
+<!-- Modal -->
+<div class="modal fade" id="fdDescription" tabindex="-1" role="dialog" aria-labelledby="fdDescriptionTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    	
+      <div class="modal-header">
+        <h5 class="modal-title" id="fdDescriptionTitle">優惠說明</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="fdDescription_modal-body">
+      你我他測試
+      </div>
+      <div class="modal-footer">
+        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- 以上優惠資訊 -->
 
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
 		
@@ -478,10 +507,10 @@ p {
     function openpriceDescription(e){
     	$('#priceDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/ticketorder_/priceDescription.jsp?movie_no=${sessionsVO.movie_no}&cinema_no=${sessionsVO.cinema_no}');
     }
-    function closeiframe(e){
-//     	$('.modal-body').load('');
-    }
     
+    function openfdDescription(e){
+    	$('#fdDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/ticketorder_/fdDescription.jsp');
+    }
     
     function init() {
 		var statusOfSitList_size = ${all.size()};
@@ -507,7 +536,7 @@ p {
        	//送出之後設定接下來收到的伺服器推播是自己發出的
        	
        	$('#openpriceDescription').click(openpriceDescription);
-       	$('#closeiframe').click(closeiframe);
+       	$('#openfdDescription').click(openfdDescription);
        	
        	connect();
        	//ws連線

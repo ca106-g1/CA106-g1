@@ -42,8 +42,8 @@
 				<div class="col-md-5">
 				      	<c:forEach items="${all}" var="tfVO">
 					      	<p>${tfVO.ti_name}</p>
-					      	<p>${tfVO.ti_price + movie_ticket + cinema_correct}</p>
-					      </c:forEach>
+					      	<center>${tfVO.ti_price + movie_ticket + cinema_correct}</center>
+					     </c:forEach>
 				</div>
 		    </div>
 	    </div>
