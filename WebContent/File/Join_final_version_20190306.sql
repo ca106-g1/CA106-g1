@@ -391,7 +391,7 @@ CREATE TABLE MOVIEINFO(
     MOVIE_CAST          VARCHAR2(100CHAR)       NOT NULL,
     MOVIE_INTRO         CLOB                    ,
     MOVIE_LENGTH        VARCHAR2(10CHAR)        NOT NULL,
-    MOVIE_TRAILER       VARCHAR2(100CHAR)       ,
+    MOVIE_TRAILER       CLOB       ,
     MOVIE_PIC           BLOB                    ,
     MOVIE_IN            DATE                    NOT NULL,
     MOVIE_OUT           DATE                    NOT NULL,
