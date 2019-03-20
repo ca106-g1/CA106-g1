@@ -130,8 +130,8 @@ JOIN影城將依一般合理之技術及方式，維持系統及服務之正常�
 				
 				<FORM METHOD="post" ACTION="mem.do">
 				<p>
-				<input type = "checkbox" name="registinformation" id="registinformation" value="true">我已閱讀並同意會員約定條款說明<br><br><br>
-				<input type = "submit" name = "registgo" id="registgo" value="確認送出" checked>
+				<input type = "checkbox" name="registinformation" id="registinformation" value=true onchange="ChangeDisabled()">我已閱讀並同意會員約定條款說明<br><br><br>
+				<input type = "submit" name = "registgo" id="registgo" value="確認送出" checked disabled="disabled">
 				<input type="hidden" name="action" value="registstart">
 				<input type="reset"  name = "registreset" id="registreset" value="取消重填">
 				<a href="<%=request.getContextPath()%>/Front_end/Login.jsp">回到首頁</a>
@@ -141,17 +141,39 @@ JOIN影城將依一般合理之技術及方式，維持系統及服務之正常�
 			</div>
 		</div>
 	</div>
+	
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>
+	<script>
+	var checkbox;
+	$(document).ready(
+			function(){
+				checkbox = $('#registinformation');
+				checkbox.value = true;
+			});
+	
+		function ChangeDisabled(){
+			if(checkbox.value == true){
+				document.getElementById("registgo").disabled=false;
+				checkbox.value = false;
+			}else{
+				document.getElementById("registgo").disabled=true;
+				checkbox.value = true;
+			}
+		}
+	
+	
+	
+	
+	</script>
+	
+	
+	
 	<!-- 工作區結束 -->
 	
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
