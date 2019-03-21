@@ -50,31 +50,33 @@
 	</ul>
 </c:if>
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
-		<th>會員編號</th>
-		<th>會員帳號</th>
-		<th>會員密碼</th>
-		<th>會員姓名</th>
-		<th>會員暱稱</th>
-		<th>會員性別</th>
-		<th>會員生日</th>
-		<th>會員地址</th>
-		<th>會員電話</th>
-		<th>會員信箱</th>
-		<th>會員圖片</th>
-		<th>會員信用卡</th>
-		<th>會員驗證碼</th>
-		<th>會員建立日期</th>
-		<th>會員儲值點數</th>
-		<th>會員狀態</th>
+		<th scope="col">會員編號</th>
+		<th scope="col">會員帳號</th>
+		<th scope="col">會員密碼</th>
+		<th scope="col">會員姓名</th>
+		<th scope="col">會員暱稱</th>
+		<th scope="col">會員性別</th>
+		<th scope="col">會員生日</th>
+		<th scope="col">會員地址</th>
+		<th scope="col">會員電話</th>
+		<th scope="col">會員信箱</th>
+		<th scope="col">會員圖片</th>
+		<th scope="col">會員信用卡</th>
+		<th scope="col">會員驗證碼</th>
+		<th scope="col">會員建立日期</th>
+		<th scope="col">會員儲值點數</th>
+		<th scope="col">會員狀態</th>
 	</tr>
-	
+	</thead>
+	<tbody>
 	<%@ include file = "page1.file" %>
 	<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>" end = "<%=pageIndex+rowsPerPage-1%>">
 	
-	<tr>
-		<td>${memVO.member_no}</td>
+	<tr >
+		<th scope="row">${memVO.member_no}</th>
 		<td>${memVO.member_account}</td>
 		<td>${memVO.member_password}</td>
 		<td>${memVO.member_name}</td>
@@ -112,6 +114,7 @@
 		</tr>
 	
 	</c:forEach>
+	</tbody>
 </table>
 <%@ include file="page2.file" %>
 	
