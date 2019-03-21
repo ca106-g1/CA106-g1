@@ -111,7 +111,7 @@
 	<tr>
 		<th>電影名稱</th>
 		<th>電影封面</th>
-		<th colspan="3">操作按鈕</th>
+		<th colspan="2">操作按鈕</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 		<c:forEach var="movieinfoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">		
@@ -133,12 +133,12 @@
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Display_Front"></FORM>
 			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
-			     <!-- Button trigger modal -->
-				 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-					  SHOWTIMES
-				 </button>
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     Button trigger modal -->
+<!-- 				 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"> -->
+<!-- 					  SHOWTIMES -->
+<!-- 				 </button> -->
 				 		<!-- Modal -->
 <!-- 				<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"> -->
 <!-- 				  <div class="modal-dialog" role="document"> -->
@@ -158,9 +158,9 @@
 <!-- 				    </div> -->
 <!-- 				  </div> -->
 <!-- 				</div> -->
-			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-			     <input type="hidden" name="action"	value="getOne_showtimes"></FORM>
-			</td>
+<%-- 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="getOne_showtimes"></FORM> -->
+<!-- 			</td> -->
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="CHAT ROOM">
