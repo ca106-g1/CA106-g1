@@ -12,7 +12,7 @@ import com.farediscount.model.FarediscountDAOImpl;
 import com.farediscount.model.FarediscountVO;
 
 
-@WebServlet("/FarediscountServlet")
+@WebServlet("/farediscount/FarediscountServlet")
 public class FarediscountServlet extends HttpServlet{
 	
 

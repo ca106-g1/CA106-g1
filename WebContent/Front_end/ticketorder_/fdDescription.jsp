@@ -46,7 +46,7 @@
 			      <p>${farediscountVO.fd_lower}-${farediscountVO.fd_upper}</p>
 			      </c:forEach>
 				</div>
-				
+				<%System.out.println("65456456465465"); %>
 		    </div>
 	    </div>
 	</body>

@@ -30,11 +30,11 @@
 				<div>
 				<H2>訂單明細</H2>
 				<h5>訂單金額</h5>
-				<h5>${ticketorderVO_.order_amount}</h5>
+				<h5>${ticketorderVO.order_amount}</h5>
 				<h5>訂單時間</h5>
-				<h5>${ticketorderVO_.order_time}　</h5>
+				<h5>${ticketorderVO.order_time}　</h5>
 				<h5>優惠名稱</h5>
-				<h5>${farediscountVO_.fd_name}　</h5>
+				<h5>${farediscountVO.fd_name}　</h5>
 				</div>
 			</div>
 			<div class="col-4">

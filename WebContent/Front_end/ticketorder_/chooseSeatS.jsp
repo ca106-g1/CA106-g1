@@ -555,3 +555,4 @@ p {
 
 </body>
 </html>
+<%request.getSession().setAttribute("tx_key", new Object());%>

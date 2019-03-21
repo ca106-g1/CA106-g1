@@ -211,6 +211,12 @@ public class TicketorderServlet_ extends HttpServlet {
 		map.put("d", "4");
 
 		if ("insert".equals(action)) {
+			
+			if(req.getSession().getAttribute("tx_key") == null) {
+				RequestDispatcher rd = req.getRequestDispatcher("/Front_end/ticketorder_/choiseSessions.jsp");
+				rd.forward(req, res);
+				return;
+			}
 
 			String[] mt_no = req.getParameterValues("mt_no");
 			// 座位編號
@@ -224,7 +230,6 @@ public class TicketorderServlet_ extends HttpServlet {
 			SessionsVO sessionsVO = new SessionsService().getOneSes(sessions_no);
 			//取得場次值物件
 			String sessions_status = sessionsVO.getSessions_status();
-			String sessions_status2 = new String(sessions_status);
 			sessionsVO.setSessions_remaining(sessionsVO.getSessions_remaining()-count);
 
 			for (String sit : mt_no) {
@@ -247,7 +252,6 @@ public class TicketorderServlet_ extends HttpServlet {
 
 			}
 
-			
 			List<MovieticketVO> list = new ArrayList<MovieticketVO>();
 			// 電影票=訂明細的VO們
 			
@@ -270,16 +274,13 @@ public class TicketorderServlet_ extends HttpServlet {
 			//計算優惠種類
 			
 			TicketorderVO ticketorderVO = new TicketorderVO();
-			TicketorderVO ticketorderVO_ = (TicketorderVO)req.getSession().getAttribute("ticketorderVO_");
-			
-			if(ticketorderVO_ != null) {
-			ticketorderVO.setOrder_time(ticketorderVO_.getOrder_time());
-			}
 			
 			ticketorderVO.setMember_no(memVO.getMember_no());
+			
 			if (farediscountVO != null) {
 				ticketorderVO.setFd_no(farediscountVO.getFd_no());
 			}
+			
 			ticketorderVO.setSession_no(sessionsVO.getSessions_no());
 			ticketorderVO.setOrder_takemeals(0);
 			
@@ -292,15 +293,14 @@ public class TicketorderServlet_ extends HttpServlet {
 			depVO.setDeposit_change_money(-order_amount);
 			//設定儲值異動明細
 			
-			if(!sessions_status.equals(sessions_status2)) {
 				//防止重新整理重複送出請求重複產生訂單造成資料異常
 				TicketorderService ts = new TicketorderService();
 				ts.insertTicketorderMain(ticketorderVO, memVO, depVO, sessionsVO, list);
-			}
+				req.getSession().removeAttribute("tx_key");
 			//進行資料更新，交易區間貫穿五個model
 			
-			req.getSession().setAttribute("ticketorderVO_", ticketorderVO);
-			req.setAttribute("farediscountVO_", farediscountVO);
+			req.getSession().setAttribute("ticketorderVO", ticketorderVO);
+			req.setAttribute("farediscountVO", farediscountVO);
 			req.setAttribute("list", list);
 			
 			memVO.setMember_point(new MemService().getoneMem(memVO.getMember_no()).getMember_point());
