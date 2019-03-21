@@ -8,6 +8,7 @@
 
 <html>
 <head>
+	
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet"
@@ -62,12 +63,11 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>後台-電影種類修改 </h3>
+		 <h3>電影種類修改 </h3>
 		 <h4><a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -81,20 +81,22 @@
 
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/moviegenre/moviegenre.do" name="form1">
 <table>
+	<br>
 	<tr>
-		<td>電影種類編號:<font size="2"></font></td>
-		<td><%=moviegenreVO.getGenre_no()%></td>
+		<td nowrap="nowrap">電影種類編號:<font size="2"></font></td>
+		<td><input type="TEXT" size="30" value="<%=moviegenreVO.getGenre_no()%>" readonly="value" /></td>
 	</tr>
 	<tr>
-		<td>電影種類名稱:<font color=red size="2"><b>*</b></font></td>
-		<td><input type="TEXT" name="genre_name" size="45" value="<%=moviegenreVO.getGenre_name()%>" /></td>
+		<td nowrap="nowrap">電影種類名稱:<font color=red size="2"><b>*</b></font></td>
+		<td><input type="TEXT" name="genre_name" size="30" value="<%=moviegenreVO.getGenre_name()%>" /></td>
 	</tr>
 
 </table>
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="genre_no" value="<%=moviegenreVO.getGenre_no()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" value="送出">
+<input type ="button" onclick="history.back()" value="取消"></input></FORM>
 
 
 			</div>
@@ -104,12 +106,9 @@
 <!-- 工作區結束 -->
 
 	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 
 
@@ -119,6 +118,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+
 
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {

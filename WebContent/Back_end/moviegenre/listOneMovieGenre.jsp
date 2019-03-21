@@ -9,10 +9,10 @@
 <html>
 <head>
 <title>listOneMovieGenre</title>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<!-- Bootstrap CSS end-->
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 
 <style>
   table#table-1 {
@@ -61,7 +61,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>後台-單一電影種類查詢</h3>
+		 <h3>電影種類查詢</h3>
 		 <h4><a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">
 		 	 <img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a>
 		 </h4>
@@ -86,11 +86,6 @@
 <!-- 工作區結束 -->
 
 	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+	
 </body>
 </html>

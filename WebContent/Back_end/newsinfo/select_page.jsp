@@ -45,16 +45,9 @@
 			<div class="col-4">
 
 <table id="table-1">
-   <tr><td><h3>Back-end NewsInfo: Home</h3></td></tr>
-   <tr>
-		<td><h4>
-			<a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">電影種類編輯</a>
-			<a href="<%=request.getContextPath()%>/Back_end/movieinfo/select_page.jsp">電影資訊編輯</a>
-		</h4></td>
-	</tr>
+   <tr><td><h3>影視新聞管理: Home</h3></td></tr>
 </table>
 
-<h3>影視專欄編輯:</h3>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -70,14 +63,6 @@
   <li>All Newsinfo    <a href='<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp'>EDIT</a>.<br><br></li>
   <li><a href='<%=request.getContextPath()%>/Back_end/newsinfo/addNewsInfo.jsp'>Add</a> a new NewsInfo.</li><br>
   
-  <li>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" >
-        <b>輸入專欄編號 :</b>
-        <input type="text" name="news_no" placeholder="ex:1">
-        <input type="hidden" name="action" value="getOne_For_Display">
-        <input type="submit" value="送出">
-    </FORM>
-  </li>
 
 <!-- 		  <li> -->
 <%-- 		     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" > --%>

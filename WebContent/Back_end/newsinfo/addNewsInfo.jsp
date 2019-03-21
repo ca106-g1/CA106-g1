@@ -12,6 +12,9 @@
 
 <html>
 <head>
+<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <!-- 寫入日曆步驟 -->
 <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
@@ -22,44 +25,61 @@
 <title>addNewsInfo</title>
 
 <style>
-  table#table-1 {
+table#table-1 {
 	background-color: #00caca;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+	border: 2px solid black;
+	text-align: center;
+}
+
+table#table-1 h4 {
+	color: red;
+	display: block;
+	margin-bottom: 1px;
+}
+
+h4 {
+	color: blue;
+	display: inline;
+}
+
   img, #level{
   	width:50px;
   	hight:50px;
   }
   
-  img, #pic{
-  	width:135px;
-  	hight:200px;
+  #pic{
+  	width:270px;
+  	hight:400px;
   }
+  
+  #popcorn{
+  	 width:52;
+  	 height:62;
+  }
+  
 </style>
 
 <style>
-  table {
+table {
 	width: 450px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
+}
+
+table, th, td {
+	border: 0px solid #CCCCFF;
+}
+
+th, td {
+	padding: 1px;
+}
+
+#button{
+	hight:20;
+	width:20;
+}
+
 </style>
 
 		<!-- Bootstrap CSS start-->
@@ -74,7 +94,6 @@
 		<h1></h1><br>
 		
 <!-- 工作區開始 -->
-
 	<div class="container">
 		<div class="row justify-content">
 			<div class="col-1"></div>
@@ -87,7 +106,6 @@
 	</td></tr>
 </table>
 
-<h3>影視專欄新增:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -103,33 +121,33 @@
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
-		<td>電影編號:</td>
+		<td nowrap="nowrap">電影編號:</td>
 		<td><input type="TEXT" name="movie_no" size="45" 
 			 placeholder="ex:MI00000001" /></td>
 	</tr>
 	<tr>
-		<td>專欄標題:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">專欄標題:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_title" size="45"
 			 value="<%= (newsinfoVO==null)? "請輸入專欄標題" : newsinfoVO.getNews_title()%>" /></td>
 	</tr>
 	<tr>
-		<td>專欄作者:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">專欄作者:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_auther" size="45"
 			 value="<%= (newsinfoVO==null)? "請輸入專欄作者" : newsinfoVO.getNews_auther()%>" /></td>
 	</tr>
 	<tr>
-		<td>發文日期:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">發文日期:<font color=red><b>*</b></font></td>
 		<td><input name="news_times" id="f_date1" type="text"></td>
 	</tr>
 	<tr>
-		<td>專欄圖片:</td>
+		<td nowrap="nowrap">專欄圖片:</td>
 		<td><input type="file" name="news_pic" onchange='readURL(this)'>
 					<img id="pic" class='pic' src='data:img/png;base64,${encodeText}'
 					${(newsinfoVO.news_pic==null) ? 'style="display:none"' : ''}></td>
 	</tr>
 	<tr>
-		<td>專欄內容:<font color=red><b>*</b></font></td>
-		<td><input type="TEXT" name="news_con" size="45"
+		<td nowrap="nowrap">專欄內容:<font color=red><b>*</b></font></td>
+		<td><input type="TEXTAREA" name="news_con" size="45" style="width:500px; height:300px;"
 			 value="<%= (newsinfoVO==null)? "請輸入專欄內容" : newsinfoVO.getNews_con()%>" /></td>
 	</tr>
 
@@ -137,7 +155,8 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+<input type="submit" value="送出">
+<input type ="button" onclick="history.back()" value="取消"></input></FORM>
 
 			</div>
 		</div>
@@ -145,15 +164,7 @@
 
 
 <!-- 工作區結束 -->
-		
-		
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>
 

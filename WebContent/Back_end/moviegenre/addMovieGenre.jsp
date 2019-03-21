@@ -9,6 +9,10 @@
 <html>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+
 		<title>addMovieGenre</title>
 	
 		<style>
@@ -65,14 +69,13 @@
 		
 		<table id="table-1">
 			<tr>
-				<td><h3>後台-電影種類新增</h3></td>
+				<td><h3>電影種類新增</h3></td>
 				<td><h4>
 					<a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0"><br>回首頁</a>
 				</h4></td>
 			</tr>
 		</table>
 		
-		<h3>資料新增:</h3>
 		
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
@@ -86,17 +89,21 @@
 		
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/moviegenre/moviegenre.do" name="form1">
 		<table>
+			<br>
 			<tr>
-				<td>電影種類名稱:<font color=red size="2"><b>*</b></font></td>
+				<td nowrap=nowrap>電影種類名稱:<font color=red size="2"><b>*</b></font></td>
 				<td>
-					<input type="TEXT" name="genre_name" size="45" placeholder="ex:Action" />
+					<input type="TEXT" name="genre_name" size="30" placeholder="ex:Action" />
 				</td>
 			</tr>
 			
 		</table>
 		<br>
 		<input type="hidden" name="action" value="insert">
-		<input type="submit" value="送出新增"></FORM>
+		<input type="submit" value="新增">
+		<input type ="button" onclick="history.back()" value="取消"></input>
+		</FORM>
+		
 		
 		
 			</div>
@@ -106,14 +113,7 @@
 
 	<!-- 工作區結束 -->
 		
-		
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 	</body>
 
 </html>

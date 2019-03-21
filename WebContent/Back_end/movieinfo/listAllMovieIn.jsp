@@ -5,6 +5,7 @@
 <%@ page import="com.movieinfo.model.*"%>
 <%@ page import="com.moviegenre.model.*"%>
 <%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
+
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -19,6 +20,8 @@ for(MovieInfoVO movVO:lista){
 	}
 }
 pageContext.setAttribute("list",list);
+
+MovieInfoVO movieinfoVO = (MovieInfoVO) request.getAttribute("movieinfoVO");
 
 MovieGenreService moviegenreSvc = new MovieGenreService();
 pageContext.setAttribute("msc",moviegenreSvc);
@@ -44,18 +47,9 @@ pageContext.setAttribute("msc",moviegenreSvc);
     color: blue;
     display: inline;
   }
-  img, #level{
-  	width:50px;
-  	hight:50px;
-  }
-  
-  img, #pic{
-  	width:135px;
-  	hight:200px;
-  }
   iframe{
-	width:500px;
-	hight:281px;  
+	width:300px;
+	hight:168px;  
   }
 </style>
 
@@ -73,19 +67,26 @@ pageContext.setAttribute("msc",moviegenreSvc);
     padding: 5px;
     text-align: center;
   }
+  img, #level{
+  	width:50px;
+  	hight:50px;
+  }
   
-  
+  img, #pic{
+  	width:135px;
+  	hight:200px;
+  }
 </style>
-<!-- Bootstrap CSS start-->
+
+		<!-- Bootstrap CSS start-->
 		<link rel="stylesheet"
 		href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 		<!-- Bootstrap CSS end-->
+
 </head>
 <body bgcolor='white'>
 
-
-
-		<jsp:include page="/BackHeaderFooter/Header.jsp" />
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
 		<h1></h1><br>
 		
 		<!-- 工作區開始 -->
@@ -95,9 +96,11 @@ pageContext.setAttribute("msc",moviegenreSvc);
 			<div class="col-1"></div>
 			<div class="col-4">
 
+
+
 <table id="table-1">
 	<tr><td>
-		 <h3>後台-電影資料清單</h3>
+		 <h3>全部電影資料清單</h3>
 		 <h4><a href="select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -119,22 +122,13 @@ pageContext.setAttribute("msc",moviegenreSvc);
 		<th>電影名稱</th>
 		<th>電影封面</th>
 		<th>電影分級</th>
-		<th>電影導演</th>
-		<th>電影演員</th>
-		<th>電影片長</th>
-		<th>電影簡介</th>
-		<th>電影預告片</th>
 		<th>電影上映時間</th>
 		<th>電影下映時間</th>
-		<th>電影票房</th>
-		<th>電影期待度</th>
-		<th>電影不期待度</th>
 		<th>電影票價加價</th>
 		<th colspan="2">編輯</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="movieinfoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		
 		<tr>
 			<td>${movieinfoVO.movie_no}</td>
 			<td>${msc.getOneGenre(movieinfoVO.genre_no).genre_name}</td>
@@ -159,19 +153,10 @@ pageContext.setAttribute("msc",moviegenreSvc);
 			%>
 			<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
 			<%}else{%><td></td><%}%>
-			<td>${movieinfoVO.movie_director}</td>
-			<td>${movieinfoVO.movie_cast}</td> 
-			<td>${movieinfoVO.movie_length}</td>
-			<td>${movieinfoVO.movie_intro}</td>
-			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 			<td>${movieinfoVO.movie_in}</td>
 			<td>${movieinfoVO.movie_out}</td> 
-			<td>${movieinfoVO.movie_count}</td>
-			<td>${movieinfoVO.movie_exp}</td>
-			<td>${movieinfoVO.movie_noexp}</td>
 			<td>${movieinfoVO.movie_ticket}</td> 
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
+			  <td><FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
@@ -187,20 +172,20 @@ pageContext.setAttribute("msc",moviegenreSvc);
 </table>
 <%@ include file="page2.file" %>
 
-</div>
+		</div>
 		</div>
 	</div>
 
 <!-- 工作區結束 -->
-	
-		
-		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
 		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+	
 
 </body>
 </html>

@@ -16,8 +16,12 @@
 <html>
 <head>
 <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <!-- Bootstrap CSS start-->
 		<link rel="stylesheet"
@@ -26,45 +30,62 @@
 <title>updateMovieInfo</title>
 
 <style>
-  table#table-1 {
+table#table-1 {
 	background-color: #00caca;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
+	border: 2px solid black;
+	text-align: center;
+}
+
+table#table-1 h4 {
+	color: red;
+	display: block;
+	margin-bottom: 1px;
+}
+
+h4 {
+	color: blue;
+	display: inline;
+}
+
+  img, #level{
+  	width:50px;
+  	hight:50px;
   }
   
-	img, #level{
-	  	width:50px;
-	  	hight:50px;
-	  }
-  
-  	img, #pic{
-	  width:135px;
-	  hight:200px;
+  #pic{
+  	width:270px;
+  	hight:400px;
   }
+  
+  #popcorn{
+  	 width:52;
+  	 height:62;
+  }
+  
 </style>
 
 <style>
-  table {
+table {
 	width: 450px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
+}
+
+table, th, td {
+	border: 0px solid #CCCCFF;
+}
+
+th, td {
+	padding: 1px;
+	nowrap:nowrap;
+}
+
+#button{
+	hight:20;
+	width:20;
+}
+
 </style>
 
 </head>
@@ -82,12 +103,11 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>後台-電影資料修改</h3>
-		 <h4><a href="select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
+		 <h3>電影資料修改</h3>
+		 <h4><a href="select_page.jsp"><img id="popcorn" src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>電影資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -117,7 +137,7 @@
 					value="<%=(movieinfoVO == null) ? "請輸入電影名稱" : movieinfoVO.getMovie_name()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影分數(ex:8.0):</td>
+				<td>電影分數:</td>
 				<td><input type="TEXT" name="movie_score" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入IMDB分數" : movieinfoVO.getMovie_score()%>" /></td>
 			</tr>
@@ -139,11 +159,6 @@
 					value="<%=(movieinfoVO == null) ? "請輸入電影演員" : movieinfoVO.getMovie_cast()%>" /></td>
 			</tr>
 			<tr>
-				<td>電影簡介:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" name="movie_intro" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>" /></td>
-			</tr>
-			<tr>
 				<td>片長:<font color=red size="2"><b>*</b></font></td>
 				<td><input type="TEXT" name="movie_length" size="45"
 					value="<%=(movieinfoVO == null) ? "請輸入片長" : movieinfoVO.getMovie_length()%>" /></td>
@@ -153,14 +168,7 @@
 				<td><input type="TEXT" name="movie_trailer" size="45"
 					value='<%=(movieinfoVO == null) ? "請輸入預告網址" : movieinfoVO.getMovie_trailer()%>' /></td>
 			</tr>
-			<tr>
-				<td>封面:</td>
-				<td><input type="file" name="movie_pic" onchange='readURL2(this)'>
-				<img id="pic" class='pic2' src='data:img/png;base64,${encodeText2}'
-					${(movieinfoVO.movie_pic==null) ? 'style="display:none"' : ''}>
-				</td>
-				</td>
-			</tr>
+			
 			<tr>
 				<td>上映時間:<font color=red size="2"><b>*</b></font></td>
 				<td><input name="movie_in" class="f_date1" type="text" 
@@ -191,11 +199,28 @@
 				<td><input type="TEXT" name="movie_ticket" size="45"
 					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_touch()%>" /></td>
 			</tr>
+			<tr>
+				<td nowrap="nowrap">電影封面:</td>
+				<td><input type="file" name="movie_pic" onchange='readURL2(this)'>
+				<img id="pic" class='pic2' src='data:img/png;base64,${encodeText2}'
+					${(movieinfoVO.movie_pic==null) ? 'style="display:none"' : ''}>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td id="movie_con" nowrap="nowrap">電影簡介:<font color=red size="2"><b>*</b></font></td>
+				<td ><textarea rows="10" cols="80" name="movie_intro" 
+					 value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>"></textarea>
+				
+				
+<!-- 				<input type="textarea" id="movie_intro" name="movie_intro"  style="width:500px; height:300px;"  -->
+<%-- 					value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>" /></td> --%>
+			</tr>
 		</table>
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="movie_no" value="<%=movieinfoVO.getMovie_no()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" value="送出">
+<input type ="button" onclick="history.back()" value="取消"></input></FORM>
 
 <script>
 		function readURL(input) {
@@ -219,12 +244,12 @@
 <!-- 工作區結束 -->
 
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-				<!-- Optional JavaScript -->
-				<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-				<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-				<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-				<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-				<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+				
+			</div>
+		</div>
+	</div>
+
+				
 </body>
 
 

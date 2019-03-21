@@ -3,10 +3,10 @@
 
 <html>
 <head>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<!-- Bootstrap CSS end-->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <title>MovieGenre: Home</title>
 
 <style>
@@ -37,7 +37,6 @@ h4 {
 <body bgcolor='white'>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1></h1><br>
-	
 
 <!-- 工作區開始 -->
 
@@ -48,18 +47,11 @@ h4 {
 
 	<table id="table-1">
 		<tr>
-			<td><h3>Back-end MovieGenre: Home</h3></td>
-		</tr>
-		<tr>
-			<td><h4>
-				<a href="<%=request.getContextPath()%>/Back_end/movieinfo/select_page.jsp">電影資訊編輯</a>
-				<a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp">新聞專欄編輯</a>
-			</h4></td>
+			<td><h3>電影種類管理: Home</h3></td>
 		</tr>
 	</table>
 
 
-	<h3>電影種類編輯:</h3>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -79,22 +71,13 @@ h4 {
 		<li>
 			<a href='<%=request.getContextPath()%>/Back_end/moviegenre/addMovieGenre.jsp'>ADD</a>    a Movie Genre.
 		</li><br>
-			
-		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/moviegenre/moviegenre.do">
-				<b>輸入種類編號:</b>
-				<input type="text" name="genre_no" placeholder="ex:1"> 
-				<input type="hidden" name="action" value="getOne_For_Display"> 
-				<input type="submit" value="送出">
-			</FORM>
-		</li>
 
 		<jsp:useBean id="moviegenreSvc" scope="page" class="com.moviegenre.model.MovieGenreService" />
 
 
 		<li>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/moviegenre/moviegenre.do">
-				<b>選擇種類名稱:</b> 
+				<b>種類名稱查詢:</b> 
 				<select size="1" name="genre_no">
 					<c:forEach var="moviegenreVO" items="${moviegenreSvc.all}">
 						<option value="${moviegenreVO.genre_no}">${moviegenreVO.genre_name}
@@ -102,6 +85,7 @@ h4 {
 				</select> 
 				<input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
+				<input type ="button" onclick="history.back()" value="取消"></input>
 			</FORM>
 		</li>
 	</ul>
@@ -113,11 +97,6 @@ h4 {
 <!-- 工作區結束 -->
 
 	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+	
 </body>
 </html>

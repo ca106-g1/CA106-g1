@@ -9,54 +9,71 @@
 
 <html>
 <head>
-		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>updateNewsInfo</title>
 
 <style>
-  table#table-1 {
+table#table-1 {
 	background-color: #00caca;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+	border: 2px solid black;
+	text-align: center;
+}
+
+table#table-1 h4 {
+	color: red;
+	display: block;
+	margin-bottom: 1px;
+}
+
+h4 {
+	color: blue;
+	display: inline;
+}
+
   img, #level{
   	width:50px;
   	hight:50px;
   }
   
-  img, #pic{
-  	width:135px;
-  	hight:200px;
+  #pic{
+  	width:270px;
+  	hight:400px;
   }
+  
+  #popcorn{
+  	 width:52;
+  	 height:62;
+  }
+  
 </style>
 
 <style>
-  table {
+table {
 	width: 450px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
+}
+
+table, th, td {
+	border: 0px solid #CCCCFF;
+}
+
+th, td {
+	padding: 1px;
+}
+
+#button{
+	hight:20;
+	width:20;
+}
+
 </style>
 
 		<!-- Bootstrap CSS start-->
@@ -98,33 +115,33 @@
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
-		<td>專欄編號:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">專欄編號:<font color=red><b>*</b></font></td>
 		<td><%=newsinfoVO.getNews_no()%></td>
 	</tr>
 	<tr>
-		<td>電影編號:</td>
+		<td nowrap="nowrap">電影編號:</td>
 		<td><input type="TEXT" name="movie_no" size="45" value="<%=newsinfoVO.getMovie_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>專欄標題:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">專欄標題:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_title" size="45" value="<%=newsinfoVO.getNews_title()%>" /></td>
 	</tr>
 	<tr>
-		<td>專欄作者:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">專欄作者:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_auther" size="45"	value="<%=newsinfoVO.getNews_auther()%>" /></td>
 	</tr>
 	<tr>
-		<td>發文日期:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">發文日期:<font color=red><b>*</b></font></td>
 		<td><input name="news_times" id="f_date1" type="Text" ></td>
 	</tr>
 	<tr>
-		<td>專欄圖片:</td>
+		<td nowrap="nowrap">專欄圖片:</td>
 		<td><input type="file" name="news_pic" onchange='readURL(this)'>
 					<img id="pic" class='pic' src='data:img/png;base64,${encodeText}'
 					${(newsinfoVO.news_pic==null) ? 'style="display:none"' : ''}></td>
 	</tr>
 	<tr>
-		<td>專欄內容:<font color=red><b>*</b></font></td>
+		<td nowrap="nowrap">專欄內容:<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="news_con" size="45"	value="<%= (newsinfoVO==null)? "這是一篇新聞內容" : newsinfoVO.getNews_con()%>" /></td>
 	</tr>
 	
@@ -134,7 +151,8 @@
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="news_no" value="<%=newsinfoVO.getNews_no()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" value="送出">
+<input type ="button" onclick="history.back()" value="取消"></input></FORM>
 
 			</div>
 		</div>
@@ -145,10 +163,6 @@
 		
 		
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-
-		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 
 

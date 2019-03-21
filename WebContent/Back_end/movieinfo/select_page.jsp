@@ -3,7 +3,11 @@
 
 <html>
 <head>
-<title>IBM MovieInfo: Home</title>
+<title>MovieInfo: Home</title>
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 
 <style>
   table#table-1 {
@@ -25,10 +29,6 @@
     display: inline;
   }
 </style>
-		<!-- Bootstrap CSS start-->
-		<link rel="stylesheet"
-		href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-		<!-- Bootstrap CSS end-->
 
 </head>
 <body bgcolor='white'>
@@ -44,17 +44,8 @@
 
 <table id="table-1">
    <tr><td><h3>Back-end MovieInfo: Home</h3></td></tr>
-   <tr>
-		<td><h4>
-			<a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">電影種類編輯</a>
-  			<a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp">新聞專欄編輯</a>
-		</h4></td>
-	</tr>
-  
 </table>
 
-
-<h3>電影資料編輯:</h3>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -82,7 +73,7 @@
   <li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" >
         <b>電影編號查詢 :</b>
-        <input type="text" name="movie_no" placeholder="ex:MI00000001">
+        <input type="text" name="movie_no" size="20" placeholder="ex:MI00000001">
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="送出">
     </FORM>
@@ -117,15 +108,16 @@
   </li>
 </ul>
 
+			</div>
+		</div>
+	</div>
+
 <!-- 工作區結束 -->
 
 <jsp:include page="/BackHeaderFooter/Footer.jsp" />
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+		
+		
+	
 
 </body>
 </html>

@@ -29,10 +29,7 @@
 
 <html>
 <head>
-		<!-- Bootstrap CSS start-->
-		<link rel="stylesheet"
-			href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-		<!-- Bootstrap CSS end-->
+<link rel="stylesheet"	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <title>揪影MovieInfo </title>
 
 <style>
@@ -83,7 +80,6 @@
 		<h1></h1><br>
 		
 <!-- 工作區開始 -->
-
 		<div class="container">
 		<div class="row justify-content">
 			<div class="col-1"></div>

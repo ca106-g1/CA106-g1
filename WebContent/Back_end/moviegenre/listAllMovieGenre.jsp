@@ -66,7 +66,7 @@
 	
 		<table id="table-1">
 			<tr><td>
-				 <h3>後台-電影種類清單</h3>
+				 <h3>電影種類清單</h3>
 				 <h4><a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">  回首頁</a></h4>
 			</td></tr>
 		</table>

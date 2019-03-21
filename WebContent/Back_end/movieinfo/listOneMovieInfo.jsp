@@ -82,7 +82,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>後台-單一電影資料</h3>
+		 <h3>電影資料查詢</h3>
 		 <h4><a href="select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -94,17 +94,18 @@
 		<th>電影名稱</th>
 		<th>電影封面</th>
 		<th>電影分級</th>
+		<th>電影分數</th>
 		<th>電影導演</th>
 		<th>電影演員</th>
 		<th>電影片長</th>
-		<th>電影簡介</th>
-		<th>電影預告片</th>
 		<th>電影上映時間</th>
 		<th>電影下映時間</th>
 <!-- 		<th>電影票房</th> -->
 		<th>電影期待度</th>
 		<th>電影不期待度</th>
 		<th>電影票價加價</th>
+		<th>電影預告片</th>
+<!-- 		<th>電影簡介</th> -->
 		<th colspan="2">編輯</th>
 	</tr>
 	
@@ -132,20 +133,18 @@
 			%>
 			<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
 			<%}else{%><td></td><%}%>
+			<td>${movieinfoVO.movie_score}</td>
 			<td>${movieinfoVO.movie_director}</td>
 			<td>${movieinfoVO.movie_cast}</td> 
 			<td>${movieinfoVO.movie_length}</td>
-			<td>${movieinfoVO.movie_intro}</td>
-			
-			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-			
-			
 			<td>${movieinfoVO.movie_in}</td>
 			<td>${movieinfoVO.movie_out}</td> 
-<%-- 			<td>${movieinfoVO.movie_count}</td> --%>
+<%-- 		<td>${movieinfoVO.movie_count}</td> --%>
 			<td>${movieinfoVO.movie_exp}</td>
 			<td>${movieinfoVO.movie_noexp}</td>
 			<td>${movieinfoVO.movie_ticket}</td> 
+			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+<%-- 			<td>${movieinfoVO.movie_intro}</td> --%>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
