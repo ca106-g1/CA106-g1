@@ -15,6 +15,10 @@
 <html lang="en">
 <head>
 
+<!-- 自動刷新 -->
+<!-- <meta http-equiv="refresh" content="3" /> -->
+
+
 <!-- Required meta tags -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -226,6 +230,8 @@
 
 
 <script>
+
+// alert("!");
 
 // function ShowImg(){
 // 				var ScheduleDate = "${advVO.getAd_start().toString().substring(0,19)}";
