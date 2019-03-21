@@ -108,7 +108,7 @@
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script	src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<script  src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>
