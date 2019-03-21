@@ -63,10 +63,10 @@ display: inline;
 </c:if >
 	
 
-<form  method = "post"   action = "backLoginHandler.do"  >
+<form  method = "post"   action = "backLoginHandler.do" name="form1" >
 
-<p>帳號: <input type = "text"  name = "employee_name"  ></p>
-<p>密碼: <input type = "password"  name = "employee_password" ></p>
+<p>帳號: <input type = "text"  name = "employee_name" id = "employee_name" ></p>
+<p>密碼: <input type = "password"  name = "employee_password" id = "employee_password" ></p>
 <p><input type = "hidden" name="action" value="getone_for_login">
    <input type = "submit"  value = "送出">
    <input type = "reset"   value = "取消">
@@ -75,7 +75,26 @@ display: inline;
 
 <jsp:useBean id="empSvc" scope="page" class="com.emp.model.EmpService" />
 
+<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite(this)">
+						
+<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite2(this)">
+						
 
+<script>
+function idwrite(name){
+	form1.employee_name.value="DAVID";
+	form1.employee_password.value="123456";
+	
+}
+
+function idwrite2(name){
+	form1.employee_name.value="PETER";
+	form1.employee_password.value="123456";
+	
+}
+</script>
 
 
 	<!-- 工作區結束 -->

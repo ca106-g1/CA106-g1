@@ -65,10 +65,10 @@ display: inline;
 </c:if >
 	
 
-<form  method = "post"   action = "loginHandler.do"  >
+<form  method = "post"   action = "loginHandler.do" name="form1"  >
 
-<p>帳號: <input type = "text"  name = "member_account"  ></p>
-<p>密碼: <input type = "password"  name = "member_password" ></p>
+<p>帳號: <input type = "text"  name = "member_account" id = "member_account" ></p>
+<p>密碼: <input type = "password"  name = "member_password" id = "member_password" ></p>
 <p><input type = "hidden" name="action" value="getone_for_login">
    <input type = "submit"  value = "送出">
    <input type = "reset"   value = "取消">
@@ -80,6 +80,31 @@ display: inline;
 
 *如果您還未註冊會員 請點擊<a href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">註冊</a>
 
+<!-- <神奇小按鈕> -->
+
+<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite(this)">
+						
+<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite2(this)">
+						
+
+<script>
+function idwrite(name){
+	form1.member_account.value="A123456";
+	form1.member_password.value="123456";
+	
+}
+
+function idwrite2(name){
+	form1.member_account.value="peter520";
+	form1.member_password.value="1314520";
+	
+}
+</script>
+						
+						
+						
 	<!-- 工作區結束 -->
 	
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
