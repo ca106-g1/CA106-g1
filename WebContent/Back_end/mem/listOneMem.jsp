@@ -35,7 +35,8 @@
 	</td></tr>
 </table>	
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
 		<th>會員編號</th>
 		<th>會員帳號</th>
@@ -54,8 +55,10 @@
 		<th>會員儲值點數</th>
 		<th>會員狀態</th>
 	</tr>
+</thead>
+<tbody>
 	<tr>
-		<td><%=memVO.getMember_no()%></td>
+		<th scope="row"><%=memVO.getMember_no()%></th>
 		<td><%=memVO.getMember_account()%></td>
 		<td><%=memVO.getMember_password()%></td>
 		<td><%=memVO.getMember_name()%></td>
@@ -75,7 +78,7 @@
 		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
 		
 	</tr>
-	
+</tbody>	
 </table>
 
 

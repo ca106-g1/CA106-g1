@@ -45,24 +45,27 @@
 	</ul>
 </c:if>
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
 		<th>儲值明細編號</th>
 		<th>會員編號</th>
 		<th>異動金額</th>
 		<th>異動日期</th>
 	</tr>
-	
+</thead>
+<tbody>	
 	<%@ include file="page1.file" %>
 	<c:forEach var="depVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	
 	<tr>
-		<td>${depVO.deposit_change_no}</td>
+		<th scope="row">${depVO.deposit_change_no}</th>
 		<td>${depVO.deposit_member_no}</td>
 		<td>${depVO.deposit_change_money}</td>
 		<td>${depVO.deposit_change_date}</td>
 	</tr>
 	</c:forEach>
+</tbody>
 </table>
 <%@ include file="page2.file" %>
 

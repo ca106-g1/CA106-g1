@@ -28,32 +28,35 @@
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-<table id = "table-1">
+<table id = "table-1" >
 	<tr><td>
 		<h3>會員個人資料</h3>
 		<h4><a href = "select_page.jsp">回會員首頁</a></h4>
 	</td></tr>
 </table>	
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
-		<th>會員編號</th>
-		<th>會員帳號</th>
-		<th>會員密碼</th>
-		<th>會員姓名</th>
-		<th>會員暱稱</th>
-		<th>會員性別</th>
-		<th>會員生日</th>
-		<th>會員地址</th>
-		<th>會員電話</th>
-		<th>會員信箱</th>
-		<th>會員圖片</th>
-		<th>會員信用卡</th>
-		<th>會員驗證碼</th>
-		<th>會員建立日期</th>
-		<th>會員儲值點數</th>
-		<th>會員狀態</th>
+		<th scope="col">會員編號</th>
+		<th scope="col">會員帳號</th>
+		<th scope="col">會員密碼</th>
+		<th scope="col">會員姓名</th>
+		<th scope="col">會員暱稱</th>
+		<th scope="col">會員性別</th>
+		<th scope="col">會員生日</th>
+		<th scope="col">會員地址</th>
+		<th scope="col">會員電話</th>
+		<th scope="col">會員信箱</th>
+		<th scope="col">會員圖片</th>
+		<th scope="col">會員信用卡</th>
+		<th scope="col">會員驗證碼</th>
+		<th scope="col">會員建立日期</th>
+		<th scope="col">會員儲值點數</th>
+		<th scope="col">會員狀態</th>
 	</tr>
+</thead>
+<tbody>
 	<tr>
 		<td><%=memVO.getMember_no()%></td>
 		<td><%=memVO.getMember_account()%></td>
@@ -75,6 +78,7 @@
 		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
 		
 	</tr>
+	</tbody>
 	
 </table>
 

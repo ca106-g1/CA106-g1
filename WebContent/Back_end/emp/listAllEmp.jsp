@@ -73,7 +73,8 @@
 	</ul>
 </c:if>
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
 		<th>員工編號</th>
 		<th>員工姓名</th>
@@ -86,16 +87,17 @@
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
-	
+</thead>
+ <tbody>	
 	<%@ include file = "page1.file" %>
 	<c:forEach var="empVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	
 	<tr>
-		<td>${empVO.employee_no}</td>
+		<th  scope="row">${empVO.employee_no}</th>
 		<td>${empVO.employee_name}</td>
 		<td>${empVO.employee_sex eq 0?"女":"男"}</td>
 		<td>${empVO.employee_builddate}</td>
-		<td>${empVO.employee_quitdate}</td>
+		<td>${empVO.employee_quitdate }</td>
 		<td>${empVO.employee_ability}</td>
 		<td>${empVO.employee_status eq 0?"已離職":"在職中"}</td>
 		<td>${empVO.employee_password}</td>
@@ -115,6 +117,7 @@
 			</td>		
 	   </tr>
 	</c:forEach>
+</tbody>
 </table>
 <%@ include file="page2.file" %>
 

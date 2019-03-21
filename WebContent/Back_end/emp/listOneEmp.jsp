@@ -34,7 +34,8 @@
 	</td></tr>
 </table>
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
 		<th>員工編號</th>
 		<th>員工姓名</th>
@@ -45,17 +46,19 @@
 		<th>員工狀態</th>
 		<th>員工密碼</th>
 	</tr>
+</thead>
+<tbody>
 	<tr>
-		<td><%=empVO.getEmployee_no()%></td>
+		<th scope="row"><%=empVO.getEmployee_no()%></th>
 		<td><%=empVO.getEmployee_name()%></td>
 		<td>${empVO.employee_sex eq 0?"女":"男"}</td>
 		<td><%=empVO.getEmployee_builddate()%></td>
-		<td><%=empVO.getEmployee_quitdate()%></td>
+		<td>${empVO.employee_quitdate eq null ? "" : "empVO.employee_quitdate" }</td>
 		<td><%=empVO.getEmployee_ability()%></td>
 		<td>${empVO.employee_status eq 0?"已離職":"在職中"}</td>
 		<td><%=empVO.getEmployee_password()%></td>
 	</tr>
-
+</tbody>
 </table>
 
 
