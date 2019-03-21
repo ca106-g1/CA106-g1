@@ -83,8 +83,10 @@
 
 </head>
 
-
+<!-- 開始呼叫連線方法 -->
 <body onload="connect();" onunload="disconnect();">
+
+<!-- 這是Header -->
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 
@@ -100,6 +102,10 @@
 <!-- <input type="submit" value="送出新增"> -->
 <!-- </FORM> -->
 
+
+
+
+<!-- 使用電影資訊的資料 -->
 <table>
 	<tr>
 		<th>電影名稱</th>
@@ -144,11 +150,16 @@
 	</tr>
 </table>
 
+
+
+<!-- 這是聊天室 -->
+
 		<h1> Chat Room </h1>
 	    <h3 id="statusOutput" class="statusOutput"></h3>
         
 
         
+<!--         這釋放聊天對話的地方 -->
 <!--         <textarea id="messagesArea"  class="panel message-area" readonly ></textarea> -->
  <div id="messagesArea" class="panel message-area"  ></div> 
 <!--         <h3 id="messagesArea" class="panel message-area"></h3> -->
@@ -157,9 +168,12 @@
         
         <div class="panel input-area">
 <%--             <input id="userName" class="text-field" type="text" placeholder="使用者名稱" value="${memVO.member_no}"/> --%>
+<!--        這是使用者名子 -->
            <h5> ${memVO.member_name}</h5>
             
             
+            
+<!--             這是對話輸入視窗 -->
         <form name = 'form' action = '#' method='post'>
             <textarea name="content" id="content" rows="10" cols="80"></textarea>
  		</form>
@@ -182,7 +196,7 @@
             
             
             
-            
+<!--             這是送出 連線 離線 的按鈕 各自呼叫各自方法 -->
             <input type="submit" id="sendMessage" class="button" value="送出" onclick="sendMessage();"/>
 		    <input type="button" id="connect"     class="button" value="連線" onclick="connect();"/>
 		    <input type="button" id="disconnect"  class="button" value="離線" onclick="disconnect();"/>
@@ -205,7 +219,7 @@
 <!-- <p>asdf</p> -->
 
 
-
+<!-- 這是Footer -->
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
@@ -225,6 +239,8 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<!-- 呼叫CKEDITOR套件 -->
 <script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script>
 <%-- <script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script> --%>
 
@@ -238,7 +254,7 @@
 </style>
 
 
-
+<!-- CKEDITOR套件到指定欄位 -->
 <script>
 			CKEDITOR.replace( 'content', {});
 </script>
@@ -280,7 +296,7 @@
 <script>
 
 
-
+// 這是預覽上傳圖片
 
 
 $("#progressbarTWInput").ready(function(){
@@ -318,6 +334,8 @@ function readURL(input){
 
 </script>
 
+
+<!-- webSocket 前端程式碼 -->
 <script>
 
 // 	function getBase64(imgDOM){
@@ -336,7 +354,7 @@ function readURL(input){
 	
 	
 
-    
+//     連線地址 用電影編號來方房
     var MyPoint = "/MyEchoServer/${param.movie_no}";
     var host = window.location.host;
     var path = window.location.pathname;
@@ -352,7 +370,7 @@ function readURL(input){
 // 		alert(My);
 	
 	
-	
+// 	webSocket 連線
 	function connect() {
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL);
@@ -372,7 +390,10 @@ function readURL(input){
 // 	        messagesArea.value = messagesArea.value + message;
 // 	        messagesArea.scrollTop = messagesArea.scrollHeight;
 // 			document.write(message);
-	messagesArea.innerHTML = messagesArea.innerHTML + message;
+	
+	
+// 			把輸入的字串 回傳後 推播出來 放在<div>裡
+			messagesArea.innerHTML = messagesArea.innerHTML + message;
 	
 // 	messagesArea.innerHTML = messagesArea.innerHTML + message + '<button>appendit</button>';
 
@@ -391,6 +412,7 @@ function readURL(input){
 	
 	function sendMessage() {
 // 	    var userName = inputUserName.value.trim();
+// 取到會員名子
 		var userName = "${memVO.member_name}"
 	    if (userName === ""){
 	        alert ("使用者名稱請勿空白!");
@@ -410,16 +432,17 @@ function readURL(input){
 
 // 			CKEDITOR.instances.content.setData('');
 
-
+// 取到CKEDITOR裡輸入的資料 
 	    var message = CKEDITOR.instances.content.getData()
 	    
 // 	    alert(message);
 	    
+// 	    清空CKEDITOR裡的資料
 	    CKEDITOR.instances.content.setData('');
 	    
-	    
+// 	    判斷輸入資料不為空白後 送出
 	    if (message === ""){
-	        alert ("圖片請勿空白!");
+	        alert ("請勿空白!");
 	        inputMessage.focus();	
 	    }else{
 	        var jsonObj = {"userName" : userName, "message" : message};
