@@ -346,7 +346,7 @@ function readURL(input){
 	var statusOutput = document.getElementById("statusOutput");
 	var webSocket;
 	
-	alert(MyPoint);
+// 	alert(MyPoint);
 	
 // 	var My = "${memVO.member_no}" 
 // 		alert(My);

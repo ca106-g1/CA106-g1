@@ -175,7 +175,7 @@
 	        var jsonObj = JSON.parse(event.data);
 	        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
 	
-	        alert(message);
+// 	        alert(message);
 // 	        messagesArea.innerHTML = messagesArea.innerHTML + message;
 	
 
@@ -202,7 +202,7 @@
 	    
  
 		var message = '${advVO.ad_name}';
-		alert(message);
+// 		alert(message);
 // 	    var message = CKEDITOR.instances.content.getData()
 	    
 	    
