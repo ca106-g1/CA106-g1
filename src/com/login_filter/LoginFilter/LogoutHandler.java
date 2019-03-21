@@ -26,7 +26,7 @@ public class LogoutHandler extends HttpServlet{
 		if("logout".equals(logout)) {
 			HttpSession session = req.getSession();
 			session.invalidate();
-			res.sendRedirect(req.getContextPath()+"/Front_end/Login.jsp");
+			res.sendRedirect(req.getContextPath()+"/Front_end/mem/Login.jsp");
 			return;
 		}
 		
