@@ -11,6 +11,10 @@
 
 <html>
 <head>
+		<!-- Bootstrap CSS start-->
+		<link rel="stylesheet"
+			href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+		<!-- Bootstrap CSS end-->
 <title>listoneNewsInfo</title>
 
 <style>
@@ -48,6 +52,14 @@
 
 </head>
 <body bgcolor='white'>
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+		<h1></h1><br>
+		
+		<div class="container">
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-4">
+<!-- 工作區開始 -->
 
 <table id="table-1">
 	<tr><td>
@@ -59,11 +71,11 @@
 
 <table>
 	<tr>
-		<th>新聞標題</th>
-		<th>新聞作者</th>
+		<th>專欄標題</th>
+		<th>專欄作者</th>
 		<th>發文日期</th>
-		<th>新聞圖片</th>
-		<th>新聞內容</th> 
+		<th>專欄圖片</th>
+		<th>專欄內容</th> 
 		
 	</tr>
 	<tr>
@@ -79,10 +91,21 @@
 			%>
 			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
 			<%}else{%><td></td><%}%>  
-			<td>
 		<td><%=newsinfoVO.getNews_con()%></td>
 	</tr>
 </table>
 
+<!-- 工作區結束 -->
+			</div>
+		</div>
+	</div>
+		
+		<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 </html>

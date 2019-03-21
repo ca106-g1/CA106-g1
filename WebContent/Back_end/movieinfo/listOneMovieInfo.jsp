@@ -63,8 +63,22 @@
  
 </style>
 
+		<!-- Bootstrap CSS start-->
+		<link rel="stylesheet"
+		href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+		<!-- Bootstrap CSS end-->
+
 </head>
 <body bgcolor='white'>
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
+		<h1></h1><br>
+		
+		<!-- 工作區開始 -->
+
+	<div class="container">
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-4">
 
 <table id="table-1">
 	<tr><td>
@@ -87,7 +101,7 @@
 		<th>電影預告片</th>
 		<th>電影上映時間</th>
 		<th>電影下映時間</th>
-		<th>電影票房</th>
+<!-- 		<th>電影票房</th> -->
 		<th>電影期待度</th>
 		<th>電影不期待度</th>
 		<th>電影票價加價</th>
@@ -128,7 +142,7 @@
 			
 			<td>${movieinfoVO.movie_in}</td>
 			<td>${movieinfoVO.movie_out}</td> 
-			<td>${movieinfoVO.movie_count}</td>
+<%-- 			<td>${movieinfoVO.movie_count}</td> --%>
 			<td>${movieinfoVO.movie_exp}</td>
 			<td>${movieinfoVO.movie_noexp}</td>
 			<td>${movieinfoVO.movie_ticket}</td> 
@@ -146,6 +160,18 @@
 			</td>
 		</tr>
 </table>
+	</div>
+		</div>
+	</div>
 
+<!-- 工作區結束 -->
+
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 </html>

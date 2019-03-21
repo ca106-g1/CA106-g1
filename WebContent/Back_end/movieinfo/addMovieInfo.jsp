@@ -83,9 +83,24 @@ th, td {
 	padding: 1px;
 }
 </style>
-
+<!-- Bootstrap CSS start-->
+		<link rel="stylesheet"
+		href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+		<!-- Bootstrap CSS end-->
 </head>
 <body bgcolor='white'>
+
+
+
+		<jsp:include page="/BackHeaderFooter/Header.jsp" />
+		<h1></h1><br>
+		
+		<!-- 工作區開始 -->
+
+	<div class="container">
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-4">
 
 	<table id="table-1">
 		<tr>
@@ -182,11 +197,11 @@ th, td {
 				<td><input name="movie_out" id="movie_out" class="f_date1" type="text" 
 					value="<%=(movieinfoVO == null) ? "請輸入下映時間" : movieinfoVO.getMovie_out()%>"></td>
 			</tr>
-			<tr>
-				<td>電影票房:</td>
-				<td><input type="TEXT" name="movie_count" size="45"
-					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td>電影票房:</td> -->
+<!-- 				<td><input type="TEXT" name="movie_count" size="45" -->
+<%-- 					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td> --%>
+<!-- 			</tr> -->
 			<tr>
 				<td>電影期待度:</td>
 				<td><input type="TEXT" id="movie_exp" name="movie_exp" size="45"
@@ -211,6 +226,21 @@ th, td {
 			<img id="button" width="20" height="20" src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" onclick="movieinsert(this)">
 			
 	</FORM>
+	
+		</div>
+		</div>
+	</div>
+
+<!-- 工作區結束 -->
+	
+		
+		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 	
 	<script>
 		function readURL(input) {
@@ -250,6 +280,8 @@ th, td {
 			
 		}
 	</script>
+	
+	
 </body>
 
 

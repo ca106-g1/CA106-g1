@@ -29,6 +29,11 @@
 
 <html>
 <head>
+		<!-- Bootstrap CSS start-->
+		<link rel="stylesheet"
+			href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+		<!-- Bootstrap CSS end-->
+
 <title>揪影MovieInfo </title>
 
 <style>
@@ -75,6 +80,15 @@
 
 </head>
 <body bgcolor='white'>
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+		<h1></h1><br>
+		
+<!-- 工作區開始 -->
+
+		<div class="container">
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-4">
 
 <table id="table-1">
 	<tr><td>
@@ -97,7 +111,7 @@
 	<tr>
 		<th>電影名稱</th>
 		<th>電影封面</th>
-		<th colspan="2">操作按鈕</th>
+		<th colspan="3">操作按鈕</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 		<c:forEach var="movieinfoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">		
@@ -121,21 +135,57 @@
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
+			     <!-- Button trigger modal -->
+				 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+					  SHOWTIMES
+				 </button>
+				 		<!-- Modal -->
+<!-- 				<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"> -->
+<!-- 				  <div class="modal-dialog" role="document"> -->
+<!-- 				    <div class="modal-content"> -->
+<!-- 				      <div class="modal-header"> -->
+<!-- 				        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+<!-- 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!-- 				          <span aria-hidden="true">&times;</span> -->
+<!-- 				        </button> -->
+<!-- 				      </div> -->
+<!-- 				      <div class="modal-body"> -->
+<!-- 				        ... -->
+<!-- 				      </div> -->
+<!-- 				      <div class="modal-footer"> -->
+<!-- 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+<!-- 				      </div> -->
+<!-- 				    </div> -->
+<!-- 				  </div> -->
+<!-- 				</div> -->
+			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
+			     <input type="hidden" name="action"	value="getOne_showtimes"></FORM>
+			</td>
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="CHAT ROOM">
 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Display_Front_Chatroom"></FORM>
 			</td>
-			
-<!-- 			<td> -->
-<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;"> --%>
-<!-- 			     <input type="submit" value="MOVIE INFO"> -->
-<%-- 			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}"> --%>
-<!-- 			     <input type="hidden" name="action"	value="getOne_For_Display"></FORM> -->
-<!-- 			</td> -->
 		</tr>
 	</c:forEach>
+	
 </table>
 <%@ include file="page2.file" %>
 
+
+			</div>
+		</div>
+	</div>
+
+<!-- 工作區結束 -->
+		
+		<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 </html>

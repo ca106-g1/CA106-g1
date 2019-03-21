@@ -19,6 +19,10 @@
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<!-- Bootstrap CSS start-->
+		<link rel="stylesheet"
+			href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+		<!-- Bootstrap CSS end-->
 <title>updateMovieInfo</title>
 
 <style>
@@ -65,6 +69,16 @@
 
 </head>
 <body bgcolor='white'>
+
+		<jsp:include page="/BackHeaderFooter/Header.jsp" />
+		<h1></h1><br>
+		
+<!-- 工作區開始 -->
+
+		<div class="container">
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-4">
 
 <table id="table-1">
 	<tr><td>
@@ -157,11 +171,11 @@
 				<td><input name="movie_out" class="f_date1" type="text" 
 					value="<%=(movieinfoVO == null) ? "請輸入下映時間" : movieinfoVO.getMovie_out()%>"></td>
 			</tr>
-			<tr>
-				<td>票房:</td>
-				<td><input type="TEXT" name="movie_count" size="45"
-					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_count()%>" /></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td>票房:</td> -->
+<!-- 				<td><input type="TEXT" name="movie_count" size="45" -->
+<%-- 					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_count()%>" /></td> --%>
+<!-- 			</tr> -->
 			<tr>
 				<td>期待度:</td>
 				<td><input type="TEXT" name="movie_exp" size="45"
@@ -202,7 +216,15 @@
 			reader2.readAsDataURL(input.files[0]);
 		}
 	</script>
+<!-- 工作區結束 -->
 
+		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+				<!-- Optional JavaScript -->
+				<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+				<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+				<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+				<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+				<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 
 

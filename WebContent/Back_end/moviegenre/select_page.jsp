@@ -3,6 +3,10 @@
 
 <html>
 <head>
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
 <title>MovieGenre: Home</title>
 
 <style>
@@ -31,6 +35,16 @@ h4 {
 
 </head>
 <body bgcolor='white'>
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
+	<h1></h1><br>
+	
+
+<!-- 工作區開始 -->
+
+	<div class="container">
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-4">
 
 	<table id="table-1">
 		<tr>
@@ -91,6 +105,19 @@ h4 {
 			</FORM>
 		</li>
 	</ul>
+	
+				</div>
+		</div>
+	</div>
 
+<!-- 工作區結束 -->
+
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 </html>

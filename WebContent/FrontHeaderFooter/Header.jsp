@@ -50,7 +50,7 @@
 							id="dropdownMenuButton" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">影視新聞</button>						
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/newsinfo/listAllNewsInfo.jsp">影視新聞</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">影視新聞</a> 
 						</div>
 				</div>
 						<!-- 以上是影視新聞功能-->

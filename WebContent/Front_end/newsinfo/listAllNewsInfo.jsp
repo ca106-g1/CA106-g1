@@ -14,6 +14,10 @@
 
 <html>
 <head>
+		<!-- Bootstrap CSS start-->
+		<link rel="stylesheet"
+			href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+		<!-- Bootstrap CSS end-->
 <title>listallNewsInfo </title>
 
 <style>
@@ -56,6 +60,14 @@
 
 </head>
 <body bgcolor='white'>
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+		<h1></h1><br>
+		
+		<div class="container">
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-4">
+<!-- 工作區開始 -->
 
 <table id="table-1">
 	<tr><td>
@@ -105,7 +117,7 @@
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="繼續閱讀">
 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Display"></FORM>
+			     <input type="hidden" name="action"	value="getOne_For_Display_Front"></FORM>
 			</td>
 			
 		</tr>
@@ -113,5 +125,17 @@
 </table>
 <%@ include file="page2.file" %>
 
+<!-- 工作區結束 -->
+			</div>
+		</div>
+	</div>
+		
+		<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 </html>
