@@ -88,17 +88,29 @@ display: inline;
 <img src="img/popcorn.jpg" height="20" width="20"
 						onclick="idwrite2(this)">
 						
+<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite3(this)">						
+						
 
 <script>
+
 function idwrite(name){
+	form1.member_account.value="peter520";
+	form1.member_password.value="1314520";
+	
+}
+
+
+function idwrite2(name){
 	form1.member_account.value="A123456";
 	form1.member_password.value="123456";
 	
 }
 
-function idwrite2(name){
-	form1.member_account.value="peter520";
-	form1.member_password.value="1314520";
+
+function idwrite3(name){
+	form1.member_account.value="nico520";
+	form1.member_password.value="777";
 	
 }
 </script>
