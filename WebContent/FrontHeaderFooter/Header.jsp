@@ -121,7 +121,7 @@
 						
 						<div class="col-1">
 						
-						<FORM METHOD="POST" ACTION = "logoutHandler.do">
+						<FORM METHOD="POST" ACTION = "<%=request.getContextPath()%>/Front_end/mem/logoutHandler.do">
 							<td><input type = "submit" value="登出">
 							<input type = "hidden" name="logout" value="logout"> 
 							</td>

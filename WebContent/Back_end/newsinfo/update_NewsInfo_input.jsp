@@ -9,6 +9,9 @@
 
 <html>
 <head>
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
@@ -144,9 +147,7 @@
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+
 		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 
