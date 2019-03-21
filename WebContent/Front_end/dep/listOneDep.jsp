@@ -33,21 +33,23 @@
 	</td></tr>
 </table>
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
 		<th>儲值明細編號</th>
 		<th>會員編號</th>
 		<th>異動金額</th>
 		<th>異動日期</th>
 	</tr>
-	
+</thead>
+<tbody>	
 	<tr>
-		<td><%=depVO.getDeposit_change_no()%></td>
+		<th scope="row"><%=depVO.getDeposit_change_no()%></th>
 		<td><%=depVO.getDeposit_member_no()%></td>
 		<td><%=depVO.getDeposit_change_money()%></td>
 		<td><%=depVO.getDeposit_change_date()%></td>
 	</tr>
-
+</tbody>
 </table>
 
 
