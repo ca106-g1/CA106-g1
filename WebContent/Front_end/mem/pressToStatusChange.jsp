@@ -31,11 +31,11 @@
 <h4><a href = "<%=request.getContextPath()%>/Front_end/Login.jsp">回首頁</a></h4>
 
 <script>
-$(document).ready(function() {
+// $(document).ready(function() {
 	
-	$('#sub').submit();
+// 	$('#sub').submit();
 	
-});
+// });
 
 </script>
 
