@@ -54,7 +54,18 @@
 						</div>
 				</div>
 						<!-- 以上是影視新聞功能-->
-	
+						
+				
+				
+				<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownAdvButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">廣告</button>						
+						<div class="dropdown-menu" aria-labelledby="dropdownAdvButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/adv/listAllAdv.jsp">廣告</a> 
+						</div>
+				</div>
+					<!-- 以上是廣告功能-->
 		
 	
 	

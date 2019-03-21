@@ -24,7 +24,7 @@
 
 
 
-<title>廣告</title>
+<title>JOIN廣告</title>
 		
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,9 +37,9 @@
 
 
 </head>
-<body bgcolor='white' onload="connect();">
+<body bgcolor='white' >
 
-<jsp:include page="/BackHeaderFooter/Header.jsp" />
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 
 
@@ -52,7 +52,13 @@
 
 <!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="#">${advVO.ad_name} <span>by TEMPLATED</span></a></div>
+				<div class="logo"><a href="#">${advVO.ad_name} 
+				<br><br>
+				<div>
+				<font size="10px">活動期間: ${advVO.getAd_start().toString().substring(0,10)} ~ ${advVO.getAd_end().toString().substring(0,10)}</font>
+				 </div>
+<!-- 				<span>by TEMPLATED</span> -->
+				</a></div>
 			</header>
 
 		<!-- Main -->
@@ -64,14 +70,15 @@
 
 						<div class="image fit flush">
 <!-- 							<img src="images/pic02.jpg" alt="" /> -->
-							<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='500'/>
+							<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
 
 
 						</div>
-						<header class="special">
-							<h2>Fringilla Fermentum Tellus</h2>
-							<p>vehicula urna sed justo bibendum</p>
-						</header>
+<!-- 						<header class="special"> -->
+<%-- 						<h2>活動期間: ${advVO.getAd_start().toString().substring(0,10)} ~ ${advVO.getAd_end().toString().substring(0,10)}</h2> --%>
+<!-- 							<h2>Fringilla Fermentum Tellus</h2> -->
+<!-- 							<p>vehicula urna sed justo bibendum</p> -->
+<!-- 						</header> -->
 						<div class="content">
 						
 							 <div id="messagesArea" class="panel message-area"  ></div> 
@@ -121,13 +128,11 @@
 
 	<!-- 工作區結束 -->
 	
-	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
@@ -138,9 +143,9 @@
 
 <script>
 
-	alert("!");
+// 	alert("!");
 	var ad_cont = '<%= (advVO.getAd_cont()==null)? "" : advVO.getAd_cont()%>';
-	alert(ad_cont);
+// 	alert(ad_cont);
 	
 	messagesArea.innerHTML = messagesArea.innerHTML + ad_cont;
 	

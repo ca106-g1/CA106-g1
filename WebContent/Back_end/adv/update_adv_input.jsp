@@ -217,9 +217,9 @@ function sendMessage() {
 
 <script>
 
-	alert("!");
+// 	alert("!");
 	var ad_cont = '<%= (advVO.getAd_cont()==null)? "" : advVO.getAd_cont()%>';
-	alert(ad_cont);
+// 	alert(ad_cont);
 	CKEDITOR.instances.content.setData(ad_cont);
 	
 
