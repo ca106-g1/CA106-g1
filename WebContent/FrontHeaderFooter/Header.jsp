@@ -78,9 +78,9 @@
 							id="dropdownMemButton" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false" >會員個人資料</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMemButton">
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">會員首頁</a> 
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/listOneMem.jsp">會員資料查看</a> 
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/update_mem_input.jsp">會員資料修改</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/Login.jsp">會員登入畫面</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">會員註冊</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation2.jsp">會員註冊須知</a> 
 						</div>
 					</div>
 				
