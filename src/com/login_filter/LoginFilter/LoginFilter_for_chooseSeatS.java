@@ -69,6 +69,7 @@ public class LoginFilter_for_chooseSeatS implements Filter{
 			if(requestS != null) {
 			
 			requestS.forEach((k,v) -> myRequest.setMyParameter(k, v));
+			session.removeAttribute(session.getId());
 			
 			}
 			chain.doFilter(myRequest, response);
