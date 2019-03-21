@@ -257,6 +257,7 @@
 		<url-pattern>/Back_end/emp/*</url-pattern>
 		<url-pattern>/Back_end/dep/*</url-pattern>
 		<url-pattern>/Back_end/mem/*</url-pattern>
+		<url-pattern>/Back_end/adv/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>

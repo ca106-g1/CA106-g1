@@ -28,7 +28,7 @@
 		
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets1/css/main.css" />
 
 
 
@@ -109,11 +109,11 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="assets1/js/jquery.min.js"></script>
+			<script src="assets1/js/jquery.poptrox.min.js"></script>
+			<script src="assets1/js/skel.min.js"></script>
+			<script src="assets1/js/util.js"></script>
+			<script src="assets1/js/main.js"></script>
 
 
 

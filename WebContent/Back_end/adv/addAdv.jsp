@@ -134,8 +134,10 @@
 		<td>
        		<select size="1" name="ad_type">
        			<option>-----</option>
-       			<option value="0">下架</option>
-          		<option value="1">上架</option>
+       			<option value="0">下架  無版型</option>
+          		<option value="1">上架  1.版型</option>
+          		<option value="2">上架  2.版型</option>
+          		<option value="3">上架  3.版型</option>
        		</select>
        </td>
 	</tr>
@@ -166,9 +168,7 @@
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 

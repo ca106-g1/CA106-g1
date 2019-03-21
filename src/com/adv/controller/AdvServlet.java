@@ -202,8 +202,14 @@ public class AdvServlet extends HttpServlet {
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				System.out.println("檢查點111111111");
+				System.out.println(advVO.getAd_type());
+				int ad_type = advVO.getAd_type();
+				System.out.println(ad_type);
+				
 				req.setAttribute("advVO", advVO); // 資料庫取出的empVO物件,存入req
-				String url = "/Front_end/adv/adv1.jsp";
+				String url = "/Front_end/adv/adv"+ad_type+".jsp";
+//				String url = "/Front_end/adv/adv3.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 

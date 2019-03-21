@@ -142,12 +142,28 @@
        		<select size="1" name="ad_type">
        			
        			<c:if test="${advVO.ad_type==0}" var="condition">
-				<option value="0" selected>¤U¬[</option>
-				<option value="1">¤W¬[</option>
+				<option value="0" selected>¤U¬[  µLª©«¬</option>
+				<option value="1">¤W¬[  1.ª©«¬</option>
+				<option value="2">¤W¬[  2.ª©«¬</option>
+				<option value="3">¤W¬[  3.ª©«¬</option>
 				</c:if>
 				<c:if test="${advVO.ad_type==1}" var="condition">
-				<option value="0">¤U¬[</option>
-				<option value="1" selected>¤W¬[</option>
+				<option value="0">¤U¬[  µLª©«¬</option>
+				<option value="1" selected>¤W¬[  1.ª©«¬</option>
+				<option value="2">¤W¬[  2.ª©«¬</option>
+				<option value="3">¤W¬[  3.ª©«¬</option>
+				</c:if>
+				<c:if test="${advVO.ad_type==2}" var="condition">
+				<option value="0">¤U¬[  µLª©«¬</option>
+				<option value="1">¤W¬[  1.ª©«¬</option>
+				<option value="2" selected>¤W¬[  2.ª©«¬</option>
+				<option value="3">¤W¬[  3.ª©«¬</option>
+				</c:if>
+				<c:if test="${advVO.ad_type==3}" var="condition">
+				<option value="0">¤U¬[  µLª©«¬</option>
+				<option value="1">¤W¬[  1.ª©«¬</option>
+				<option value="2">¤W¬[  2.ª©«¬</option>
+				<option value="3" selected>¤W¬[  3.ª©«¬</option>
 				</c:if>
 				
 <!--        			<option value="0">¤U¬[</option> -->
@@ -171,9 +187,7 @@
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 

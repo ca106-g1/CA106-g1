@@ -103,7 +103,7 @@
 <%-- 			    <h4><a href="${advVO.ad_cont}"> <img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' /></a></h4> --%>
 <%-- 				</c:if> --%>
 				
-				 <c:if test="${advVO.ad_type==1}" var="condition">
+				 <c:if test="${advVO.ad_type!=0}" var="condition">
 				 <c:if test="${not empty advVO.ad_pic}" var="condition">
 				
 				

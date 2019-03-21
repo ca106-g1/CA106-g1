@@ -134,10 +134,16 @@
 <%-- 			${advVO.ad_type} --%>
 
 			    <c:if test="${advVO.ad_type==0}" var="condition">
-				下架
+				下架  無版型
 				</c:if>
 				<c:if test="${advVO.ad_type==1}" var="condition">
-				上架
+				上架  1.版型
+				</c:if>
+				<c:if test="${advVO.ad_type==2}" var="condition">
+				上架  2.版型
+				</c:if>
+				<c:if test="${advVO.ad_type==3}" var="condition">
+				上架  3.版型
 				</c:if>
 
 <!-- 				<input type="TEXT" name="ad_cont" size="45"  -->
@@ -175,9 +181,7 @@
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
