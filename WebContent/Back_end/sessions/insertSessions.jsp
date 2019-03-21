@@ -159,8 +159,8 @@
 					<tbody id="table">
 						<tr id="sessions0">
 						
-							<th>影廳名稱</th>
 							<th>電影名稱</th>
+							<th>影廳名稱</th>
 							<th>開始日期</th>
 							<th id="sessions_start_Timestamp0">開始時間</th>	
 							<th></th>
@@ -354,3 +354,4 @@
 
 </body>
 </html>
+<%request.getSession().setAttribute("insert_sessions_key", new Object());%>

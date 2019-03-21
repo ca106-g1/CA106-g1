@@ -10,9 +10,9 @@
 <!-- Bootstrap CSS end-->
 <title>Example</title>
 <script>var path = '<%= request.getContextPath()%>';</script>
-<link href="glDatePicker/glDatePicker.default2.css" rel="stylesheet" type="text/css">
-<script src="glDatePicker/jquery.min.js"></script>
-<script src="glDatePicker/glDatePicker2.js"></script>
+<link href="<%=request.getContextPath()%>/Back_end/sessions/glDatePicker/glDatePicker.default2.css" rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath()%>/Back_end/sessions/glDatePicker/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/Back_end/sessions/glDatePicker/glDatePicker2.js"></script>
 <!-- æ­¤çèªå® -->
 <style>
 .parent {
@@ -128,8 +128,7 @@ a:hover, a:active {
 						});
 	</script>
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 </html>

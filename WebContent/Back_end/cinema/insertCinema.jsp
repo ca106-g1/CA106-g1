@@ -87,3 +87,5 @@
 
 </body>
 </html>
+<%request.getSession().setAttribute("insert_Cinema_key", new Object());%>
+

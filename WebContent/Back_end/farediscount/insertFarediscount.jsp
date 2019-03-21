@@ -28,6 +28,9 @@
 		<div class="row justify-content">
 		
 			<div class="col-3">
+				<c:forEach var="message" items="${errorMessage}">
+					<li style="color:red">${message}</li>
+				</c:forEach>
 			</div>
 			
 			<div class="col-6">
@@ -44,7 +47,7 @@
 					</div>
 						
 					<div class="col-6">
-						<input type="text" name="fd_name" placeholder="50字以內" style="width:178px;">
+						<input type="text" name="fd_name" placeholder="20字以內" style="width:178px;">
 						<input type="number" name="fd_offer" min="-100" max="0" placeholder="0~-100" list="defaultlist" style="width:178px;">
 						<input type="text" name="fd_start" id="fd_start" style="width:178px;">
 						<input type="text" name="fd_end" id="fd_end"  placeholder="請先選優惠起始時間" style="width:178px;">
@@ -79,7 +82,7 @@
 	</div>
 	
 	<% 
-	  java.sql.Date hiredate =new java.sql.Date(System.currentTimeMillis()+24*60*60*1000);
+	  java.sql.Date hiredate =new java.sql.Date(System.currentTimeMillis());
 	%>
 	
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/farediscount/datetimepicker/jquery.datetimepicker.css"/>
@@ -97,6 +100,7 @@
 	<script>
 	        
 			$(document).ready(init);
+	        $.datetimepicker.setLocale('zh');
 			
 			function init(){
 				$('#fd_start').change(
@@ -107,18 +111,14 @@
 							creat_fd_end_datetimepicker();
 						});
 			}
-			
-	        $.datetimepicker.setLocale('zh');
 	        
 	        function creat_fd_end_datetimepicker(){
-	        	
 	        	 $('#fd_end').datetimepicker({
 	 				theme: '',				//theme: 'dark',
 	 				timepicker:false,		//timepicker:true,
 	 				format:'Y-m-d',			//format:'Y-m-d H:i:s',
 	 				minDate: $('#fd_start').val(),	// 去除今日(不含)之前
 	 		     });
-	        	
 	        }
 	        
 	        $('#fd_start').datetimepicker({
@@ -139,3 +139,8 @@
 
 </body>
 </html>
+<%
+if(request.getAttribute("errorMessage") == null){
+request.getSession().setAttribute("insert_fd_key", new Object());
+}
+%>

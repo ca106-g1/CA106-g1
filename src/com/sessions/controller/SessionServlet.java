@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -51,6 +52,13 @@ public class SessionServlet extends HttpServlet {
 		String action = req.getParameter("action");
 
 		if ("insertSessions".equals(action)) {
+			
+			if(req.getSession().getAttribute("insert_sessions_key") == null) {
+				RequestDispatcher rd = req.getRequestDispatcher("/Back_end/sessions/select_date.jsp");
+				rd.forward(req, res);
+				return;
+			}
+			
 
 			SessionsService ss = new SessionsService();
 
@@ -93,7 +101,8 @@ public class SessionServlet extends HttpServlet {
 				myRequest.setMyParameter("whichPage", String.valueOf((size / 10) + 1));
 
 			}
-
+			req.getSession().removeAttribute("insert_sessions_key");
+			
 			req.getRequestDispatcher("/Back_end/sessions/listAllSessions.jsp?action=all").forward(myRequest, res);
 			return;
 

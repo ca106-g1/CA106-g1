@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -114,7 +115,13 @@ public class CinemaServlet extends HttpServlet {
 		// ------------以下------------insert------------------------
 
 		if ("insertCinema".equals(action)) {
-
+			
+			if(req.getSession().getAttribute("insert_Cinema_key") == null) {
+				RequestDispatcher rd = req.getRequestDispatcher("/Back_end/cinema/insertCinema.jsp");
+				rd.forward(req, res);
+				return;
+			}
+			
 			List<String> errorMessage = new ArrayList<String>();
 
 			String cinema_type = req.getParameter("cinema_type");
@@ -171,6 +178,7 @@ public class CinemaServlet extends HttpServlet {
 			}
 
 			cinemaService.addCin(cinema_type, cinema_size, cinema_name, cinema_correct, cinema_status);
+			req.getSession().removeAttribute("insert_Cinema_key");
 			req.getRequestDispatcher("/Back_end/cinema/ListAllCinema.jsp").forward(req, res);
 		}
 

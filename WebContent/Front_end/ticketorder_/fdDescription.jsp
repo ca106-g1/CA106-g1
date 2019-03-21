@@ -26,27 +26,34 @@
         <div class="container-fluid">
 		    <div class="row">
 		    
-				<div class="col-md-5">
-			      <p>名稱</p>
-			      <c:forEach var="farediscountVO" items="${list}">
-			      <p>${farediscountVO.fd_name}</p>
-			      </c:forEach>
-				</div>
-			      
 				<div class="col-md-3">
-			      <p>優惠價格</p>
-			      <c:forEach var="farediscountVO" items="${list}">
-			      <p>${farediscountVO.fd_offer}</p>
-			      </c:forEach>
+					<p style="font-size:15px">名</p>
+					<p style="font-size:15px">稱</p>
+					<c:forEach var="farediscountVO" items="${list}">
+						<p style="font-size:15px">${farediscountVO.fd_name}</p>
+					</c:forEach>
 				</div>
 			      
-				<div class="col-md-4">
-				<p>適用人數</p>
-				<c:forEach var="farediscountVO" items="${list}">
-			      <p>${farediscountVO.fd_lower}-${farediscountVO.fd_upper}</p>
-			      </c:forEach>
+				<div class="col-md-2">
+					<p style="font-size:15px">優惠價格</p>
+					<c:forEach var="farediscountVO" items="${list}">
+						<p style="font-size:15px">${farediscountVO.fd_offer}</p>
+					</c:forEach>
 				</div>
-				<%System.out.println("65456456465465"); %>
+			      
+				<div class="col-md-2">
+					<p style="font-size:15px">適用人數</p>
+					<c:forEach var="farediscountVO" items="${list}">
+						<p style="font-size:15px">${farediscountVO.fd_lower}-${farediscountVO.fd_upper}</p>
+					</c:forEach>
+				</div>
+				<div class="col-md-5">
+					<p style="font-size:15px">活動</p>
+					<p style="font-size:15px">時間</p>
+					<c:forEach var="farediscountVO" items="${list}">
+						<p style="font-size:15px">${farediscountVO.fd_start}-${farediscountVO.fd_end}</p>
+					</c:forEach>
+				</div>
 		    </div>
 	    </div>
 	</body>

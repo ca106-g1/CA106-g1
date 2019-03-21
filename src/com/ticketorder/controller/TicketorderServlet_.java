@@ -212,7 +212,7 @@ public class TicketorderServlet_ extends HttpServlet {
 
 		if ("insert".equals(action)) {
 			
-			if(req.getSession().getAttribute("tx_key") == null) {
+			if(req.getSession().getAttribute("ticket_tx_key") == null) {
 				RequestDispatcher rd = req.getRequestDispatcher("/Front_end/ticketorder_/choiseSessions.jsp");
 				rd.forward(req, res);
 				return;
@@ -296,7 +296,7 @@ public class TicketorderServlet_ extends HttpServlet {
 				//防止重新整理重複送出請求重複產生訂單造成資料異常
 				TicketorderService ts = new TicketorderService();
 				ts.insertTicketorderMain(ticketorderVO, memVO, depVO, sessionsVO, list);
-				req.getSession().removeAttribute("tx_key");
+				req.getSession().removeAttribute("ticket_tx_key");
 			//進行資料更新，交易區間貫穿五個model
 			
 			req.getSession().setAttribute("ticketorderVO", ticketorderVO);

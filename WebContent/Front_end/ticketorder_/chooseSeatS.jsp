@@ -555,4 +555,4 @@ p {
 
 </body>
 </html>
-<%request.getSession().setAttribute("tx_key", new Object());%>
+<%request.getSession().setAttribute("ticket_tx_key", new Object());%>
