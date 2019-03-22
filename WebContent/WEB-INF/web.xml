@@ -258,6 +258,9 @@
 		<url-pattern>/Back_end/dep/*</url-pattern>
 		<url-pattern>/Back_end/mem/*</url-pattern>
 		<url-pattern>/Back_end/adv/*</url-pattern>
+		<url-pattern>/Back_end/cinema/*</url-pattern>
+		<url-pattern>/Back_end/farediscount/*</url-pattern>
+		<url-pattern>/Back_end/sessions/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
