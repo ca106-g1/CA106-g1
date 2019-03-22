@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.dep.model.*" %>
+<%@ page import="com.mem.model.*" %>
 
 <%
 	DepService depSvc = new DepService();
@@ -67,6 +68,12 @@
 	</tr>
 	</c:forEach>
 </tbody>
+</table>
+<table class="table table-hover">
+<tr>
+<th scope="col"><font size="4">儲值剩餘點數</font></th>
+<td align="left"><font color="#DC143C" size="5">${memVO.member_point}</font></td>
+</tr>
 </table>
 <%@ include file="page2.file" %>
 
