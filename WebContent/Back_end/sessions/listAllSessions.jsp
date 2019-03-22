@@ -102,7 +102,7 @@ th, td {
 			<div class="col-6">
 				<div style="height:50px">
 				</div>
-				<iframe id="iframe" src="<%=request.getContextPath()%>/Back_end/sessions/checkOneSessions.jsp?sessions_no=SESSIONS00000017" style="width: 800px; border-width: 0px; height:450px">
+				<iframe id="iframe" src="<%=request.getContextPath()%>/Back_end/sessions/checkOneSessions.jsp?sessions_no=SESSIONS00000001" style="width: 800px; border-width: 0px; height:450px">
 				</iframe>
 				<nav class="row justify-content">
 					<div class="col-12">
