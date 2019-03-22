@@ -82,6 +82,7 @@ public class MovieInfoServlet extends HttpServlet {
 			}
 		}
 		
+		
 /*********************************前台上映中單一查詢************************************************/		
 		if ("getOne_For_Display_Front".equals(action)) { // 來自select_page.jsp的請求
 
@@ -191,6 +192,17 @@ public class MovieInfoServlet extends HttpServlet {
 				List<MovieInfoVO> rankmovie = movieinfoSvc.getAllByScore(stdate, enddate);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+//				String outstr = new Gson().toJson(rankmovie);
+//				System.out.println(outstr);
+//				res.setContentType("text/plain");
+//				res.setCharacterEncoding("UTF-8");
+//				PrintWriter out = res.getWriter();
+//				out.write(outstr);
+//				out.flush();
+//				out.close();
+//				
+				
+				
 				req.setAttribute("movieinfoVO", rankmovie); // 資料庫取出的empVO物件,存入req
 				String url = "/Front_end/movieinfo/rankMovie.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
@@ -279,26 +291,25 @@ public class MovieInfoServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String movie_no = new String(req.getParameter("movie_no").trim());
-
 				
 				Integer genre_no = null;
 				try {
 					genre_no = new Integer(req.getParameter("genre_no").trim());
 				}catch(Exception e) {
-					errorMsgs.add("電影種類請勿空白");
+					errorMsgs.add("電影種類:請勿空白");
 				}
 				
-				String movie_name = req.getParameter("movie_name");
+				String movie_name = req.getParameter("movie_name").trim();
 				if (movie_name == null || movie_name.trim().length() == 0) {
-					errorMsgs.add("電影名稱: 請勿空白");
+					errorMsgs.add("電影名稱:請勿空白");
 				} 
 				
-				Double movie_score = null;
-				try {
-					movie_score = new Double(req.getParameter("movie_score").trim());
-				} catch (Exception e) {
-					errorMsgs.add("分數請勿空白");
-				}
+				Double movie_score = new Double(req.getParameter("movie_score").trim());
+//				String scoreReg= new String("^[(0-9)]$");
+//				
+//				if(!(String.valueOf(movie_score).trim().matches(scoreReg))) {
+//					errorMsgs.add("電影分數:只能是數字");
+//				}
 				
 				byte[] movie_level = null;
 				try {
@@ -377,31 +388,19 @@ public class MovieInfoServlet extends HttpServlet {
 					errorMsgs.add("演員請勿空白");
 				}
 				
-				Integer movie_count = null;
-				try {
-					movie_count = new Integer(req.getParameter("movie_count").trim());
-				} catch (Exception e) {
-					errorMsgs.add("票房請勿空白");
-				}
+				Integer movie_count = 0;
 				
-				Integer movie_exp = null;
-				try {
+				
+				Integer movie_exp = 0;
 					movie_exp = new Integer(req.getParameter("movie_exp").trim());
-				} catch (Exception e) {
-					errorMsgs.add("期待度請勿空白");
-				}
 				
-				Integer movie_noexp = null;
-				try {
+				Integer movie_noexp = 0;
 					movie_noexp = new Integer(req.getParameter("movie_noexp").trim());
-				} catch (Exception e) {
-					errorMsgs.add("不期待度請勿空白");
-				}
 				
 				Integer movie_touch = 0;
 				
 				
-				Integer movie_ticket = null;
+				Integer movie_ticket = 0;
 				try {
 					movie_ticket = new Integer(req.getParameter("movie_ticket").trim());
 				} catch (Exception e) {
@@ -608,7 +607,6 @@ public class MovieInfoServlet extends HttpServlet {
 				movieinfoVO.setMovie_touch(movie_touch);
 				movieinfoVO.setMovie_ticket(movie_ticket);
 
-				// Send the use back to the form, if there were errors
 				
 				Base64.Encoder encoder = Base64.getEncoder();
 
@@ -630,9 +628,6 @@ public class MovieInfoServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
-				
-
-				
 				
 
 				/*************************** 2.開始新增資料 ***************************************/

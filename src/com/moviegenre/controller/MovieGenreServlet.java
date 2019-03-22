@@ -131,14 +131,13 @@ public class MovieGenreServlet extends HttpServlet {
 				if (genre_name == null || genre_name.trim().length() == 0) {
 					errorMsgs.add("電影編號名稱: 請勿空白");
 				} else if (!genre_name.trim().matches(genre_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("電影編號名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.add("電影編號名稱: 只能是中、英文字母、數字和_ , 且長度必需在1到50之間");
 				}
 
 				MovieGenreVO moviegenreVO = new MovieGenreVO();
 				moviegenreVO.setGenre_no(genre_no);
 				moviegenreVO.setGenre_name(genre_name);
 
-				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("moviegenreVO", moviegenreVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
@@ -185,7 +184,6 @@ public class MovieGenreServlet extends HttpServlet {
 				MovieGenreVO moviegenreVO = new MovieGenreVO();
 				moviegenreVO.setGenre_name(genre_name);
 
-				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("moviegenreVO", moviegenreVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/Back_end/moviegenre/addMovieGenre.jsp");

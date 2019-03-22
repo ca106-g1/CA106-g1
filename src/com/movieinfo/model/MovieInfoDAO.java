@@ -27,6 +27,8 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 	private static final String INSERT_STMT = 
 			"INSERT INTO movieinfo (movie_no, genre_no, movie_name, movie_score, movie_level, movie_director, movie_cast, movie_intro, movie_length, movie_trailer, movie_pic, movie_in, movie_out, movie_count, movie_exp, movie_noexp, movie_touch, movie_ticket) VALUES ('MI'||LPAD(to_char(movieinfo_seq.NEXTVAL),8,'0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
+			"SELECT * FROM movieinfo order by movie_in desc";
+	private static final String GET_ALL_STMT_BY_NO = 
 			"SELECT * FROM movieinfo order by movie_no";
 	private static final String GET_ALL_STMT_SCORE = 
 			"SELECT * FROM movieinfo where rownum < 11 and movie_in BETWEEN ? AND ? order by movie_score desc ";
@@ -261,6 +263,8 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 		}
 		return movieinfoVO;
 	}
+	
+	
 
 	@Override
 	public List<MovieInfoVO> getAll() {
