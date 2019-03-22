@@ -70,7 +70,7 @@
 
 						<div class="image fit flush">
 <!-- 							<img src="images/pic02.jpg" alt="" /> -->
-							<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
+							<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
 
 
 						</div>

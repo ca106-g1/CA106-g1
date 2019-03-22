@@ -54,7 +54,8 @@
 
 				<!-- Banner -->
 					<section id="intro" class="main">
-					<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
+<%-- 					<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/> --%>
+						<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
 						<span class="icon fa-diamond major"></span>
 						
 						<div id="messagesArea" class="panel message-area"  ></div> 

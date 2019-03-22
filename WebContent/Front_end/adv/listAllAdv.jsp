@@ -8,6 +8,10 @@
 <%
 	AdvService advSvc = new AdvService();
     List<AdvVO> list = advSvc.getAll();
+//     for(AdvVO lists:list){
+//     	System.out.println(AdvVO.getAd_no()+"");
+    	
+//     }
     pageContext.setAttribute("list",list);
 %> 
 
@@ -91,9 +95,14 @@
 <br>
 
 
-	<%@ include file="page1.file" %> 
+	
 	<br>
 	<c:forEach var="advVO" items="${list}" >
+	
+	
+	${advVO.ad_no}
+	
+	
 	
 <%-- 				<c:if test="${empty advVO.ad_pic}" var="condition"> --%>
 <%-- 				<img src="<%=request.getContextPath()%>/Back_end/adv/images/no_pic.jpg" width="200" height="200"/> --%>
@@ -102,33 +111,18 @@
 <%-- 			    <c:if test="${not empty advVO.ad_pic}" var="condition"> --%>
 <%-- 			    <h4><a href="${advVO.ad_cont}"> <img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' /></a></h4> --%>
 <%-- 				</c:if> --%>
+
+
 				
 				 <c:if test="${advVO.ad_type!=0}" var="condition">
 				 <c:if test="${not empty advVO.ad_pic}" var="condition">
-				
-				
-				<script>
-// 				var ScheduleDate = "${advVO.getAd_start().toString().substring(0,19)}";
-// 				var CurrentDate = new Date();
-// 				var ad_no = '${advVO.ad_no}';
-				
-// 				alert(ScheduleDate);
-// 				alert(CurrentDate);
-
-// 				if ( (Date.parse(ScheduleDate)).valueOf() < (Date.parse(CurrentDate)).valueOf())
-// 				{
-// 							alert("ad_start比系統目前時間小");
-// 				} else if ((Date.parse(ScheduleDate)).valueOf() > (Date.parse(CurrentDate)).valueOf()){
-// 						alert("ad_start比系統目前時間大");
-// 						document.getElementById('ad_no').style = "display";
-// 				}
-				</script>
+								
 				
 				 
 				 <c:if test="${not empty advVO.ad_cont}" var="condition">
 <%-- 				 <jsp:useBean id="advSvc" scope="page" class="com.adv.model.AdvService" /> --%>
 				 <FORM METHOD="post" ACTION="adv.do" >
-				 <input type="image" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='200' />
+				 <input type="image" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Front_end/adv/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='200' />
 <%-- 			    <h4><a href="templated-caminar/adv${advVO.ad_type}.html"> <img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/></a></h4> --%>
 <%-- 			    <c:forEach var="advVO" items="${advSvc.all}" >  --%>
 <%--           			<option value="${advVO.ad_no}">${advVO.ad_no} --%>
@@ -144,7 +138,7 @@
 				
 				 <c:if test="${empty advVO.ad_cont}" var="condition">
 				 <FORM>
-				<h4><img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/></h4>
+				<h4><img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/></h4>
 				</FORM>
 				</c:if>
 				
@@ -176,7 +170,7 @@
 // 					var ad_no = '${advVO.ad_no}';
 					var ad_no = '${advVO.ad_no}';
 					document.getElementById(ad_no).style.display = "none";	
-// 					alert(ad_no);
+					alert(ad_no);
 					
 // 					alert("ad_start比系統目前時間大");
 // 						document.getElementById('ad_no').style.display = "none";
@@ -301,9 +295,7 @@ function ShowTime(){
 		
 		webSocket.onopen = function(event) {
 			updateStatus("WebSocket 成功連線");
-			document.getElementById('sendMessage').disabled = false;
-			document.getElementById('connect').disabled = true;
-			document.getElementById('disconnect').disabled = false;
+// 			document.getElementById('disconnect').disabled = false;
 		};
 
 		webSocket.onmessage = function(event) {
@@ -328,8 +320,7 @@ function ShowTime(){
 	}
 	
 	
-	var inputUserName = document.getElementById("userName");
-	inputUserName.focus();
+
 	
 	
 

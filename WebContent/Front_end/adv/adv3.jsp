@@ -61,7 +61,7 @@
 						<p>活動期間: ${advVO.getAd_start().toString().substring(0,10)} ~ ${advVO.getAd_end().toString().substring(0,10)}</p>
 <!-- 					</header> -->
 <!-- 					<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a> -->
-					<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
+					<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
 					
 					<div id="messagesArea" class="panel message-area"  ></div> 
 <!-- 					<p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.</p> -->
