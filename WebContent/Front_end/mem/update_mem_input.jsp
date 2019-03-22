@@ -20,6 +20,17 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title></title>
+
+
+<style>
+	table{table-layout: fixed;}
+<th style="width:63px" ></th>
+td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/ 
+
+
+</style>
+
+
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -51,24 +62,31 @@
 
 
 
-<p>*密碼: 
-<input type = "password"  name = "member_password2" name = "member_password2" id = "member_password2" value="<%= (memVO==null)?"":""%>"  required> </p>
+<tr>
+<td>*密碼: </td>
+<td><input type = "password"  name = "member_password2" name = "member_password2" id = "member_password2" value="<%= (memVO==null)?"":""%>"  required></td> </tr>
 
-<p>*新密碼:
-<input type = "password"  name = "member_password" id = "member_password" value="<%= (memVO==null)?"":""%>"  required> </p>
+<tr>
+<td>*新密碼:</td>
+<td><input type = "password"  name = "member_password" id = "member_password" value="<%= (memVO==null)?"":""%>"  required></td> </tr>
 
-<p>*再次確認新密碼:
-<input type = "password"  name = "member_password1" id = "member_password1" value="<%= (memVO==null)?"":""%>"  required> </p>
+<tr>
+<td>*再次確認新密碼:</td>
+<td><input type = "password"  name = "member_password1" id = "member_password1" value="<%= (memVO==null)?"":""%>"  required></td> </tr>
 
-<p>*姓名:
-<input type = "text"  name = "member_name" id = "member_name" value="<%= (memVO==null)?"":memVO.getMember_name()%>"> </p>
+<tr>
+<td>*姓名:</td>
+<td><input type = "text"  name = "member_name" id = "member_name" value="<%= (memVO==null)?"":memVO.getMember_name()%>"> </td></tr>
 
-<p>暱稱:
-<input type = "text"  name = "member_nick" id = "member_nick" value="<%= (memVO==null)?"":memVO.getMember_nick()%>"> </p>
+<tr>
+<td>暱稱:</td>
+<td><input type = "text"  name = "member_nick" id = "member_nick" value="<%= (memVO==null)?"":memVO.getMember_nick()%>"></td> </tr>
 
-<p>*性別:<input type = "radio" name = "member_sex" value = "1" ${(memVO.member_sex==1)? "checked": ""} >男性
-	   <input type = "radio" name = "member_sex" value = "0" ${(memVO.member_sex==0)? "checked": ""} >女性
-</p>
+<tr>
+<td>*性別:</td>
+<td><input type = "radio" name = "member_sex" value = "1" ${(memVO.member_sex==1)? "checked": ""} >男性
+	   <input type = "radio" name = "member_sex" value = "0" ${(memVO.member_sex==0)? "checked": ""} >女性</td>
+</tr>
 
 	<%
 	java.sql.Date member_birthday = null;
@@ -80,8 +98,9 @@
 %>
 
 
-<p>*生日:
-<input type="date" name="member_birthday" id="f_date" value="<%= (memVO==null)? member_birthday:memVO.getMember_birthday()%>"></p>
+<tr>
+<td>*生日:</td>
+<td><input type="date" name="member_birthday" id="f_date" value="<%= (memVO==null)? member_birthday:memVO.getMember_birthday()%>"></td></tr>
 
 
 <% String[] arrayCity  = new String[] {"台北市","基隆市","新北市","桃園市","新竹市","新竹縣","苗栗縣","台中市","彰化縣","南投縣","雲林縣","嘉義縣","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣","澎湖縣","金門縣","連江縣"};
@@ -90,8 +109,9 @@
  %>
 
 
-<p>*地址:
-<div class="container" >
+<tr>
+<td>*地址:</td>
+<td><div class="container" >
 	<div class="row">
     	<div class="col">
 			<div class="dropdown">
@@ -122,21 +142,28 @@
 	</div>
 
 	</div>
-	</p>
-<p>*電話:
-<input type = "tel"  name = "member_telephone" id = "member_telephone" value="<%= (memVO==null)?"":memVO.getMember_telephone()%>"> </p>
+	</td>
+	</tr>
+<tr>
+<td>*電話:</td>
+<td><input type = "tel"  name = "member_telephone" id = "member_telephone" value="<%= (memVO==null)?"":memVO.getMember_telephone()%>"></td> </tr>
 
-<p>*信箱: 
-<input type = "email"  name = "member_email" id = "member_email" value="<%= (memVO==null)?"":memVO.getMember_email()%>"> </p>
+<tr>
+<td>*信箱: </td>
+<td><input type = "email"  name = "member_email" id = "member_email" value="<%= (memVO==null)?"":memVO.getMember_email()%>"> </td></tr>
 
-<p>會員圖像: 
-<input type = "file" id = "img" name = "member_picture"> </p>
+<tr>
+<td>會員圖像: </td>
+<td><img id="preview_progressbarTW_img" src="#"  width="100px"   height="100px"  style = "display:none" />
+<input type="file" id="progressbarTWInput" name="member_picture" size="25" accept="image/gif, image/jpeg, image/png" value="${memVO.member_picture}"/> </td></tr>
 
-<p>信用卡號碼:
-<input type = "text"  name = "member_credit_number" id = "member_credit_number" value="${memVO.member_credit_number}"> </p> 
+<tr>
+<td>信用卡號碼:</td>
+<td><input type = "text"  name = "member_credit_number" id = "member_credit_number" value="${memVO.member_credit_number}"></td> </tr> 
 
-<p>背面後三碼: 
-<input type = "text"  name = "member_back_verification" id = "member_back_verification" value="${memVO.member_back_verification}"> </p>
+<tr>
+<td>背面後三碼: </td>
+<td><input type = "text"  name = "member_back_verification" id = "member_back_verification" value="${memVO.member_back_verification}"></td> </tr>
 
 </table>
 <br>
@@ -177,6 +204,54 @@
 
 	<!-- 工作區結束 -->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+	
+	
+	
+	  <script>
+
+
+
+
+
+$("#progressbarTWInput").ready(function(){
+
+	  readURL(this);
+
+	});
+	
+
+$("#progressbarTWInput").change(function(){
+
+  readURL(this);
+
+});
+
+
+
+function readURL(input){
+	
+  if(input.files && input.files[0]){
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+    	
+       $("#preview_progressbarTW_img").attr('src', e.target.result);
+       $("#preview_progressbarTW_img").removeAttr("style");
+    }
+
+    reader.readAsDataURL(input.files[0]);
+
+  }
+
+}
+
+</script>
+	
+	
+	
+	
+	
 	
 	<script> 
 

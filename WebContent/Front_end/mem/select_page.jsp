@@ -20,6 +20,18 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title></title>
+
+
+
+<style>
+    input {padding:5px 15px; background:#ccc; border:0 none;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px; }
+</style>
+
+
+
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
