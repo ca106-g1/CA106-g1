@@ -429,9 +429,13 @@ p {
 	<script>
 	
 	//這一個JS區段是用來控制購票基本功能
-	
 	function submit(){
 		isMe = true;
+		try{
+			isMe_footer = true;
+		}catch(e){
+			console.log("isMe_footer is not defined");
+		}
 	}
 	
 	function creatTi_no(){
@@ -508,7 +512,7 @@ p {
     }
     
     function openfdDescription(e){
-    	$('#fdDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/ticketorder_/fdDescription.jsp');
+    	$('#fdDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/ticketorder_/fdDescription.jsp?sessions_no=${param.sessions_no}');
     }
     
     function init() {

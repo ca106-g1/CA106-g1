@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.farediscount.model.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.sessions.model.*"%>
 <html lang="en">
 	<head>
 	</head>
@@ -12,19 +11,19 @@
 		<jsp:useBean id="fdSer"  class="com.farediscount.model.FarediscountService" scope="page"/>
 		<%
 		
-		Date sessios_start = new SessionsService().getOneSes(request.getParameter("sessions_no")).getSessions_start();
+		Date now = new Date();
 		
 		List<FarediscountVO> list = 
 		fdSer.getAll().stream()
-		.filter(farediscountVO -> !farediscountVO.getFd_start().after(sessios_start))
-		.filter(farediscountVO -> !farediscountVO.getFd_end().before(sessios_start))
-		.sorted()
+// 		.filter(farediscountVO -> !farediscountVO.getFd_start().after(now))
+		.filter(farediscountVO -> !farediscountVO.getFd_end().before(now))
+		.sorted(FarediscountVO :: compareTo_bystart)
 		.collect(Collectors.toList());
 		
 		pageContext.setAttribute("list", list);
 		%>		
 
-        <div class="container-fluid">
+ <div class="container-fluid">
 		    <div class="row">
 			    <table class="table table-sm">
 				    <thead>

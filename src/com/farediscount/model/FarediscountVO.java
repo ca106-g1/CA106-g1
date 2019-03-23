@@ -77,5 +77,11 @@ public class FarediscountVO implements Serializable, Comparable<FarediscountVO>{
 			return this.fd_offer - farediscountVO.getFd_offer();		
 		
 	}
+	
+	public int compareTo_bystart(FarediscountVO farediscountVO) {		
+		
+		return this.fd_start.compareTo(farediscountVO.getFd_start());		
+	
+	}
 		
 }

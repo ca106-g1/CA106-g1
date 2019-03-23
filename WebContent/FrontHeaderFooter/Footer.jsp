@@ -29,25 +29,24 @@ bottom:0px;
 <script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
 <script>
 
-var MyPoint = "/ForTicketorderServlet_ws/${memVO.member_no}";
-var host = window.location.host;
-var path = window.location.pathname;
-var webCtx = path.substring(0, path.indexOf('/', 1));
-var endPointURL = "ws://" + host + webCtx + MyPoint;
+var MyPoint_footer = "/ForTicketorderServlet_ws/${memVO.member_no}";
+var host_footer = window.location.host;
+var path_footer = window.location.pathname;
+var webCtx_footer = path_footer.substring(0, path_footer.indexOf('/', 1));
+var endPointURL_footer = "ws://" + host_footer + webCtx_footer + MyPoint_footer;
 
 var webSocket_map;
-var isMe = false;
+var isMe_footer = false;
 
-function connect() {
+function connect_footer() {
 	// create a websocket
-	webSocket_map = new WebSocket(endPointURL);
-
+	webSocket_map = new WebSocket(endPointURL_footer);
 	webSocket_map.onopen = function(event) {
-//			alert("i'm start.");
+// 			alert("i'm start.");
 	};
 
 	webSocket_map.onmessage = function(event) {
-		if(isMe){return;}
+		if(isMe_footer){return;}
 		var jsonArray = JSON.parse(event.data);
 		var action = jsonArray[0].action;
 			
@@ -55,14 +54,12 @@ function connect() {
 			//如果是給這個會員的
 			alert(jsonArray[1].message);		
 		}
-		
 	};
 
-	webSocket_map.onclose = function(event) {
-	};
+	webSocket_map.onclose = function(event) {};
 }
 
-$(document).ready(connect);
+$(document).ready(connect_footer);
 </script>
 </footer>
 </body>
