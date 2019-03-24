@@ -1,7 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
+<%@ page import="com.movieinfo.model.*"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <head>
+	<%
+		MovieInfoService movieinfosvc = new MovieInfoService();
+		List<MovieInfoVO> lista = movieinfosvc.getAll();
+	    List<MovieInfoVO> list = new ArrayList<MovieInfoVO>();
+	    java.util.Date now = new java.util.Date();
+	    java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+	    for(MovieInfoVO movVO:lista){
+	    	if(sqlDate.after(movVO.getMovie_in()) && sqlDate.before(movVO.getMovie_out())){
+	    		list.add(movVO);
+	    	}
+	    }
+	    pageContext.setAttribute("list",list);
+	    System.out.print(list.size());
+	
+	%>
+
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +28,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>¥™ºv-¥™πŒ¨›πqºv</title>
+    <title>Êè™ÂΩ±-Êè™ÂúòÁúãÈõªÂΩ±</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -19,6 +38,14 @@
 
     <!-- Responsive CSS -->
     <link href="css/responsive/responsive.css" rel="stylesheet">
+    <style>
+    	.moviein_pic{
+    	
+    		width:300px;
+    		height:500px;
+    	
+    	}
+    </style>
 
 </head>
 
@@ -139,133 +166,30 @@
     <!-- ****** Welcome Post Area Start ****** -->
     <section class="welcome-post-sliders owl-carousel">
 
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-1.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
+		<c:forEach var="movieinfoVO" items="${list}">
+			
+	        <!-- Single Slide -->
+	        <div class="welcome-single-slide">
+	            <!-- Post Thumb -->
+	            <c:set var="mimg" value="${movieinfoVO.movie_pic}" />
+	            <%
+	            	byte b[] = (byte[])pageContext.getAttribute("mimg");
+	            	String movie_pic = Base64.encode(b);
+	            %>
+	            <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display&movie_no=${movieinfoVO.movie_no}"><img class="moviein_pic" src="data:image/jpg;base64,<%=movie_pic%>"></a>
+	            <!-- Overlay Text -->
+	            <div class="project_title">
+	                <div class="post-date-commnents d-flex">
+	                    <a href="#">${movieinfoVO.movie_in}</a>
+	                </div>
+	                <a href="#">
+	                    <h5>${movieinfoVO.movie_name}</h5>
+	                </a>
+	            </div>
+	        </div>	
 
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-2.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-3.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-4.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-5.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-6.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-7.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Single Slide -->
-        <div class="welcome-single-slide">
-            <!-- Post Thumb -->
-            <img src="img/bg-img/slide-8.jpg" alt="">
-            <!-- Overlay Text -->
-            <div class="project_title">
-                <div class="post-date-commnents d-flex">
-                    <a href="#">May 19, 2017</a>
-                    <a href="#">5 Comment</a>
-                </div>
-                <a href="#">
-                    <h5>°ßI°¶ve Come and I°¶m Gone°®: A Tribute to Istanbul°¶s Street</h5>
-                </a>
-            </div>
-        </div>
+		</c:forEach>
+        
 
     </section>
     <!-- ****** Welcome Area End ****** -->
