@@ -3,6 +3,7 @@
 <%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
 <%@ page import="com.movieinfo.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.adv.model.*"%>
 <!DOCTYPE html>
 <head>
 	<%
@@ -20,6 +21,23 @@
 	    System.out.print(list.size());
 	
 	%>
+	
+	<%
+	AdvService advSvc = new AdvService();
+    List<AdvVO> list_adv1 = advSvc.getAll();
+    List<AdvVO> list_adv2 = new ArrayList<AdvVO>();
+    java.util.Date now_adv = new java.util.Date();
+    java.sql.Date sqlDate_adv = new java.sql.Date(now.getTime());
+    
+
+	for(AdvVO advVO:list_adv1){
+	    	if(sqlDate_adv.after(advVO.getAd_start()) && sqlDate_adv.before(advVO.getAd_end())){
+	    		list_adv2.add(advVO);
+	    	}
+	    }
+	    pageContext.setAttribute("list",list_adv2);
+	    System.out.print(list_adv2.size());
+	%> 
 
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -168,16 +186,16 @@
 
 		<c:forEach var="movieinfoVO" items="${list}">
 			
-	        <!-- Single Slide -->
+	        Single Slide
 	        <div class="welcome-single-slide">
-	            <!-- Post Thumb -->
+	            Post Thumb
 	            <c:set var="mimg" value="${movieinfoVO.movie_pic}" />
 	            <%
 	            	byte b[] = (byte[])pageContext.getAttribute("mimg");
 	            	String movie_pic = Base64.encode(b);
 	            %>
 	            <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display&movie_no=${movieinfoVO.movie_no}"><img class="moviein_pic" src="data:image/jpg;base64,<%=movie_pic%>"></a>
-	            <!-- Overlay Text -->
+	            Overlay Text
 	            <div class="project_title">
 	                <div class="post-date-commnents d-flex">
 	                    <a href="#">${movieinfoVO.movie_in}</a>
@@ -235,233 +253,68 @@
 
     
     <!-- ****** Instagram Area Start ****** -->
+    
+    
+<!--     廣告開始 -->
+    
     <div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
 
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/1.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/2.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
+			<c:forEach var="advVO" items="${list}" >
+	
+				
+				 <c:if test="${advVO.ad_type!=0}" var="condition">
+				 <c:if test="${not empty advVO.ad_pic}" var="condition">
+								
+				
+				 
+				 <c:if test="${not empty advVO.ad_cont}" var="condition">
+				  <div class="instagram_gallery_item">
+				 <img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/>
+				 <div class="hover_overlay"> 
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
                         <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> ${advVO.ad_name}</a>
+                            <FORM METHOD="post" ACTION="adv.do" >
+				 			<input type="image" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='150' />
+							<input type="hidden" name="ad_no" value="${advVO.ad_no}">  
+			   				 <input type="hidden" name="action" value="getOne_For_Display_HTML_Home">    
+			   				 </FORM>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+				</c:if>
+				
+				
+				 <c:if test="${empty advVO.ad_cont}" var="condition">
+				 <div class="instagram_gallery_item">
+				<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/>
+				 <div class="hover_overlay"> 
+                <div class="yummy-table">
+                    <div class="yummy-table-cell">
+                        <div class="follow-me text-center">
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> ${advVO.ad_name}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+				</c:if>
+				
+				
+				</c:if>
+				</c:if>
 
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/3.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/4.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/5.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/6.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/7.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/8.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/9.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/10.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/11.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/12.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/13.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instagram Item -->
-        <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
-            <img src="img/instagram-img/14.jpg" alt="">
-            <!-- Hover -->
-            <div class="hover_overlay">
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+	</c:forEach>
 
     </div>
+    
+<!--     廣告結束 -->
+    
+    
     <!-- ****** Our Creative Portfolio Area End ****** -->
 
     <!-- ****** Footer Social Icon Area Start ****** -->
