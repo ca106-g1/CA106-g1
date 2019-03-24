@@ -76,13 +76,18 @@
 					<div class="col-1">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
 							id="dropdownMemButton" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false" >會員個人資料</button>
+							aria-haspopup="true" aria-expanded="false" >會員註冊</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMemButton">
-							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/Login.jsp">會員登入畫面</a> 
+							
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">會員註冊</a> 
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation2.jsp">會員註冊須知</a> 
 						</div>
 					</div>
+				
+				
+				<button id="openloginDescription" type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginDescription">
+						 	登入
+				</button>
 				
 				</c:if>
 				
@@ -161,14 +166,42 @@
 		    </div>
 		  </div>
 		</div>
-		<script>
-		
-		function openfdDescriptioninheader(e){
-			$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/farediscount/fdDescription.jsp');
-		}
-		
-		$(document).ready($('#openfdDescriptioninheader').click(openfdDescriptioninheader));
-		</script>
+		<!-- Modal -->
+<div class="modal fade" id="loginDescription" tabindex="-1" role="dialog" aria-labelledby="loginDescriptionTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    	
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginDescriptionTitle">登入</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="loginDescription_modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 以上登入畫面 -->
+<script>
+	function openloginDescription(e){
+		$('#loginDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/Login2.jsp?myself=<%=request.getRequestURI()%>');
+	}
+	
+	function openfdDescriptioninheader(e){
+		$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/ticketorder_/fdDescription.jsp');
+	}
+			
+	$(document).ready(
+			function(){
+				$('#openfdDescriptioninheader').click(openfdDescriptioninheader);
+				$('#openloginDescription').click(openloginDescription);
+				});
+</script>
 	
 	</body>
 </html>

@@ -99,8 +99,6 @@ public class LoginHandler extends HttpServlet{
 					return;
 				}
 				
-				
-				
 				/*************************會員狀態錯誤處理******************************/
 //				String str3 = req.getParameter("member_status");
 //				if (!str3.equals("1")) {
@@ -112,10 +110,6 @@ public class LoginHandler extends HttpServlet{
 //					failureView.forward(req, res);
 //					return;
 //				}
-				
-				
-				
-				
 
 				/*********************** 2.開始查詢資料 **************************/
 				MemService memSvc = new MemService();
@@ -133,7 +127,6 @@ public class LoginHandler extends HttpServlet{
 					errorMsgs.add("帳號未驗證，請至信箱收取驗證信");
 				}
 				
-
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/Login.jsp");
 					failureView.forward(req, res);
@@ -142,36 +135,27 @@ public class LoginHandler extends HttpServlet{
 
 				/************************* 3.查詢完成 準備轉交 ***********************************/
 				
-
-				
 				HttpSession session = req.getSession();
 				session.setAttribute("memVO", memVO);
 				
-				
 				try {
-				
-
-
+					String myself = (String) session.getAttribute("myself");
+					if (myself !=null) {
+						session.removeAttribute("myself");
+						res.sendRedirect(myself);
+						return;
+					}
+					
 					String location =(String) session.getAttribute("location");
 					if (location !=null) {
-						
-
-
 						session.removeAttribute("location");
 						res.sendRedirect(location);
 						return;
-
 					}
-					
-				
 
 				}catch( Exception ignored) { }
 				
-	
-
 				res.sendRedirect(req.getContextPath()+"/Front_end/mem/select_page.jsp");
-				
-	
 
 //				String url = "/Front_end/mem/select_page.jsp";
 //				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交至LoginSucess.jsp
