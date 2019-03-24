@@ -71,6 +71,16 @@
   th, td {
     padding: 1px;
   }
+  .card-img{
+  		position:fixed;
+  		top:0;
+  		left:0;
+  		bottom:0;
+  		right:0;
+  		z-index:-999;
+  		min-height:100%;
+  		width:100%;
+  }
 </style>
 
 
@@ -89,67 +99,17 @@
 <!-- 這是Header -->
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
-
-<!-- <FORM METHOD="post" ACTION="adv.do" name="form1" enctype="multipart/form-data"> -->
-<!-- <FORM METHOD="post" ACTION="adv.do" name="form1" enctype="multipart/form-data"> -->
-
-<!-- 			<img id="preview_progressbarTW_img" src="#"  width="100px"   height="100px"  style = "display:none" /> -->
-<%-- 			<input type="file" id="progressbarTWInput" name="ad_pic" size="25" accept="image/gif, image/jpeg, image/png" value="${advVO.ad_pic}"/> --%>
+<div>
+	<img src="<%=request.getContextPath()%>/Front_end/chatroom/9986.jpg_wh1200.jpg" class="card-img" alt="..." style="">
 
 
-<!-- <br> -->
-<!-- <input type="hidden" name="action" value="insert"> -->
-<!-- <input type="submit" value="送出新增"> -->
-<!-- </FORM> -->
+</div>
 
+<div class="row">
 
-
-
-<!-- 使用電影資訊的資料 -->
-<table>
-	<tr>
-		<th>電影名稱</th>
-		<th>電影種類</th>
-		<th>電影封面</th>
-		<th>電影分級</th>
-		<th>電影導演</th>
-		<th>電影演員</th>
-		<th>電影片長</th>
-		<th>電影預告片</th>
-		<th>電影簡介</th>
-	</tr>
-	
-	<tr>
-			<td>${movieinfoVO.movie_name}</td>
-<%-- 			<td>${msc.getOneGenre(movieinfoVO.genre_no).genre_name}</td> --%>
-<!-- 新增movie_pic			 -->
-			<c:set var="movie_pic" value="${movieinfoVO.movie_pic}"></c:set>
-			<%
-				byte b[]= (byte[])pageContext.getAttribute("movie_pic");
-				String encode = null;
-				if(b != null){
-					encode = Base64.encode(b);
-			%>
-			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
-			<%}else{%><td></td><%}%>
-<!-- 新增movie_level -->			
-			<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
-			<%
-				byte c[]= (byte[])pageContext.getAttribute("movie_level");
-				String encode1 = null;
-				if(c != null){
-					encode1 = Base64.encode(c);
-			%>
-			<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
-			<%}else{%><td></td><%}%>
-			<td>${movieinfoVO.movie_director}</td>
-			<td>${movieinfoVO.movie_cast}</td> 
-			<td>${movieinfoVO.movie_length}</td>
-			<td>${movieinfoVO.movie_trailer}</td>
-			<td>${movieinfoVO.movie_intro}</td>
-	</tr>
-</table>
-
+<div class="col-1">
+</div>
+<div class="col-7">
 
 
 <!-- 這是聊天室 -->
@@ -160,16 +120,13 @@
 
         
 <!--         這釋放聊天對話的地方 -->
-<!--         <textarea id="messagesArea"  class="panel message-area" readonly ></textarea> -->
- <div id="messagesArea" class="panel message-area"  ></div> 
-<!--         <h3 id="messagesArea" class="panel message-area"></h3> -->
+  <div id="messagesArea" class="panel message-area"  style=overflow:auto;height:500px;background-color:#ffffff;opacity:0.9; ></div> 
         
         
         
         <div class="panel input-area">
-<%--             <input id="userName" class="text-field" type="text" placeholder="使用者名稱" value="${memVO.member_no}"/> --%>
 <!--        這是使用者名子 -->
-           <h5> ${memVO.member_name}</h5>
+           <h5><font color="white"> ${memVO.member_name}</font></h5>
             
             
             
@@ -179,44 +136,69 @@
  		</form>
             
             
-<!--              <input id="message"  class="text-field" type="text" placeholder="訊息" onkeydown="if (event.keyCode == 13) sendMessage();"/> -->
-<!--             <input id="message" name="poscontent" rows="10" cols="80" class="text-field" type="text" placeholder="訊息" onkeydown="if (event.keyCode == 13) sendMessage();"/> -->
-<%--             ${param.poscontent} --%>
-            
-            
-            
-<!--             <FORM METHOD="post" ACTION="adv.do" name="form1" enctype="multipart/form-data"> -->
-<!-- 			<img id="preview_progressbarTW_img" src="#"  width="100px"   height="100px"  style = "display:none" /> -->
-<!-- 			<input type="file" id="progressbarTWInput" name="ad_pic" size="25" accept="image/gif, image/jpeg, image/png" onchange='getBase64(this);'/> -->
-<!-- 			<br> -->
-			<!-- <input type="hidden" name="action" value="insert"> -->
-<!-- 			<input type="submit" value="送出新增"> -->
-<!-- 			</FORM> -->
-            
-            
-            
             
 <!--             這是送出 連線 離線 的按鈕 各自呼叫各自方法 -->
             <input type="submit" id="sendMessage" class="button" value="送出" onclick="sendMessage();"/>
 		    <input type="button" id="connect"     class="button" value="連線" onclick="connect();"/>
 		    <input type="button" id="disconnect"  class="button" value="離線" onclick="disconnect();"/>
+
 	    </div>
+	</div>
 
 
 
-<!--  <form name = 'form' action = '#' method='post'> -->
-<!--             <textarea name="content" id="content" rows="10" cols="80"></textarea> -->
-<!--             <input type = 'button' value = '送出' onclick = 'sendMessage()'> -->
+
+<div class="col-1">
+</div>
+
+<!-- 使用電影資訊的資料 -->
+<div class="col-3">
+<table  style="border:3px #cccccc solid;" cellpadding="10" border='10'>
+	
+		<th><th>電影名稱</th></tr>
+		<th><th>${movieinfoVO.movie_name}</th></tr>
+		<tr><th>電影封面</th></tr>
+		<c:set var="movie_pic"  value="${movieinfoVO.movie_pic}"></c:set>
+			<%
+				byte b[]= (byte[])pageContext.getAttribute("movie_pic");
+				String encode = null;
+				if(b != null){
+					encode = Base64.encode(b);
+			%>
+		<th><th><img id="pic" width='250' height='400' src="data:image/jpg;base64,<%=encode%>"></th>
+			<%}else{%><th></th><%}%></tr>
+		
+		<tr><th>電影分級</th></tr>
+		<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
+			<%
+				byte c[]= (byte[])pageContext.getAttribute("movie_level");
+				String encode1 = null;
+				if(c != null){
+					encode1 = Base64.encode(c);
+			%>
+		<th><th><img id="level" src="data:image/jpg;base64,<%=encode1%>"></th>
+			<%}else{%><th></th><%}%></tr>
+		<th><th></th></tr>
+		<tr><th>電影導演</th></tr>
+		<th><th>${movieinfoVO.movie_director}</th></tr>
+		<tr><th>電影演員</th></tr>
+		<th><th>${movieinfoVO.movie_cast}</th></tr>
+		<tr><th>電影片長</th></tr>
+		<th><th>${movieinfoVO.movie_length}</th></tr>
+		<tr><th>電影預告片</th></tr>
+		<th><th>${movieinfoVO.movie_trailer}</th></tr>
+		<tr><th>電影簡介</th></tr>
+		<th><th>${movieinfoVO.movie_intro}</th></tr>
+	
+	
+
+</table>
 
 
-<!--  </form> -->
+</div>
 
+</div>
 
-<!-- <button onclick="appendit()">appendit</button>     -->
-<!-- <TEXTAREA id="area" NAME="area" ROWS="20" COLS="26"></TEXTAREA> -->
-
-
-<!-- <p>asdf</p> -->
 
 
 <!-- 這是Footer -->
@@ -258,26 +240,6 @@
 <script>
 			CKEDITOR.replace( 'content', {});
 </script>
-
- <script>
-//    function processData(){
-   // getting data
-//    var data = CKEDITOR.instances.content.getData()
-//    alert(data);
-//   }
-
-//  function appendit()    
-// 	{ 
-// 	var myarea = document.getElementById("area");    
-// 	var img1 = new Image();    
-// 	img1.src = "images/back1.gif";  
-// 	alert(img1);
-// 	myarea.appendChild(img1); 
-// 	}  
-
-
-
- </script>
 
 
 
@@ -337,20 +299,6 @@ function readURL(input){
 
 <!-- webSocket 前端程式碼 -->
 <script>
-
-// 	function getBase64(imgDOM){
-// 		var file = imgDOM.files[0];
-// 		var reader = new FileReader();
-		
-// 		reader.onload = (function(event){
-// 			$('#preview_progressbarTW_img').attr('src', event.target.result);
-// 		})
-		
-// 		reader.readAsDataURL(file);
-// 	}
-	
-	
-	
 	
 	
 
@@ -364,11 +312,6 @@ function readURL(input){
 	var statusOutput = document.getElementById("statusOutput");
 	var webSocket;
 	
-// 	alert(MyPoint);
-	
-// 	var My = "${memVO.member_no}" 
-// 		alert(My);
-	
 	
 // 	webSocket 連線
 	function connect() {
@@ -376,7 +319,7 @@ function readURL(input){
 		webSocket = new WebSocket(endPointURL);
 		
 		webSocket.onopen = function(event) {
-			updateStatus("WebSocket 成功連線");
+			updateStatus("JOIN聊天室");
 			document.getElementById('sendMessage').disabled = false;
 			document.getElementById('connect').disabled = true;
 			document.getElementById('disconnect').disabled = false;
@@ -386,11 +329,6 @@ function readURL(input){
 			var messagesArea = document.getElementById("messagesArea");
 	        var jsonObj = JSON.parse(event.data);
 	        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
-// 	        messagesArea.innerHTML = messagesArea.innerHTML + message;
-// 	        messagesArea.value = messagesArea.value + message;
-// 	        messagesArea.scrollTop = messagesArea.scrollHeight;
-// 			document.write(message);
-	
 	
 // 			把輸入的字串 回傳後 推播出來 放在<div>裡
 			messagesArea.innerHTML = messagesArea.innerHTML + message;
@@ -407,11 +345,9 @@ function readURL(input){
 	}
 	
 	
-	var inputUserName = document.getElementById("userName");
-	inputUserName.focus();
+	
 	
 	function sendMessage() {
-// 	    var userName = inputUserName.value.trim();
 // 取到會員名子
 		var userName = "${memVO.member_name}"
 	    if (userName === ""){
@@ -420,17 +356,6 @@ function readURL(input){
 			return;
 	    }
 	    
-// 	    var inputMessage = document.getElementById("message");
-// 	    var message = inputMessage.value.trim();
-
-// function processData(){
-//    // getting data
-//    var data = CKEDITOR.instances.content.getData()
-//    alert(data);
-//   }
-
-
-// 			CKEDITOR.instances.content.setData('');
 
 // 取到CKEDITOR裡輸入的資料 
 	    var message = CKEDITOR.instances.content.getData()
@@ -452,56 +377,6 @@ function readURL(input){
 	    }
 	    
 	    
-	    
-	    
-// 	    CKEDITOR.instances.content.setData('');
-	    
-// 	    CKEDITOR.instances['content'].setData('');
-// 	    document.getElementById('content').value = ""; 
-	    
-// 	    var inputMessage2 = document.getElementById("progressbarTWInput");
-// 	    var message2 = inputMessage2.value.trim();
-	    
-// 	    if (message === "" && message2 === ""){
-// 	        alert ("訊息請勿空白!");
-// 	        inputMessage.focus();	
-// 	    }else if (message === "" && message2 !== ""){
-// 	    	 var jsonObj = {"userName" : userName, "message" : message2};
-// 		        webSocket.send(JSON.stringify(jsonObj));
-// 		        inputMessage.value = "";
-// 		        inputMessage.focus();
-	    	
-	    	
-// 	    }else if (message !== "" &&  message2 === ""){
-// 	    	var jsonObj = {"userName" : userName, "message" : message};
-// 	        webSocket.send(JSON.stringify(jsonObj));
-// 	        inputMessage.value = "";
-// 	        inputMessage.focus();
-	    	
-// 	    }else {
-// 	        var jsonObj = {"userName" : userName, "message" : message};
-// 	        webSocket.send(JSON.stringify(jsonObj));
-// 	        inputMessage.value = "";
-// 	        inputMessage.focus();
-	        
-// 	        var jsonObj = {"userName" : userName, "message" : message2};
-// 	        webSocket.send(JSON.stringify(jsonObj));
-// 	        inputMessage.value = "";
-// 	        inputMessage.focus();
-	        
-// 	    }
-	    
-// 	    if (message2 === ""){
-// 	        alert ("圖片請勿空白!");
-// 	        inputMessage.focus();	
-// 	    }else{
-// 	        var jsonObj = {"userName" : userName, "message" : message2};
-// 	        webSocket.send(JSON.stringify(jsonObj));
-// 	        inputMessage.value = "";
-// 	        inputMessage.focus();
-// 	    }
-	    
-// 	    document.getElementById('preview_progressbarTW_img').style = "display:none";
 	}
 
 	
