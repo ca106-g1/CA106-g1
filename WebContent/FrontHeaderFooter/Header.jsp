@@ -193,7 +193,7 @@
 	}
 	
 	function openfdDescriptioninheader(e){
-		$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/ticketorder_/fdDescription.jsp');
+		$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/farediscount/fdDescription.jsp');
 	}
 			
 	$(document).ready(
