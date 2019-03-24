@@ -13,6 +13,26 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title></title>
+
+<style>
+
+input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px; }
+
+
+input[type="reset"]  {padding:5px 15px; background:#ccc; border:0 none;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px; }
+
+
+
+</style>
+
+
+
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -30,17 +50,18 @@
 	</ul>
 </c:if >
 
-<form  method = "post"   action = "loginHandler.do"  >
+<form  method = "post"   action = "loginHandler.do" name="form1" >
 
-<p>帳號: <input type = "text"  name = "member_account"  ></p>
-<p>信箱: <input type = "email"  name = "member_email" ></p>
+<p>帳號: <input type = "text"  name = "member_account" id = "member_account" ></p>
+<p>信箱: <input type = "email"  name = "member_email" id = "member_email"></p>
 <p><input type = "hidden" name="action" value="getone_for_pswForget">
    <input type = "submit"  value = "送出">
    <input type = "reset"   value = "取消">
 </p>
 </form>
 
-
+<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite(this)">
 
 	<!-- 工作區結束 -->
 	
@@ -53,4 +74,22 @@
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>
+
+<script>
+	function idwrite(name){
+		form1.member_account.value="peter520";
+		form1.member_email.value="zxxl3617@gmail.com";
+		
+		
+	}
+
+
+	
+		
+</script>
+
+
+
+
+
 </html>
