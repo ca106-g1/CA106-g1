@@ -6,10 +6,10 @@
 <%@ page import="com.mem.model.*" %>
 
 <%
-	DepService depSvc = new DepService();
-	List<DepVO> list = (List)request.getAttribute("list");
-	DepVO depVO = (DepVO)request.getAttribute("depVO");
-	pageContext.setAttribute("list",list);
+		DepService depSvc = new DepService();
+		List<DepVO> list = depSvc.findByMem_no1(((MemVO)session.getAttribute("memVO")).getMember_no());
+		DepVO depVO = (DepVO)request.getAttribute("depVO");
+		pageContext.setAttribute("list",list);
 %>
 
 
@@ -27,7 +27,7 @@
 <title></title>
 </head>
 <body bgcolor='white'>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	
 	<h1></h1>
 
 	<!-- 工作區開始 -->
@@ -85,7 +85,7 @@
 
 	<!-- 工作區結束 -->
 	
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>
