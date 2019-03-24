@@ -153,7 +153,7 @@
 
 <!-- 使用電影資訊的資料 -->
 <div class="col-3">
-<table  style="border:3px #cccccc solid;" cellpadding="10" border='10'>
+<table  background="<%=request.getContextPath()%>/Front_end/chatroom/view.jpg"  >
 	
 		<th><th>電影名稱</th></tr>
 		<th><th>${movieinfoVO.movie_name}</th></tr>
