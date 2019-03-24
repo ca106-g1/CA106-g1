@@ -19,11 +19,18 @@ public class LogoutHandler extends HttpServlet{
 		super();
 	}
 	
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
 	protected void doPost(HttpServletRequest req , HttpServletResponse res) 
 		throws ServletException,IOException{
 			
-		String logout = req.getParameter("logout");
-		if("logout".equals(logout)) {
+		String action = req.getParameter("action");
+		if("logout".equals(action)) {
 			HttpSession session = req.getSession();
 			session.invalidate();
 			res.sendRedirect(req.getContextPath()+"/Back_end/empLogin.jsp");
