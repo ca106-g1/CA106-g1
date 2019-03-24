@@ -134,7 +134,7 @@
 					
 					<!-- 以上選擇影廳 -->
 						<div>
-						場次間格<input type="number" id="number" value="2" style="width:114px" min="1" max="6">
+						場次間格<input type="number" id="number" value="3" style="width:114px" min="3" max="6">
 						</div>
 					<!-- 場次間格 -->
 						<div id="addSessions" class="btn btn-primary" >新增場次</div>

@@ -1,5 +1,6 @@
 package com.sessions.model;
 
+import java.util.Collections;
 import java.util.List;
 
 public class SessionsService {
@@ -10,9 +11,13 @@ public class SessionsService {
 		dao = new SessionsDAOImpl();
 	}
 	
-	public SessionsVO addSes(String movie_no, String cinema_no, java.sql.Timestamp sessions_start,
-			String sessions_status, Integer sessions_remaining) {
-
+	public SessionsVO addSes(
+			String movie_no,
+			String cinema_no, 
+			java.sql.Timestamp sessions_start,
+			String sessions_status, 
+			Integer sessions_remaining) 
+	{
 		SessionsVO sessionsVO = new SessionsVO();
 
 		sessionsVO.setMovie_no(movie_no);
@@ -25,9 +30,14 @@ public class SessionsService {
 		return sessionsVO;
 	}
 
-	public SessionsVO updateSes(String sessions_no, String movie_no, String cinema_no, java.sql.Timestamp sessions_start,
-			String sessions_status, Integer sessions_remaining) {
-
+	public SessionsVO updateSes(
+			String sessions_no, 
+			String movie_no, 
+			String cinema_no, 
+			java.sql.Timestamp sessions_start,
+			String sessions_status, 
+			Integer sessions_remaining) 
+	{
 		SessionsVO sessionsVO = new SessionsVO();
 		sessionsVO.setSessions_no(sessions_no);
 		sessionsVO.setMovie_no(movie_no);
@@ -49,7 +59,9 @@ public class SessionsService {
 	}
 
 	public List<SessionsVO> getAll() {
-		return dao.getAll();
+		List<SessionsVO> list = dao.getAll();
+		Collections.sort(list);
+		return list;
 	} 
 
 }

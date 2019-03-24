@@ -3,7 +3,7 @@ package com.sessions.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class SessionsVO implements Serializable{
+public class SessionsVO implements Serializable, Comparable<SessionsVO>{
 
 	private static final long serialVersionUID = -6332296927066906614L;
 
@@ -50,6 +50,21 @@ public class SessionsVO implements Serializable{
 	}
 	public void setSessions_remaining(Integer sessions_remaining) {
 		this.sessions_remaining = sessions_remaining;
+	}
+	@Override
+	public int compareTo(SessionsVO sessionsVO) {
+		return this.sessions_start.compareTo(sessionsVO.getSessions_start());
 	}	
 	
+	public int compareTo_reverse(SessionsVO sessionsVO) {
+		return -this.sessions_start.compareTo(sessionsVO.getSessions_start());
+	}
+	
+	public int compareTo_bysessions_remaining(SessionsVO sessionsVO) {
+		return this.sessions_remaining.compareTo(sessionsVO.getSessions_remaining());
+	}	
+	
+	public int compareTo_bysessions_remaining_reverse(SessionsVO sessionsVO) {
+		return -this.sessions_remaining.compareTo(sessionsVO.getSessions_remaining());
+	}
 }
