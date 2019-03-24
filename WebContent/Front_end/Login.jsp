@@ -24,6 +24,12 @@ table#table-1{
 	border:3px ridge Gray;
 	height: 80px;
 	text-align: center;
+	background-color:#3C5A91;
+	background:-o-linear-gradient(90deg, #3C5A91, #8fa0c0);
+	background:-moz-linear-gradient( center top, #3C5A91 5%, #8fa0c0 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3C5A91), color-stop(1, #8fa0c0) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3C5A91', endColorstr='#8fa0c0');
+	color:#FFFFFF
 }
 table#table-1 h4{
 
@@ -36,6 +42,39 @@ color:blue;
 display: inline;
 }
 
+
+
+.container{
+
+margin-top: 50px;
+
+}
+
+
+
+    input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+
+	input[type="reset"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+	input[type="text"]{padding:5px 15px; border:2px black solid;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+	input[type="password"]{padding:5px 15px; border:2px black solid;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+
+
 </style>
 
 
@@ -46,7 +85,10 @@ display: inline;
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-	
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-3"></div>
+			<div class="col-6">
 	
 	<table id = "table-1">
 
@@ -90,6 +132,9 @@ display: inline;
 						
 <img src="img/popcorn.jpg" height="20" width="20"
 						onclick="idwrite3(this)">						
+</div>
+</div>
+</div>
 						
 
 <script>
