@@ -153,7 +153,7 @@
 
 <!-- 使用電影資訊的資料 -->
 <div class="col-3">
-<table  background="<%=request.getContextPath()%>/Front_end/chatroom/view.jpg"  >
+<table   style=background-color:#f0f0f0; >
 	
 		<th><th>電影名稱</th></tr>
 		<th><th>${movieinfoVO.movie_name}</th></tr>
@@ -185,8 +185,6 @@
 		<th><th>${movieinfoVO.movie_cast}</th></tr>
 		<tr><th>電影片長</th></tr>
 		<th><th>${movieinfoVO.movie_length}</th></tr>
-		<tr><th>電影預告片</th></tr>
-		<th><th>${movieinfoVO.movie_trailer}</th></tr>
 		<tr><th>電影簡介</th></tr>
 		<th><th>${movieinfoVO.movie_intro}</th></tr>
 	
