@@ -39,7 +39,7 @@
 
 
 
-<title>聊天室 - addEmp.jsp</title>
+<title>聊天室</title>
 
 <style>
   table#table-1 {
@@ -84,7 +84,7 @@
 </style>
 
 
-		<title>Chat Room</title>
+		
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link rel="stylesheet" href="<%=request.getContextPath()%>/Front_end/chatroom/css/styles.css" type="text/css"/>
@@ -114,7 +114,7 @@
 
 <!-- 這是聊天室 -->
 
-		<h1> Chat Room </h1>
+		<br>
 	    <h3 id="statusOutput" class="statusOutput"></h3>
         
 
