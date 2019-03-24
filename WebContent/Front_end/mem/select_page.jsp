@@ -24,7 +24,7 @@
 
 
 <style>
-    input {padding:5px 15px; background:white; border:0 none; 
+    input[type="submit"] {padding:5px 15px; background:white; border:0 none; color:#007bff;
 cursor:pointer;
 -webkit-border-radius: 5px;
 border-radius: 5px; }
@@ -51,7 +51,7 @@ border-radius: 5px; }
       <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-order" role="tab" aria-controls="v-pills-settings" aria-selected="false">購票紀錄查詢</a>
 	 
 	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/dep/dep.do">
-		<font color = 'blue'><input type = "submit" value="Join儲值錢包新增"></font>
+		<font color = '#007bff'><input type = "submit" value="Join儲值錢包新增"></font>
 		<input type = "hidden" name="member_no" value="${memVO.member_no}">
 		<input type = "hidden" name="action" value="insert_Token"></FORM> 
 		
@@ -66,7 +66,7 @@ border-radius: 5px; }
   <div class="col-9">
  
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"> JOIN會員首頁</div>
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><div style="margin-left:90px;"><h3>JOIN會員首頁</h3 ></div> <img src ="<%=request.getContextPath()%>/Front_end/img/background5.jpg" width=40% height=40%></div>
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><jsp:include page="/Front_end/mem/listOneMem.jsp" /></div>
       <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><jsp:include page="/Front_end/mem/update_mem_input2.jsp" /></div>
       <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"><jsp:include page="/Front_end/dep/listOneDep_Mem.jsp" /></div>
