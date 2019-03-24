@@ -39,46 +39,73 @@
 <thead>
 	<tr>
 		<th scope="col">會員編號</th>
-		<th scope="col">會員帳號</th>
-		<th scope="col">會員密碼</th>
-		<th scope="col">會員姓名</th>
-		<th scope="col">會員暱稱</th>
-		<th scope="col">會員性別</th>
-		<th scope="col">會員生日</th>
-		<th scope="col">會員地址</th>
-		<th scope="col">會員電話</th>
-		<th scope="col">會員信箱</th>
-		<th scope="col">會員圖片</th>
-		<th scope="col">會員信用卡</th>
-		<th scope="col">會員驗證碼</th>
-		<th scope="col">會員建立日期</th>
-		<th scope="col">會員儲值點數</th>
-		<th scope="col">會員狀態</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
 		<td><%=memVO.getMember_no()%></td>
+	</tr>	
+		<th scope="col">會員帳號</th>
 		<td><%=memVO.getMember_account()%></td>
+		
+	<tr>	
+		<th scope="col">會員密碼</th>
 		<td><%=memVO.getMember_password()%></td>
+	</tr>	
+	
+	<tr>	
+		<th scope="col">會員姓名</th>
 		<td><%=memVO.getMember_name()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員暱稱</th>
 		<td><%=memVO.getMember_nick()%></td>
+	</tr>	
+		
+	<tr>	<th scope="col">會員性別</th>
 		<td>${memVO.member_sex eq 0?"女":"男"}</td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員生日</th>
 		<td><%=memVO.getMember_birthday()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員地址</th>
 		<td><%=memVO.getMember_address()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員電話</th>
 		<td><%=memVO.getMember_telephone()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員信箱</th>
 		<td><%=memVO.getMember_email()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員圖片</th>
 		<td>
 			<img src='<%= request.getContextPath() %>/Front_end/mem/mem.do?member_no=${memVO.member_no}' width='200' height = '200'/>
 		</td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員信用卡</th>
 		<td><%=memVO.getMember_credit_number()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員驗證碼</th>
 		<td><%=memVO.getMember_back_verification()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員建立日期</th>
 		<td><%=memVO.getMember_buildday()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員儲值點數</th>
 		<td><%=memVO.getMember_point()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員狀態</th>
 		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
+		</tr>
 		
-	</tr>
-	</tbody>
+	
+
 	
 </table>
 
