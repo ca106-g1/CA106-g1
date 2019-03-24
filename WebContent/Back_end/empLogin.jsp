@@ -138,7 +138,7 @@ function idwrite2(name){
 	
 }
 </script>
-
+</div></div></div>
 
 	<!-- 工作區結束 -->
 	
