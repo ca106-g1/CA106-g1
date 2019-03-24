@@ -10,13 +10,13 @@
 <html lang="en">
 <head>
 <!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
 <title>訂票</title>
 <style>
 p {
@@ -49,40 +49,44 @@ p {
 		<div class="row justify-content">
 
 			<div class="col-4">
-				<div class="row justify-content">
-					<div class="col-4">
-
-						<p>電影名稱：</p>
-						<p>日 期：</p>
-						<p>時 間：</p>
-					</div>
-
-					<div class="col-8">
-						<p>${movSer.getOneMovieInfo(sessionsVO.movie_no).movie_name}</p>
-						<p>${sessionsVO.sessions_start.toString().substring(0,10) }</p>
-						<p>${sessionsVO.sessions_start.toString().substring(10,16) }</p>
-					</div>
-				</div>
-				
-<!-- 				以上場次基本資訊 -->
-				
-				<br>
-				<div class="row justify-content">
-					<div class="col-4">
-						<p>餘額</p>
-						<p>總額</p>
-						<p>折扣名稱</p>
-						<p>折扣內容</p>
-					</div>
-
-					<div class="col-8">
-						<p id="member_point">${memVO.member_point }</p>
-						<p id="order_amount">0</p>
-						<p id="fd_name">　</p>
-						<p id="fd_offer">　</p>
-					</div>
-				</div>
-				
+				<table class="table table-sm">
+				  <thead>
+				    <tr>
+				      <th scope="col">項目</th>
+				      <th scope="col">內容</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">電影名稱：</th>
+				      <td>${movSer.getOneMovieInfo(sessionsVO.movie_no).movie_name}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">日期：</th>
+				      <td>${sessionsVO.sessions_start.toString().substring(0,10) }</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">時間：</th>
+				      <td>${sessionsVO.sessions_start.toString().substring(10,16) }</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">餘額：</th>
+				      <td id="member_point">${memVO.member_point }</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">總額：</th>
+				      <td id="order_amount">0</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">折扣名稱：</th>
+				      <td id="fd_name"></td>
+				    </tr>
+				    <tr>
+				      <th scope="row">折扣內容：</th>
+				      <td id="fd_offer"></td>
+				    </tr>
+				  </tbody>
+				</table>
 <!-- 				以上訂單基本資訊 -->
 				
 				<div class="row justify-content">
@@ -116,11 +120,25 @@ p {
 				</div>
 				
 				<div class="row justify-content">
-					<div class="col-6" id="ti">
+					<div class="col-2" id="ti1" style="padding-left: 0px;">
 						<p>票種</p>
 					</div>
 
-					<div class="col-6" id="mt">
+					<div class="col-2" id="mt1" style="padding-left: 0px;">
+						<p>位置</p>
+					</div>
+					<div class="col-2" id="ti2" style="padding-left: 0px;">
+						<p>票種</p>
+					</div>
+
+					<div class="col-2" id="mt2" style="padding-left: 0px;">
+						<p>位置</p>
+					</div>
+					<div class="col-2" id="ti3" style="padding-left: 0px;">
+						<p>票種</p>
+					</div>
+
+					<div class="col-2" id="mt3" style="padding-left: 0px;">
 						<p>位置</p>
 					</div>
 				</div>
@@ -437,16 +455,19 @@ p {
 			console.log("isMe_footer is not defined");
 		}
 	}
+    var count = 0;
 	
 	function creatTi_no(){
 		
 		var ti_no = '';
 		var inputs = document.getElementsByName('ti_no');
-		
+		count = 0;
 		for(var i = 0; i < inputs.length; i++){
     		ti_no += (inputs[i].value + ';');
+    		if(inputs[i].value == 'a' || inputs[i].value == 'b' || inputs[i].value == 'c' || inputs[i].value == 'd'){
+    			count++;
+    		}
     	}
-		
 		return ti_no;
 	}
 	
@@ -481,18 +502,31 @@ p {
     	}
     }
 
+    
     function setStyle(e){
     	
     	if(e.target.getAttribute("data-sitType") == 1){
+    		creatTi_no();
+	    	if(count >= 24){
+	    		swal('一次最多僅能購買24張票');
+	    		return;
+	    	}
 	    	e.target.setAttribute("data-sitType", $id("color").getAttribute("data-sitType"));
 	    	$bgc(e.target,$id("color").style.backgroundColor);
 	    	$('#form').append('<input type="hidden" id=mt_no'+e.target.id.substring(3)+' name="mt_no" value='+e.target.id.substring(3)+'>');
 	    	$('#form').append('<input type="hidden" id=ti_no'+e.target.id.substring(3)+' name="ti_no" value='+$id("color").getAttribute("data-sitType")+'>');
-	    	$('#mt').append('<p id="mt'+e.target.id.substring(3)+'">'+Math.ceil(parseInt(e.target.id.substring(3))/25)+'-'+(parseInt(e.target.id.substring(3))%25+1)+'</p>');
-	    	$('#ti').append('<p id="ti'+e.target.id.substring(3)+'">'+$id("color").getAttribute("data-sitStr")+'</p>');
+	    	if($('#mt1').children().length < 9){
+		    	$('#mt1').append('<p id="mt'+e.target.id.substring(3)+'">'+Math.ceil(parseInt(e.target.id.substring(3))/25)+'-'+(parseInt(e.target.id.substring(3))%25+1)+'</p>');
+		    	$('#ti1').append('<p id="ti'+e.target.id.substring(3)+'">'+$id("color").getAttribute("data-sitStr")+'</p>');
+	    	} else if($('#mt2').children().length < 9){
+	    		$('#mt2').append('<p id="mt'+e.target.id.substring(3)+'">'+Math.ceil(parseInt(e.target.id.substring(3))/25)+'-'+(parseInt(e.target.id.substring(3))%25+1)+'</p>');
+		    	$('#ti2').append('<p id="ti'+e.target.id.substring(3)+'">'+$id("color").getAttribute("data-sitStr")+'</p>');
+	    	} else if($('#mt3').children().length < 9){
+	    		$('#mt3').append('<p id="mt'+e.target.id.substring(3)+'">'+Math.ceil(parseInt(e.target.id.substring(3))/25)+'-'+(parseInt(e.target.id.substring(3))%25+1)+'</p>');
+		    	$('#ti3').append('<p id="ti'+e.target.id.substring(3)+'">'+$id("color").getAttribute("data-sitStr")+'</p>');
+	    	}
 	    	
 	    	clickAjax(creatTi_no, e);
-	    	
     	}else{
     		e.target.setAttribute("data-sitType", 1);
         	$bgc(e.target,'#3f9');

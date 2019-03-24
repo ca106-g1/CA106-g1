@@ -20,15 +20,24 @@
 				border-radius: 5px;
 			}
 			
-			body {
-				background-image:
-					url('<%=request.getContextPath()%>/Back_end/img/background3.jpg');
-				background-repeat: no-repeat;
+			.card-img{
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+            min-height: 100%;
+            width: 100%;
+            opacity: 0.6;
 			}
 		</style>
 	
 	</head>
 	<body>
+	<div>
+		<img src="<%=request.getContextPath()%>/Back_end/img/background3.jpg" class="card-img" alt="" style="">
+	</div>
 		<header class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: -15px; margin-right: -15px;">
 				<a class="navbar-brand" href="#">Join管理介面</a>
