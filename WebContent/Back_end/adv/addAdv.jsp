@@ -24,7 +24,7 @@
 
 
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> -->
-<title>員工資料新增 - addEmp.jsp</title>
+<title>新增廣告</title>
 
 <style>
   table#table-1 {
@@ -45,13 +45,13 @@
 
 <style>
   table {
-	width: 450px;
+/* 	width: 450px; */
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
   }
   table, th, td {
-    border: 0px solid #CCCCFF;
+    border: 1px solid #CCCCFF;
   }
   th, td {
     padding: 1px;
@@ -65,14 +65,14 @@
 
 
 
-<table id="table-1">
-	<tr><td>
-		 <h3>員工資料新增 - addAdv.jsp</h3></td><td>
-		 <h4><a href="select_page_adv.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<h3>資料新增:</h3>
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+<!-- 		 <h3>員工資料新增 - addAdv.jsp</h3></td><td> -->
+<!-- 		 <h4><a href="select_page_adv.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4> -->
+<!-- 	</td></tr> -->
+<!-- </table> -->
+<br>
+<h3>新增廣告:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -107,7 +107,7 @@
 <!-- 			 <img id="img" src="#" /> -->
 <%-- 			<input type="TEXT" name="ad_pic" size="45"  value="${advVO.ad_pic}" id="img" />  --%>
 			
-			<img id="preview_progressbarTW_img" src="#"  width="100px"   height="100px"  style = "display:none" />
+			<img id="preview_progressbarTW_img" src="#"  width="300px"   height="200px"  style = "display:none" />
 			<input type="file" id="progressbarTWInput" name="ad_pic" size="25" accept="image/gif, image/jpeg, image/png" value="${advVO.ad_pic}"/>
 			</td> 
 	</tr>

@@ -24,7 +24,7 @@
 
 
 
-<title>廣告資料 - listOneAdv.jsp</title>
+<title>廣告資料</title>
 
 <style>
   table#table-1 {
@@ -45,7 +45,7 @@
 
 <style>
   table {
-	width: 600px;
+/* 	width: 600px; */
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -66,13 +66,14 @@
 
 
 
-<h4>此頁暫練習採用 Script 的寫法取值:</h4>
-<table id="table-1">
-	<tr><td>
-		 <h3>員工資料 - ListOneAdv.jsp</h3>
-		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+<!-- <h4>此頁暫練習採用 Script 的寫法取值:</h4> -->
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+		<br>
+		 <h3>廣告資料</h3>
+<!-- 		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
+<!-- 	</td></tr> -->
+<!-- </table> -->
 
 
 <table>
@@ -93,16 +94,20 @@
 	
 	<tr>
 			<td>${advVO.ad_no}</td>
-			<td>${advVO.ad_name}</td>
-			<td>
+			<td width="100px">${advVO.ad_name}</td>
+			<td width="300px">
 				<c:if test="${empty advVO.ad_pic}" var="condition">
 				<img src="<%=request.getContextPath()%>/Back_end/adv/images/no_pic.jpg" width="200" height="200"/>
 				</c:if>
 			    <c:if test="${not empty advVO.ad_pic}" var="condition">
-			    <img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' />
+			    <img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='300' height='200' />
 				</c:if>
 			</td>
-			<td>${advVO.ad_cont}</td>
+			<td width="600px">
+				<div style=overflow:auto;height:300px;width:600px > 
+				${advVO.ad_cont}
+				</div>
+				</td>
 			<td>${advVO.ad_start}</td>
 			<td>${advVO.ad_end}</td> 
 			<td>
@@ -184,7 +189,8 @@
 		webSocket = new WebSocket(endPointURL);
 		
 		webSocket.onopen = function(event) {
-			updateStatus("WebSocket 成功連線");
+// 			updateStatus("WebSocket 成功連線");
+			updateStatus("");
 			document.getElementById('sendMessage').disabled = false;
 			document.getElementById('connect').disabled = true;
 			document.getElementById('disconnect').disabled = false;

@@ -26,7 +26,7 @@
 <!-- Bootstrap CSS end-->
 
 
-<title>所有員工資料 - listAllAdv.jsp</title>
+<title>瀏覽所有廣告</title>
 
 <style>
   table#table-1 {
@@ -40,6 +40,7 @@
     margin-bottom: 1px;
   }
   h4 {
+  
     color: blue;
     display: inline;
   }
@@ -47,7 +48,7 @@
 
 <style>
   table {
-	width: 800px;
+/*  	width: 800px;  */
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -67,13 +68,14 @@
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
 
 
-<h4>此頁練習採用 EL 的寫法取值:</h4>
-<table id="table-1">
-	<tr><td>
-		 <h3>所有員工資料 - listAllAdv.jsp</h3>
-		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+<!-- <h4>此頁練習採用 EL 的寫法取值:</h4> -->
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+		<br>
+		 <h3>瀏覽所有廣告</h3>
+<!-- 		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
+<!-- 	</td></tr> -->
+<!-- </table> -->
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -103,28 +105,25 @@
 		
 		<tr>
 			<td>${advVO.ad_no}</td>
-			<td>${advVO.ad_name}</td>
-			<td>
+			<td width="100px">${advVO.ad_name}</td>
+			<td width="300px">
 			
 			
 				<c:if test="${empty advVO.ad_pic}" var="condition">
 				<img src="<%=request.getContextPath()%>/Back_end/adv/images/no_pic.jpg" width="200" height="200"/>
 				</c:if>
 			    <c:if test="${not empty advVO.ad_pic}" var="condition">
-			    <img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' />
+			    <img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='300' height='200' />
 				</c:if>
 				
 				
 <%-- 				<img  src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' /> --%>
 			</td>
-			<td>
+			<td width="600px">
+			<div style=overflow:auto;height:300px;width:600px >   
 			${advVO.ad_cont}
-<%-- 				<c:if test="${advVO.ad_cont==0}" var="condition"> --%>
-<!-- 				下架 -->
-<%-- 				</c:if> --%>
-<%-- 				<c:if test="${advVO.ad_cont==1}" var="condition"> --%>
-<!-- 				下架 -->
-<%-- 				</c:if> --%>
+			</div>
+
 			
 			
 			</td>
@@ -172,6 +171,18 @@
 <%@ include file="page2.file" %>
 
 
+
+
+<!-- <table border="1" width="400"> -->
+<!--   <tr> -->
+<!--     <th>Month</th> -->
+<!--     <th>Savings</th> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td>January</td> -->
+<!--     <td>$100</td> -->
+<!--   </tr> -->
+<!-- </table> -->
 
 
 

@@ -18,7 +18,7 @@
 
 
 
-<title>IBM Adv: Home</title>
+<title>廣告管理</title>
 
 <style>
   table#table-1 {
@@ -49,12 +49,13 @@
 
 
 
-<table id="table-1">
-   <tr><td><h3>IBM Adv: Home</h3><h4>( MVC )</h4></td></tr>
-</table>
+<!-- <table id="table-1"> -->
+<!--    <tr><td><h3>IBM Adv: Home</h3><h4>( MVC )</h4></td></tr> -->
+<!-- </table> -->
 
-<p>This is the Home page for IBM Adv: Home</p>
-
+<!-- <p>This is the Home page for IBM Adv: Home</p> -->
+<br>
+<h3>廣告管理</h3>
 <h3>資料查詢:</h3>
 	
 <%-- 錯誤表列 --%>
@@ -111,7 +112,7 @@
 
 
 
-<h3>管理</h3>
+<h3>新增廣告</h3>
 
 <ul>
   <li><a href='addAdv.jsp'>Add</a> a new Adv.</li>

@@ -20,7 +20,7 @@
 
 
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> -->
-<title>員工資料修改 - update_emp_input.jsp</title>
+<title>廣告資料修改</title>
 
 <style>
   table#table-1 {
@@ -41,13 +41,13 @@
 
 <style>
   table {
-	width: 450px;
+/* 	width: 450px; */
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
   }
   table, th, td {
-    border: 0px solid #CCCCFF;
+    border: 1px solid #CCCCFF;
   }
   th, td {
     padding: 1px;
@@ -61,14 +61,14 @@
 
 
 
-<table id="table-1">
-	<tr><td>
-		 <h3>員工資料修改 - update_emp_input.jsp</h3>
-		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<h3>資料修改:</h3>
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+<!-- 		 <h3>廣告資料修改</h3> -->
+<!-- 		 <h4><a href="select_page_adv.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
+<!-- 	</td></tr> -->
+<!-- </table> -->
+<br>
+<h3>廣告資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -105,7 +105,7 @@
 				<img id="preview_progressbarTW_img" src="<%=request.getContextPath()%>/Back_end/adv/images/no_pic.jpg" width="200" height="200"/>
 				</c:if>
 			    <c:if test="${not empty advVO.ad_pic}" var="condition">
-			    <img id="preview_progressbarTW_img" src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='200' height='200' />
+			    <img id="preview_progressbarTW_img" src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}' width='300' height='200' />
 				</c:if>
 				
 <%-- 				<input type="TEXT" name="ad_pic" size="45"  value="${advVO.ad_pic}" id="img" />  --%>
