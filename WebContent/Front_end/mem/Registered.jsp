@@ -28,6 +28,22 @@
 td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/ 
 
 
+
+ input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+
+	input[type="reset"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+		
+	input[type="file"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
 </style>
 
 
@@ -66,7 +82,7 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 					
 
 					<tr>
-						<td >*帳號:</td> 
+						<th >*帳號:</th> 
 						<td><input type="text" name="member_account" id="member_account"
 							value="<%= (memVO==null)?"":memVO.getMember_account()%>"
 							autofocus>
@@ -74,32 +90,32 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 					</tr>
 
 					<tr>
-						<td>*密碼:</td>
+						<th>*密碼:</th>
 						<td> <input type ="password" name="member_password"
 							id="member_password" value="<%= (memVO==null)?"":""%>" required></td>
 					</tr>
 					
 
 					<tr>
-						<td>*再次確認密碼:</td>
+						<th>*再次確認密碼:</th>
 						<td> <input type="password" name="member_password1"
 							id="member_password1" value="<%= (memVO==null)?"":""%>" required></td>
 					</tr>
 
 					<tr>
-						<td>*姓名:</td> 
+						<th>*姓名:</th> 
 						<td><input type="text" name="member_name" id="member_name"
 							value="<%= (memVO==null)?"":memVO.getMember_name()%>"></td>
 					</tr>
 
 					<tr>
-						<td>暱稱: </td>
+						<th>暱稱: </th>
 						<td><input type="text" name="member_nick" id="member_nick"
 							value="<%= (memVO==null)?"":memVO.getMember_nick()%>"></td>
 					</tr>
 
 					<tr>
-						<td>*性別:</td>
+						<th>*性別:</th>
 						<td><input type="radio" name="member_sex" value="1"
 							${(memVO.member_sex==1)? "checked": ""}>男性 <input
 							type="radio" name="member_sex" value="0"
@@ -117,7 +133,7 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 
 
 					<tr>
-						<td>*生日:</td> 
+						<th>*生日:</th> 
 						<td><input type="date" name="member_birthday" id="f_date"
 							value="<%= (memVO==null)? member_birthday:memVO.getMember_birthday()%>"></td>
 					</tr>
@@ -130,7 +146,7 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 
 
 					<tr>
-					<td>*地址:</td>
+					<th>*地址:</th>
 					<td><div class="container">
 						<div class="row">
 							<div class="col">
@@ -160,34 +176,34 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 					</tr>
 
 					<tr>
-						<td>*電話:</td> 
+						<th>*電話:</th> 
 						<td><input type="tel" name="member_telephone"
 							id="member_telephone"
 							value="<%= (memVO==null)?"":memVO.getMember_telephone()%>"></td>
 					</tr>
 
 					<tr>
-						<td>*信箱: </td>
+						<th>*信箱: </th>
 						<td><input type="email" name="member_email" id="member_email"
 							value="<%= (memVO==null)?"":memVO.getMember_email()%>"></td>
 					</tr>
 
 					<tr>
-						<td>會員圖像:</td> 
+						<th>會員圖像:</th> 
 						<td>
 						<img id="preview_progressbarTW_img" src="#"  width="100px"   height="100px"  style = "display:none" />
 						<input type="file" id="progressbarTWInput" name="member_picture" size="25" accept="image/gif, image/jpeg, image/png" value="${memVO.member_picture}"/></td>
 					</tr>
 
 					<tr>
-						<td>信用卡號碼: </td>
+						<th>信用卡號碼: </th>
 						<td><input type="text" name="member_credit_number"
 							id="member_credit_number"
 							value="<%= (memVO==null)?"":memVO.getMember_credit_number()%>"></td>
 					</tr>
 
 					<tr>
-						<td>背面後三碼: </td>
+						<th>背面後三碼: </th>
 						<td><input type="text" name="member_back_verification"
 							id="member_back_verification"
 							value="<%= (memVO==null)?"":memVO.getMember_back_verification()%>"></td>

@@ -28,6 +28,17 @@
 td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/ 
 
 
+ input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+
+	input[type="reset"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
 </style>
 
 
@@ -169,6 +180,7 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 <br>
 <input type = "hidden" name="action" value="update">
 <input type = "submit" value = "送出修改"> 
+<input type = "reset" value = "取消">
 
 
 
