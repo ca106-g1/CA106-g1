@@ -34,7 +34,7 @@
 <table id = "table-1">
 	<tr><td>
 		<h3>所有儲值明細 </h3>
-		<h4><a href = "<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">回首頁</a></h4>
+		<input type = "button" value="回首頁" style="color:#969696;border:2px #ccc solid;padding:10px;text-align:center;" onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'">
 </table>
 
 <%--錯誤列表 --%>

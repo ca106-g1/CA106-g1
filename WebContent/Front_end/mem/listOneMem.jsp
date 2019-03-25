@@ -31,7 +31,7 @@
 <table id = "table-1" >
 	<tr><td>
 		<h3>會員個人資料</h3>
-		<h4><a href = "select_page.jsp">回會員首頁</a></h4>
+		<input type = "button" value="回首頁" style="color:#969696;border:2px #ccc solid;padding:10px;text-align:center;" onclick="location.href='select_page.jsp'">
 	</td></tr>
 </table>	
 
