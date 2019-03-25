@@ -56,12 +56,19 @@
 						<!-- 以上是影視新聞功能-->
 						
 				
-				
+				<!-- 子傑開始	 -->
 			
-		
+				<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMemIndexButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" >Home</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMemIndexButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp">回影城首頁</a>  
+						</div>
+					</div>
 	
 	
-	<!-- 子傑開始	 -->					
+						
 				
 				<c:if test="${empty memVO}">
 				
