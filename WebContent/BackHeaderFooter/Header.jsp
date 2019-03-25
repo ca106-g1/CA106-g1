@@ -151,6 +151,7 @@
 						<a class='nav-link dropdown-toggle ${empVO eq null ? "disabled" : ""}' href="#" id="navbarDropdown10" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						${empVO eq null ? "請先登入" : empVO.employee_name} ${empVO eq null ? "" : "您好"}</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown10">
+								<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/emp/homeIndex.jsp">後台管理首頁</a>
 								<a class="dropdown-item" href="<%=request.getContextPath()%>/Back_end/emp/logoutHandler.do?action=logout">員工登出</a>
 							</div> </li> </ul> </div>
 <!-- 以上員工登出-->
