@@ -15,9 +15,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <title>瀏覽場次</title>
 
 <style>
@@ -36,12 +36,9 @@
 
 	<!-- 工作區開始 -->
 
-	<jsp:useBean id="sessionsSvc" scope="page"
-		class="com.sessions.model.SessionsService" />
-	<jsp:useBean id="movieInfoSvc" scope="page"
-		class="com.movieinfo.model.MovieInfoService" />
-	<jsp:useBean id="cinemaSvc" class="com.cinema.model.CinemaService"
-		scope="page" />
+	<jsp:useBean id="sessionsSvc" scope="page" class="com.sessions.model.SessionsService" />
+	<jsp:useBean id="movieInfoSvc" scope="page" class="com.movieinfo.model.MovieInfoService" />
+	<jsp:useBean id="cinemaSvc" class="com.cinema.model.CinemaService" scope="page" />
 
 	<%
 		List<SessionsVO> list;
@@ -129,21 +126,16 @@
 						<th scope="col" style="width: 160px;">電影名稱</th>
 						<th scope="col" style="width: 100px;">廳院名稱</th>
 						<th scope="col" style="width: 120px;">
-							<i data-name="sessions_start" data-value="up"
-								class="fas fa-angle-up" style="cursor: pointer;"></i> 開始時間 
-							<i data-name="sessions_start" data-value="down"
-								class="fas fa-angle-down" style="cursor: pointer;"></i>
+							<i data-name="sessions_start" data-value="up" class="fas fa-angle-up" style="cursor: pointer;"></i> 開始時間 
+							<i data-name="sessions_start" data-value="down" class="fas fa-angle-down" style="cursor: pointer;"></i>
 						</th>
 						<th scope="col" style="width: 120px;">
-							<i data-name="sessions_remaining" data-value="up"
-								class="fas fa-angle-up" style="cursor: pointer;"></i> 剩餘座位
-							<i data-name="sessions_remaining" data-value="down"
-								class="fas fa-angle-down" style="cursor: pointer;"></i>
+							<i data-name="sessions_remaining" data-value="up" class="fas fa-angle-up" style="cursor: pointer;"></i> 剩餘座位
+							<i data-name="sessions_remaining" data-value="down" class="fas fa-angle-down" style="cursor: pointer;"></i>
 						</th>
 						<th scope="col" style="width: 95px;">查看座位</th>
 					</tr>
-					<c:forEach var="sessionsVO" items="${list}" begin="<%=pageIndex%>"
-						end="<%=pageIndex+rowsPerPage-1%>">
+					<c:forEach var="sessionsVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 						<tr>
 
@@ -172,15 +164,15 @@
 									<button type="button" class="page btn btn-secondary" data-name="whichPage" data-value="1">至第一頁</button>
 									<button type="button" class="page btn btn-secondary" data-name="whichPage" data-value="<%=whichPage - 1%>">上一頁</button>
 								<% }else{ %>
-									<button type="button" class="page btn btn-secondary disabled" data-name="whichPage" data-value="1">至第一頁</button>
-									<button type="button" class="page btn btn-secondary disabled" data-name="whichPage" data-value="<%=whichPage - 1%>">上一頁</button>
+									<button type="button" class="btn btn-secondary disabled">至第一頁</button>
+									<button type="button" class="btn btn-secondary disabled">上一頁</button>
 								<% } %>
 								<% if (pageIndex < pageIndexArray[pageNumber - 1]) { %>
 									<button type="button" class="page btn btn-secondary" data-name="whichPage" data-value="<%=whichPage + 1%>">下一頁</button>
 									<button type="button" class="page btn btn-secondary" data-name="whichPage" data-value="<%=pageNumber%>">至最後一頁</button>
 								<% } else { %>
-									<button type="button" class="page btn btn-secondary disabled" data-name="whichPage" data-value="<%=whichPage + 1%>">下一頁</button>
-									<button type="button" class="page btn btn-secondary disabled" data-name="whichPage" data-value="<%=pageNumber%>">至最後一頁</button>
+									<button type="button" class="btn btn-secondary disabled">下一頁</button>
+									<button type="button" class="btn btn-secondary disabled">至最後一頁</button>
 								<% } %>
 							<% } %>
 		
@@ -226,8 +218,10 @@
 					<div class="col-12">
 						<c:forEach var="var" items="${statusOfSitList}">
 								${var.str}
-								<div class="btn disabled " data-sitType="${var.type}"
-								data-sitStr="${var.str}" id="type${var.type}"
+								<div class="btn disabled " 
+								data-sitType="${var.type}"
+								data-sitStr="${var.str}" 
+								id="type${var.type}"
 								style="background-color:${var.coller}; border-color:#000; margin-right:10px">
 							</div>
 						</c:forEach>
