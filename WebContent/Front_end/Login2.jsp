@@ -41,7 +41,7 @@ display: inline;
 
 .container{
 
-margin-top: 50px;
+margin-top: 10px;
 
 }
 
@@ -82,12 +82,11 @@ width:20px;
 <body>
 	<!-- 工作區開始 -->
 	
+<div class="container" >
+		<div class="row justify-content">
+			<div class="col-3"></div>
+			<div class="col-6">	
 	
-	<table id = "table-1">
-
-		<tr><td><h3>Join揪影影城登入系統</h3></td></tr>
-
-	</table>
 
 <%--錯誤表列 --%>
 <c:if test="${not empty errorMsgs }">
@@ -100,6 +99,10 @@ width:20px;
 </c:if >
 	
 
+
+
+
+
 <form  method = "post"   action = "<%=request.getContextPath()%>/Front_end/mem/loginHandler.do" name="form2"  >
 
 <p>帳號: <input type = "text"  name = "member_account" id = "member_account" ></p>
@@ -110,7 +113,7 @@ width:20px;
    <a href="<%=request.getContextPath()%>/Front_end/mem/pswForget.jsp">忘記密碼</a>
 </p>
 </form>
-
+</div></div></div>
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 
 *如果您還未註冊會員 請點擊<a href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">註冊</a>
