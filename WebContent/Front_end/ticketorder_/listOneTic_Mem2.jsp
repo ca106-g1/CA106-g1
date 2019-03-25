@@ -49,22 +49,25 @@
 	</ul>
 </c:if>
 
-<table>
+<table class="table table-hover">
+<thead>
 	<tr>
 	
-	<th>訂單編號</th>
-	<th>會員編號</th>
-	<th>優惠編號</th>
-	<th>場次編號</th>
-	<th>訂單時間</th>
-	<th>訂單金額</th>
+	<th scope="col">訂單編號</th>
+	<th scope="col">會員編號</th>
+	<th scope="col">優惠編號</th>
+	<th scope="col">場次編號</th>
+	<th scope="col">訂單時間</th>
+	<th scope="col">訂單金額</th>
 	
 	</tr>
+	</thead>
+	<tbody>
 <%@ include file = "/File/page1.file" %>
 <c:forEach var = "ticketorderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 	<tr>
-		<td>${ticketorderVO.order_no }</td>
+		<th scope="row">${ticketorderVO.order_no }</th>
 		<td>${ticketorderVO.member_no }</td>
 		<td>${ticketorderVO.fd_no }</td>
 		<td>${ticketorderVO.session_no }</td>
@@ -85,6 +88,7 @@
 		
 	</tr>
 	</c:forEach>
+	</tbody>
 </table>
 <%@ include file="/File/page2.file" %>
 

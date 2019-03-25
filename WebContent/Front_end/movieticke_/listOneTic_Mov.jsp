@@ -48,23 +48,25 @@
 			</ul>
 		</c:if>
 		
-		<table>
+		<table class="table table-hover">
+		<thead>
 			<tr>
-			<th>座位編號</th>
-			<th>訂單編號</th>
-			<th>票種編號</th>
+			<th scope="col">座位編號</th>
+			<th scope="col">訂單編號</th>
+			<th scope="col">票種編號</th>
 			</tr>
-			
+		</thead>
+		<tbody>		
 		<%@ include file = "/File/page1.file" %>
 		<c:forEach var = "movieticketVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 			<tr>
-				<td>${movieticketVO.mt_no}</td>
+				<th scope="row">${movieticketVO.mt_no}</th>
 				<td>${movieticketVO.order_no}</td>
 				<td>${movieticketVO.ti_no}</td>
 			</tr>
 		</c:forEach>
-		
+		</tbody>
 		</table>
 			
 		<%@ include file="/Front_end/movieticke_/page2.file" %>	
