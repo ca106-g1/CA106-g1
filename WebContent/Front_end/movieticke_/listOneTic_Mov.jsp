@@ -35,7 +35,9 @@
 		<table id = "table-1">
 			<tr><td>
 				<h3>電影票明細</h3>
-				<h4><a href = "<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">回首頁</a></h4>
+				<input type="button" value="回首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'">
 		</table>
 	
 		<%--錯誤列表 --%>

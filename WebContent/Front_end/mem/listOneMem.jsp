@@ -31,8 +31,10 @@
 <table id = "table-1" >
 	<tr><td>
 		<h3>會員個人資料</h3>
-		<input type = "button" value="回首頁" style="color:#969696;border:2px #ccc solid;padding:10px;text-align:center;" onclick="location.href='select_page.jsp'">
-	</td></tr>
+		<input type="button" value="回首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='select_page.jsp'">
+			</td></tr>
 </table>	
 
 <table class="table table-hover">

@@ -29,7 +29,7 @@
 <table id = "table-1">
 	<tr><td>
 		<h3>會員儲值明細新增</h3>
-		<input type = "button" value="回首頁" style="color:#969696;border:2px #ccc solid;padding:10px;text-align:center;" onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'">
+		<input type = "button" value="回首頁" style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;" onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'">
 	</td></tr>
 
 </table>
@@ -98,7 +98,7 @@
 </table>
 <br>
 <input type ="hidden" name="action" value="mem_insert">
-<input type = "submit" value="送出新增">
+<input type = "submit" style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;" value="送出新增">
 
 
 

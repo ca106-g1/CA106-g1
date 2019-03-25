@@ -36,8 +36,9 @@
 <table id = "table-1">
 	<tr><td>
 	<h3>所有購票明細</h3>
-	<input type = "button" value="回首頁" style="color:#969696;border:2px #ccc solid;padding:10px;text-align:center;" onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'">
-</table>
+	<input type="button" value="回首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'"></table>
 
 <%--錯誤列表 --%>
 <c:if test="${not empty errorMsgs}">
