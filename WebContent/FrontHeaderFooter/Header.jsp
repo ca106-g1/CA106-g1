@@ -168,7 +168,7 @@
     <!-- All Plugins JS -->
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/others/plugins.js"></script>
     <!-- Active JS -->
-    <script src="<%=request.getContextPath()%>/Home/js/active.js"></script>	
+    <script src="<%=request.getContextPath()%>/Front_end/Home/js/active.js"></script>	
     
     
     

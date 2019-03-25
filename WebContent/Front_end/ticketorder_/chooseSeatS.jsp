@@ -23,6 +23,12 @@ p {
 	margin: 0px;
 	font-family: inherit;
 }
+.col-2>p {
+margin-bottom:0px;
+}
+.table tr>th, .table tr>td{
+padding:0px;
+}
 </style>
 </head>
 <body>
@@ -212,36 +218,18 @@ p {
 						id="sit<%= i * 20 + j%>"
 						style="padding-top:0;padding-bottom:0;
 						
-						<%if(count1>9 && ((i * 20 + j)%25)==0){ %>
-						
-						padding-left:3.5px;padding-right:3.5px;
-						
-						<% }else if(count1<=9 && ((i * 20 + j)%25)==0){%>
-						
-						padding-left:7.75px;padding-right:7.75px;
-						
-						<%} %>
-						
-						<%if((i * 20 + j)>375 && count2>=10){ %>
-						
-						padding-left:3.43px;padding-right:3.36px;
-						
-						<% }else if((i * 20 + j)>375 && count2<10){%>
-						
-						padding-left:7.7px;padding-right:7.7px;
-						
-						<%} %>
+						width:26px;height:22px;
 						
 						background-color:<%=cs.getColler()%>; border-color:#000; margin-left:5px; margin-top:2px">
 						
 						<%						
 						if(((i * 20 + j)%25)==0){ %>
-						<font style="color:white"><%=count1++ %></font>
+						<p style="width:19px;color:white;margin-bottom: 0px;margin-left: -9px;"><%=count1++ %></p>
 						<%} %>
 						
 						<%						
 						if((i * 20 + j)>375){ %>
-						<font style="color:white"><%=count2++ %></font>
+						<p style="width:19px;color:white;margin-bottom: 0px;margin-left: -9px;"><%=count2++ %></p>
 						<%} %>
 						
 					</div>
