@@ -132,12 +132,14 @@
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
+			 <c:if test="${advVO.ad_type>0}" var="condition">
 			 <FORM METHOD="post" ACTION="adv.do" >
 				<input type="submit" value="預覽" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='200' />
 				<input type="hidden" name="ad_no" value="${advVO.ad_no}">  
 			    <input type="hidden" name="action" value="getOne_For_Display_HTML_Back">    
 <!-- 			    <input type="submit" value="送出"> -->
 			    </FORM>
+			    </c:if>
 			</td>
 			<td>
 					<button type='button' id='me' onclick="sendMessage();">推播</button>
@@ -168,7 +170,11 @@
 </body>
 </html>
 
+<script>
 
+
+
+</script>
 
 <script>
 
