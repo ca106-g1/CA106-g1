@@ -137,7 +137,7 @@
        			<option value="0">下架  無版型</option>
           		<option value="1">上架  1.版型</option>
           		<option value="2">上架  2.版型</option>
-          		<option value="3">上架  3.版型</option>
+<!--           		<option value="3">上架  3.版型</option> -->
        		</select>
        </td>
 	</tr>

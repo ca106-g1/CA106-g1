@@ -141,9 +141,9 @@
 				<c:if test="${advVO.ad_type==2}" var="condition">
 				上架  2.版型
 				</c:if>
-				<c:if test="${advVO.ad_type==3}" var="condition">
-				上架  3.版型
-				</c:if>
+<%-- 				<c:if test="${advVO.ad_type==3}" var="condition"> --%>
+<!-- 				上架  3.版型 -->
+<%-- 				</c:if> --%>
 
 <!-- 				<input type="TEXT" name="ad_cont" size="45"  -->
 <%-- 			 value="<%= (advVO.getAd_cont()==null)? "" : advVO.getAd_cont()%>" /> --%>

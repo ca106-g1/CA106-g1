@@ -145,26 +145,26 @@
 				<option value="0" selected>¤U¬[  µLª©«¬</option>
 				<option value="1">¤W¬[  1.ª©«¬</option>
 				<option value="2">¤W¬[  2.ª©«¬</option>
-				<option value="3">¤W¬[  3.ª©«¬</option>
+<!-- 				<option value="3">¤W¬[  3.ª©«¬</option> -->
 				</c:if>
 				<c:if test="${advVO.ad_type==1}" var="condition">
 				<option value="0">¤U¬[  µLª©«¬</option>
 				<option value="1" selected>¤W¬[  1.ª©«¬</option>
 				<option value="2">¤W¬[  2.ª©«¬</option>
-				<option value="3">¤W¬[  3.ª©«¬</option>
+<!-- 				<option value="3">¤W¬[  3.ª©«¬</option> -->
 				</c:if>
 				<c:if test="${advVO.ad_type==2}" var="condition">
 				<option value="0">¤U¬[  µLª©«¬</option>
 				<option value="1">¤W¬[  1.ª©«¬</option>
 				<option value="2" selected>¤W¬[  2.ª©«¬</option>
-				<option value="3">¤W¬[  3.ª©«¬</option>
+<!-- 				<option value="3">¤W¬[  3.ª©«¬</option> -->
 				</c:if>
-				<c:if test="${advVO.ad_type==3}" var="condition">
-				<option value="0">¤U¬[  µLª©«¬</option>
-				<option value="1">¤W¬[  1.ª©«¬</option>
-				<option value="2">¤W¬[  2.ª©«¬</option>
-				<option value="3" selected>¤W¬[  3.ª©«¬</option>
-				</c:if>
+<%-- 				<c:if test="${advVO.ad_type==3}" var="condition"> --%>
+<!-- 				<option value="0">¤U¬[  µLª©«¬</option> -->
+<!-- 				<option value="1">¤W¬[  1.ª©«¬</option> -->
+<!-- 				<option value="2">¤W¬[  2.ª©«¬</option> -->
+<!-- 				<option value="3" selected>¤W¬[  3.ª©«¬</option> -->
+<%-- 				</c:if> --%>
 				
 <!--        			<option value="0">¤U¬[</option> -->
 <!--           		<option value="1">¤W¬[</option> -->

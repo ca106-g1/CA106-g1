@@ -121,9 +121,9 @@
 				<c:if test="${advVO.ad_type==2}" var="condition">
 				上架  2.版型
 				</c:if>
-				<c:if test="${advVO.ad_type==3}" var="condition">
-				上架  3.版型
-				</c:if>
+<%-- 				<c:if test="${advVO.ad_type==3}" var="condition"> --%>
+<!-- 				上架  3.版型 -->
+<%-- 				</c:if> --%>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/adv/adv.do" style="margin-bottom: 0px;">
