@@ -4,6 +4,7 @@
 <%@ page import="com.movieinfo.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.adv.model.*"%>
 <!DOCTYPE html>
 <head>
 <%
@@ -20,6 +21,23 @@
 	pageContext.setAttribute("list", list);
 	System.out.print(list.size());
 %>
+
+<%
+	AdvService advSvc = new AdvService();
+    List<AdvVO> list_adv1 = advSvc.getAll();
+    List<AdvVO> list_adv2 = new ArrayList<AdvVO>();
+    java.util.Date now_adv = new java.util.Date();
+    java.sql.Date sqlDate_adv = new java.sql.Date(now.getTime());
+    
+
+	for(AdvVO advVO:list_adv1){
+	    	if(sqlDate_adv.after(advVO.getAd_start()) && sqlDate_adv.before(advVO.getAd_end())){
+	    		list_adv2.add(advVO);
+	    	}
+	    }
+	    pageContext.setAttribute("list2",list_adv2);
+	    System.out.print(list_adv2.size());
+	%> 
 
 <meta charset="UTF-8">
 <meta name="description" content="">
@@ -59,7 +77,7 @@ input {
 
 </head>
 
-<body>
+<body onload="connect();">
 	<!-- Preloader Start -->
 	<div id="preloader">
 		<div class="yummy-load"></div>
@@ -313,28 +331,71 @@ input {
 
 
 	<!-- ****** Instagram Area Start ****** -->
-	<div
-		class="instargram_area owl-carousel section_padding_100_0 clearfix"
-		id="portfolio">
+	
+	<!--     廣告開始 -->
+    
+    <div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
 
-		<!-- Instagram Item -->
-		<div class="instagram_gallery_item">
-			<!-- Instagram Thumb -->
-			<img src="img/instagram-img/1.jpg" alt="">
-			<!-- Hover -->
-			<div class="hover_overlay">
-				<div class="yummy-table">
-					<div class="yummy-table-cell">
-						<div class="follow-me text-center">
-							<a href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
-								Follow me</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-	</div>
+			<c:forEach var="advVO" items="${list2}" >
+	
+				
+				 <c:if test="${advVO.ad_type!=0}" var="condition">
+				 <c:if test="${not empty advVO.ad_pic}" var="condition">
+								
+				
+				 
+				 <c:if test="${not empty advVO.ad_cont}" var="condition">
+				  <div class="instagram_gallery_item">
+				 <img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/>
+				 <div class="hover_overlay"> 
+                <div class="yummy-table">
+                    <div class="yummy-table-cell">
+                        <div class="follow-me text-center">
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> ${advVO.ad_name}</a>
+                            <FORM METHOD="post" ACTION="adv.do" >
+				 			<input type="image" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Front_end/Home/images1/925763391s.png?ad_no=${advVO.ad_no}" alt="Submit"  width='100' height='80' />
+							<input type="hidden" name="ad_no" value="${advVO.ad_no}">  
+			   				 <input type="hidden" name="action" value="getOne_For_Display_HTML_Home">    
+			   				 </FORM>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+				</c:if>
+				
+				
+				 <c:if test="${empty advVO.ad_cont}" var="condition">
+				 <div class="instagram_gallery_item">
+				<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/>
+				 <div class="hover_overlay"> 
+                <div class="yummy-table">
+                    <div class="yummy-table-cell">
+                        <div class="follow-me text-center">
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> ${advVO.ad_name}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+				</c:if>
+				
+				
+				</c:if>
+				</c:if>
+
+	</c:forEach>
+
+    </div>
+    
+<!--     廣告結束 -->
+    
+	<h3 id="statusOutput" class="statusOutput"></h3>
+	
+	
+	
+	
 	<!-- ****** Our Creative Portfolio Area End ****** -->
 
 	<!-- ****** Footer Social Icon Area Start ****** -->
@@ -488,9 +549,70 @@ input {
 </body>
 
 
+<script>
 
+	
+
+    
+    var MyPoint = "/MyEchoServer/peter";
+    var host = window.location.host;
+    var path = window.location.pathname;
+    var webCtx = path.substring(0, path.indexOf('/', 1));
+    var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+    
+	var statusOutput = document.getElementById("statusOutput");
+	var webSocket;
+	
+	function connect() {
+		
+
+		
+// 		alert("!");
+		
+		// 建立 websocket 物件
+		webSocket = new WebSocket(endPointURL);
+		
+		webSocket.onopen = function(event) {
+			updateStatus("");
+// 			document.getElementById('disconnect').disabled = false;
+		};
+
+		webSocket.onmessage = function(event) {
+			var messagesArea = document.getElementById("messagesArea");
+	        var jsonObj = JSON.parse(event.data);
+// 	        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
+	        var message = jsonObj.message + "\r\n";
+	        alert(message + "上架了! 快來看!");
+	        
+		
+		};
+
+		webSocket.onclose = function(event) {
+			updateStatus("WebSocket 已離線");
+		};
+	}
+	
+	
+	function disconnect () {
+		webSocket.close();
+		document.getElementById('sendMessage').disabled = true;
+		document.getElementById('connect').disabled = false;
+		document.getElementById('disconnect').disabled = true;
+	}
+
+	
+	function updateStatus(newStatus) {
+		statusOutput.innerHTML = newStatus;
+	}
+	
+	 
+    
+</script>
 
 
 
 
 </html>
+
+
+
