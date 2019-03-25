@@ -138,12 +138,12 @@ input {
 					<input type="submit" value="廣告管理">
 				</FORM>
 			</div>
-		<div class="item ">
-			<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Back_end/emp/logoutHandler.do">
-				<input type="submit" value="登出"> <input type="hidden"
-					name="logout" value="logout">
-			</FORM>
-		</div>
+<!-- 		<div class="item "> -->
+<%-- 			<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Back_end/emp/logoutHandler.do"> --%>
+<!-- 				<input type="submit" value="登出"> <input type="hidden" -->
+<!-- 					name="logout" value="logout"> -->
+<!-- 			</FORM> -->
+<!-- 		</div> -->
 		</div>
 
 	</div>
