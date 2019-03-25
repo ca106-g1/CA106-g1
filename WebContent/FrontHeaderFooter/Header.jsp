@@ -41,43 +41,24 @@
 						<div class="login_register_area d-flex">
 						
 <!-- 						20190325-子傑更新 -->
-
-
-						
-						<c:if test="${empty memVO}">
-						
-						
+						<c:choose>
+						    <c:when test="${empty memVO}">
 							<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button"
-								class="btn btn-primary" data-toggle="modal"
-								data-target="#loginDescription">sign in</button>
-								
-								
+								class="btn btn-primary" data-toggle="modal" data-target="#loginDescription">sign in</button>
 							<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button"
 								class="btn btn-primary"  onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp'">
 								sign up</button>
-								
-						</c:if>	
-						
-						
-						<c:if test="${not empty memVO}">
-						
-						<li><a>Hello: <font color=#ea7500 size=4px >${memVO.member_name}</font>您好
-							</a></li>
-							
-						
-<!-- 						<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button" -->
-<%-- 								class="btn btn-primary"  onclick="location.href='<%=request.getContextPath()%>/Front_end/Login.jsp'"> --%>
-<!-- 								Logout</button> -->
-
-						<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Front_end/mem/logoutHandler.do">
-							<input type="submit" value="logout">
-							<input type="hidden" name="logout" value="logout">
-						</FORM>
-						
-						</c:if>
-								
-								
-							
+						    </c:when>
+						    <c:when test="${not empty memVO}">
+								<li><a>Hello: <font color=#ea7500 size=4px >${memVO.member_name}</font>您好</a></li>
+								<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Front_end/mem/logoutHandler.do">
+									<input type="submit" value="logout">
+									<input type="hidden" name="logout" value="logout">
+								</FORM>
+						    </c:when>
+						    <c:otherwise>
+						    </c:otherwise>
+						</c:choose>
 						</div>
                     </div>
                 </div>
@@ -120,7 +101,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buy Tickets</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="#">Special Offer</a>
+                                        <a class="dropdown-item" href="#" id="openfdDescriptioninheader">Special Offer</a>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/prompt.jsp">Ticket Info</a>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">Buy Tickets</a>
                                     </div>
@@ -130,9 +111,8 @@
                                     <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">Movie News</a>
                                 </li>
 					<!--影視新聞 -->
-					
-					<c:if test="${empty memVO}">
-					
+					<c:choose>
+					    <c:when test="${empty memVO}">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Member</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
@@ -140,13 +120,8 @@
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation2.jsp">Member Notice</a>
                                     </div>
                                 </li>
-                                
-                     </c:if>
-                     
-                     
-                     
-                     <c:if test="${not empty memVO}">
-                     
+					    </c:when>
+					    <c:when test="${not empty memVO}">
                      			<li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Member</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
@@ -155,9 +130,10 @@
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/update_mem_input.jsp">Member Modify</a>
                                     </div>
                                 </li>
-                                
-                     
-                     </c:if>
+					    </c:when>
+					    <c:otherwise>
+					    </c:otherwise>
+					</c:choose>
                      
  					<!--會員功能 -->
                                 <li class="nav-item">
@@ -171,15 +147,6 @@
         </div>
     </header>
     <!-- ****** Header Area End ****** -->
-    
-    
-
-
-
-
-
-
-
 
 	<!-- Jquery-2.2.4 js -->
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/jquery/jquery-2.2.4.min.js"></script>
@@ -194,8 +161,28 @@
     
     
     
+		<!-- 以下優惠活動 -->
     
-    
+    <div class="modal fade" id="fdDescription-inheader" tabindex="-1" role="dialog" aria-labelledby="fdDescriptionTitle-inheader" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		    	
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="fdDescriptionTitle-inheader">優惠說明</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      
+		      <div class="modal-body" id="fdDescription_modal-body-inheader">
+		      </div>
+		      
+		      <div class="modal-footer">
+		        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 <!--     子傑更新 20190325 -->
     
     <div class="modal fade" id="loginDescription" tabindex="-1" role="dialog" aria-labelledby="loginDescriptionTitle" aria-hidden="true">
@@ -218,12 +205,12 @@
 </div>
 	<!-- 子傑登入js -->
 	<script>
-	function openloginDescription(e){
-		$('#loginDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/Login2.jsp?myself=<%=request.getRequestURI()%>');
-	}
-	
-	function openfdDescriptioninheader(e){
-		$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/farediscount/fdDescription.jsp');
+		function openloginDescription(e){
+			$('#loginDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/Login2.jsp?myself=<%=request.getRequestURI()%>');
+		}
+		
+		function openfdDescriptioninheader(e){
+			$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/farediscount/fdDescription.jsp');
 		}
 
 		$(document).ready(function() {

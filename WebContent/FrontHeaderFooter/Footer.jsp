@@ -153,7 +153,11 @@
 			webSocket_map.onclose = function(event) {};
 		}
 		
-		$(document).ready(connect_footer);
+		function init(){
+			connect_footer();
+		}
+		
+		$(document).ready(init);
 	</script>
 </body>
 </html>
