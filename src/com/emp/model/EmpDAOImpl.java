@@ -38,7 +38,7 @@ public class EmpDAOImpl implements EmpDAO_interface {
 			 "INSERT INTO EMPLOYEE (employee_no,employee_name,employee_sex,employee_builddate,employee_quitdate,employee_ability,employee_status,employee_password) VALUES (EMPLOYEE_seq.NEXTVAL,?,?,?,?,?,?,?)";
 
 	 private static final String GET_ALL_EMP = 
-			 "SELECT employee_no,employee_name,employee_sex,employee_builddate,employee_quitdate,employee_ability,employee_status,employee_password FROM EMPLOYEE order by employee_no";
+			 "SELECT employee_no,employee_name,employee_sex,employee_builddate,employee_quitdate,employee_ability,employee_status,employee_password FROM EMPLOYEE order by employee_no DESC";
 	 
 	 private static final String GET_ONE_EMP = 
 			 "SELECT employee_no,employee_name,employee_sex,employee_builddate,employee_quitdate,employee_ability,employee_status,employee_password FROM EMPLOYEE where employee_no = ?";
