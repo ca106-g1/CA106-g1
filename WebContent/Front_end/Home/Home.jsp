@@ -3,7 +3,6 @@
 <%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
 <%@ page import="com.movieinfo.model.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.adv.model.*"%>
 <!DOCTYPE html>
 <head>
 	<%
@@ -21,23 +20,6 @@
 	    System.out.print(list.size());
 	
 	%>
-	
-	<%
-	AdvService advSvc = new AdvService();
-    List<AdvVO> list_adv1 = advSvc.getAll();
-    List<AdvVO> list_adv2 = new ArrayList<AdvVO>();
-    java.util.Date now_adv = new java.util.Date();
-    java.sql.Date sqlDate_adv = new java.sql.Date(now.getTime());
-    
-
-	for(AdvVO advVO:list_adv1){
-	    	if(sqlDate_adv.after(advVO.getAd_start()) && sqlDate_adv.before(advVO.getAd_end())){
-	    		list_adv2.add(advVO);
-	    	}
-	    }
-	    pageContext.setAttribute("list",list_adv2);
-	    System.out.print(list_adv2.size());
-	%> 
 
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -58,10 +40,8 @@
     <link href="css/responsive/responsive.css" rel="stylesheet">
     <style>
     	.moviein_pic{
-    	
     		width:300px;
     		height:500px;
-    	
     	}
     </style>
 
@@ -88,7 +68,7 @@
                 <div class="col-5 col-sm-6">
                     <!--  Top Social bar start -->
                     <div class="top_social_bar">
-                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100000279160092"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
@@ -100,24 +80,24 @@
                     <div class="signup-search-area d-flex align-items-center justify-content-end">
                         <div class="login_register_area d-flex">
                             <div class="login" >
-                                <a href="<%=request.getContextPath()%>/Front_end/Login.jsp">Sign in</a>
+                                <a href="#">Sign in</a>
                             </div>
                             <div class="register">
-                                <a href="register.html">Sign up</a>
+                                <a href="#">Sign up</a>
                             </div>
                         </div>
                         <!-- Search Button Area -->
-                        <div class="search_button">
-                            <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                        </div>
+<!--                         <div class="search_button"> -->
+<!--                             <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a> -->
+<!--                         </div> -->
                         <!-- Search Form -->
-                        <div class="search-hidden-form">
-                            <form action="#" method="get">
-                                <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
-                                <input type="submit" value="" class="d-none">
-                                <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
-                            </form>
-                        </div>
+<!--                         <div class="search-hidden-form"> -->
+<!--                             <form action="#" method="get"> -->
+<!--                                 <input type="search" name="search" id="search-anything" placeholder="Search Anything..."> -->
+<!--                                 <input type="submit" value="" class="d-none"> -->
+<!--                                 <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span> -->
+<!--                             </form> -->
+<!--                         </div> -->
                     </div>
                 </div>
             </div>
@@ -150,25 +130,33 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movie Info</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/upComingListAll.jsp">Up Coming</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/listAllMovieInfo.jsp">In Theater</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/hotMovie.jsp">Hot Movie</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/rankMovieList.jsp">Top Ten/Years</a>
-                                        
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/upComingListAll.jsp">Soon Be On</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/listAllMovieInfo.jsp">In Theaters</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/rankMovieList.jsp">Top Ten</a>
                                     </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">Buy Tickets</a>
+					<!--電影資訊 -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buy Tickets</a>
+                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                        <a class="dropdown-item" href="#">Special Offer</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/prompt.jsp">Ticket Info</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">Buy Tickets</a>
+                                    </div>
                                 </li>
+        			<!--訂票功能 -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">News</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">Movie News</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/adv/listAllAdv.jsp">Advertisements</a>
+					<!--影視新聞 -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Member</a>
+                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">Sign Up</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation2.jsp">Member Notice</a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/Login.jsp">Member</a>
-                                </li>
+ 					<!--會員功能 -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">About</a>
                                 </li>
@@ -186,21 +174,21 @@
 
 		<c:forEach var="movieinfoVO" items="${list}">
 			
-	        Single Slide
+	        <!-- Single Slide -->
 	        <div class="welcome-single-slide">
-	            Post Thumb
+	            <!-- Post Thumb -->
 	            <c:set var="mimg" value="${movieinfoVO.movie_pic}" />
 	            <%
 	            	byte b[] = (byte[])pageContext.getAttribute("mimg");
 	            	String movie_pic = Base64.encode(b);
 	            %>
-	            <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display&movie_no=${movieinfoVO.movie_no}"><img class="moviein_pic" src="data:image/jpg;base64,<%=movie_pic%>"></a>
-	            Overlay Text
+	            <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display_Front&movie_no=${movieinfoVO.movie_no}"><img class="moviein_pic" src="data:image/jpg;base64,<%=movie_pic%>"></a>
+	            <!-- Overlay Text -->
 	            <div class="project_title">
 	                <div class="post-date-commnents d-flex">
-	                    <a href="#">${movieinfoVO.movie_in}</a>
+	                    <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display_Front&movie_no=${movieinfoVO.movie_no}">${movieinfoVO.movie_in}</a>
 	                </div>
-	                <a href="#">
+	                <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display_Front&movie_no=${movieinfoVO.movie_no}">
 	                    <h5>${movieinfoVO.movie_name}</h5>
 	                </a>
 	            </div>
@@ -220,7 +208,7 @@
                     <div class="single_catagory wow fadeInUp" data-wow-delay=".3s">
                         <img src="img/catagory-img/.png" alt="">
                         <div class="catagory-title">
-                            <a href="#">
+                            <a href="<%=request.getContextPath()%>/Front_end/movieinfo/listAllMovieInfo.jsp">
                                 <h5>Movie Info</h5>
                             </a>
                         </div>
@@ -230,7 +218,7 @@
                     <div class="single_catagory wow fadeInUp" data-wow-delay=".6s">
                         <img src="img/catagory-img/.jpg" alt="" >
                         <div class="catagory-title">
-                            <a href="#">
+                            <a href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">
                                 <h5>Showtimes</h5>
                             </a>
                         </div>
@@ -240,8 +228,8 @@
                     <div class="single_catagory wow fadeInUp" data-wow-delay=".9s">
                         <img src="img/catagory-img/.png" alt="">
                         <div class="catagory-title">
-                            <a href="#">
-                                <h5>Chat Room</h5>
+                            <a href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">
+                                <h5>Movie News</h5>
                             </a>
                         </div>
                     </div>
@@ -253,68 +241,25 @@
 
     
     <!-- ****** Instagram Area Start ****** -->
-    
-    
-<!--     廣告開始 -->
-    
     <div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
 
-
-			<c:forEach var="advVO" items="${list}" >
-	
-				
-				 <c:if test="${advVO.ad_type!=0}" var="condition">
-				 <c:if test="${not empty advVO.ad_pic}" var="condition">
-								
-				
-				 
-				 <c:if test="${not empty advVO.ad_cont}" var="condition">
-				  <div class="instagram_gallery_item">
-				 <img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/>
-				 <div class="hover_overlay"> 
+        <!-- Instagram Item -->
+        <div class="instagram_gallery_item">
+            <!-- Instagram Thumb -->
+            <img src="img/instagram-img/1.jpg" alt="">
+            <!-- Hover -->
+            <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
                         <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> ${advVO.ad_name}</a>
-                            <FORM METHOD="post" ACTION="adv.do" >
-				 			<input type="image" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='150' />
-							<input type="hidden" name="ad_no" value="${advVO.ad_no}">  
-			   				 <input type="hidden" name="action" value="getOne_For_Display_HTML_Home">    
-			   				 </FORM>
+                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-				</c:if>
-				
-				
-				 <c:if test="${empty advVO.ad_cont}" var="condition">
-				 <div class="instagram_gallery_item">
-				<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}' width='200' height='200'/>
-				 <div class="hover_overlay"> 
-                <div class="yummy-table">
-                    <div class="yummy-table-cell">
-                        <div class="follow-me text-center">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> ${advVO.ad_name}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-				</c:if>
-				
-				
-				</c:if>
-				</c:if>
-
-	</c:forEach>
 
     </div>
-    
-<!--     廣告結束 -->
-    
-    
     <!-- ****** Our Creative Portfolio Area End ****** -->
 
     <!-- ****** Footer Social Icon Area Start ****** -->
@@ -324,7 +269,7 @@
                 <div class="col-12">
                     <div class="footer-social-area d-flex">
                         <div class="single-icon">
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i><span>facebook</span></a>
+                            <a href="https://www.facebook.com/profile.php?id=100000279160092"><i class="fa fa-facebook" aria-hidden="true"></i><span>facebook</span></a>
                         </div>
                         <div class="single-icon">
                             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i><span>Twitter</span></a>
@@ -336,13 +281,13 @@
                             <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>linkedin</span></a>
                         </div>
                         <div class="single-icon">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+                            <a href="https://www.instagram.com/illilliili/"><i class="fa fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
                         </div>
                         <div class="single-icon">
                             <a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i><span>VIMEO</span></a>
                         </div>
                         <div class="single-icon">
-                            <a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i><span>YOUTUBE</span></a>
+                            <a href="https://www.youtube.com/channel/UClhecf7eOGHwbKW5e7l_pTA"><i class="fa fa-youtube-play" aria-hidden="true"></i><span>YOUTUBE</span></a>
                         </div>
                     </div>
                 </div>
@@ -398,7 +343,7 @@
                 <div class="col-12">
                     <!-- Copywrite Text -->
                     <div class="copy_right_text text-center">
-                        <p>Copyright @2018 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        <p>Copyright @2019 All rights reserved | This web is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">CA106-G1</a></p>
                     </div>
                 </div>
             </div>
