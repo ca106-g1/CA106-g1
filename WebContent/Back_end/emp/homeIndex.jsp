@@ -139,7 +139,7 @@ input {
 				</FORM>
 			</div>
 		<div class="item ">
-			<FORM METHOD="POST" ACTION="logoutHandler.do">
+			<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Back_end/emp/logoutHandler.do">
 				<input type="submit" value="登出"> <input type="hidden"
 					name="logout" value="logout">
 			</FORM>
