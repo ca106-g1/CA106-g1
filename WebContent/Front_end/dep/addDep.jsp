@@ -20,22 +20,73 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title>會員儲值明細新增</title>
+
+
+
+<style>
+
+.
+
+.table9_11 table {
+	width:100%;
+	margin:15px 0
+}
+.table9_11 th {
+	background-color:#d92031;
+	background:-o-linear-gradient(90deg, #d92031, #efeffa);
+	background:-moz-linear-gradient( center top, #d92031 55%, #efeffa 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d92031), color-stop(1, #efeffa) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d92031', endColorstr='#efeffa');
+	color:#FFFFFF
+}
+.table9_11,.table9_11 th,.table9_11 td
+{
+	font-size:0.95em;
+	text-align:center;
+	padding:4px;
+	border:1px solid #2020bc;
+	border-collapse:collapse
+}
+.table9_11 td {
+
+	border:1px solid #efeffa;
+	border-collapse:collapse
+	
+}
+.table9_11 tr:nth-child(odd){
+	background-color:#aaaaee;
+	background:-o-linear-gradient(90deg, #aaaaee, #eeeefb);
+	background:-moz-linear-gradient( center top, #aaaaee 5%, #eeeefb 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #aaaaee), color-stop(1, #eeeefb) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#aaaaee', endColorstr='#eeeefb');
+}
+.table9_11 tr:nth-child(even){
+	background-color:#fdfdfd;
+}
+</style>
+
 </head>
 <body bgcolor='white'>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-3"></div>
+			<div class="col-6">
+	
 <table id = "table-1">
 	<tr><td>
-		<h3>會員儲值明細新增</h3>
-		<input type = "button" value="回首頁" style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;" onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'">
+		<h3>JOIN儲值頁面</h3>
+		
 	</td></tr>
 
 </table>
 
 
-<h3>資料新增:</h3>
+
 
 <%--錯誤列表 --%>
 <c:if test="${not empty errorMsgs}">
@@ -46,9 +97,9 @@
 		</c:forEach>	
 	</ul>
 </c:if>
-
+<br><br>
 <FORM METHOD="post" ACTION="dep.do" name="form1">
-<table>
+<table class="table">
 
 	<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 	<tr>
@@ -75,17 +126,17 @@
 	</tr>		
 	
 	<tr>
-		<td>異動金額</td>
+		<th scope="row" >請輸入儲值金額</th>
 		<td><input type = "text" name="deposit_change_money" id="deposit_change_money" size="45"
 			value="<%= (depVO==null)?"":""%>" /></td>
 	</tr>
 	<tr>
-		<td>信用卡密碼</td>
+		<th scope="row">信用卡密碼</th>
 		<td><input type = "text" name="member_credit_number" id="member_credit_number" size="45"></td>
 	</tr>
 	
 	<tr>
-		<td>驗證末三碼</td>
+		<th scope="row">驗證末三碼</th>
 		<td><input type = "text" name="member_back_verification" id="member_back_verification" size="45"></td>
 	</tr>
 	<tr>
@@ -93,23 +144,49 @@
 	
 	</tr>
 	
-	
+	<tr>
+	<th scope="row">信用卡類別</th>
+	<td>
+<select >
+　<option value="Taipei">VISA</option>
+　<option value="Taoyuan">PayPal</option>
+　<option value="Hsinchu">WebATM</option>
+　<option value="Miaoli">MasterCard</option>
+</select>
+</td></tr>
 
 </table>
+
+
 <br>
 <input type ="hidden" name="action" value="mem_insert">
 <input type = "submit" style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;" value="送出新增">
-
-
-
-
-
-
+<input type = "button" value="回首頁" style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;" onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/select_page.jsp'">
+<img src = "img/popcorn.jpg" height="20" width="20" onclick="iddo(this)">
 </FORM>
 
 
+<br><br>
 
-<img src = "img/popcorn.jpg" height="20" width="20" onclick="iddo(this)">
+<table class=table9_11>
+<tr>
+	<th>訊息提示</th>
+</tr>
+<tr>
+	<td>[系統]儲值系統每周維護時間:每周一07:00~08:00</td>
+</tr>
+<tr>
+	<td style="text-align:left;">[系統]請勿使用非法管道進行儲值</td>
+</tr>
+<tr>
+	<td>[系統]JOIN影城期待與你們揪影相看電影的每一天</td>
+</tr>
+</table>
+
+</div></div></div>
+
+
+
 
 
 <script>
