@@ -46,6 +46,16 @@
 			position: relative;
 			z-index:999;
 		}
+		.card-img{
+  			position:fixed;
+  			top:0;
+  			left:0;
+  			bottom:0;
+  			right:0;
+  			z-index:-999;
+  			min-height:100%;
+  			width:100%;
+ 		 }
 		
 		</style>
 
@@ -56,7 +66,9 @@
 
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
-
+<div>
+	<img src="<%=request.getContextPath()%>/Front_end/Home/images1/background3.jpg" class="card-img" alt="..." style="">
+</div>
 
 
 <!-- Header -->
