@@ -1,149 +1,206 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ page import="com.mem.model.*" %>
 <!DOCTYPE html>
 <html>
-<head>
- 	<meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-
-    <link rel="icon" href="<%=request.getContextPath()%>/Front_end/Home/img/core-img/favicon.ico">
-    <link href="<%=request.getContextPath()%>/Front_end/Home/style.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/Front_end/Home/css/responsive/responsive.css" rel="stylesheet">
-    
-    
-</head>
-<body>
-
-<!-- ****** Top Header Area Start ****** -->
-    <div class="top_header_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-5 col-sm-6">
-                    <!--  Top Social bar start -->
-                    <div class="top_social_bar">
-                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-                <!--  Login Register Area -->
-                <div class="col-7 col-sm-6">
-                    <div class="signup-search-area d-flex align-items-center justify-content-end">
-                        <div class="login_register_area d-flex">
-                            <div class="login" >
-                                <a href="<%=request.getContextPath()%>/Front_end/Login.jsp">Sign in</a>
-                            </div>
-                            <div class="register">
-                                <a href="register.html">Sign up</a>
-                            </div>
-                        </div>
-                        <!-- Search Button Area -->
-                        <div class="search_button">
-                            <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                        </div>
-                        <!-- Search Form -->
-                        <div class="search-hidden-form">
-                            <form action="#" method="get">
-                                <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
-                                <input type="submit" value="" class="d-none">
-                                <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+	<head>
+		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+		<style>
+			header{
+			position:fixed;
+			z-index:999;
+			}
+		</style>
+	</head>
+	<body>
+	<header class="container-fluid">
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+				
+					<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">訂票</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">線上訂票</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/prompt.jsp">訂票須知</a> 
+							<a class="dropdown-item" href="#" id="openfdDescriptioninheader" data-toggle="modal" data-target="#fdDescription-inheader">優惠訊息</a>
+						</div>
+					</div>
+	
+					<!-- 以上是訂票功能 -->
+	
+				<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">電影簡介</button>						
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/upComingListAll.jsp">即將上映</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/listAllMovieInfo.jsp">現正熱映</a> 
+<%-- 							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/hotMovie.jsp">熱門電影推薦</a> --%>
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/rankMovieList.jsp">年度電影推薦</a> 
+						</div>
+				</div>
+						<!-- 以上是電影簡介功能-->
+	
+				<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">影視新聞</button>						
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">影視新聞</a> 
+						</div>
+				</div>
+						<!-- 以上是影視新聞功能-->
+						
+				
+				<!-- 子傑開始	 -->
+			
+				<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMemIndexButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" >Home</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMemIndexButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp">回影城首頁</a>  
+						</div>
+					</div>
+	
+	
+						
+				
+				<c:if test="${empty memVO}">
+				
+					<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMemButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" >會員註冊</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMemButton">
+							
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">會員註冊</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation2.jsp">會員註冊須知</a> 
+						</div>
+					</div>
+				
+				
+				<button id="openloginDescription" type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginDescription">
+						 	登入
+				</button>
+				
+				</c:if>
+				
+					<!-- 以上為登入 -->
+					
+					<c:if test="${not empty memVO}">
+					
+					
+					
+					<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMemButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" >會員個人資料</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMemButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">會員首頁</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/listOneMem.jsp">會員資料查看</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/update_mem_input.jsp">會員資料修改</a> 
+						</div>
+					</div>
+					
+					
+					<div class="col-1">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMemIndexButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" >Home</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMemIndexButton">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp">回影城首頁</a>  
+						</div>
+					</div>
+					
+					
+						<li><a>Hello:
+						<font color=#ea7500>${memVO.member_name}</font>您好
+						</a></li>
+						
+						
+						<div class="col-1">
+						
+						<FORM METHOD="POST" ACTION = "<%=request.getContextPath()%>/Front_end/mem/logoutHandler.do">
+							<td><input type = "submit" value="登出">
+							<input type = "hidden" name="logout" value="logout"> 
+							</td>
+						</FORM>
+						
+					</div>
+					
+					</c:if>
+					
+					
+					
+					<!-- 以上為登出 -->
+				
+				
+				</div>
+			</div>
+		</header>
+		<div style="height:80px;">
+		</div>
+		<div class="modal fade" id="fdDescription-inheader" tabindex="-1" role="dialog" aria-labelledby="fdDescriptionTitle-inheader" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		    	
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="fdDescriptionTitle-inheader">優惠說明</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      
+		      <div class="modal-body" id="fdDescription_modal-body-inheader">
+		      </div>
+		      
+		      <div class="modal-footer">
+		        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Modal -->
+<div class="modal fade" id="loginDescription" tabindex="-1" role="dialog" aria-labelledby="loginDescriptionTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    	
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginDescriptionTitle">Join揪影影城登入系統</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="loginDescription_modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
-    <!-- ****** Top Header Area End ****** -->
+  </div>
+</div>
 
-    <!-- ****** Header Area Start ****** -->
-    <header class="header_area">
-        <div class="container">
-            <div class="row">
-                <!-- Logo Area Start -->
-                <div class="col-12">
-                    <div class="logo_area text-center">
-                        <a href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp" class="yummy-logo">Join Theater</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <nav class="navbar navbar-expand-lg">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yummyfood-nav" aria-controls="yummyfood-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>
-                        <!-- Menu Area Start -->
-                        <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
-                            <ul class="navbar-nav" id="yummy-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movie Info</a>
-                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/upComingListAll.jsp">Soon Be On</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/listAllMovieInfo.jsp">In Theater</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/movieinfo/rankMovieList.jsp">Top Ten</a>
-                                    </div>
-                                </li>
-					<!--電影資訊 -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buy Tickets</a>
-                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="#">Special Offer</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/prompt.jsp">Ticket Info</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/ticketorder_/choiseSessions.jsp">Buy Tickets</a>
-                                    </div>
-                                </li>
-        			<!--訂票功能 -->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">Movie News</a>
-                                </li>
-					<!--影視新聞 -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Member</a>
-                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">Sign Up</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation2.jsp">Member Notice</a>
-                                    </div>
-                                </li>
- 					<!--會員功能 -->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">About</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- ****** Header Area End ****** -->
-    
-    
-
-
-
-
-
-
-
-
-	<!-- Jquery-2.2.4 js -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap-4 js -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins JS -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/others/plugins.js"></script>
-    <!-- Active JS -->
-    <script src="<%=request.getContextPath()%>/Home/js/active.js"></script>	
-</body>
+<!-- 以上登入畫面 -->
+<script>
+	function openloginDescription(e){
+		$('#loginDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/Login2.jsp?myself=<%=request.getRequestURI()%>');
+	}
+	
+	function openfdDescriptioninheader(e){
+		$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/farediscount/fdDescription.jsp');
+	}
+			
+	$(document).ready(
+			function(){
+				$('#openfdDescriptioninheader').click(openfdDescriptioninheader);
+				$('#openloginDescription').click(openloginDescription);
+				});
+</script>
+	
+	</body>
 </html>

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.mem.model.*"%>
     
 <!DOCTYPE html>
 <html>
@@ -35,50 +33,28 @@
                     </div>
                 </div>
                 <!--  Login Register Area -->
-				<div class="col-7 col-sm-6">
-					<div
-						class="signup-search-area d-flex align-items-center justify-content-end">
-						<div class="login_register_area d-flex">
-						
-<!-- 						20190325-子傑更新 -->
-
-
-						
-						<c:if test="${empty memVO}">
-						
-						
-							<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button"
-								class="btn btn-primary" data-toggle="modal"
-								data-target="#loginDescription">sign in</button>
-								
-								
-							<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button"
-								class="btn btn-primary"  onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp'">
-								sign up</button>
-								
-						</c:if>	
-						
-						
-						<c:if test="${not empty memVO}">
-						
-						<li><a>Hello: <font color=#ea7500 size=4px >${memVO.member_name}</font>您好
-							</a></li>
-							
-						
-<!-- 						<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button" -->
-<%-- 								class="btn btn-primary"  onclick="location.href='<%=request.getContextPath()%>/Front_end/Login.jsp'"> --%>
-<!-- 								Logout</button> -->
-
-						<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Front_end/mem/logoutHandler.do">
-							<input type="submit" value="logout">
-							<input type="hidden" name="logout" value="logout">
-						</FORM>
-						
-						</c:if>
-								
-								
-							
-						</div>
+                <div class="col-7 col-sm-6">
+                    <div class="signup-search-area d-flex align-items-center justify-content-end">
+                        <div class="login_register_area d-flex">
+                            <div class="login" >
+                                <a href="<%=request.getContextPath()%>/Front_end/Login.jsp">Sign in</a>
+                            </div>
+                            <div class="register">
+                                <a href="register.html">Sign up</a>
+                            </div>
+                        </div>
+                        <!-- Search Button Area -->
+                        <div class="search_button">
+                            <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                        <!-- Search Form -->
+                        <div class="search-hidden-form">
+                            <form action="#" method="get">
+                                <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
+                                <input type="submit" value="" class="d-none">
+                                <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,50 +145,5 @@
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/others/plugins.js"></script>
     <!-- Active JS -->
     <script src="<%=request.getContextPath()%>/Home/js/active.js"></script>	
-    
-    
-    
-    
-    
-<!--     子傑更新 20190325 -->
-    
-    <div class="modal fade" id="loginDescription" tabindex="-1" role="dialog" aria-labelledby="loginDescriptionTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    	
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginDescriptionTitle">Join揪影影城登入系統</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="loginDescription_modal-body">
-      </div>
-      <div class="modal-footer">
-        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-	<!-- 子傑登入js -->
-	<script>
-	function openloginDescription(e){
-		$('#loginDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/Login2.jsp?myself=<%=request.getRequestURI()%>');
-	}
-	
-	function openfdDescriptioninheader(e){
-		$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/farediscount/fdDescription.jsp');
-		}
-
-		$(document).ready(function() {
-			$('#openfdDescriptioninheader').click(openfdDescriptioninheader);
-			$('#openloginDescription').click(openloginDescription);
-		});
-	</script>
-    
-    
-    
-    
-    
 </body>
 </html>
