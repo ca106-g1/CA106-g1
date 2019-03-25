@@ -130,6 +130,9 @@
                                     <a class="nav-link" href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">Movie News</a>
                                 </li>
 					<!--影視新聞 -->
+					
+					<c:if test="${empty memVO}">
+					
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Member</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
@@ -137,6 +140,25 @@
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation2.jsp">Member Notice</a>
                                     </div>
                                 </li>
+                                
+                     </c:if>
+                     
+                     
+                     
+                     <c:if test="${not empty memVO}">
+                     
+                     			<li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Member</a>
+                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">Member Home</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/listOneMem.jsp">Member Show</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/update_mem_input.jsp">Member Modify</a>
+                                    </div>
+                                </li>
+                                
+                     
+                     </c:if>
+                     
  					<!--會員功能 -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">About</a>
