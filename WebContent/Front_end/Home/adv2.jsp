@@ -29,6 +29,25 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets2/css/main.css" />
+		
+		
+		<style type="text/css">
+		img{
+			filter: sepia() blur(2px);
+			width: 600px;
+			height: 400px;
+			transition: all 0.8s;
+		}
+		img:hover{
+			filter: sepia(0) blur(0px);
+			box-shadow: 0px 0px 2px #333;
+			border: 1px solid #fff;
+			transform: scale(1.2, 1.2);
+			position: relative;
+			z-index:999;
+		}
+		
+		</style>
 
 
 
@@ -56,9 +75,10 @@
 					<section id="intro" class="main">
 <%-- 					<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/> --%>
 						<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
-						<span class="icon fa-diamond major"></span>
+						<br><br><br>
+						<span class="icon fa-diamond major" id="diamond"></span>
 						
-						<div id="messagesArea" class="panel message-area"  ></div> 
+						<div id="messagesArea" class="panel message-area"   style="text-align:left;"></div> 
 <!-- 						<h2>Magna porta maximus</h2> -->
 <!-- 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae<br /> -->
 <!-- 						malesuada turpis. Nam pellentesque in ac aliquam. Aliquam tempor<br /> -->
