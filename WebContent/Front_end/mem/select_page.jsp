@@ -39,6 +39,13 @@ color:#969696;border:2px #ccc solid;padding:10px;text-align:center;
 color:#969696;border:2px #ccc solid;padding:10px;text-align:center;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -100px;
+  margin-left: -100px;
+}
+
 </style>
 
 
@@ -51,10 +58,10 @@ color:#969696;border:2px #ccc solid;padding:10px;text-align:center;
 	<!-- 工作區開始 -->
 
 
-<div class="container">
+<div class="container-fluid">
 	<div class="row" >
 	  <div class="col-2" style="margin-top:70px;">
-	    <nav class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
+	    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
 	      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">會員首頁</a>
 	      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">會員資料查看</a>
 	      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">個人資料修改</a>
@@ -64,10 +71,11 @@ color:#969696;border:2px #ccc solid;padding:10px;text-align:center;
 			<font color = '#007bff'><input type = "submit" value="Join儲值錢包新增" style=" width:290px; height:42px;"></font>
 			<input type = "hidden" name="member_no" value="${memVO.member_no}">
 			<input type = "hidden" name="action" value="insert_Token"></FORM> 
-	    </nav>
+	    </div>
 	  </div>
-	  
-	  <div class="col-10">
+	  <div class="col-1">
+		</div>
+	  <div class="col-9">
 	    <div class="tab-content" id="v-pills-tabContent">
 	      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><div style="margin-left:90px;"><h3>JOIN會員首頁</h3 ></div></div>
 	      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><jsp:include page="/Front_end/mem/listOneMem.jsp" /></div>

@@ -71,7 +71,11 @@
 		<th scope="row">${ticketorderVO.order_no }</th>
 		<td>${ticketorderVO.member_no }</td>
 		<td>${ticketorderVO.fd_no }</td>
-		<td>${ticketorderVO.session_no }</td>
+		<td>
+		<div style=overflow:auto;height:100px;width:70px >
+		${ticketorderVO.session_no }
+		</div>
+		</td>
 		<td>${ticketorderVO.order_time }</td>
 		<td>${ticketorderVO.order_amount }</td>
 		<td>
