@@ -28,8 +28,7 @@
 
 	<!-- 工作區開始 -->
 	<div class="container" >
-		<div class="row justify-content">
-			<div class="col-3"></div>
+		<div class="row justify-content-center">
 			<div class="col-6">
 	
 <table id ="table-1">

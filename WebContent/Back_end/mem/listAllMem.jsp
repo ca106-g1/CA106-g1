@@ -27,13 +27,13 @@
 <title>所有會員資料</title>
 
 <style>
-
-
- input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
-		cursor:pointer;
-		-webkit-border-radius: 5px;
-		border-radius: 5px; }
-
+ input[type="submit"]  {
+/* 	padding:5px 15px; */
+	background:#ccc; 
+	border:0 none;
+	cursor:pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; }
 </style>
 
 
@@ -48,7 +48,7 @@
 	<div class="container" >
 		<div class="row justify-content">
 			<div class="col-1"></div>
-			<div class="col-5">
+			<div class="col-11">
 <table id = "table-1">
 	<tr><td>
 		<h3>JOIN所有會員資料</h3>
@@ -88,6 +88,7 @@
 		<th scope="col">會員建立日期</th>
 		<th scope="col">會員儲值點數</th>
 		<th scope="col">會員狀態</th>
+		<th scope="col"></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -125,7 +126,7 @@
 	</c:forEach>
 	</tbody>
 </table>
-<%@ include file="page2.file" %>
+<%@ include file="/File/page2_modify.file" %>
 	
 	
 

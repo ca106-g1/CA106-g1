@@ -60,8 +60,7 @@ input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
 	<!-- 工作區開始 -->
 	<div class="container" >
 		<div class="row justify-content">
-			<div class="col-2"></div>
-			<div class="col-8">
+			<div class="col-12">
 
 
 		<h4><input type="button" value="回員工管理首頁"
@@ -127,7 +126,7 @@ input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
 	</c:forEach>
 </tbody>
 </table>
-<%@ include file="page2.file" %>
+<%@ include file="/File/page2_modify.file" %>
 
 </div></div></div>
 	<!-- 工作區結束 -->

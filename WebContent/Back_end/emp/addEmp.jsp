@@ -26,9 +26,8 @@
 
 	<!-- 工作區開始 -->
 	<div class="container" style="margin-top: 80px">
-		<div class="row justify-content">
-			<div class="col-4"></div>
-			<div class="col-8">
+		<div class="row justify-content-center">
+			<div class="col-6">
 	
 <table id = "table-1">
 	
@@ -52,7 +51,7 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="emp.do" name="form1">
-<table>
+<table class="table table-hover">
 	<tr>
 		<td>員工姓名:</td>
 		<td>

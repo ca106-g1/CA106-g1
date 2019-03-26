@@ -43,7 +43,7 @@
 
 
 				<FORM METHOD="post" ACTION="emp.do" name="form1">
-					<table>
+					<table class=" table">
 						<tr>
 							<td>員工編號:<font color=red><b>*</b></font></td>
 							<td><%=empVO.getEmployee_no()%></td>
