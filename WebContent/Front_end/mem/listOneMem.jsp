@@ -28,16 +28,13 @@
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-<table id = "table-1" >
-	<tr><td>
 		<h3>會員個人資料</h3>
 		<input type="button" value="回首頁"
 				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
 				onclick="location.href='select_page.jsp'">
-			</td></tr>
 </table>	
 
-<table class="table table-hover">
+<table class="table table-hover table-sm">
 <thead>
 	<tr>
 		<th scope="col">會員編號</th>

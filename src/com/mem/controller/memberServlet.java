@@ -281,6 +281,9 @@ public class memberServlet extends HttpServlet {
 
 			byte[] member_picture = new byte[part.getInputStream().available()];
 			part.getInputStream().read(member_picture);
+			if(member_picture.length == 0) {
+				member_picture = ((MemVO)req.getSession().getAttribute("memVO")).getMember_picture();
+			}
 			System.out.println("檢查點12");
 			/************* 信用卡號碼 *******************************/
 
