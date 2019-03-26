@@ -97,7 +97,7 @@
 <body onload="connect();" onunload="disconnect();">
 
 <!-- 這是Header -->
-<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header.jsp" />
 
 <div>
 	<img src="<%=request.getContextPath()%>/Front_end/chatroom/9986.jpg_wh1200.jpg" class="card-img" alt="..." style="">
@@ -153,10 +153,12 @@
 
 <!-- 使用電影資訊的資料 -->
 <div class="col-3">
+<br><br><br><br><br>
+
 <table   style=background-color:#f0f0f0; >
 	
-		<th><th>電影名稱</th></tr>
-		<th><th>${movieinfoVO.movie_name}</th></tr>
+		<tr><th>電影名稱</th></tr>
+		<tr><th></th><th>${movieinfoVO.movie_name}</th></tr>
 		<tr><th>電影封面</th></tr>
 		<c:set var="movie_pic"  value="${movieinfoVO.movie_pic}"></c:set>
 			<%
@@ -200,7 +202,9 @@
 
 
 <!-- 這是Footer -->
-<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Footer.jsp" />
+
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
