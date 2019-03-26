@@ -20,18 +20,44 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title></title>
+
+<style>
+
+ input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+
+
+
+</style>
+
+
+
+
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	<div class="container"  style="margin-top:80px">
+		<div class="row justify-content">
+			<div class="col-3"></div>
+			<div class="col-6">
 	
-	<h4><a href = "<%=request.getContextPath()%>/Back_end/emp/homeIndex.jsp">回員工後台首頁</a></h4>
+	
+	<h4><input type="button" value="回後台首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%=request.getContextPath()%>/Back_end/emp/homeIndex.jsp'"></h4>
 
 <h3>資料查詢:</h3>
 
 <%--錯誤表列 --%>
+
+
+
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -41,12 +67,12 @@
 	</ul>
 </c:if>
 <ul>
-	<li><a href = "<%=request.getContextPath()%>/Back_end/mem/listAllMem.jsp">會員瀏覽列表</a> <br><br></li>          
+	<li><a href = "<%=request.getContextPath()%>/Back_end/mem/listAllMem.jsp" style="color:green;">會員瀏覽列表</a> <br><br></li>          
 
 <li>
 	<FORM METHOD = "post" ACTION="mem.do">
-	<b>請輸入會員編號(M000001)</b>
-	<input type = "text" name="member_no">
+	<b>請輸入會員帳號</b>
+	<input type = "text" name="member_account">
 	<input type = "hidden" name="action" value="getOne_For_Display_Back">
 	<input type = "submit" value="送出">
 	</FORM>
@@ -56,10 +82,10 @@
 
 <li>
 <FORM METHOD="post" ACTION="mem.do">
-<b>選擇會員編號</b>
-<select size="1" name="member_no">
+<b>選擇會員帳號</b>
+<select size="1" name="member_account">
 	<c:forEach var="memVO" items="${memSvc.all}">
-	<option value="${memVO.member_no}">${memVO.member_no}
+	<option value="${memVO.member_account}">${memVO.member_account}
 	</c:forEach>
 </select>
 <input type = "hidden" name="action" value="getOne_For_Display_Back">
@@ -72,9 +98,9 @@
 <li>
 	<FORM METHOD="post" ACTION="mem.do">
 	<b>選擇會員姓名</b>
-<select size="1" name="member_no">
+<select size="1" name="member_account">
 	<c:forEach var="memVO" items="${memSvc.all}">
-	<option value="${memVO.member_no}">${memVO.member_name}
+	<option value="${memVO.member_account}">${memVO.member_name}
 	</c:forEach>
 </select>
 <input type = "hidden" name="action" value="getOne_For_Display_Back">
@@ -91,7 +117,7 @@
 </ul>
 
 
-	
+</div></div></div>	
 	
 	
 	

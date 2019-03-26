@@ -28,59 +28,84 @@
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-<table id = "table-1">
+	
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-3"></div>
+			<div class="col-6">
+<table id = "table-1" >
 	<tr><td>
 		<h3>會員個人資料</h3>
-		<h4><a href = "select_page.jsp">回會員首頁</a></h4>
-	</td></tr>
-</table>	
+		<input type="button" value="回首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/mem/select_page.jsp'">
+			</td></tr>
+</table>
 
 <table class="table table-hover">
 <thead>
 	<tr>
-		<th>會員編號</th>
-		<th>會員帳號</th>
-		<th>會員密碼</th>
-		<th>會員姓名</th>
-		<th>會員暱稱</th>
-		<th>會員性別</th>
-		<th>會員生日</th>
-		<th>會員地址</th>
-		<th>會員電話</th>
-		<th>會員信箱</th>
-		<th>會員圖片</th>
-		<th>會員信用卡</th>
-		<th>會員驗證碼</th>
-		<th>會員建立日期</th>
-		<th>會員儲值點數</th>
-		<th>會員狀態</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<th scope="row"><%=memVO.getMember_no()%></th>
+		<th scope="col">會員編號</th>
+		<td><%=memVO.getMember_no()%></td>
+	</tr>	
+		<th scope="col">會員帳號</th>
 		<td><%=memVO.getMember_account()%></td>
-		<td><%=memVO.getMember_password()%></td>
+		
+		
+	
+	<tr>	
+		<th scope="col">會員姓名</th>
 		<td><%=memVO.getMember_name()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員暱稱</th>
 		<td><%=memVO.getMember_nick()%></td>
+	</tr>	
+		
+	<tr>	<th scope="col">會員性別</th>
 		<td>${memVO.member_sex eq 0?"女":"男"}</td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員生日</th>
 		<td><%=memVO.getMember_birthday()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員地址</th>
 		<td><%=memVO.getMember_address()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員電話</th>
 		<td><%=memVO.getMember_telephone()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員信箱</th>
 		<td><%=memVO.getMember_email()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員圖片</th>
 		<td>
 			<img src='<%= request.getContextPath() %>/Front_end/mem/mem.do?member_no=${memVO.member_no}' width='200' height = '200'/>
 		</td>
-		<td><%=memVO.getMember_credit_number()%></td>
-		<td><%=memVO.getMember_back_verification()%></td>
+	</tr>	
+	
+	<tr>	
+		<th scope="col">會員建立日期</th>
 		<td><%=memVO.getMember_buildday()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員儲值點數</th>
 		<td><%=memVO.getMember_point()%></td>
+	</tr>	
+	<tr>	
+		<th scope="col">會員狀態</th>
 		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
+		</tr>
 		
-	</tr>
-</tbody>	
-</table>
+	
 
+	
+</table>
+</div></div></div>
 
 	<!-- 工作區結束 -->
 	

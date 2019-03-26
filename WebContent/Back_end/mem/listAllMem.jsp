@@ -25,17 +25,36 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title>所有會員資料</title>
+
+<style>
+
+
+ input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+</style>
+
+
+
+
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-	
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-1"></div>
+			<div class="col-5">
 <table id = "table-1">
 	<tr><td>
 		<h3>JOIN所有會員資料</h3>
-		<h4><a href = "select_page.jsp">回首頁</a></h4>
+		<h4><input type="button" value="回首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/mem/select_page.jsp'"></h4>
 	</td></tr>
 </table>
 
@@ -53,19 +72,19 @@
 <table class="table table-hover">
 <thead>
 	<tr>
-		<th scope="col">會員編號</th>
+		
 		<th scope="col">會員帳號</th>
-		<th scope="col">會員密碼</th>
+		
 		<th scope="col">會員姓名</th>
 		<th scope="col">會員暱稱</th>
 		<th scope="col">會員性別</th>
 		<th scope="col">會員生日</th>
-		<th scope="col">會員地址</th>
+		
 		<th scope="col">會員電話</th>
 		<th scope="col">會員信箱</th>
-		<th scope="col">會員圖片</th>
-		<th scope="col">會員信用卡</th>
-		<th scope="col">會員驗證碼</th>
+		
+		
+		
 		<th scope="col">會員建立日期</th>
 		<th scope="col">會員儲值點數</th>
 		<th scope="col">會員狀態</th>
@@ -76,41 +95,31 @@
 	<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>" end = "<%=pageIndex+rowsPerPage-1%>">
 	
 	<tr >
-		<th scope="row">${memVO.member_no}</th>
-		<td>${memVO.member_account}</td>
-		<td>${memVO.member_password}</td>
+		
+		<th scope="row">${memVO.member_account}</th>
+		
 		<td>${memVO.member_name}</td>
 		<td>${memVO.member_nick}</td>
 		<td>${memVO.member_sex eq 0?"女":"男"}</td>
 		<td>${memVO.member_birthday}</td>
-		<td>${memVO.member_address}</td>
+		
 		<td>${memVO.member_telephone}</td>
 		<td>${memVO.member_email}</td>
-		<td>
-			
-			<img src='<%= request.getContextPath() %>/Front_end/mem/mem.do?member_no=${memVO.member_no}' width='200' height = '200'/>
-		</td>
-		<td>${memVO.member_credit_number}</td>
-		<td>${memVO.member_back_verification}</td>
+		
+		
 		<td>${memVO.member_buildday}</td>
 		<td>${memVO.member_point}</td>
 		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
-		<img src ="<%= request.getContextPath() %>/memberServlet?member_no=${memVO.member_no}">
+		
 		
 		<td>
 			<FORM METHOD = "post" ACTION = "<%=request.getContextPath()%>/Front_end/mem/mem.do" style="margin-bottom:0px;">             
-				<input type = "submit" value="修改">
-				<input type = "hidden" name = "member_no" value="${memVO.member_no}">
-				<input type = "hidden" name = "action" value="getOne_for_Update">
+				<input type = "submit" value="查看個人頁面">
+				<input type = "hidden" name = "member_account" value="${memVO.member_account}">
+				<input type = "hidden" name = "action" value="getOne_For_Display_Back">
 			</FORM>
 			</td>
-			<td>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/mem/mem.do" style="margin-bottom:0px;">
-					<input type = "submit" value="刪除">
-					<input type = "hidden" name="member_no" value="${memVO.member_no}">
-					<input type  ="hidden" name="action" value="delete">
-				</FORM>
-			</td>
+			
 		</tr>
 	
 	</c:forEach>
@@ -121,7 +130,7 @@
 	
 
 
-
+</div></div></div>
 	<!-- 工作區結束 -->
 	
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
