@@ -27,40 +27,61 @@
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-3"></div>
+			<div class="col-6">
+	
 <table id ="table-1">
 	<tr><td>
 		<h3>員工個人資料</h3>
-		<h4><a href ="select_page.jsp">回員工後台首頁</a> </h4>
+		<h4><input type="button" value="回員工管理首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/emp/select_page.jsp'"> </h4>
 	</td></tr>
 </table>
 
 <table class="table table-hover">
 <thead>
 	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>員工性別</th>
-		<th>員工建立日期</th>
-		<th>員工離職日期</th>
-		<th>員工職位</th>
-		<th>員工狀態</th>
-		<th>員工密碼</th>
+		<th scope="row">員工編號</th>
+		<td><%=empVO.getEmployee_no()%></td>
 	</tr>
+	<tr>	
+		<th scope="row">員工姓名</th>
+		<td><%=empVO.getEmployee_name()%></td>
+	</tr>
+	<tr>	
+		<th scope="row">員工性別</th>
+		<td>${empVO.employee_sex eq 0?"女":"男"}</td>
+		
+	</tr>
+	<tr>	
+		<th scope="row">員工建立日期</th>
+		<td><%=empVO.getEmployee_builddate()%></td>
+	</tr>
+	<tr>	
+		<th scope="row">員工離職日期</th>
+		<td>${empVO.employee_quitdate eq null ? "" : "empVO.employee_quitdate" }</td>
+	</tr>
+	<tr>	
+		<th scope="row">員工職位</th>
+		<td><%=empVO.getEmployee_ability()%></td>
+	</tr>
+	<tr>	
+		<th scope="row">員工狀態</th>
+		<td>${empVO.employee_status eq 0?"已離職":"在職中"}</td>
+	</tr>	
+		
+	
 </thead>
 <tbody>
 	<tr>
-		<th scope="row"><%=empVO.getEmployee_no()%></th>
-		<td><%=empVO.getEmployee_name()%></td>
-		<td>${empVO.employee_sex eq 0?"女":"男"}</td>
-		<td><%=empVO.getEmployee_builddate()%></td>
-		<td>${empVO.employee_quitdate eq null ? "" : "empVO.employee_quitdate" }</td>
-		<td><%=empVO.getEmployee_ability()%></td>
-		<td>${empVO.employee_status eq 0?"已離職":"在職中"}</td>
-		<td><%=empVO.getEmployee_password()%></td>
+		
 	</tr>
 </tbody>
 </table>
-
+</div></div></div>
 
 	<!-- 工作區結束 -->
 	

@@ -25,10 +25,16 @@
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	<div class="container" style="margin-top: 80px">
+		<div class="row justify-content">
+			<div class="col-4"></div>
+			<div class="col-8">
+	
 <table id = "table-1">
-	<tr><td>
-		<h3>員工資料新增</h3></td><td>
-		<h4><a href = "select_page.jsp">回首頁</a></h4>
+	
+		<h4><input type="button" value="回員工管理首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/emp/select_page.jsp'"> </h4></h4>
 	</td></tr>
 </table>
 
@@ -127,7 +133,7 @@ function empdo(name){
 
 
 
-
+</div></div></div>
 
 
 

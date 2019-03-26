@@ -13,20 +13,42 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title></title>
+
+<style>
+
+ input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+
+
+
+</style>
+
+
+
 </head>
 <body bgcolor = 'white'>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-3"></div>
+			<div class="col-6">
 
 <table id = "table-1">
 	<tr><td><h3>JOIN影城 員工管理首頁 </h3></td></tr>
 </table>
 
-<h4><a href = "<%=request.getContextPath()%>/Back_end/emp/homeIndex.jsp">回員工後台首頁</a></h4>
+<h4><input type="button" value="回後台首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/emp/homeIndex.jsp'"></h4>
 
-<h3>資料查詢:</h3>
+
 
 <%--錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -39,7 +61,7 @@
 </c:if>
 
 <ul>
- <li><a href ='listAllEmp.jsp'>員工瀏覽列表</a> <br><br></li>
+ <li><a href ='listAllEmp.jsp' style="color:green;">員工瀏覽列表</a> <br><br></li>
 
 <li>
 	<FORM METHOD = "post" ACTION="emp.do">
@@ -82,50 +104,46 @@
 
 
 <%--萬用複合查詢 --%>
+<!-- <ul> -->
+<!-- 	<li> -->
+<!-- 		<FORM METHOD="post" ACTION="emp.do" name="form1"> -->
+<!-- 		<b><font color=blue>萬用複合查詢:</font></b><br> -->
+<!-- 		<b>選擇員工性別:</b> -->
+<!-- 		<input type="radio" name="employee_sex" value="1" checked>男性 -->
+<!-- 		<input type="radio" name="employee_sex" value="0" >女性<br> -->
+		
+<!-- 		<b>輸入員工編號:</b> -->
+<!-- 		<input type="text" name="employee_no" value="1"><br> -->
+		
+<!-- 		<b>輸入員工名稱:</b> -->
+<!-- 		<input type="text" name="employee_name" value="DAVID"><br> -->
+		
+<!-- 		<b>輸入員工職位:</b> -->
+<!-- 		<input type="text" name="employee_ability" value="文書"><br> -->
+		
+<!-- 		<b>選擇員工狀態:</b> -->
+<!-- 		<input type="radio" name="employee_status" value="1" checked>在職 -->
+<!-- 		<input type="radio" name="employee_status" value="0" >已離職<br> -->
+		
+<!-- 		<b>選擇員工到職日期:</b> -->
+<!-- 		<td><input  name="employee_builddate"  id="f_date1" type="DATE" value="2018-01-01"><br> -->
+		
+<!-- 		<input type = "submit" value="送出"> -->
+<!-- 		<input type = "hidden" name="action" value="listEmps_ByCompositeQuery"> -->
+		
+<!-- 		</FORM>	 -->
+<!-- 	</li> -->
+<!-- </ul> -->
+
+
+
+
 <ul>
-	<li>
-		<FORM METHOD="post" ACTION="emp.do" name="form1">
-		<b><font color=blue>萬用複合查詢:</font></b><br>
-		<b>選擇員工性別:</b>
-		<input type="radio" name="employee_sex" value="1" checked>男性
-		<input type="radio" name="employee_sex" value="0" >女性<br>
-		
-		<b>輸入員工編號:</b>
-		<input type="text" name="employee_no" value="1"><br>
-		
-		<b>輸入員工名稱:</b>
-		<input type="text" name="employee_name" value="DAVID"><br>
-		
-		<b>輸入員工職位:</b>
-		<input type="text" name="employee_ability" value="文書"><br>
-		
-		<b>選擇員工狀態:</b>
-		<input type="radio" name="employee_status" value="1" checked>在職
-		<input type="radio" name="employee_status" value="0" >已離職<br>
-		
-		<b>選擇員工到職日期:</b>
-		<td><input  name="employee_builddate"  id="f_date1" type="DATE" value="2018-01-01"><br>
-		
-		<input type = "submit" value="送出">
-		<input type = "hidden" name="action" value="listEmps_ByCompositeQuery">
-		
-		</FORM>	
-	</li>
+<li><a href='addEmp.jsp' style="color:green;">新增</a>員工資料</li>
 </ul>
 
 
-<h3>員工管理:</h3>
-
-<ul>
-<li><a href='addEmp.jsp'>新增</a>員工資料</li>
-</ul>
-
-
-<FORM METHOD="POST" ACTION = "logoutHandler.do">
-	<td><input type = "submit" value="登出">
-		<input type = "hidden" name="logout" value="logout"> 
-	</td>
-	</FORM>
+</div></div></div>
 
 	<!-- 工作區結束 -->
 	

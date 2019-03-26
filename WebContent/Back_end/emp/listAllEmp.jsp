@@ -40,7 +40,10 @@
 	}
 	
 	
-
+input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
 
 
 </style>
@@ -55,13 +58,16 @@
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-2"></div>
+			<div class="col-8">
 
-<table id="table-1">
-	<tr><td>
-		<h3>所有員工資料</h3>
-		<h4><a href = "select_page.jsp">回首頁</a></h4>
-	</td></tr>
-</table>
+
+		<h4><input type="button" value="回員工管理首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/emp/select_page.jsp'"> </h4></h4>
+
 
 <%--錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -83,9 +89,10 @@
 		<th>員工離職日期</th>
 		<th>員工職位</th>
 		<th>員工狀態</th>
-		<th>員工密碼</th>
+		
 		<th>修改</th>
-		<th>刪除</th>
+		<th>查看個人頁面</th>
+		
 	</tr>
 </thead>
  <tbody>	
@@ -100,7 +107,7 @@
 		<td>${empVO.employee_quitdate }</td>
 		<td>${empVO.employee_ability}</td>
 		<td>${empVO.employee_status eq 0?"已離職":"在職中"}</td>
-		<td>${empVO.employee_password}</td>
+		
 		<td>
 			<FORM METHOD = "post" ACTION="<%=request.getContextPath()%>/Back_end/emp/emp.do" style="margin-bottom: 0px;">
 				<input type = "submit" value="修改">
@@ -108,20 +115,21 @@
 				<input type = "hidden" name="action" value="getOne_for_Update">
 			</FORM>
 			</td>
-			<td>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/emp/emp.do" style="margin-bottom:0px;">
-					<input type = "submit" value="刪除">
-					<input type = "hidden" name="employee_no" value="${empVO.employee_no}">
-					<input type = "hidden" name="action" value="delete">
-				</FORM>
-			</td>		
+		<td>
+			<FORM METHOD = "post" ACTION="<%=request.getContextPath()%>/Back_end/emp/emp.do" style="margin-bottom: 0px;">
+				<input type = "submit" value="查看員工個人頁面">
+				<input type = "hidden" name="employee_no" value="${empVO.employee_no}">
+				<input type = "hidden" name="action" value="getOne_For_Display">
+			</FORM>
+			</td>
+				
 	   </tr>
 	</c:forEach>
 </tbody>
 </table>
 <%@ include file="page2.file" %>
 
-
+</div></div></div>
 	<!-- 工作區結束 -->
 	
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
