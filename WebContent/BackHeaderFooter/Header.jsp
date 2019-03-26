@@ -31,11 +31,18 @@
             width: 100%;
             opacity: 0.6;
 			}
+			
+			
+			.card-img{
+			
+			opacity:0.4;
+			
+			}
 		</style>
 	
 	</head>
 	<body>
-	<div>
+	<div >
 		<img src="<%=request.getContextPath()%>/Back_end/img/background3.jpg" class="card-img" alt="" style="">
 	</div>
 		<header class="container-fluid">
