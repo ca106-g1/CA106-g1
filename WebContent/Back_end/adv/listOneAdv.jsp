@@ -76,24 +76,25 @@
 <!-- </table> -->
 
 
-<table>
+<table class="table table-hover" >
+<thead>
 	<tr>
-		<th>廣告編號</th>
-		<th>廣告名稱</th>
-		<th>廣告圖片</th>
-		<th>廣告內容</th>
-		<th>廣告起始時間</th>
-		<th>廣告終止時間</th>
-		<th>廣告狀態</th>
-		<th>修改</th>
-		<th>預覽</th>
-		<th>推播</th>
+		<th scope="col">廣告編號</th>
+		<th scope="col">廣告名稱</th>
+		<th scope="col">廣告圖片</th>
+		<th scope="col">廣告內容</th>
+		<th scope="col">廣告起始時間</th>
+		<th scope="col">廣告終止時間</th>
+		<th scope="col">廣告狀態</th>
+		<th scope="col">修改</th>
+		<th scope="col">預覽</th>
+		<th scope="col">推播</th>
 	</tr>
-	
+</thead>
 
 	
 	<tr>
-			<td>${advVO.ad_no}</td>
+			<th scope="col">${advVO.ad_no}</th>
 			<td width="100px">${advVO.ad_name}</td>
 			<td width="300px">
 				<c:if test="${empty advVO.ad_pic}" var="condition">
@@ -127,14 +128,14 @@
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/adv/adv.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
+			     <input type="submit" value="修改" class="btn btn-primary iframe_contruler">
 			     <input type="hidden" name="ad_no"  value="${advVO.ad_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			 <c:if test="${advVO.ad_type>0}" var="condition">
 			 <FORM METHOD="post" ACTION="adv.do" >
-				<input type="submit" value="預覽" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='200' />
+				<input type="submit" value="預覽" name="submit" id='${advVO.ad_no}' src="<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}" alt="Submit"  width='200' height='200' class="btn btn-primary iframe_contruler"/>
 				<input type="hidden" name="ad_no" value="${advVO.ad_no}">  
 			    <input type="hidden" name="action" value="getOne_For_Display_HTML_Back">    
 <!-- 			    <input type="submit" value="送出"> -->
@@ -142,7 +143,7 @@
 			    </c:if>
 			</td>
 			<td>
-					<button type='button' id='me' onclick="sendMessage();">推播</button>
+					<button type='button' id='me' onclick="sendMessage();" class="btn btn-primary iframe_contruler">推播</button>
 			</td>
 	</tr>
 	

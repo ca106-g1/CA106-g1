@@ -87,15 +87,15 @@
 
 <!-- <FORM METHOD="post" ACTION="adv.do" name="form1" enctype="multipart/form-data"> -->
 <FORM METHOD="post" ACTION="adv.do" name="form1" enctype="multipart/form-data">
-<table>
+<table class="table table-hover">
 	<tr>
-		<td>廣告名稱:</td>
-		<td><input type="TEXT" name="ad_name" size="45" 
+		<th scope="col">廣告名稱:</th>
+		<td><input type="TEXT" name="ad_name" size="90" 
 			 value="<%= (advVO==null)? "全世界不可錯過的20大節日" : advVO.getAd_name()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>廣告圖片:</td>
+		<th scope="col">廣告圖片:</th>
 		
 <!-- 		<td><input type="TEXT" name="ad_pic" size="45"  -->
 <%-- 			 value="<%= (advVO==null)? "" : advVO.getAd_pic()%>" id="img" /> --%>
@@ -113,22 +113,22 @@
 	</tr>
 	
 	<tr>
-		<td >廣告內容:</td>
+		<th scope="col">廣告內容:</th>
 		<td> <textarea name="content" id="content" rows="10" cols="80"></textarea></td>
 		<td style = "display:none"><input type="TEXT" name="ad_cont" size="45"   id="ad_cont"
 			 value="<%= (advVO==null)? "" : advVO.getAd_cont()%>"  style = "display:none"/></td>
 	</tr>
 	
 	<tr>
-		<td>廣告起始時間:</td>
+		<th scope="col">廣告起始時間:</th>
 		<td><input name="ad_start" id="f_date1" type="text"></td>
 	</tr>
 	<tr>
-		<td>廣告終止時間:</td>
+		<th scope="col">廣告終止時間:</th>
 		<td><input name="ad_end" id="f_date2" type="text"></td>
 	</tr>
 	<tr>
-		<td>廣告狀態:</td>
+		<th scope="col">廣告狀態:</th>
 <!-- 		<td><input type="TEXT" name="ad_type" size="45"  -->
 <%-- 			 value="<%= (advVO==null)? "0" : advVO.getAd_type()%>" /></td> --%>
 		<td>
@@ -155,7 +155,7 @@
 
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增" onclick="sendMessage();">
+<input type="submit" value="送出新增" onclick="sendMessage();" class="btn btn-primary iframe_contruler">
 </FORM>
 
 

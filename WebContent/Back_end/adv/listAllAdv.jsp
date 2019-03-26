@@ -88,23 +88,25 @@
 </c:if>
 
 
-<table>
+<table class="table table-hover"  >
+<thead>
 	<tr>
-		<th>廣告編號</th>
-		<th>廣告名稱</th>
-		<th>廣告圖片</th>
-		<th>廣告內容</th>
-		<th>廣告起始時間</th>
-		<th>廣告終止時間</th>
-		<th>廣告狀態</th>
-		<th>修改</th>
-		<th>刪除</th>
+		<th scope="col">廣告編號</th>
+		<th scope="col">廣告名稱</th>
+		<th scope="col">廣告圖片</th>
+		<th scope="col">廣告內容</th>
+		<th scope="col">廣告起始時間</th>
+		<th scope="col">廣告終止時間</th>
+		<th scope="col">廣告狀態</th>
+		<th scope="col">修改</th>
+		<th scope="col">刪除</th>
 	</tr>
+</thead>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="advVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${advVO.ad_no}</td>
+			<th scope="col">${advVO.ad_no}</th>
 			<td width="100px">${advVO.ad_name}</td>
 			<td width="300px">
 			
@@ -151,13 +153,13 @@
 			</td> 
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/adv/adv.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
+			     <input type="submit" value="修改" class="btn btn-primary iframe_contruler">
 			     <input type="hidden" name="ad_no"  value="${advVO.ad_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/adv/adv.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
+			     <input type="submit" value="刪除" class="btn btn-primary iframe_contruler">
 			     <input type="hidden" name="ad_no"  value="${advVO.ad_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>

@@ -74,10 +74,10 @@
   
   <li>
     <FORM METHOD="post" ACTION="adv.do" >
-        <b>輸入編號 (如7001):</b>
+        <b>輸入編號 (如A000001):</b>
         <input type="text" name="ad_no">
         <input type="hidden" name="action" value="getOne_For_Display">
-        <input type="submit" value="送出">
+        <input type="submit" value="送出" class="btn btn-primary iframe_contruler">
     </FORM>
   </li>
 
@@ -92,7 +92,7 @@
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="送出">
+       <input type="submit" value="送出" class="btn btn-primary iframe_contruler">
     </FORM>
   </li>
   
@@ -105,7 +105,7 @@
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="送出">
+       <input type="submit" value="送出" class="btn btn-primary iframe_contruler">
      </FORM>
   </li>
 </ul>
