@@ -56,32 +56,31 @@
 
 		<div class="container">
 			<div class="row justify-content">
-				<div class="col-1"></div>
-				<div class="col-4">
-
-<table id="table-1">
-	<tr><td>
-		 <h3>電影種類查詢</h3>
-		 <h4><a href="<%=request.getContextPath()%>/Back_end/moviegenre/select_page.jsp">
-		 	 <img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a>
-		 </h4>
-	</td></tr>
-</table>
-
-<table>
-	<tr>
-		<th>電影種類編號</th>
-		<th>電影種類名稱</th>
-	</tr>
-	<tr>
-		<td><%=moviegenreVO.getGenre_no()%></td>
-		<td><%=moviegenreVO.getGenre_name()%></td>
-	</tr>
-</table>
-
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h4>電影種類資訊</h4>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover mb-0 text-nowrap">
+									<tr>
+										<th>電影種類編號</th>
+										<th>電影種類名稱</th>
+									</tr>
+									
+									<tr>
+										<td><%=moviegenreVO.getGenre_no()%></td>
+										<td><%=moviegenreVO.getGenre_name()%></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+				</div>
 			</div>
 		</div>
-	</div>
 
 <!-- 工作區結束 -->
 

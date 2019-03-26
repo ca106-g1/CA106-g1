@@ -66,62 +66,62 @@
 
 	<div class="container">
 		<div class="row justify-content">
-			<div class="col-1"></div>
-			<div class="col-4">
-
-<table id="table-1">
-	<tr><td>
-		 <h3>listOneNewsInfo</h3>
-		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<table>
-	<tr>
-		<th>專欄編號</th>
-		<th>電影編號</th>
-		<th>專欄標題</th>
-		<th>專欄作者</th>
-		<th>發文日期</th>
-		<th>專欄圖片</th>
-		<th>專欄內容</th> 
-		<th colspan="2">編輯</th>
-	</tr>
-	<tr>
-		<td><%=newsinfoVO.getNews_no()%></td>
-		<td><%=newsinfoVO.getMovie_no()%></td>
-		<td><%=newsinfoVO.getNews_title()%></td>
-		<td><%=newsinfoVO.getNews_auther()%></td>
-		<td><%=newsinfoVO.getNews_times()%></td>
-		<!-- 新增圖片			 -->
-			<c:set var="news_pic" value="${newsinfoVO.news_pic}"></c:set>
-			<%
-				byte b[]= (byte[])pageContext.getAttribute("news_pic");
-				String encode = null;
-				if(b != null){
-					encode = Base64.encode(b);
-			%>
-			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
-			<%}else{%><td></td><%}%> 
-		<td><%=newsinfoVO.getNews_con()%></td>
-		<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="news_no"  value="${movieinfoVO.news_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
-			     <input type="hidden" name="action" value="delete"></FORM>
-			</td>
-		
-	</tr>
-</table>
-
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>新聞資料</h4>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover mb-0 text-nowrap">
+								<tr>
+									<th>專欄編號</th>
+									<th>電影編號</th>
+									<th>專欄標題</th>
+									<th>專欄作者</th>
+									<th>發文日期</th>
+									<th>專欄圖片</th>
+									<th>專欄內容</th> 
+									<th colspan="2">編輯</th>
+								</tr>
+								
+								<tr>
+									<td><%=newsinfoVO.getNews_no()%></td>
+									<td><%=newsinfoVO.getMovie_no()%></td>
+									<td><%=newsinfoVO.getNews_title()%></td>
+									<td><%=newsinfoVO.getNews_auther()%></td>
+									<td><%=newsinfoVO.getNews_times()%></td>
+									<c:set var="news_pic" value="${newsinfoVO.news_pic}"></c:set>
+									<%
+										byte b[]= (byte[])pageContext.getAttribute("news_pic");
+										String encode = null;
+										if(b != null){
+											encode = Base64.encode(b);
+									%>
+									<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
+									<%}else{%><td></td><%}%> 
+									<td><%=newsinfoVO.getNews_con()%></td>
+									
+									<td>
+									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
+									     <button type="submit" class="btn btn-primary">修改</button>
+									     <input type="hidden" name="news_no"  value="${movieinfoVO.news_no}">
+									     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+									</td>
+									<td>
+									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
+									     <button type="submit" class="btn btn-danger" onclick="history.back()">刪除</button></td>
+									     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
+									     <input type="hidden" name="action" value="delete"></FORM>
+									</td>
+								</tr>
+								
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
+        </div>
 	</div>
 
 

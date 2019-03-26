@@ -6,22 +6,22 @@
 <!-- 寫入圖片步驟1 -->
 
 <%
-  NewsInfoVO newsinfoVO = (NewsInfoVO) request.getAttribute("newsinfoVO");
-
+	NewsInfoVO newsinfoVO = (NewsInfoVO) request.getAttribute("newsinfoVO");
 %>
 
 <html>
 <head>
-<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-<!-- 寫入日曆步驟 -->
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
-<!-- 寫入日曆步驟 -->
+<script
+	src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>addNewsInfo</title>
 
 <style>
@@ -42,21 +42,20 @@ h4 {
 	display: inline;
 }
 
-  img, #level{
-  	width:50px;
-  	hight:50px;
-  }
-  
-  #pic{
-  	width:270px;
-  	hight:400px;
-  }
-  
-  #popcorn{
-  	 width:52;
-  	 height:62;
-  }
-  
+img, #level {
+	width: 50px;
+	hight: 50px;
+}
+
+#pic {
+	width: 270px;
+	hight: 400px;
+}
+
+#popcorn {
+	width: 52;
+	height: 62;
+}
 </style>
 
 <style>
@@ -75,100 +74,93 @@ th, td {
 	padding: 1px;
 }
 
-#button{
-	hight:20;
-	width:20;
+#button {
+	hight: 20;
+	width: 20;
 }
-
 </style>
 
-		<!-- Bootstrap CSS start-->
-		<link rel="stylesheet"
-		href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-		<!-- Bootstrap CSS end-->
+<!-- Bootstrap CSS start-->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap CSS end-->
 
 </head>
 <body bgcolor='white'>
 
-<jsp:include page="/BackHeaderFooter/Header.jsp" />
-		<h1></h1><br>
-		
-<!-- 工作區開始 -->
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
+	<h1></h1>
+	<br>
+
+	<!-- 工作區開始 -->
 	<div class="container">
 		<div class="row justify-content">
-			<div class="col-1"></div>
-			<div class="col-4">
-
-<table id="table-1">
-	<tr><td>
-		 <h3>影視專欄新增</h3></td><td>
-		 <h4><a href="<%=request.getContextPath()%>/Back_end/newsinfo/select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg" width="52" height="62" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
-
-
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
-<!-- 寫入圖片步驟2 傳送方式用Post 並設定傳送格式enctype-->
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>電影新增</h4>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover mb-0 text-nowrap">
+								<%-- 錯誤表列 --%>
+								<c:if test="${not empty errorMsgs}">
+									<font style="color: red">請修正以下錯誤:</font>
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li style="color: red">${message}</li>
+										</c:forEach>
+									</ul>
+								</c:if>
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
-<table>
-	<tr>
-		<td nowrap="nowrap">電影名稱:</td>
-		<td><select name="movie_no">
-			<c:forEach var="genrename" items="${listgenre}" varStatus="s"> 
-	          		<option value="${s.count}">${genrename.genre_name}</option>
-	        </c:forEach> 
-		</select></td>
-<!-- 		<td><input type="TEXT" name="movie_no" size="45"  -->
-<!-- 			 placeholder="ex:MI00000001" /></td> -->
-	</tr>
-	<tr>
-		<td nowrap="nowrap">專欄標題:<font color=red><b>*</b></font></td>
-		<td><input type="TEXT" name="news_title" size="45"
-			 value="<%= (newsinfoVO==null)? "請輸入專欄標題" : newsinfoVO.getNews_title()%>" /></td>
-	</tr>
-	<tr>
-		<td nowrap="nowrap">專欄作者:<font color=red><b>*</b></font></td>
-		<td><input type="TEXT" name="news_auther" size="45"
-			 value="<%= (newsinfoVO==null)? "請輸入專欄作者" : newsinfoVO.getNews_auther()%>" /></td>
-	</tr>
-	<tr>
-		<td nowrap="nowrap">發文日期:<font color=red><b>*</b></font></td>
-		<td><input name="news_times" id="f_date1" type="text"></td>
-	</tr>
-	<tr>
-		<td nowrap="nowrap">專欄圖片:</td>
-		<td><input type="file" name="news_pic" onchange='readURL(this)'>
-					<img id="pic" class='pic' src='data:img/png;base64,${encodeText}'
-					${(newsinfoVO.news_pic==null) ? 'style="display:none"' : ''}></td>
-	</tr>
-	<tr>
-		<td nowrap="nowrap">專欄內容:<font color=red><b>*</b></font></td>
-		<td><textarea name="news_con" rows="10" cols="80"><%= (newsinfoVO==null)? "請輸入專欄內容" : newsinfoVO.getNews_con()%></textarea>
-	</tr>
-
-
-</table>
-<br>
-<input type="hidden" name="action" value="insert">
-<input type="submit" value="送出">
-<input type ="button" onclick="history.back()" value="取消"></input></FORM>
-
+								<tr>
+									<td nowrap="nowrap">電影名稱:</td>
+									<td><select name="movie_no">
+											<c:forEach var="genrename" items="${listgenre}" varStatus="s">
+												<option value="${s.count}">${genrename.genre_name}</option>
+											</c:forEach>
+									</select></td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">專欄標題:<font color=red><b>*</b></font></td>
+									<td><input type="TEXT" name="news_title" size="45"
+										value="<%=(newsinfoVO == null) ? "請輸入專欄標題" : newsinfoVO.getNews_title()%>" /></td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">專欄作者:<font color=red><b>*</b></font></td>
+									<td><input type="TEXT" name="news_auther" size="45"
+										value="<%=(newsinfoVO == null) ? "請輸入專欄作者" : newsinfoVO.getNews_auther()%>" /></td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">發文日期:<font color=red><b>*</b></font></td>
+									<td><input name="news_times" id="f_date1" type="text"></td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">專欄圖片:</td>
+									<td><input type="file" name="news_pic"
+										onchange='readURL(this)'> <img id="pic" class='pic'
+										src='data:img/png;base64,${encodeText}'
+										${(newsinfoVO.news_pic==null) ? 'style="display:none"' : ''}></td>
+								</tr>
+								<tr>
+									<td nowrap="nowrap">專欄內容:<font color=red><b>*</b></font></td>
+									<td><textarea name="news_con" rows="10" cols="80"><%=(newsinfoVO == null) ? "請輸入專欄內容" : newsinfoVO.getNews_con()%></textarea>
+								</tr>
+								
+								<tr>
+								<td><input type="hidden" name="action" value="insert"></td>
+								<td><button type="submit" class="btn btn-primary">送出</button>
+								<button type="submit" class="btn btn-danger" onclick="history.back()">取消</button></td>
+								</tr>
+								</FORM>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
 
-
-<!-- 工作區結束 -->
-		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	<!-- 工作區結束 -->
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
 
 </body>
 
@@ -176,24 +168,28 @@ th, td {
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
-<% 
-//   java.sql.Date news_times = null;
-//   try {
-// 	    news_times = newsinfoVO.getNews_times();
-//    } catch (Exception e) {
-// 	    news_times = new java.sql.Date(System.currentTimeMillis());
-//    }
+<%
+	//   java.sql.Date news_times = null;
+	//   try {
+	// 	    news_times = newsinfoVO.getNews_times();
+	//    } catch (Exception e) {
+	// 	    news_times = new java.sql.Date(System.currentTimeMillis());
+	//    }
 %>
 
 <style>
-  .xdsoft_datetimepicker .xdsoft_datepicker {
-           width:  300px;   /* width:  300px; */
-  }
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-           height: 151px;   /* height:  151px; */
-  }
-</style>
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	width: 300px; /* width:  300px; */
+}
 
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	height: 151px; /* height:  151px; */
+}
+</style>
+<script
+	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
+<script
+	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <script>
         $.datetimepicker.setLocale('zh');
         $('#f_date1').datetimepicker({

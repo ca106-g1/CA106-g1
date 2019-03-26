@@ -11,19 +11,21 @@
 
 	MovieGenreService moviegenreSvc = new MovieGenreService();
 	List<MovieGenreVO> listgenre = moviegenreSvc.getAll();
-	pageContext.setAttribute("listgenre",listgenre);
+	pageContext.setAttribute("listgenre", listgenre);
 %>
 
 <html>
 <head>
 
-<link	rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
-<link rel="stylesheet" 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
-	<script src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<script
+	src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>addMovieInfo</title>
@@ -46,21 +48,20 @@ h4 {
 	display: inline;
 }
 
-  img, #level{
-  	width:50px;
-  	hight:50px;
-  }
-  
-  #pic{
-  	width:270px;
-  	hight:400px;
-  }
-  
-  #popcorn{
-  	 width:52;
-  	 height:62;
-  }
-  
+img, #level {
+	width: 50px;
+	hight: 50px;
+}
+
+#pic {
+	width: 270px;
+	hight: 400px;
+}
+
+#popcorn {
+	width: 52;
+	height: 62;
+}
 </style>
 
 <style>
@@ -79,159 +80,170 @@ th, td {
 	padding: 1px;
 }
 
-#button{
-	hight:20;
-	width:20;
+#button {
+	hight: 20;
+	width: 20;
 }
-
 </style>
 
 </head>
 <body bgcolor='white'>
-		<jsp:include page="/BackHeaderFooter/Header.jsp" />
-		<h1></h1><br>
-		
-<!-- 工作區開始 -->
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
+	<h1></h1>
+	<br>
 
+	<!-- 工作區開始 -->
 	<div class="container">
 		<div class="row justify-content">
-			<div class="col-1"></div>
-			<div class="col-4">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>電影新增</h4>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover mb-0 text-nowrap">
+								<%-- 錯誤表列 --%>
+								<c:if test="${not empty errorMsgs}">
+									<font style="color: red">請修正以下錯誤:</font>
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li style="color: red">${message}</li>
+										</c:forEach>
+									</ul>
+								</c:if>
+								<FORM METHOD="post"
+									ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do"
+									name="form1" enctype="multipart/form-data">
+									<tr>
+										<td nowrap="nowrap">電影種類:<font color=red size="2"><b>*</b></font></td>
+										<td><select size="1" name="genre_no">
+												<c:forEach var="genrename" items="${listgenre}"
+													varStatus="s">
+													<option value="${s.count}">${genrename.genre_name}</option>
+												</c:forEach>
+										</select></td>
+									</tr>
 
-	<table id="table-1">
-		<tr>
-			<td><h3>電影資料新增</h3></td>
-			<td><h4>
-					<a href="select_page.jsp"><img id="popcorn" src="<%=request.getContextPath()%>/Back_end/movieinfo/images/popcorn.jpg"
-					   width="52" height="62" border="0">回首頁</a>
-			</h4></td>
-		</tr>
-	</table>
+									<tr>
+										<td nowrap="nowrap">電影名稱:<font color=red size="2"><b>*</b></font></td>
+										<td><input type="TEXT" id="movie_name" name="movie_name"
+											size="45"
+											value="<%=(movieinfoVO == null) ? "請輸入電影名稱" : movieinfoVO.getMovie_name()%>" /></td>
+									</tr>
 
+									<tr>
+										<td nowrap="nowrap">電影分數:</td>
+										<td><input type="TEXT" id="movie_score"
+											name="movie_score" size="45" placeholder="ex:8.0" /></td>
+									</tr>
 
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+									<tr>
+										<td nowrap="nowrap">電影分級:<font color=red size="2"><b>*</b></font></td>
+										<td><input type="file" id="movie_level"
+											name="movie_level" onchange='readURL(this)'> <img
+											id="level" class='pic'
+											src='data:img/png;base64,${encodeText}'
+											${(movieinfoVO.movie_level==null) ? 'style="display:none"' : ''}></td>
+									</tr>
 
-	<!-- 寫入圖片步驟2 傳送方式用Post 並設定傳送格式enctype-->
-	<br>
-	<FORM METHOD="post"
-		ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do"
-		name="form1" enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td nowrap="nowrap">電影種類:<font color=red size="2"><b>*</b></font></td>
-<!-- 				利用varStatus="s" 將value變成數字(index從0開始,count從1開始) -->
-				<td><select size="1" name="genre_no">		
-						<c:forEach var="genrename" items="${listgenre}" varStatus="s"> 
-	          				<option value="${s.count}">${genrename.genre_name}</option>
-	          			</c:forEach> 
-          			</select>
-         		</td>
-			</tr>		
-			<tr>
-				<td nowrap="nowrap">電影名稱:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" id="movie_name" name="movie_name" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入電影名稱" : movieinfoVO.getMovie_name()%>" /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影分數:</td>
-				<td><input type="TEXT" id="movie_score" name="movie_score" size="45"
-					placeholder="ex:8.0" /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影分級:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="file" id="movie_level" name="movie_level" onchange='readURL(this)'>
-					<img id="level" class='pic' src='data:img/png;base64,${encodeText}'
-					${(movieinfoVO.movie_level==null) ? 'style="display:none"' : ''}></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影導演:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" id="movie_director" name="movie_director" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入電影導演" : movieinfoVO.getMovie_director()%>" /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影演員:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" id="movie_cast" name="movie_cast" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入電影演員" : movieinfoVO.getMovie_cast()%>" /></td>
-			</tr>
-			
-			<tr>
-				<td nowrap="nowrap">電影片長:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="TEXT" id="movie_length" name="movie_length" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入電影片長" : movieinfoVO.getMovie_length()%>" /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影預告:</td>
-				<td><input type="TEXT" name="movie_trailer" size="45"
-					value='<%=(movieinfoVO == null) ? "請輸入預告網址" : movieinfoVO.getMovie_trailer()%>' /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影上映時間:<font color=red size="2"><b>*</b></font></td>
-				<td><input name="movie_in" id="movie_in" class="f_date1" type="text"
-					value="<%=(movieinfoVO == null) ? "請輸入上映時間" : movieinfoVO.getMovie_in()%>"></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影下映時間:<font color=red size="2"><b>*</b></font></td>
-				<td><input name="movie_out" id="movie_out" class="f_date1" type="text" 
-					value="<%=(movieinfoVO == null) ? "請輸入下映時間" : movieinfoVO.getMovie_out()%>"></td>
-			</tr>
-<!-- 			<tr> -->
-<!-- 				<td>電影票房:</td> -->
-<!-- 				<td><input type="TEXT" name="movie_count" size="45" -->
-<%-- 					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td> --%>
-<!-- 			</tr> -->
-			<tr>
-				<td nowrap="nowrap">電影期待度:</td>
-				<td><input type="TEXT" id="movie_exp" name="movie_exp" size="45"
-					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影不期待度:</td>
-				<td><input type="TEXT" id="movie_noexp" name="movie_noexp" size="45"
-					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_noexp()%>" /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影片長加價:</td>
-				<td><input type="TEXT" id="movie_ticket" name="movie_ticket" size="45"
-					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_touch()%>" /></td>
-			</tr>
-			<tr>
-				<td nowrap="nowrap">電影封面:</td>
-				<td><input type="file" name="movie_pic" onchange='readURL2(this)'>
-				<img id="pic" class='pic2' src='data:img/png;base64,${encodeText2}'
-					${(movieinfoVO.movie_pic==null) ? 'style="display:none"' : ''}>
-				</td>
-			</tr>
-			<tr valign="top">
-				<td id="movie_con" nowrap="nowrap">電影簡介:<font color=red size="2"><b>*</b></font></td>
-				<td><textarea name="movie_intro" rows="10" cols="80"><%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%></textarea></td>
-			</tr>
-			
-		</table>
-			<br>
-			<input type="hidden" name="action" value="insert"> 
-			<input type="submit" value="送出">
-			<input type ="button" onclick="history.back()" value="取消"></input>
-			<img id="button" width="20" height="20" src="<%=request.getContextPath()%>/Back_end/movieinfo/images/spiderman.jpg" onclick="movieinsert(this)">
-			
-	</FORM>
-	
-		</div>
-		</div>
-	</div>
+									<tr>
+										<td nowrap="nowrap">電影導演:<font color=red size="2"><b>*</b></font></td>
+										<td><input type="TEXT" id="movie_director"
+											name="movie_director" size="45"
+											value="<%=(movieinfoVO == null) ? "請輸入電影導演" : movieinfoVO.getMovie_director()%>" /></td>
+									</tr>
 
-<!-- 工作區結束 -->
-		
-		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
-		
-	<script>
+									<tr>
+										<td nowrap="nowrap">電影演員:<font color=red size="2"><b>*</b></font></td>
+										<td><input type="TEXT" id="movie_cast" name="movie_cast"
+											size="45"
+											value="<%=(movieinfoVO == null) ? "請輸入電影演員" : movieinfoVO.getMovie_cast()%>" /></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影片長:<font color=red size="2"><b>*</b></font></td>
+										<td><input type="TEXT" id="movie_length"
+											name="movie_length" size="45"
+											value="<%=(movieinfoVO == null) ? "請輸入電影片長" : movieinfoVO.getMovie_length()%>" /></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影預告:</td>
+										<td><input type="TEXT" name="movie_trailer" size="45"
+											value='<%=(movieinfoVO == null) ? "請輸入預告網址" : movieinfoVO.getMovie_trailer()%>' /></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影上映時間:<font color=red size="2"><b>*</b></font></td>
+										<td><input name="movie_in" id="movie_in" class="f_date1"
+											type="text"
+											value="<%=(movieinfoVO == null) ? "請輸入上映時間" : movieinfoVO.getMovie_in()%>"></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影下映時間:<font color=red size="2"><b>*</b></font></td>
+										<td><input name="movie_out" id="movie_out"
+											class="f_date1" type="text"
+											value="<%=(movieinfoVO == null) ? "請輸入下映時間" : movieinfoVO.getMovie_out()%>"></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影期待度:</td>
+										<td><input type="TEXT" id="movie_exp" name="movie_exp"
+											size="45"
+											value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_exp()%>" /></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影不期待度:</td>
+										<td><input type="TEXT" id="movie_noexp"
+											name="movie_noexp" size="45"
+											value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_noexp()%>" /></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影片長加價:</td>
+										<td><input type="TEXT" id="movie_ticket"
+											name="movie_ticket" size="45"
+											value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_touch()%>" /></td>
+									</tr>
+
+									<tr>
+										<td nowrap="nowrap">電影封面:</td>
+										<td><input type="file" name="movie_pic"
+											onchange='readURL2(this)'> <img id="pic" class='pic2'
+											src='data:img/png;base64,${encodeText2}'
+											${(movieinfoVO.movie_pic==null) ? 'style="display:none"' : ''}>
+										</td>
+									</tr>
+
+									<tr>
+										<td id="movie_con" nowrap="nowrap">電影簡介:<font color=red
+											size="2"><b>*</b></font></td>
+										<td><textarea name="movie_intro" rows="10" cols="80"><%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%></textarea></td>
+									</tr>
+
+									<tr>
+										<td><input type="hidden" name="action" value="insert"></td>
+										<td><button type="submit" class="btn btn-primary">送出</button>
+											<button type="submit" class="btn btn-danger" onclick="history.back()">取消</button> 
+												<!--<input type ="button" onclick="history.back()" value="取消"></input> -->
+											<img id="button" width="20" height="20"
+											src="<%=request.getContextPath()%>/Back_end/movieinfo/images/spiderman.jpg"
+											onclick="movieinsert(this)"></td>
+									</tr>
+								</FORM>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- 工作區結束 -->
+
+				<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+
+				<script>
 		function readURL(input) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -251,23 +263,30 @@ th, td {
 		}
 		
 		function movieinsert(name){
-			form1.movie_name.value="資策會的秘密約會";
+			form1.movie_name.value="資策會的辛酸血淚";
 			form1.movie_score.value="9.9";
-			form1.movie_director.value="賴柏松";
-			form1.movie_cast.value="蔣家駿, 陳彥彰";
+			form1.movie_director.value="吳永志";
+			form1.movie_cast.value="台下的各位";
 			form1.movie_intro.value="一段愛與勇氣的故事";
-			form1.movie_length.value="1hr48min";
-			form1.movie_trailer.value="https://www.youtube.com/embed/q6EoRBvdVPQ";
-			form1.movie_in.value="2019-03-22";
-			form1.movie_out.value="2019-04-22";
+			form1.movie_length.value="670hr0min";
+			form1.movie_trailer.value="https://www.youtube.com/watch?v=6RBYmR5GesQ";
+			form1.movie_in.value="2018-10-09";
+			form1.movie_out.value="2019-04-03";
 			form1.movie_count.value="0";
-			form1.movie_exp.value="0";
+			form1.movie_exp.value="100000";
 			form1.movie_noexp.value="0";
-			form1.movie_ticket.value="300";
+			form1.movie_ticket.value="0";
 		}
 	</script>
-	
-	
+
+				<!-- Optional JavaScript -->
+				<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
+				<script
+					src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+				<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+				<script
+					src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+				<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 </body>
 
 
@@ -275,12 +294,12 @@ th, td {
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 <%
-// 	java.sql.Date movie_in = null;
-// 	try {
-// 		movie_in = movieinfoVO.getMovie_in();
-// 	} catch (Exception e) {
-// 		movie_in = new java.sql.Date(System.currentTimeMillis());
-// 	}
+	// 	java.sql.Date movie_in = null;
+	// 	try {
+	// 		movie_in = movieinfoVO.getMovie_in();
+	// 	} catch (Exception e) {
+	// 		movie_in = new java.sql.Date(System.currentTimeMillis());
+	// 	}
 %>
 
 <style>
@@ -293,6 +312,10 @@ th, td {
 }
 </style>
 
+<script
+	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
+<script
+	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
 <script>
 	$.datetimepicker.setLocale('zh');
 	$('.f_date1').datetimepicker({

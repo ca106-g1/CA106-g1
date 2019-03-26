@@ -77,90 +77,145 @@
 
 	<div class="container">
 		<div class="row justify-content">
-			<div class="col-1"></div>
-			<div class="col-4">
-
-<table id="table-1">
-	<tr><td>
-		 <h3>電影資料查詢</h3>
-		 <h4><a href="select_page.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<table>
-	<tr>
-		<th>電影編號</th>
-		<th>電影種類</th>
-		<th>電影名稱</th>
-		<th>電影封面</th>
-		<th>電影分級</th>
-		<th>電影分數</th>
-		<th>電影導演</th>
-		<th>電影演員</th>
-		<th>電影片長</th>
-		<th>電影上映時間</th>
-		<th>電影下映時間</th>
-		<th>電影期待度</th>
-		<th>電影不期待度</th>
-		<th>電影票價加價</th>
-		<th>電影預告片</th>
-<!-- 		<th>電影簡介</th> -->
-		<th colspan="2">編輯</th>
-	</tr>
-	
-	<tr>
-			<td>${movieinfoVO.movie_no}</td>
-			<td>${msc.getOneGenre(movieinfoVO.genre_no).genre_name}</td>
-			<td>${movieinfoVO.movie_name}</td>
-<!-- 新增movie_pic			 -->
-			<c:set var="movie_pic" value="${movieinfoVO.movie_pic}"></c:set>
-			<%
-				byte b[]= (byte[])pageContext.getAttribute("movie_pic");
-				String encode = null;
-				if(b != null){
-					encode = Base64.encode(b);
-			%>
-			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
-			<%}else{%><td></td><%}%>
-<!-- 新增movie_level -->			
-			<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
-			<%
-				byte c[]= (byte[])pageContext.getAttribute("movie_level");
-				String encode1 = null;
-				if(c != null){
-					encode1 = Base64.encode(c);
-			%>
-			<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
-			<%}else{%><td></td><%}%>
-			<td>${movieinfoVO.movie_score}</td>
-			<td>${movieinfoVO.movie_director}</td>
-			<td>${movieinfoVO.movie_cast}</td> 
-			<td>${movieinfoVO.movie_length}</td>
-			<td>${movieinfoVO.movie_in}</td>
-			<td>${movieinfoVO.movie_out}</td> 
-			<td>${movieinfoVO.movie_exp}</td>
-			<td>${movieinfoVO.movie_noexp}</td>
-			<td>${movieinfoVO.movie_ticket}</td> 
-			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-<%-- 			<td>${movieinfoVO.movie_intro}</td> --%>
-
-<!-- 			<td> -->
-<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;"> --%>
-<!-- 			     <input type="submit" value="修改"> -->
-<%-- 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}"> --%>
-<!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
-<!-- 			</td> -->
-<!-- 			<td> -->
-<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;"> --%>
-<!-- 			     <input type="submit" value="刪除"> -->
-<%-- 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}"> --%>
-<!-- 			     <input type="hidden" name="action" value="delete"></FORM> -->
-<!-- 			</td> -->
-		</tr>
-</table>
+			<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h4>電影資料</h4>
+						</div>
+						<div class="card-body">
+							<form class="form-horizontal" >
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">編號</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_no}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">種類</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${msc.getOneGenre(movieinfoVO.genre_no).genre_name}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">名稱</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_name}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">封面</label>
+									<div class="col-md-9">
+										<c:set var="movie_pic" value="${movieinfoVO.movie_pic}"></c:set>
+											<%
+												byte b[]= (byte[])pageContext.getAttribute("movie_pic");
+												String encode = null;
+												if(b != null){
+													encode = Base64.encode(b);
+											%>
+											<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
+											<%}else{%><td></td><%}%>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">分級</label>
+									<div class="col-md-9">
+										<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
+											<%
+												byte c[]= (byte[])pageContext.getAttribute("movie_level");
+												String encode1 = null;
+												if(c != null){
+													encode1 = Base64.encode(c);
+											%>
+											<td><img id="level" src="data:image/jpg;base64,<%=encode1%>"></td>
+											<%}else{%><td></td><%}%>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">分數</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_score}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">導演</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_director}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">演員</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_cast}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">片長</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_length}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">上映時間</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_in}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">下映時間</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_out}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">期待度</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_exp}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">不期待度</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_noexp}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">片價加價</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" readonly="readonly" value="${movieinfoVO.movie_ticket}">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">預告片</label>
+									<div class="col-md-9">
+										<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">簡介</label>
+									<div class="col-md-9">
+										<textarea class="form-control" rows="6">${movieinfoVO.movie_intro}</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-3 col-form-label">編輯</label>
+									<div class="col-md-9">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
+			     <button type="submit" class="btn btn-primary">修改</button>
+			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
+			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			     
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
+			     <button type="submit" class="btn btn-danger" onclick="history.back()">刪除</button>
+			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
+			     <input type="hidden" name="action" value="delete"></FORM>
+									</div>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
 	</div>
-		</div>
-	</div>
+</div>
 
 <!-- 工作區結束 -->
 
