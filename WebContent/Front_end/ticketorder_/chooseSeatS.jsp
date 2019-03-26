@@ -351,9 +351,9 @@ padding:0px;
 					var sit =  mt_no.mt_no;
 					var item = $('#sit'+sit);
 					
-					item.attr("data-sitType", 6);
+					item.attr('data-sitType', 6);
 					item.attr('class','btn disabled');
-					item.css("background-color", "#fc6");
+					item.css('background-color', $('#type6').css('background-color'));
 					item.unbind();
 					$remove($id("sit"+sit),"click",setStyle);					
 					//更新座位狀態
