@@ -24,7 +24,7 @@ public class MovietickeTool extends HttpServlet{
 		//半票
 		map.put("3", new TicketType("c","#90c"));
 		//軍公教
-		map.put("4", new TicketType("d","#c9e"));
+		map.put("4", new TicketType("d","#fdd"));
 		//敬老票
 		
 		getServletContext().setAttribute("TicketTypeMap", map);

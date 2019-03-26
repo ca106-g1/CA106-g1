@@ -25,7 +25,7 @@
 
  <div class="container-fluid">
 		    <div class="row">
-			    <table class="table">
+			    <table class="table table-sm">
 				    <thead>
 					    <tr>
 					    	<th scope="col">名稱</th>

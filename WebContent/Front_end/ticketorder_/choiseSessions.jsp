@@ -16,7 +16,7 @@
 <title>訂票</title>
 <style type="text/css">
 p{
-margin:0px;
+ margin-bottom:10px;
 }
 </style>
 </head>
@@ -32,56 +32,53 @@ margin:0px;
 	%>
 
 	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-4">
-				<div>
-					<p>選擇電影</p>
-					<br> <select id="movie_no" name="movie_no" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:106px;">
-								<option value="">請選擇電影</option>
-							<c:forEach var="movieinfo" items="${movieinfoService.all}">
-								<c:if test="${movieinfo.movie_in.before(now) && now.before(movieinfo.movie_out)}">
-									<option value="${movieinfo.movie_no}">${movieinfo.movie_name}</option>
-								</c:if>
-							</c:forEach>
-
-					</select>
-				</div>
-
+		<div class="row justify-content-center h4">
+			<div class="col-4 text-center">
+				<p>選擇電影</p>
+				<br> 
+				<select class="h6" id="movie_no" name="movie_no" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:106px;">
+						<option value="">請選擇電影</option>
+					<c:forEach var="movieinfo" items="${movieinfoService.all}">
+						<c:if test="${movieinfo.movie_in.before(now) && now.before(movieinfo.movie_out)}">
+							<option value="${movieinfo.movie_no}">${movieinfo.movie_name}</option>
+						</c:if>
+					</c:forEach>
+				</select>
 			</div>
-			<div class="col-4">
+			<div class="col-4 text-center">
 				<p>選擇日期</p>
 				<br> 
-				<select id="date" name="date" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:106px;">
+				<select class="h6" id="date" name="date" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:106px;">
 				<option value='-1'>請選擇</option>
 				</select>
 			</div>
-			<div class="col-4">
+			<div class="col-4 text-center">
 				<p>選擇場次</p><br> 
-				<select id="sessions" name="sessions" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:106px;">
+				<select class="h6" id="sessions" name="sessions" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:106px;">
 				<option value='-1'>請選擇</option>
 				</select>
 			</div>
 		</div>
-		<hr>
-		<div class="row justify-content-center">
-			<div class="col-4">
+		<hr style="border-top: 5px solid rgba(0,0,0,0.15);">
+		<div class="row justify-content-center h5">
+			<div class="col-4 text-center">
 			<p>電影海報</p>
-			<img id="movie_pic" src="" style="hight:180px;width:240px">
+			<img class="rounded" id="movie_pic" src="" style="width:300px;">
 			</div>
-			<div class="col-4">
+			<div class="col-4 text-center h4">
 				<p>片名</p>
-				<p id="movie_name">　</p>
+				<p class="h5" id="movie_name">　</p>
 				<br>
 				<p>敘述</p>
-				<P id="movie_intro"></P>
+				<P class="h5" id="movie_intro"></P>
 			</div>
-			<div class="col-4">
+			<div class="col-4 text-center">
 				<p>剩餘座位</p>
 				<p id="sessions_remaining" style="hight:20px">　</p>
 				<p>電影票價加價</p>
-				<p id="movie_ticket">0</p>
+				<p id="movie_ticket" style="color:#E74C3C"><strong>0</strong></p>
 				<p>影廳票價加價</p>
-				<p id="cinema_correct">0</p>
+				<p id="cinema_correct" style="color:#E74C3C"><strong>0</strong></p>
 				<br>
 				<form action="<%= request.getContextPath()%>/Front_end/ticketorder_/chooseSeatS.jsp">
 					<input type="hidden" id="sessions_no" name="sessions_no" value="">

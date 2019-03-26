@@ -209,48 +209,34 @@ padding:0px;
 							List<Integer> sitInnerList = sitList.get(i);
 							int innerSize = sitInnerList.size();
 							for (int j = 0; j < innerSize; j++) {
-								StatusOfSit cs = (StatusOfSit) (statusOfSitList.get(sitInnerList.get(j)));
-					%>
-
-					<div 
-						class="btn <%if(!(cs.getType() == 1)){%> disabled <% }%> " 
-						data-sitType = "<%=cs.getType()%>"
-						id="sit<%= i * 20 + j%>"
-						style="padding-top:0;padding-bottom:0;
-						
-						width:26px;height:22px;
-						
-						background-color:<%=cs.getColler()%>; border-color:#000; margin-left:5px; margin-top:2px">
-						
-						<%						
-						if(((i * 20 + j)%25)==0){ %>
-						<p style="width:19px;color:white;margin-bottom: 0px;margin-left: -9px;"><%=count1++ %></p>
-						<%} %>
-						
-						<%						
-						if((i * 20 + j)>375){ %>
-						<p style="width:19px;color:white;margin-bottom: 0px;margin-left: -9px;"><%=count2++ %></p>
-						<%} %>
-						
-					</div>
-					<%
-						}
-					%>
-
+										StatusOfSit cs = (StatusOfSit) (statusOfSitList.get(sitInnerList.get(j)));
+							%>
+		
+							<div 
+								class="btn <%if(!(cs.getType() == 1)){%> disabled <% }%> " 
+								data-sitType = "<%=cs.getType()%>"
+								id="sit<%= i * 20 + j%>"
+								
+								style="padding-top:0;padding-bottom:0;
+								width:26px;height:26px;
+								background-color:<%=cs.getColler()%>; border-color:#000; margin-left:5px; margin-top:2px">
+								
+								<%if(((i * 20 + j)%25) == 0){%>
+									<p style="width:19px;color:white;margin-bottom: 0px;margin-left: -9px;"><%=count1++ %></p><%}%>
+								<%if((i * 20 + j)>375){%>
+									<p style="width:19px;color:white;margin-bottom: 0px;margin-left: -9px;"><%=count2++ %></p><%}%>
+							</div>
+						<%
+							}
+						%>
 					<br>
-
 					<%
 						}
 					%>
-
-
 				</div>
-							
-							
 				</nav>
 							<!-- ---------------------以上現有座位---------------------- -->
 			<nav class="row justify-content">
-				
 					<div class="col-12">
 						<c:forEach var="var" items="${statusOfSitList}">
 								${var.str}
@@ -265,13 +251,10 @@ padding:0px;
 					</div>
 				</nav>
 								<!-- ---------------------以上影廳type---------------------- -->
-			
 			</div>
-
 		</div>
 	</div>
 	<!-- Button trigger modal -->
-
 
 <!-- Modal -->
 <div class="modal fade" id="priceDescription" tabindex="-1" role="dialog" aria-labelledby="priceDescriptionTitle" aria-hidden="true">
@@ -360,7 +343,7 @@ padding:0px;
 				if(jsonArray[1].sessions_no != "<%=sessions_no%>"){return;}
 				//如果不是這個場次就不管
 				
-				alert(jsonArray[1].message);
+				swal(jsonArray[1].message);
 				
 				 $.each(jsonArray[2], function(i, mt_no){
 					 //逐筆更新

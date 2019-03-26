@@ -34,11 +34,11 @@
 	</head>
 	<body>
 	<div>
-		<img src="" class="card-img" alt="" style="">
+		<img src="<%=request.getContextPath()%>/FrontHeaderFooter/FrontBootstrapHeaderFooter/Front_end_img.jpg" class="card-img" alt="" style="">
 	</div>
 		<header class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: -15px; margin-right: -15px;">
-				<a class="navbar-brand" href="#">Join影城</a>
+				<a class="navbar-brand" href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp">Join影城</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
