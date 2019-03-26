@@ -75,6 +75,10 @@ input {
 
 </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
+	
+
 </head>
 
 <body onload="connect();">
@@ -582,7 +586,7 @@ input {
 	        var jsonObj = JSON.parse(event.data);
 // 	        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
 	        var message = jsonObj.message + "\r\n";
-	        alert(message + "上架了! 快來看!");
+	        swal(message + "上架了! 快來看!");
 	        
 		
 		};

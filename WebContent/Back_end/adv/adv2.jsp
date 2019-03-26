@@ -46,6 +46,16 @@
 			position: relative;
 			z-index:999;
 		}
+		 #diamond{
+ 		 	position: relative;
+			border: 10px solid rgba(0,0,0,0.5);
+			transition: all 0.5s linear;
+ 		 }
+ 		 #diamond:hover{
+ 		 	
+ 		 	border-radius: 200px;
+			transition: all 0.5s linear; 
+ 		 }
 		
 		</style>
 
@@ -76,7 +86,7 @@
 <%-- 					<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/> --%>
 						<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
 						<br><br><br>
-						<span class="icon fa-diamond major"></span>
+						<span class="icon fa-diamond major" id="diamond"></span>
 						
 						<div id="messagesArea" class="panel message-area"  style="text-align:left;"></div> 
 <!-- 						<h2>Magna porta maximus</h2> -->

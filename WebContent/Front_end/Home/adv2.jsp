@@ -56,6 +56,16 @@
   			min-height:100%;
   			width:100%;
  		 }
+ 		 #diamond{
+ 		 	position: relative;
+			border: 10px solid rgba(0,0,0,0.5);
+			transition: all 0.5s linear;
+ 		 }
+ 		 #diamond:hover{
+ 		 	
+ 		 	border-radius: 200px;
+			transition: all 0.5s linear; 
+ 		 }
 		
 		</style>
 
@@ -64,10 +74,10 @@
 </head>
 <body bgcolor='white' >
 
-<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header.jsp" />
+<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header_foradv.jsp" />
 
 <div>
-	<img src="<%=request.getContextPath()%>/Front_end/Home/images1/background3.jpg" class="card-img" alt="..." style="">
+	<img src="<%=request.getContextPath()%>/Front_end/Home/images1/background3.jpg" class="card-img" alt="..." style=opacity:0.3;>
 </div>
 
 
@@ -88,6 +98,7 @@
 <%-- 					<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Back_end/adv/adv.do?ad_no=${advVO.ad_no}'  height='600'/> --%>
 						<img id='${advVO.ad_no}' src='<%=request.getContextPath()%>/Front_end/Home/adv.do?ad_no=${advVO.ad_no}'  height='600'/>
 						<br><br><br>
+						
 						<span class="icon fa-diamond major" id="diamond"></span>
 						
 						<div id="messagesArea" class="panel message-area"   style="text-align:left;"></div> 

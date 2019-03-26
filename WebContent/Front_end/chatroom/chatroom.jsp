@@ -147,10 +147,10 @@
 <body onload="connect();" onunload="disconnect();">
 
 <!-- 這是Header -->
-<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header.jsp" />
+<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header_foradv.jsp" />
 
 <div>
-	<img src="<%=request.getContextPath()%>/Front_end/chatroom/9986.jpg_wh1200.jpg" class="card-img" alt="..." style="">
+	<img src="<%=request.getContextPath()%>/Front_end/chatroom/9986.jpg_wh1200.jpg" class="card-img" alt="..." style=opacity:0.8;>
 
 
 </div>
@@ -171,7 +171,7 @@
       <div id="chatroomarea">
       <div id="chatroomarea_1">
 <!--         這釋放聊天對話的地方 -->
-  <div id="messagesArea" class="panel message-area"  style=overflow:auto;height:500px;background-color:#ffffff;opacity:0.7; ></div> 
+  <div id="messagesArea" class="panel message-area"  style=overflow:auto;height:500px;background-color:#ffffff;opacity:0.9; ></div> 
         
         
         
