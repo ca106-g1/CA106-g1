@@ -1,12 +1,21 @@
-<%@page import="java.sql.Date"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
 <%@ page import="com.movieinfo.model.*"%>
 <%@ page import="com.moviegenre.model.*"%>
-<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
+<%@ page import="java.util.*"%>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Movie Info-Soon Be On</title>
 <%
     MovieInfoService movieinfoSvc = new MovieInfoService();
 	MovieGenreService moviegenreSvc = new MovieGenreService();
@@ -25,128 +34,104 @@
     pageContext.setAttribute("list",list);
     
 %>
-
-
-<html>
-<head>
-<link rel="stylesheet"	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<title>揪影MovieInfo </title>
-
-<style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-  img, #level{
-  	width:50px;
-  	hight:50px;
-  }
-  
-  img, #pic{
-  	width:135px;
-  	hight:200px;
-  }
-</style>
-
-<style>
-  table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
-
+    
+    <style>
+    	.movie2_pic{
+    		width:300px;
+    		height:500px;
+    	}
+    </style>
 </head>
-<body bgcolor='white'>
+
+<body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
-		<h1></h1><br>
-		
-<!-- 工作區開始 -->
-		<div class="container">
-		<div class="row justify-content">
-			<div class="col-1"></div>
-			<div class="col-4">
 
-<table id="table-1">
-	<tr><td>
-		 <h3>未上映電影</h3>
-		 <h4><a href="<%=request.getContextPath()%>/Front_end/Home.jsp"><img src="<%=request.getContextPath()%>/Back_end/movieinfo/images/eatPopcorn.gif" width="125" height="72" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+    <!-- ****** Breadcumb Area Start ****** -->
+    <div class="breadcumb-area" style="background-image: url(<%=request.getContextPath()%>/Front_end/Home/img/bg-img/breadcumb.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="bradcumb-title text-center">
+                        <h2>Soon Be On</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="breadcumb-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Movie Info</li>
+                            <li class="breadcrumb-item active" aria-current="page">Soon Be On List</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ****** Breadcumb Area End ****** -->
 
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+    <!-- ****** Archive Area Start ****** -->
+    <section class="archive-area section_padding_80">
+    <%@ include file="page1.file" %> 
+        <div class="container">
+            <div class="row">
+				<c:forEach var="movieinfoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+				
+                <!-- Single Post -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
+                        <!-- Post Thumb -->
+                        <div class="post-thumb">
+                        	<c:set var="mimg" value="${movieinfoVO.movie_pic}" />
+					            <%
+					            	byte b[] = (byte[])pageContext.getAttribute("mimg");
+					            	String movie_pic = Base64.encode(b);
+					            %>
+	            <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display_FrontUpComing&movie_no=${movieinfoVO.movie_no}"><img class="movie2_pic" src="data:image/jpg;base64,<%=movie_pic%>"></a>
+	            <!-- Overlay Text -->
+                        </div>
+                        <!-- Post Content -->
+                        <div class="post-content">
+                            <div class="post-meta d-flex">
+                                <div class="post-author-date-area d-flex">
+                                    <!-- Post Author -->
+                                    <div class="post-author">
+                                        <a href="#">By ${movieinfoVO.movie_director}</a>
+                                    </div>
+                                    <!-- Post Date -->
+                                    <div class="post-date">
+                                        <a href="#">${movieinfoVO.movie_in}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do?action=getOne_For_Display_FrontUpComing&movie_no=${movieinfoVO.movie_no}">
+                                <h4 class="post-headline">${movieinfoVO.movie_name}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+             </c:forEach>
 
-<table>
-	<tr>
-		<th>電影名稱</th>
-		<th>電影封面</th>
-		<th>上映時間</th>
-		<th colspan="2">操作按鈕</th>
-	</tr>
-	
-	<%@ include file="page1.file" %> 
-		<c:forEach var="movieinfoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">		
-		<tr>
-			<td>${movieinfoVO.movie_name}</td>
-<!-- 新增movie_pic -->
-			<c:set var="movie_pic" value="${movieinfoVO.movie_pic}"></c:set>
-			<%
-				byte b[]= (byte[])pageContext.getAttribute("movie_pic");
-				String encode = null;
-				if(b != null){
-					encode = Base64.encode(b);
-			%>
-			<td><img id="pic" src="data:image/jpg;base64,<%=encode%>"></td>
-			<%}else{%><td></td><%}%>
-			<td>${movieinfoVO.movie_length}</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Front_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="MOVIE INFO">
-			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Display_FrontUpComing"></FORM>
-			</td>
-	</tr>
-	</c:forEach>
-</table>
-<%@ include file="page2.file" %>
-			</div>
-		</div>
-	</div>
-
-<!-- 工作區結束 -->
-		
-		<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-		<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-		<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+<!--以下為頁碼-->
+                <div class="col-12">
+                    <div class="pagination-area d-sm-flex mt-15">
+                        <nav aria-label="#">
+                            <ul class="pagination">
+                                <%@ include file="page2.file" %>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    	
+  		<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+  
 </body>
 </html>

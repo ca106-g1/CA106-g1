@@ -8,6 +8,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import org.json.JSONObject;
+
 import com.movieinfo.model.*;
 
 @MultipartConfig
@@ -218,11 +220,19 @@ public class MovieInfoServlet extends HttpServlet {
 			String movie_no = req.getParameter("movie_no");
 			MovieInfoVO mvo = mis.getOneMovieInfo(movie_no);
 			Integer exp = mvo.getMovie_exp();
+			Integer noexp = mvo.getMovie_noexp();
+					
+			exp+=1;
+			mis.updateExp(movie_no, exp);
+				
+			HashMap checkMap = new HashMap();
+			checkMap.put("exp", exp);
+			checkMap.put("noexp",noexp);
 			
-			if("exp".equals(action)) {
-				exp+=1;
-				mis.updateExp(movie_no, exp);				
-			}
+			JSONObject responseJSONObject = new JSONObject(checkMap);
+			PrintWriter out = res.getWriter();
+			out.println(responseJSONObject);
+			out.close();
 		}
 		
 /***************************未上映電影不期待按鈕***************************************/	
@@ -232,11 +242,20 @@ public class MovieInfoServlet extends HttpServlet {
 			String movie_no = req.getParameter("movie_no");
 			MovieInfoVO mvo2 = mis2.getOneMovieInfo(movie_no);
 			Integer noexp = mvo2.getMovie_noexp();
+			Integer exp = mvo2.getMovie_exp();
 			
-			if("noexp".equals(action)) {
-				noexp+=1;
-				mis2.updateNoExp(movie_no, noexp);				
-			}
+			noexp+=1;
+			mis2.updateNoExp(movie_no, noexp);
+			
+			HashMap checkMap = new HashMap();
+			checkMap.put("exp", exp);
+			checkMap.put("noexp",noexp);	
+			
+			JSONObject responseJSONObject = new JSONObject(checkMap);
+			PrintWriter out = res.getWriter();
+			out.println(responseJSONObject);
+			out.close();
+			
 		}
 		
 		

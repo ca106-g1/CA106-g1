@@ -26,28 +26,15 @@
     <!-- Title -->
     <title>Movie Info-In Theaters</title>
 
-	<style>
-		#movie_pic{
-			width:320px;
-			height:450px;
-		}
-		
-		#level{
-			width:30px;
-			height:30px;
-		}
-	</style>
-	
-	<!--     Favicon -->
+<!--     Favicon -->
     <link rel="icon" href="<%=request.getContextPath()%>/Front_end/Home/img/core-img/favicon.ico">
 
-	<!--     Core Stylesheet -->
+<!--     Core Stylesheet -->
     <link href="<%=request.getContextPath()%>/Front_end/Home/style.css" rel="stylesheet">
 
-	<!--     Responsive CSS -->
+<!--     Responsive CSS -->
     <link href="<%=request.getContextPath()%>/Front_end/Home/css/responsive/responsive.css" rel="stylesheet">
-	
-	
+
 </head>
 
 <body>
@@ -205,6 +192,8 @@
     <div id="preloader">
         <div class="yummy-load"></div>
     </div>
+
+
     
     <!-- ****** Breadcumb Area Start ****** -->
     <div class="breadcumb-area" style="background-image: url(<%=request.getContextPath()%>/Front_end/Home/img/bg-img/breadcumb.jpg);">
@@ -212,7 +201,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>In Theaters</h2>
+                        <h2>Movie News</h2>
                     </div>
                 </div>
             </div>
@@ -224,11 +213,9 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/Front_end/Home/Home.jsp"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Movie Info</a></li>
-                            <li class="breadcrumb-item"><a href="#">In Theaters List</a></li>
-                            <li class="breadcrumb-item"><a href="#">In Theaters</a></li>
-                            
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Movie News List</a></li>
+                            <li class="breadcrumb-item"><a href="#">Movie News</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -247,16 +234,6 @@
                         <!-- Single Post Share Info -->
                         <div class="col-2 col-sm-1">
                             <div class="single-post-share-info mt-100">
-                            	<!-- 新增movie_level -->			
-								<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
-									<%
-										byte c[]= (byte[])pageContext.getAttribute("movie_level");
-										String encode1 = null;
-										if(c != null){
-											encode1 = Base64.encode(c);
-									%>
-								<a href="#"><img id="level" src="data:image/jpg;base64,<%=encode1%>"></a>
-								<%}else{%> <%}%>
                                 <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                 <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                 <a href="#" class="googleplus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
@@ -270,34 +247,39 @@
                             <div class="single-post">
                                 <!-- Post Thumb -->
                                 <div class="post-thumb">
-                                    <iframe width="660" height="400" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></iframe>
+                                    <img src="<%=request.getContextPath()%>/Front_end/Home/img/newspic/2.jpg" alt="">
                                 </div>
                                 <!-- Post Content -->
                                 <div class="post-content">
                                     <div class="post-meta d-flex">
                                         <div class="post-author-date-area d-flex">
-                                         	<!-- Post Genre -->
+                                            <!-- Post Author -->
                                             <div class="post-author">
-                                                <a href="#">${msc.getOneGenre(movieinfoVO.genre_no).genre_name}</a>
+                                                <a href="#">By David Seafood</a>
                                             </div>
-                                            <!-- Post movie_length -->
-                                            <div class="post-author">
-                                                <a href="#">${movieinfoVO.movie_length}</a>
-                                            </div>
-                                            <!-- Post Director -->
-                                            <div class="post-author">
-                                                <a href="#">By ${movieinfoVO.movie_director}</a>
-                                            </div>
-                                             <!-- Post Director -->
-                                            <div class="movie_ticket">
-                                                <a href="#">+${movieinfoVO.movie_ticket}</a>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">March 29, 2019</a>
                                             </div>
                                         </div>
                                     </div>
                                     <a href="#">
-                                        <h2 class="post-headline">${movieinfoVO.movie_name}</h2>
+                                        <h2 class="post-headline">從技術面討論為什麼《蜘蛛人：新宇宙》是近年最強的動畫電影</h2>
                                     </a>
-                                    <p style="font-size:20px;">${movieinfoVO.movie_intro}</p>
+                                    <p>
+                                    	在剛剛結束的第 91 屆奧斯卡頒獎典禮上，來自索尼的《蜘蛛人：新宇宙》（Spider-Man: Into the Spider-Verse）拿下最佳動畫長片，是什麼原因可以讓這個作品在真人超級英雄浪潮下獲得如此高的注目？而它又憑什麼打敗動畫強權迪士尼以及魏斯安德森（Wes Anderson）的《犬之島》？其實別說今年，《蜘蛛人：新宇宙》從故事、敘事到呈現方式，都是動畫長片前所未見的規模與野心，如果你看過這部電影，一定可以瞭解其中吸引人且精緻的質感，同時那與過往動畫有所不同的畫面都是經過縝密的計畫和安排，而它到底有什麼特別之處？
+
+										還原漫畫的一切本質
+										真要說《蜘蛛人：新宇宙》最特別之處，就是在於他們盡可能地讓你在觀賞本片時如同閱讀一本漫畫書，本片的導演之一鮑伯珀爾西切蒂（Bob Persichetti）在接受 The Verge 訪問時就談到了如何利用「影格率」（Frame per Second，FPS）來製造觀眾的視覺差異：「過往多數的動畫電影都是 12 FPS，但傳統的電影則是 24 FPS，而那些手繪動畫則是先以 12 FPS 的規格再去透過電腦後製複製成 24 FPS；對於我們來說我們做了一件再簡單不過的事，就是把每一格都用 12 FPS 呈現，這樣的效果會讓畫面更『脆』、『銳利』，但純粹就是希望重現漫畫翻閱上的感受」簡單來說，傳統製作動畫上的思維，就是希望畫面的動態是柔順（Smooth）的，但鮑伯的想法則是相反過來，他們就是希望每一個動態（相對來說）都是有些遲緩的，進而達到更有張力的效果，當然這樣重回傳統的決定在製作上碰到許多問題，最棘手的莫過於長期依賴電腦的動畫師，「我很幸運我有一群很棒的夥伴為這樣的概念打造全新的系統」
+										
+										擔任這部電影藝術總監的派翠克歐奇夫（Patrick O’Keefe）在接受 polygon 網站訪問時談論了大量如何建構他們想要建構的全新動畫世界：「從一開始我們就打算走「還原漫畫」這條路，同時我們也將現實世界與漫畫融為一體，從設計的角度來看，它僅是關於形狀、結構與色調的選擇過程，目的就是希望讓觀眾在事物的觀賞上簡潔易懂，但它相當然爾的必須要花時間好好策劃；就某種意義上說，我們每天都在關注城市當中以及現實生活裡的細節，但對我來說，很多動畫電影都忽略了這些細節，比如那些塗鴉、粘在郵箱上的口香糖，以及紋理的複雜性。」
+										
+										若你仔細觀察《蜘蛛人：新宇宙》的每一個畫面，其中的細節是難以置信的，以這一幕來說，就可以感受到派翠克提到的「街道細節」
+                                    </p>
+                                    <blockquote class="yummy-blockquote mt-30 mb-30">
+                                        <h5 class="mb-30">“Technology is nothing. What's important is that you have a faith in people, that they're basically good and smart, and if you give them tools, they'll do wonderful things with them.”</h5>
+                                        <h6 class="text-muted">Steven Jobs</h6>
+                                    </blockquote>                                    
                                 </div>
                             </div>                           
                        </div>
@@ -310,76 +292,71 @@
                         <!-- Single Widget Area -->
                         <div class="single-widget-area about-me-widget text-center">
                             <div class="widget-title">
-                                <h6>Cover</h6>
+                                <h6>About Me</h6>
                             </div>
-                            <div >
-                            	<!-- 新增movie_pic-->
-								<c:set var="movie_pic" value="${movieinfoVO.movie_pic}"></c:set>
-								<%
-									byte b[]= (byte[])pageContext.getAttribute("movie_pic");
-									String encode = null;
-									if(b != null){
-										encode = Base64.encode(b);
-								%>
-								<img  id="pic" class="movie_pic" src="data:image/jpg;base64,<%=encode%>" alt="">
-								<%}else{%> <%}%>
-                                
+                            <div class="about-me-widget-thumb">
+                                <img src="<%=request.getContextPath()%>/Front_end/Home/img/newspic/David.png" alt="">
                             </div>
+                            <h4 class="font-shadow-into-light">David Seafood</h4>
+                            <p>	一個不吃海鮮的男子
+					   			卻選擇踏上賣海鮮的路
+								路上還會遇到什麼令他意想不到的事呢
+								讓我們繼續看下去~~~</p>
                         </div>
 
                         <!-- Single Widget Area -->
                         <div class="single-widget-area popular-post-widget">
                             <div class="widget-title text-center">
-                                <h6>Populer Movie</h6>
+                                <h6>Populer Post</h6>
                             </div>
                             <!-- Single Popular Post -->
                             <div class="single-populer-post d-flex">
-                                <img class="populer_pic" src="<%=request.getContextPath()%>/Front_end/Home/img/inTheaters/1.jpg" alt="">
+                                <img src="<%=request.getContextPath()%>/Front_end/Home/img/newspic/1.jpg" alt="">
                                 <div class="post-content">
                                     <a href="#">
-                                        <h6>Captain Marvel</h6>
+                                        <h6>為何蜘蛛人-新宇宙 是最佳動畫片?</h6>
                                     </a>
-                                    <p>HERO FILM</p>
+                                    <p>March 3, 2019</p>
                                 </div>
                             </div>
                             <!-- Single Popular Post -->
                             <div class="single-populer-post d-flex">
-                                <img class="populer_pic" src="<%=request.getContextPath()%>/Front_end/Home/img/inTheaters/2.jpg" alt="">
+                                <img src="<%=request.getContextPath()%>/Front_end/Home/img/newspic/2.jpg" alt="">
                                 <div class="post-content">
                                     <a href="#">
-                                        <h6>Extreme Job</h6>
+                                        <h6>小班證實不再飾演蝙蝠俠</h6>
                                     </a>
-                                    <p>COMEDY</p>
+                                    <p>March 22, 2019</p>
                                 </div>
                             </div>
                             <!-- Single Popular Post -->
                             <div class="single-populer-post d-flex">
-                                <img class="populer_pic" src="<%=request.getContextPath()%>/Front_end/Home/img/inTheaters/3.jpg" >
+                                <img src="<%=request.getContextPath()%>/Front_end/Home/img/newspic/3.jpg" alt="">
                                 <div class="post-content">
                                     <a href="#">
-                                        <h6>US</h6>
+                                        <h6>查克史奈德的正義聯盟呢</h6>
                                     </a>
-                                    <p>HORROW</p>
+                                    <p>March 24, 2019</p>
                                 </div>
                             </div>
                             <!-- Single Popular Post -->
                             <div class="single-populer-post d-flex">
-                                <img class="populer_pic" src="<%=request.getContextPath()%>/Front_end/Home/img/inTheaters/4.jpg">
+                                <img src="<%=request.getContextPath()%>/Front_end/Home/img/newspic/4.jpg" alt="">
                                 <div class="post-content">
                                     <a href="#">
-                                        <h6>How to Train Your Dragon 3</h6>
+                                        <h6>咻咻咻 射向你的心</h6>
                                     </a>
-                                    <p>ANIMATED</p>
+                                    <p>March 25, 2019</p>
                                 </div>
                             </div>
                             <!-- Single Popular Post -->
                             <div class="single-populer-post d-flex">
-                                <img class="populer_pic" src="<%=request.getContextPath()%>/Front_end/Home/img/inTheaters/5.jpg" alt="">
+                                <img src="<%=request.getContextPath()%>/Front_end/Home/img/newspic/5.jpg" alt="">
                                 <div class="post-content">
                                     <a href="#">
-                                        <h6>Green Book</h6>
+                                        <h6>《你殺我狗 我殺你全家3》 正式上線</h6>
                                     </a>
-                                    <p>DRAMA</p>
+                                    <p>March 27, 2019</p>
                                 </div>
                             </div>
                         </div>                        
@@ -489,9 +466,10 @@
 			</div>
 		</div>
 	</footer>
+
 	<!-- ****** Footer Menu Area End ****** --> 
-	
-	<!--     Jquery-2.2.4 js -->
+
+<!--     Jquery-2.2.4 js -->
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/jquery/jquery-2.2.4.min.js"></script>
 <!--     Popper js -->
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/bootstrap/popper.min.js"></script>

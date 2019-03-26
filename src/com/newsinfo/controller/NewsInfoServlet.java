@@ -186,9 +186,6 @@ public class NewsInfoServlet extends HttpServlet {
 				Integer news_no = new Integer(req.getParameter("news_no").trim());
 				
 				String movie_no = req.getParameter("movie_no").trim();
-				if (movie_no == null || movie_no.trim().length() == 0) {
-					errorMsgs.add("電影編號請勿空白");
-				}
 
 				String news_title = req.getParameter("news_title");
 				String news_titleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,30}$";

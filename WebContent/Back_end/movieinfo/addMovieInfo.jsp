@@ -209,10 +209,9 @@ th, td {
 					${(movieinfoVO.movie_pic==null) ? 'style="display:none"' : ''}>
 				</td>
 			</tr>
-			<tr  nowrap="nowrap" valign="top">
+			<tr valign="top">
 				<td id="movie_con" nowrap="nowrap">電影簡介:<font color=red size="2"><b>*</b></font></td>
-				<td><input type="textarea" id="movie_intro" name="movie_intro"  style="width:500px; height:300px;" 
-					value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>" /></td>
+				<td><textarea name="movie_intro" rows="10" cols="80"><%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%></textarea></td>
 			</tr>
 			
 		</table>

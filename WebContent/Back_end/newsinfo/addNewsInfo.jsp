@@ -121,9 +121,14 @@ th, td {
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
-		<td nowrap="nowrap">電影編號:</td>
-		<td><input type="TEXT" name="movie_no" size="45" 
-			 placeholder="ex:MI00000001" /></td>
+		<td nowrap="nowrap">電影名稱:</td>
+		<td><select name="movie_no">
+			<c:forEach var="genrename" items="${listgenre}" varStatus="s"> 
+	          		<option value="${s.count}">${genrename.genre_name}</option>
+	        </c:forEach> 
+		</select></td>
+<!-- 		<td><input type="TEXT" name="movie_no" size="45"  -->
+<!-- 			 placeholder="ex:MI00000001" /></td> -->
 	</tr>
 	<tr>
 		<td nowrap="nowrap">專欄標題:<font color=red><b>*</b></font></td>
@@ -147,8 +152,7 @@ th, td {
 	</tr>
 	<tr>
 		<td nowrap="nowrap">專欄內容:<font color=red><b>*</b></font></td>
-		<td><input type="TEXTAREA" name="news_con" size="45" style="width:500px; height:300px;"
-			 value="<%= (newsinfoVO==null)? "請輸入專欄內容" : newsinfoVO.getNews_con()%>" /></td>
+		<td><textarea name="news_con" rows="10" cols="80"><%= (newsinfoVO==null)? "請輸入專欄內容" : newsinfoVO.getNews_con()%></textarea>
 	</tr>
 
 

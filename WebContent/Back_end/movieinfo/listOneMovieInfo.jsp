@@ -100,7 +100,6 @@
 		<th>電影片長</th>
 		<th>電影上映時間</th>
 		<th>電影下映時間</th>
-<!-- 		<th>電影票房</th> -->
 		<th>電影期待度</th>
 		<th>電影不期待度</th>
 		<th>電影票價加價</th>
@@ -139,24 +138,24 @@
 			<td>${movieinfoVO.movie_length}</td>
 			<td>${movieinfoVO.movie_in}</td>
 			<td>${movieinfoVO.movie_out}</td> 
-<%-- 		<td>${movieinfoVO.movie_count}</td> --%>
 			<td>${movieinfoVO.movie_exp}</td>
 			<td>${movieinfoVO.movie_noexp}</td>
 			<td>${movieinfoVO.movie_ticket}</td> 
 			<td><iframe width="560" height="315" src="${movieinfoVO.movie_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 <%-- 			<td>${movieinfoVO.movie_intro}</td> --%>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-			     <input type="hidden" name="action" value="delete"></FORM>
-			</td>
+
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     <input type="submit" value="修改"> -->
+<%-- 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     <input type="submit" value="刪除"> -->
+<%-- 			     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"></FORM> -->
+<!-- 			</td> -->
 		</tr>
 </table>
 	</div>

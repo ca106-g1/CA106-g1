@@ -139,7 +139,7 @@ th, td {
 			<tr>
 				<td>電影分數:</td>
 				<td><input type="TEXT" name="movie_score" size="45"
-					value="<%=(movieinfoVO == null) ? "請輸入IMDB分數" : movieinfoVO.getMovie_score()%>" /></td>
+					value="<%=(movieinfoVO == null) ? "請輸入分數" : movieinfoVO.getMovie_score()%>" /></td>
 			</tr>
 			<tr>
 				<td>電影分級:</td>
@@ -179,11 +179,6 @@ th, td {
 				<td><input name="movie_out" class="f_date1" type="text" 
 					value="<%=(movieinfoVO == null) ? "請輸入下映時間" : movieinfoVO.getMovie_out()%>"></td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td>票房:</td> -->
-<!-- 				<td><input type="TEXT" name="movie_count" size="45" -->
-<%-- 					value="<%=(movieinfoVO == null) ? "0" : movieinfoVO.getMovie_count()%>" /></td> --%>
-<!-- 			</tr> -->
 			<tr>
 				<td>期待度:</td>
 				<td><input type="TEXT" name="movie_exp" size="45"
@@ -208,10 +203,7 @@ th, td {
 			</tr>
 			<tr valign="top">
 				<td id="movie_con" nowrap="nowrap">電影簡介:<font color=red size="2"><b>*</b></font></td>
-				<td ><textarea rows="10" cols="80" name="movie_intro" 
-					 value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>"></textarea>
-				
-				
+				<td ><textarea rows="10" cols="80" name="movie_intro">${movieinfoVO.movie_intro}</textarea></td>
 <!-- 				<input type="textarea" id="movie_intro" name="movie_intro"  style="width:500px; height:300px;"  -->
 <%-- 					value="<%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%>" /></td> --%>
 			</tr>
