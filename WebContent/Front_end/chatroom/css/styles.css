@@ -22,6 +22,7 @@ html, body {
     resize: none;
     box-sizing: border-box;
     overflow: auto;
+    
 }
 
 .input-area {

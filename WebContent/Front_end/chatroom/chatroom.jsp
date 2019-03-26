@@ -64,6 +64,7 @@
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
+	
   }
   table, th, td {
     border: 0px solid #CCCCFF;
@@ -81,6 +82,55 @@
   		min-height:100%;
   		width:100%;
   }
+  
+  #movietable{
+  		position: relative;
+	border: 10px solid rgba(0,0,0,0.5);
+	transition: all 0.5s linear;
+  
+  
+  }
+   
+   #movietable:hover{
+   border-radius: 25px;
+	transition: all 0.5s linear; 
+     
+   
+   }
+   
+   #chatroomarea{
+   		position: relative;
+	border: 10px solid #ffffff;
+	transition: all 0.5s linear;
+   }
+   #chatroomarea:hover{
+   		border-radius: 25px;
+	transition: all 0.5s linear; 
+     
+   }
+   
+    #chatroomarea_2{
+   		position: relative;
+	border: 10px solid rgba(0,0,0,0.5);
+	transition: all 0.5s linear;
+   }
+   #chatroomarea_2:hover{
+   		border-radius: 25px;
+	transition: all 0.5s linear; 
+     
+   }
+   
+   #chatroomarea_1{
+   		position: relative;
+	border: 10px solid rgba(0,0,0,0.5);
+	transition: all 0.5s linear;
+   }
+   #chatroomarea_1:hover{
+   		border-radius: 20px;
+	transition: all 0.5s linear; 
+     
+   }
+   
 </style>
 
 
@@ -117,16 +167,17 @@
 		<br>
 	    <h3 id="statusOutput" class="statusOutput"></h3>
         
-
-        
+	  <div id="chatroomarea_2">
+      <div id="chatroomarea">
+      <div id="chatroomarea_1">
 <!--         這釋放聊天對話的地方 -->
-  <div id="messagesArea" class="panel message-area"  style=overflow:auto;height:500px;background-color:#ffffff;opacity:0.9; ></div> 
+  <div id="messagesArea" class="panel message-area"  style=overflow:auto;height:500px;background-color:#ffffff;opacity:0.7; ></div> 
         
         
         
         <div class="panel input-area">
 <!--        這是使用者名子 -->
-           <h5><font color="white"> ${memVO.member_name}</font></h5>
+           <h5><font color="white" size="5"> ${memVO.member_name}</font></h5>
             
             
             
@@ -143,6 +194,12 @@
 		    <input type="button" id="disconnect"  class="button" value="離線" onclick="disconnect();"/>
 
 	    </div>
+	    
+	    </div>
+	    </div>
+	    </div>
+	    
+	    
 	</div>
 
 
@@ -153,13 +210,13 @@
 
 <!-- 使用電影資訊的資料 -->
 <div class="col-3">
-<br><br><br><br><br>
+<br><br><br>
 
-<table   style=background-color:#f0f0f0; >
+<table   style=background-color:#f0f0f0; id="movietable">
 	
-		<tr><th>電影名稱</th></tr>
-		<tr><th></th><th>${movieinfoVO.movie_name}</th></tr>
-		<tr><th>電影封面</th></tr>
+		<tr><th class="table table-sm table-dark" >電影名稱</th></tr>
+		<tr><th><font size="5">${movieinfoVO.movie_name}</font></th></tr>
+		<tr><th class="table table-sm table-dark">電影封面</th></tr>
 		<c:set var="movie_pic"  value="${movieinfoVO.movie_pic}"></c:set>
 			<%
 				byte b[]= (byte[])pageContext.getAttribute("movie_pic");
@@ -167,10 +224,10 @@
 				if(b != null){
 					encode = Base64.encode(b);
 			%>
-		<th><th><img id="pic" width='250' height='400' src="data:image/jpg;base64,<%=encode%>"></th>
+		<tr align="center"><th ><img id="pic" width='250' height='400' src="data:image/jpg;base64,<%=encode%>"></th>
 			<%}else{%><th></th><%}%></tr>
 		
-		<tr><th>電影分級</th></tr>
+		<tr><th class="table table-sm table-dark">電影分級</th></tr>
 		<c:set var="movie_level" value="${movieinfoVO.movie_level}"></c:set>
 			<%
 				byte c[]= (byte[])pageContext.getAttribute("movie_level");
@@ -178,17 +235,17 @@
 				if(c != null){
 					encode1 = Base64.encode(c);
 			%>
-		<th><th><img id="level" src="data:image/jpg;base64,<%=encode1%>"></th>
+		<tr align="center"	><th><img id="level" src="data:image/jpg;base64,<%=encode1%>"></th>
 			<%}else{%><th></th><%}%></tr>
-		<th><th></th></tr>
-		<tr><th>電影導演</th></tr>
-		<th><th>${movieinfoVO.movie_director}</th></tr>
-		<tr><th>電影演員</th></tr>
-		<th><th>${movieinfoVO.movie_cast}</th></tr>
-		<tr><th>電影片長</th></tr>
-		<th><th>${movieinfoVO.movie_length}</th></tr>
-		<tr><th>電影簡介</th></tr>
-		<th><th>${movieinfoVO.movie_intro}</th></tr>
+		
+		<tr><th class="table table-sm table-dark">電影導演</th></tr>
+		<tr><th>${movieinfoVO.movie_director}</th></tr>
+		<tr><th class="table table-sm table-dark">電影演員</th></tr>
+		<tr><th>${movieinfoVO.movie_cast}</th></tr>
+		<tr><th class="table table-sm table-dark">電影片長</th></tr>
+		<tr><th>${movieinfoVO.movie_length}</th></tr>
+		<tr><th class="table table-sm table-dark">電影簡介</th></tr>
+		<tr><th>${movieinfoVO.movie_intro}</th></tr>
 	
 	
 
