@@ -77,7 +77,7 @@ color:#969696;border:2px #ccc solid;padding:10px;text-align:center;
 		</div>
 	  <div class="col-9">
 	    <div class="tab-content" id="v-pills-tabContent">
-	      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><div style="margin-left:90px;"><h3>JOIN會員首頁</h3 ></div></div>
+	      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><div style="margin-left:90px;"><jsp:include page="/Front_end/mem/memNotice.jsp" /></div></div>
 	      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><jsp:include page="/Front_end/mem/listOneMem.jsp" /></div>
 	      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><jsp:include page="/Front_end/mem/update_mem_input2.jsp" /></div>
 	      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"><jsp:include page="/Front_end/dep/listOneDep_Mem.jsp" /></div>

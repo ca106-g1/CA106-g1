@@ -22,7 +22,7 @@
 <title>會員儲值明細</title>
 </head>
 <body bgcolor='white'>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
@@ -58,7 +58,7 @@
 
 	<!-- 工作區結束 -->
 	
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>
