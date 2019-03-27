@@ -110,7 +110,7 @@
 		
 		<td>${memVO.member_buildday}</td>
 		<td>${memVO.member_point}</td>
-		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>
+		<td>${memVO.member_status eq "1"?"已驗證":"未驗證"}</td>
 		
 		
 		<td>
