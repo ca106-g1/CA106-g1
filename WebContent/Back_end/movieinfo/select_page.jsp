@@ -82,8 +82,8 @@ h4 {
 											ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do">
 											<b>電影編號查詢 :</b> <input type="text" name="movie_no" size="20"
 												placeholder="ex:MI00000001"> <input type="hidden"
-												name="action" value="getOne_For_Display"> <input
-												type="submit" value="送出">
+												name="action" value="getOne_For_Display"> 
+												<button type="submit" class="btn btn-primary">送出</button>
 										</FORM>
 									</th>
 								</tr>
@@ -99,8 +99,7 @@ h4 {
 													<option value="${movieinfoVO.movie_no}">${movieinfoVO.movie_no}
 												</c:forEach>
 											</select> <input type="hidden" name="action"
-												value="getOne_For_Display"> <input type="submit"
-												value="送出">
+												value="getOne_For_Display"> <button type="submit" class="btn btn-primary">送出</button>
 										</FORM></th>
 								</tr>
 
@@ -112,8 +111,7 @@ h4 {
 													<option value="${movieinfoVO.movie_no}">${movieinfoVO.movie_name}
 												</c:forEach>
 											</select> <input type="hidden" name="action"
-												value="getOne_For_Display"> <input type="submit"
-												value="送出">
+												value="getOne_For_Display"> <button type="submit" class="btn btn-primary">送出</button>
 										</FORM></th>
 								</tr>
 
