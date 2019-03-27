@@ -22,8 +22,30 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title></title>
+
+
+
+<style>
+
+	.card-img{
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+            min-height: 100%;
+            width: 100%;
+            opacity: 0.3;
+			}
+
+
+</style>
 </head>
 <body>
+<div>
+		<img src="<%=request.getContextPath()%>/FrontHeaderFooter/FrontBootstrapHeaderFooter/Front_end_img.jpg" class="card-img" alt="" style="">
+	</div>
 	
 	<h1></h1>
 
