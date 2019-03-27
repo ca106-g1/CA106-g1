@@ -155,7 +155,7 @@ th, td {
 								<td><input type="hidden" name="action" value="update"></td>
 								<td><input type="hidden" name="news_no" value="<%=newsinfoVO.getNews_no()%>"> 
 								<button type="submit" class="btn btn-primary">送出</button>
-								<button type="submit" class="btn btn-danger" onclick="history.back()">取消</button> 
+								<button type="button" class="btn btn-danger" onclick="history.back()">取消</button> 
 			</FORM>
 							</table>
 						</div>

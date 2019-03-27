@@ -196,19 +196,19 @@
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label">簡介</label>
 									<div class="col-md-9">
-										<textarea class="form-control" rows="6">${movieinfoVO.movie_intro}</textarea>
+										${movieinfoVO.movie_intro}
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-md-3 col-form-label">編輯</label>
-									<div class="col-md-9">
-									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
-									     <button type="submit" class="btn btn-primary form-control" style="width:50%">修改</button>
+									<div class="col-md-9" style="display: -webkit-box;">
+									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do">
+									     <button type="submit" class="btn btn-primary">修改</button>
 									     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
 									     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 									     
-									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" style="margin-bottom: 0px;">
-									     <button type="submit" class="btn btn-danger form-control" onclick="history.back()" style="width:50%">刪除</button>
+									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do">
+									     <button type="submit" class="btn btn-danger" onclick="history.back()">刪除</button>
 									     <input type="hidden" name="news_no"  value="${newsinfoVO.news_no}">
 									     <input type="hidden" name="action" value="delete"></FORM>
 									</div>

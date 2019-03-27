@@ -228,7 +228,7 @@ th, td {
 									<tr>
 										<td><input type="hidden" name="action" value="insert"></td>
 										<td><button type="submit" class="btn btn-primary">送出</button>
-											<button type="submit" class="btn btn-danger" onclick="history.back()">取消</button> 
+											<button type="button" class="btn btn-danger" onclick="history.back()">取消</button> 
 												<!--<input type ="button" onclick="history.back()" value="取消"></input> -->
 											<img id="button" width="20" height="20"
 											src="<%=request.getContextPath()%>/Back_end/movieinfo/images/spiderman.jpg"
