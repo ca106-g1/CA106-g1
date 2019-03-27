@@ -61,10 +61,16 @@ public class TicketorderServlet_ extends HttpServlet {
 
 			MovieInfoVO movieInfoVO = new MovieInfoService().getOneMovieInfo(movie_no);
 			JSONObject jsonObject = new JSONObject();
-
+			String movie_intro = null;
+			
+			try {
+				movie_intro = movieInfoVO.getMovie_intro().replaceAll("<[^>]*>", "").replaceAll("&nbsp", "").trim();
+			} catch (NullPointerException e){
+				movie_intro = "";
+			}
 			try {
 				jsonObject.put("movie_name", movieInfoVO.getMovie_name());
-				jsonObject.put("movie_intro", movieInfoVO.getMovie_intro());
+				jsonObject.put("movie_intro", movie_intro);
 				jsonObject.put("movie_ticket", movieInfoVO.getMovie_ticket());
 				jsonObject.put("path",
 						req.getContextPath() + "/ToolClasses/Images?action=movie_pic&movie_no=" + movie_no);
