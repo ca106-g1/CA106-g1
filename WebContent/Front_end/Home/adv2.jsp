@@ -82,6 +82,7 @@
 
 
 <!-- Header -->
+<br><br><br>
 			<header id="header" class="alt">
 				<div class="inner">
 					<h1>${advVO.ad_name}</h1>
