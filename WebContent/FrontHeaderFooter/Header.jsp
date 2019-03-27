@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="com.mem.model.*"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,18 +58,34 @@
                     </div>
                 </div>
                 <!--  Login Register Area -->
-                <div class="col-7 col-sm-6">
-                    <div class="signup-search-area d-flex align-items-center justify-content-end">
-                        <div class="login_register_area d-flex">
-                            <div class="login" >
-                                <a href="#">Sign in</a>
-                            </div>
-                            <div class="register">
-                                <a href="#">Sign up</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <c:if test="${empty memVO}">
+						
+						
+							<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button"
+								class="btn btn-primary" data-toggle="modal"
+								data-target="#loginDescription">sign in</button>
+								
+								
+							<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button"
+								class="btn btn-primary"  onclick="location.href='<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp'">
+								sign up</button>
+								
+						</c:if>	
+						
+						
+						<c:if test="${not empty memVO}">
+						
+						<li><a>Hello: <font color=#ea7500 size=4px >${memVO.member_name}</font>您好
+							</a></li>
+							
+						
+
+						<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Front_end/mem/logoutHandler.do">
+							<input type="submit" value="logout">
+							<input type="hidden" name="logout" value="logout">
+						</FORM>
+						
+						</c:if>
             </div>
         </div>
     </div>
