@@ -261,6 +261,9 @@
 		<url-pattern>/Back_end/adv/*</url-pattern>
 		<url-pattern>/Back_end/cinema/*</url-pattern>
 		<url-pattern>/Back_end/farediscount/*</url-pattern>
+		<url-pattern>/Back_end/movieinfo/*</url-pattern>
+		<url-pattern>/Back_end/newsinfo/*</url-pattern>
+		<url-pattern>/Back_end/moviegenre/*</url-pattern>
 		<url-pattern>/Back_end/sessions/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
