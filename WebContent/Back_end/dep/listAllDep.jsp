@@ -23,17 +23,48 @@
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
 <title></title>
+
+
+<style>
+	table#table-1{
+	background-color:#CCCCFF;
+	border:2px solid black;
+	text-align: center;
+	}
+	table#table-1 h4{
+	color:red;
+	display: block;
+	margin-bottom:
+	}
+	
+	
+input[type="submit"]  {padding:5px 15px; background:#ccc; border:0 none;
+		cursor:pointer;
+		-webkit-border-radius: 5px;
+		border-radius: 5px; }
+
+
+</style>
+
+
+
+
 </head>
 <body bgcolor='white'>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
-<table id = "table-1">
-	<tr><td>
-		<h3>所有儲值明細 - listAllDep.jsp</h3>
-		<h4><a href ="<%=request.getContextPath()%>/Back_end/dep/select_page.jsp">回首頁</a></h4>
-</table>
+	<div class="container" >
+		<div class="row justify-content">
+			<div class="col-12">
+
+	
+		
+		<h4><input type="button" value="回儲值管理首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/dep/select_page.jsp'"></h4>
+
 
 <%--錯誤列表 --%>
 <c:if test="${not empty errorMsgs}">
@@ -67,13 +98,13 @@
 	</c:forEach>
 </tbody>
 </table>
-<%@ include file="page2.file" %>
+<%@ include file="/File/page2_modify.file" %>
 
 
 
 
 
-
+</div></div></div>
 
 	<!-- 工作區結束 -->
 	

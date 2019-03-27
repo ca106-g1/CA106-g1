@@ -26,10 +26,16 @@
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	<div class="container" >
+		<div class="row justify-content-center">
+			<div class="col-6">
+	
 <table id="table-1">
 	<tr><td>
 		<h3>會員儲值明細</h3>
-		<h4><a href = "<%=request.getContextPath()%>/Back_end/dep/select_page.jsp">回首頁</a></h4>
+		<h4><input type="button" value="回儲值管理首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%= request.getContextPath()%>/Back_end/dep/select_page.jsp'"></h4>
 	</td></tr>
 </table>
 
@@ -53,7 +59,7 @@
 </table>
 
 
-
+</div></div></div>
 	<!-- 工作區結束 -->
 	
 		<jsp:include page="/BackHeaderFooter/Footer.jsp" />
