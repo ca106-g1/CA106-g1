@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.Set"%>
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.stream.*"%>
 <%@ page import="java.util.function.*"%>
@@ -106,6 +107,39 @@
 
 		pageContext.setAttribute("list", list);
 		pageContext.setAttribute("list_movieInfoVO", list_movieInfoVO);
+	%>
+	<%
+	if ("all".equals(request.getParameter("action"))) {
+		Set<String> set = 
+				sessionsSvc.getAll().stream()
+				.map(sessionsVO -> sessionsVO.getMovie_no())
+				.distinct()
+				.collect(Collectors.toSet());
+		
+		List<MovieInfoVO> movie_no_list = new ArrayList<MovieInfoVO>();
+		for(String movie_no : set){
+			movie_no_list.add(movieInfoSvc.getOneMovieInfo(movie_no));
+		}
+		pageContext.setAttribute("movie_no_list", movie_no_list);
+
+	} else {
+
+		Set<String> set = 
+				sessionsSvc.getAll().stream()
+				.filter(sessionsVO -> !sessionsVO.getSessions_start().before(now))
+				.map(sessionsVO -> sessionsVO.getMovie_no())
+				.distinct()
+				.collect(Collectors.toSet());
+		
+		List<MovieInfoVO> movie_no_list = new ArrayList<MovieInfoVO>();
+		for(String movie_no : set){
+			movie_no_list.add(movieInfoSvc.getOneMovieInfo(movie_no));
+		}
+		pageContext.setAttribute("movie_no_list", movie_no_list);
+
+	}
+		
+	
 	%>
 
 

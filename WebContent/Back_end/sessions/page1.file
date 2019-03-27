@@ -44,7 +44,7 @@
 				<th>
 					<select name="movie_no" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:100px;">
 						<option value="">電影名稱</option>
-						<c:forEach var="movieInfoVO" items="${list_movieInfoVO}">
+						<c:forEach var="movieInfoVO" items="${movie_no_list}">
 							<option value="${movieInfoVO.movie_no}">${movieInfoVO.movie_name}</option>
 						</c:forEach>
 					</select>

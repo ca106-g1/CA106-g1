@@ -3,7 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.*"%>
-<%@page import="com.movieinfo.*"%>
+<%@page import="java.util.stream.*"%>
+<%@page import="com.movieinfo.model.*"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,8 +28,24 @@ p{
 	<!-- 工作區開始 -->
 
 	<jsp:useBean id="movieinfoService" class="com.movieinfo.model.MovieInfoService" />
+	<jsp:useBean id="sessionsSvc" scope="page" class="com.sessions.model.SessionsService" />
 	<%
-		pageContext.setAttribute("now", new java.sql.Date(System.currentTimeMillis()));
+		java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
+		
+		Set<String> set = 
+				sessionsSvc.getAll().stream()
+				.filter(sessionsVO -> !sessionsVO.getSessions_start().before(now))
+				.map(sessionsVO -> sessionsVO.getMovie_no())
+				.collect(Collectors.toSet());
+		
+		List<MovieInfoVO> list = new ArrayList<MovieInfoVO>();
+		
+		for(String movie_no : set){
+			list.add(movieinfoService.getOneMovieInfo(movie_no));
+		}
+		
+		pageContext.setAttribute("list", list);
+	
 	%>
 
 	<div class="container">
@@ -38,10 +55,8 @@ p{
 				<br> 
 				<select class="h6" id="movie_no" name="movie_no" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:106px;">
 						<option value="">請選擇電影</option>
-					<c:forEach var="movieinfo" items="${movieinfoService.all}">
-						<c:if test="${movieinfo.movie_in.before(now) && now.before(movieinfo.movie_out)}">
+					<c:forEach var="movieinfo" items="${list}">
 							<option value="${movieinfo.movie_no}">${movieinfo.movie_name}</option>
-						</c:if>
 					</c:forEach>
 				</select>
 			</div>
