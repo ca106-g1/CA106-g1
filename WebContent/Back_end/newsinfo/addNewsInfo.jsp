@@ -16,6 +16,8 @@
 <script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 <script
 	src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+<!-- ckeditor -->
+	<script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script>		
 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
@@ -145,6 +147,8 @@ th, td {
 								<tr>
 									<td nowrap="nowrap">專欄內容:<font color=red><b>*</b></font></td>
 									<td><textarea name="news_con" rows="10" cols="80"><%=(newsinfoVO == null) ? "請輸入專欄內容" : newsinfoVO.getNews_con()%></textarea>
+										<script> CKEDITOR.replace('news_con'); </script>
+									</td>
 								</tr>
 								
 								<tr>

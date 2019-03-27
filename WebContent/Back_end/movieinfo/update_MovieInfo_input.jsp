@@ -26,6 +26,8 @@
 	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
 <script
 	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+<!-- ckeditor -->
+	<script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script>		
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <!-- Bootstrap CSS start-->
@@ -205,7 +207,9 @@ th, td {
 								<tr valign="top">
 									<td id="movie_con" nowrap="nowrap">電影簡介:<font color=red
 										size="2"><b>*</b></font></td>
-									<td><textarea rows="10" cols="80" name="movie_intro">${movieinfoVO.movie_intro}</textarea></td>
+									<td><textarea rows="10" cols="80" name="movie_intro">${movieinfoVO.movie_intro}</textarea>
+										<script> CKEDITOR.replace('movie_intro'); </script>
+									</td>
 								</tr>
 								<tr>
 								<td><input type="hidden" name="action" value="update"></td>

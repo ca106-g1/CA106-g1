@@ -20,6 +20,8 @@
 	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.js"></script>
 <script
 	src="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.full.js"></script>
+<!-- ckeditor -->
+	<script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script>		
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>updateNewsInfo</title>
 
@@ -145,7 +147,9 @@ th, td {
 								</tr>
 								<tr>
 									<td nowrap="nowrap">專欄內容:<font color=red><b>*</b></font></td>
-									<td><textarea name="news_con" rows="10" cols="80" />${newsinfoVO.news_con}</textarea></td>
+									<td><textarea name="news_con" rows="10" cols="80" />${newsinfoVO.news_con}</textarea>
+										<script> CKEDITOR.replace('news_con'); </script>
+									</td>
 								</tr>
 								
 								<td><input type="hidden" name="action" value="update"></td>

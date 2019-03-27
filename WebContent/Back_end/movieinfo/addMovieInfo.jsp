@@ -17,15 +17,14 @@
 <html>
 <head>
 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<script
-	src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Back_end/movieinfo/Expansion/jquery.datetimepicker.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	
+<!-- ckeditor -->
+	<script src="<%=request.getContextPath()%>/ckeditor4/ckeditor.js"></script>	
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>addMovieInfo</title>
@@ -221,7 +220,9 @@ th, td {
 									<tr>
 										<td id="movie_con" nowrap="nowrap">電影簡介:<font color=red
 											size="2"><b>*</b></font></td>
-										<td><textarea name="movie_intro" rows="10" cols="80"><%=(movieinfoVO == null) ? "請輸入電影簡介" : movieinfoVO.getMovie_intro()%></textarea></td>
+										<td><textarea name="movie_intro" rows="10" cols="80">${movieinfoVO.movie_intro}</textarea>
+											<script> CKEDITOR.replace('movie_intro'); </script>
+										</td>
 									</tr>
 
 									<tr>
@@ -278,15 +279,7 @@ th, td {
 			form1.movie_ticket.value="0";
 		}
 	</script>
-
-				<!-- Optional JavaScript -->
-				<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-				<script
-					src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-				<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-				<script
-					src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-				<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+	
 </body>
 
 
