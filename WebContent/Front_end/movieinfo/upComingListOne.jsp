@@ -45,7 +45,7 @@
 
 	<!--     Responsive CSS -->
     <link href="<%=request.getContextPath()%>/Front_end/Home/css/responsive/responsive.css" rel="stylesheet">
-	
+    
 </head>
 
 <body>
@@ -324,15 +324,27 @@
 	                                <h6>Expect Vote</h6>
 	                            	</div>
 	                            	<div>
-								     <input type="button" class="expect btn btn-danger" id="exp2" value="期待">
-								     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-								     <input type="hidden" name="action"	value="exp">
-								     
-								     
-								     <input type="button" class="noexpect btn btn-danger" id="noexp2" value="不期待">
-								     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-								     <input type="hidden" name="action"	value="noexp">
+									     <input type="button" class="expect btn btn-danger" id="exp2" value="期待">
+									     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
+									     <input type="hidden" name="action"	value="exp">
+									     
+									     
+									     <input type="button" class="noexpect btn btn-danger" id="noexp2" value="不期待">
+									     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
+									     <input type="hidden" name="action"	value="noexp">
 	                            	</div>
+	                            	
+	                            	<div id="voteResultDiv" style="display:none">
+	                            		<div class="card-body" id="voteResult">
+							             <input type="text" class="knob charcahar" value="${(movieinfoVO.movie_exp/(movieinfoVO.movie_exp+movieinfoVO.movie_noexp))*100}" data-width="80" data-height="80" data-fgColor="#31c92e" data-readonly="true" >
+							             <div class="knob-label"></div>
+						            </div>
+						            
+	                            	</div>
+	                            	
+	                            	
+	                            	
+                          	
 	                            </div>
 	                        </div>
 
@@ -511,6 +523,9 @@
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/others/plugins.js"></script>
 <!--     Active JS -->
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/active.js"></script>
+<!-- Expect Vote -->
+	<script src="<%=request.getContextPath()%>/expectVote/jquery.knob.js"></script>
+	<script src="<%=request.getContextPath()%>/expectVote/othercharts.js"></script>    
 
 <script>
 		$(".expect").click(function(){
@@ -524,14 +539,13 @@
 				},
 				dataType:"json",
 				success:function(response){
+					${movieinfoVO.movie_exp}
 					var sum = parseInt(response.exp)+parseInt(response.noexp);
 					console.log((parseInt(response.exp)/sum)*100);
 					element.parent().text(parseInt((parseInt(response.exp)/sum)*100)+"%");
-// 					$('input[id=exp2]').remove();
-// 					$('input[id=noexp2]').remove();
 					$('#exp2').remove();
 					$('#noexp2').remove();
-									
+					$('#voteResultDiv').css("display","inline");
 				},
 				error:function(data, textStatus, jqXHR){
 					console.log('Ajax Error');
@@ -558,11 +572,12 @@
 					var sum = parseInt(response.exp)+parseInt(response.noexp);
 					console.log((parseInt(response.exp)/sum)*100);
 					element.parent().text(parseInt((parseInt(response.exp)/sum)*100)+"%");
+					
 // 					$('input[id=exp2]').remove();
 // 					$('input[id=noexp2]').remove();
 					$('#exp2').remove();
 					$('#noexp2').remove();
-									
+					$('#voteResultDiv').css("display","inline");				
 				},
 				error:function(data, textStatus, jqXHR){
 					console.log('Ajax Error');

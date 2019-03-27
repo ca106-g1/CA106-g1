@@ -9,12 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-
-    <link rel="icon" href="<%=request.getContextPath()%>/Front_end/Home/img/core-img/favicon.ico">
-    <link href="<%=request.getContextPath()%>/Front_end/Home/style.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/Front_end/Home/css/responsive/responsive.css" rel="stylesheet">
-    
-    
 </head>
 <body>
 	
@@ -26,7 +20,7 @@
                 <div class="col-12">
                     <div class="footer-social-area d-flex">
                         <div class="single-icon">
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i><span>facebook</span></a>
+                            <a href="https://www.facebook.com/profile.php?id=100000279160092"><i class="fa fa-facebook" aria-hidden="true"></i><span>facebook</span></a>
                         </div>
                         <div class="single-icon">
                             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i><span>Twitter</span></a>
@@ -38,13 +32,13 @@
                             <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>linkedin</span></a>
                         </div>
                         <div class="single-icon">
-                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+                            <a href="https://www.instagram.com/illilliili/"><i class="fa fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
                         </div>
                         <div class="single-icon">
                             <a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i><span>VIMEO</span></a>
                         </div>
                         <div class="single-icon">
-                            <a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i><span>YOUTUBE</span></a>
+                            <a href="https://www.youtube.com/channel/UClhecf7eOGHwbKW5e7l_pTA"><i class="fa fa-youtube-play" aria-hidden="true"></i><span>YOUTUBE</span></a>
                         </div>
                     </div>
                 </div>
@@ -100,7 +94,7 @@
                 <div class="col-12">
                     <!-- Copywrite Text -->
                     <div class="copy_right_text text-center">
-                        <p>Copyright @2018 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">CA106-G1</a></p>
+                        <p>Copyright @2019 All rights reserved | This web is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">CA106-G1</a></p>
                     </div>
                 </div>
             </div>
@@ -109,55 +103,5 @@
 
     <!-- ****** Footer Menu Area End ****** -->
 	
-	
-	
-<!-- Jquery-2.2.4 js -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap-4 js -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins JS -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/others/plugins.js"></script>
-    <!-- Active JS -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/active.js"></script>	
-    <script>
-
-		var MyPoint_footer = "/ForTicketorderServlet_ws/${memVO.member_no}";
-		var host_footer = window.location.host;
-		var path_footer = window.location.pathname;
-		var webCtx_footer = path_footer.substring(0, path_footer.indexOf('/', 1));
-		var endPointURL_footer = "ws://" + host_footer + webCtx_footer + MyPoint_footer;
-		
-		var webSocket_map;
-		var isMe_footer = false;
-		
-		function connect_footer() {
-			// create a websocket
-			webSocket_map = new WebSocket(endPointURL_footer);
-			webSocket_map.onopen = function(event) {
-		// 			alert("i'm start.");
-			};
-		
-			webSocket_map.onmessage = function(event) {
-				if(isMe_footer){return;}
-				var jsonArray = JSON.parse(event.data);
-				var action = jsonArray[0].action;
-					
-				if(action == "amember"){
-					//如果是給這個會員的
-					alert(jsonArray[1].message);		
-				}
-			};
-		
-			webSocket_map.onclose = function(event) {};
-		}
-		
-		function init(){
-			connect_footer();
-		}
-		
-		$(document).ready(init);
-	</script>
 </body>
 </html>
