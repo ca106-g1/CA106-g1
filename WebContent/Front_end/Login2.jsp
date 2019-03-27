@@ -120,38 +120,38 @@ width:20px;
 
 <!-- <神奇小按鈕> -->
 
-<img class="login2" src="<%=request.getContextPath()%>/Front_end/img/popcorn.jpg" height="20" width="20"
-						onclick="idwrite4(this)">
+<%-- <img class="login2" src="<%=request.getContextPath()%>/Front_end/img/popcorn.jpg" height="20" width="20" --%>
+<!-- 						onclick="idwrite4(this)"> -->
 						
-<img class="login2" src="<%=request.getContextPath()%>/Front_end/img/popcorn.jpg" height="20" width="20"
-						onclick="idwrite5(this)">
+<%-- <img class="login2" src="<%=request.getContextPath()%>/Front_end/img/popcorn.jpg" height="20" width="20" --%>
+<!-- 						onclick="idwrite5(this)"> -->
 						
-<img class="login2" src="<%=request.getContextPath()%>/Front_end/img/popcorn.jpg" height="20" width="20"
-						onclick="idwrite6(this)">						
+<%-- <img class="login2" src="<%=request.getContextPath()%>/Front_end/img/popcorn.jpg" height="20" width="20" --%>
+<!-- 						onclick="idwrite6(this)">						 -->
 						
 
-<script>
+<!-- <script> -->
 
-function idwrite4(name){
-	form2.member_account.value="davidwu";
-	form2.member_password.value="1314520";
+// function idwrite4(name){
+// 	form2.member_account.value="davidwu";
+// 	form2.member_password.value="1314520";
 	
-}
+// }
 
 
-function idwrite5(name){
-	form2.member_account.value="A123456";
-	form2.member_password.value="123456";
+// function idwrite5(name){
+// 	form2.member_account.value="A123456";
+// 	form2.member_password.value="123456";
 	
-}
+// }
 
 
-function idwrite6(name){
-	form2.member_account.value="nico520";
-	form2.member_password.value="777";
+// function idwrite6(name){
+// 	form2.member_account.value="nico520";
+// 	form2.member_password.value="777";
 	
-}
-</script>
+// }
+<!-- </script> -->
 <%session.setAttribute("myself",request.getParameter("myself")); %>						
 						
 	<!-- 工作區結束 -->
