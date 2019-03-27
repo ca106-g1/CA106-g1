@@ -15,7 +15,7 @@
 <title>購票須知</title>
 </head>
 <body>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header.jsp" />
 
 	<!-- 工作區開始 -->
 	<div class="container">
@@ -170,7 +170,7 @@ JOIN影城將依一般合理之技術及方式，維持系統及服務之正常�
 	
 	<!-- 工作區結束 -->
 	
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>

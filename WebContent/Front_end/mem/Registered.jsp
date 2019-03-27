@@ -50,15 +50,15 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 
 </head>
 <body>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
 
 	<div class="container">
 		<div class="row justify-content">
-			<div class="col-1"></div>
-			<div class="col-12">
+			<div class="col-3"></div>
+			<div class="col-9">
 
 				<div>
 					<h1>Join揪影註冊頁面</h1>
@@ -400,7 +400,7 @@ $(document).ready(function(){
 						})
 	</script>
 
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>

@@ -15,19 +15,24 @@
 <title></title>
 </head>
 <body>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Header.jsp" />
 	<h1></h1>
 
 	<!-- 工作區開始 -->
+	<div class="container" style="margin-top: 80px">
+		<div class="row justify-content-center">
+			<div class="col-6">
 
 重設密碼信件已寄出，請至EMAIL收取信件!<br>
 
-<h4><a href = "<%=request.getContextPath()%>/Front_end/Login.jsp">回首頁</a></h4>
+<h4><input type="button" value="回首頁"
+				style="padding: 5px 15px; background: white; border: 1 none; color: #969696; cursor: pointer; -webkit-border-radius: 5px; border-radius: 5px;"
+				onclick="location.href='<%=request.getContextPath()%>/Front_end/Login.jsp'"></h4>
 
-
+</div></div></div>
 	<!-- 工作區結束 -->
 	
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/FrontHeaderFooter/FrontBootstrapHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>
