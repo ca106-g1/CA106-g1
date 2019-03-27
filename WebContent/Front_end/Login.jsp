@@ -140,7 +140,7 @@ margin-top: 50px;
 <script>
 
 function idwrite(name){
-	form1.member_account.value="peter520";
+	form1.member_account.value="davidwu";
 	form1.member_password.value="1314520";
 	
 }

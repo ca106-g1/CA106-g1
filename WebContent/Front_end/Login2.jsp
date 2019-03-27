@@ -133,7 +133,7 @@ width:20px;
 <script>
 
 function idwrite4(name){
-	form2.member_account.value="peter520";
+	form2.member_account.value="davidwu";
 	form2.member_password.value="1314520";
 	
 }

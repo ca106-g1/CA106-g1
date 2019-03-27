@@ -227,11 +227,11 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 					<script>
 	function idwrite(name){
 		
-		form1.member_account.value="peter520";
+		form1.member_account.value="davidwu";
 		form1.member_password.value="1314520";
 		form1.member_password1.value="1314520";
-		form1.member_name.value="大吳";
-		form1.member_nick.value="吳神";
+		form1.member_name.value="DAVID";
+		form1.member_nick.value="seafood";
 		form1.member_sex.value="1";
 		form1.f_date.value="2018-03-29";
 		form1.member_address.value="桃園市中壢區中大路1號";
