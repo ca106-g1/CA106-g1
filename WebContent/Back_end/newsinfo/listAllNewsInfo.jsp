@@ -131,16 +131,6 @@ th, td {
 												<input type="hidden" name="action" value="getOne_For_Update">
 											</FORM>
 										</td>
-										<td>
-											<FORM METHOD="post"
-												ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do"
-												style="margin-bottom: 0px;">
-												<button type="submit" class="btn btn-danger">刪除</button>
-<!-- 												<input type="submit" value="刪除">  -->
-												<input type="hidden" name="news_no" value="${newsinfoVO.news_no}">
-												<input type="hidden" name="action" value="delete">
-											</FORM>
-										</td>
 									</tr>
 								</c:forEach>
 							</table>

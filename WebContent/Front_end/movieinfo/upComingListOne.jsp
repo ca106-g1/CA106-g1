@@ -334,11 +334,11 @@
 									     <input type="hidden" name="action"	value="noexp">
 	                            	</div>
 	                            	
-	                            	<div id="voteResultDiv" style="display:none">
-	                            		<div class="card-body" id="voteResult">
-							             <input type="text" class="knob charcahar" value="${(movieinfoVO.movie_exp/(movieinfoVO.movie_exp+movieinfoVO.movie_noexp))*100}" data-width="80" data-height="80" data-fgColor="#31c92e" data-readonly="true" >
-							             <div class="knob-label"></div>
-						            </div>
+<!-- 	                            	<div id="voteResultDiv" style="display:none"> -->
+<!-- 	                            		<div class="card-body" id="voteResult"> -->
+<%-- 							             <input type="text" class="knob charcahar" value="${(movieinfoVO.movie_exp/(movieinfoVO.movie_exp+movieinfoVO.movie_noexp))*100}" data-width="80" data-height="80" data-fgColor="#31c92e" data-readonly="true" > --%>
+<!-- 							             <div class="knob-label"></div> -->
+<!-- 						            </div> -->
 						            
 	                            	</div>
 	                            	
@@ -545,7 +545,7 @@
 					element.parent().text(parseInt((parseInt(response.exp)/sum)*100)+"%");
 					$('#exp2').remove();
 					$('#noexp2').remove();
-					$('#voteResultDiv').css("display","inline");
+// 					$('#voteResultDiv').css("display","inline");
 				},
 				error:function(data, textStatus, jqXHR){
 					console.log('Ajax Error');

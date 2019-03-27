@@ -153,13 +153,6 @@ pageContext.setAttribute("msc",moviegenreSvc);
 						     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
 						     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 						</td>
-						<td>
-						  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/movieinfo/movieinfo.do" style="margin-bottom: 0px;">
-						     <button type="submit" class="btn btn-danger">刪除</button>
-<!-- 						     <input type="submit" value="刪除"> -->
-						     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-						     <input type="hidden" name="action" value="delete"></FORM>
-						</td>
 					</tr>
 				</c:forEach>
 			</table>

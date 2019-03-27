@@ -116,12 +116,9 @@ th, td {
 								</c:if>
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
 								<tr>
-									<td nowrap="nowrap">電影名稱:</td>
-									<td><select name="movie_no">
-											<c:forEach var="genrename" items="${listgenre}" varStatus="s">
-												<option value="${s.count}">${genrename.genre_name}</option>
-											</c:forEach>
-									</select></td>
+									<td nowrap="nowrap">電影編號:</td>
+									<td><input type="TEXT" name="movie_no" size="45"
+										value="<%=(newsinfoVO == null) ? "請輸入電影編號" : newsinfoVO.getMovie_no()%>" /></td>
 								</tr>
 								<tr>
 									<td nowrap="nowrap">專欄標題:<font color=red><b>*</b></font></td>
