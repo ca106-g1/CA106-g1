@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.mem.model.*"%>  
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ page import="com.mem.model.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +59,9 @@
                     </div>
                 </div>
                 <!--  Login Register Area -->
-                <c:if test="${empty memVO}">
+                <div class="col-7 col-sm-6">
+                    <div class="signup-search-area d-flex align-items-center justify-content-end">
+                        <c:if test="${empty memVO}">
 						
 						
 							<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button"
@@ -79,6 +82,9 @@
 							</a></li>
 							
 						
+<!-- 						<button style="background-color:white ; color:black; border:0px"  id="openloginDescription" type="button" -->
+<%-- 								class="btn btn-primary"  onclick="location.href='<%=request.getContextPath()%>/Front_end/Login.jsp'"> --%>
+<!-- 								Logout</button> -->
 
 						<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/Front_end/mem/logoutHandler.do">
 							<input type="submit" value="logout">
@@ -86,6 +92,8 @@
 						</FORM>
 						
 						</c:if>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -154,6 +162,39 @@
         </div>
     </header>
     <!-- ****** Header Area End ****** -->
+    <div class="modal fade" id="loginDescription" tabindex="-1" role="dialog" aria-labelledby="loginDescriptionTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    	
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginDescriptionTitle">Join揪影影城登入系統</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="loginDescription_modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="closeiframe" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- 子傑登入js -->
+	<script>
+	function openloginDescription(e){
+		$('#loginDescription_modal-body').load('<%=request.getContextPath()%>/Front_end/Login2.jsp?myself=<%=request.getRequestURI()%>');
+	}
+	
+	function openfdDescriptioninheader(e){
+		$('#fdDescription_modal-body-inheader').load('<%=request.getContextPath()%>/Front_end/farediscount/fdDescription.jsp');
+		}
+
+		$(document).ready(function() {
+			$('#openfdDescriptioninheader').click(openfdDescriptioninheader);
+			$('#openloginDescription').click(openloginDescription);
+		});
+	</script>
 
 </body>
 </html>
