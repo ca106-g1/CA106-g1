@@ -75,6 +75,7 @@
 						var src = $(this).attr('data-href');
 						$('#iframe').attr('src', src);
 					});
+			$('.iframe_contruler')[0].click();
 		}
 		</script>
 		
