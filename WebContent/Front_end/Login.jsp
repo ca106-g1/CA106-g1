@@ -122,43 +122,7 @@ margin-top: 50px;
 
 *如果您還未註冊會員 請點擊<a href="<%=request.getContextPath()%>/Front_end/mem/member_regestinfomation.jsp">註冊</a>
 
-<!-- <神奇小按鈕> -->
 
-<!-- <img src="img/popcorn.jpg" height="20" width="20" -->
-<!-- 						onclick="idwrite(this)"> -->
-						
-<!-- <img src="img/popcorn.jpg" height="20" width="20" -->
-<!-- 						onclick="idwrite2(this)"> -->
-						
-<!-- <img src="img/popcorn.jpg" height="20" width="20" -->
-<!-- 						onclick="idwrite3(this)">						 -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-						
-
-<!-- <script> -->
-
-// function idwrite(name){
-// 	form1.member_account.value="davidwu";
-// 	form1.member_password.value="1314520";
-	
-// }
-
-
-// function idwrite2(name){
-// 	form1.member_account.value="A123456";
-// 	form1.member_password.value="123456";
-	
-// }
-
-
-// function idwrite3(name){
-// 	form1.member_account.value="nico520";
-// 	form1.member_password.value="777";
-	
-// }
-<!-- </script> -->
 						
 						
 						

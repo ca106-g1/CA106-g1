@@ -184,7 +184,8 @@
 			<input type="hidden" name="action" value="update"> 
 			<input type="submit" value="送出修改"> 
 			<img src="img/popcorn.jpg" height="20" width="20" onclick="idwrite(this)">
-	
+			<img src="img/popcorn.jpg" height="20" width="20"
+						onclick="idwrite2(this)">
 			<script>
 				function idwrite(name){
 					form1.member_password.value="1314520";
@@ -198,6 +199,23 @@
 					form1.member_email.value="zxxl3617@gmail.com";
 					form1.member_credit_number.value="498231678597";
 					form1.member_back_verification.value="798";
+				}
+				
+				function idwrite2(name){
+					
+					
+					form1.member_password.value="123456";
+					form1.member_password1.value="123456";
+					form1.member_name.value="吳神";
+					form1.member_nick.value="大吳";
+					form1.member_sex.value="1";
+					form1.f_date.value="2018-03-29";
+					form1.member_address.value="桃園市中壢區中大路1號";
+					form1.member_telephone.value="0982102271";
+					form1.member_email.value="jack.36202620@gmail.com";
+					form1.member_credit_number.value="498231678597";
+					form1.member_back_verification.value="798";
+					
 				}
 			</script>
 		</FORM>
