@@ -1,4 +1,7 @@
 
+<%@page import="java.util.LinkedHashSet"%>
+<%@page import="java.util.Set"%>
+<%@page import="com.dep.model.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -76,8 +79,8 @@
 						</FORM>
 					</li>
 
-					<jsp:useBean id="depSvc" scope="page"
-						class="com.dep.model.DepService" />
+					<jsp:useBean id="depSvc" scope="page" class="com.dep.model.DepService" />
+					<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 
 					<li>
 						<FORM METHOD="post" ACTION="dep.do">
@@ -92,14 +95,25 @@
 					</li>
 
 					<li>
-						<FORM METHOD="post" ACTION="dep.do">
-							<b>選擇會員編號:</b> <select size="1" name="deposit_change_no">
-								<c:forEach var="depVO" items="${depSvc.all}">
-									<option value="${depVO.deposit_change_no}">${depVO.deposit_member_no}
+					
+					<%
+					Set<String> set = new LinkedHashSet<String>();
+					pageContext.setAttribute("set", set);
+					for(DepVO depVO : depSvc.getAll()){
+						set.add(depVO.getDeposit_member_no());
+					}
+					
+					%>
+					
+						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/dep/listOneDep.jsp">
+							<b>選擇會員帳號:</b> 
+							<select size="1" name="member_no">
+								<c:forEach var="member_no" items="${set}">
+									<option value="${member_no}">${memSvc.getoneMem(member_no).member_account}
 								</c:forEach>
-							</select> <input type="hidden" name="action"
-								value="getOne_For_Display_Back"> <input type="submit"
-								value="送出">
+							</select> 
+							<input type="hidden" name="action" value="getOne_For_Display_Back"> 
+							<input type="submit" value="送出">
 						</FORM>
 					</li>
 				</ul>
