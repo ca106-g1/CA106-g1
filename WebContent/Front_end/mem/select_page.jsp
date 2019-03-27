@@ -46,8 +46,8 @@
 				   <button type="button" class="btn btn-primary iframe_contruler" data-href="<%=request.getContextPath()%>/Front_end/mem/memNotice.jsp">會員首頁</button>
 			 	   <button type="button" class="btn btn-outline-secondary iframe_contruler" data-href="<%=request.getContextPath()%>/Front_end/mem/listOneMem.jsp">會員資料查看</button>
 			 	   <button type="button" class="btn btn-outline-secondary iframe_contruler" data-href="<%=request.getContextPath()%>/Front_end/mem/update_mem_input2.jsp">個人資料修改</button>
-			 	   <button type="button" class="btn btn-outline-secondary iframe_contruler" data-href="<%=request.getContextPath()%>/Front_end/dep/listOneDep_Mem.jsp">購票紀錄查詢</button>
-			 	   <button type="button" class="btn btn-outline-secondary iframe_contruler" data-href="<%=request.getContextPath()%>/Front_end/ticketorder_/listOneTic_Mem2.jsp">Join儲值錢包查詢</button>
+			 	   <button type="button" class="btn btn-outline-secondary iframe_contruler" data-href="<%=request.getContextPath()%>/Front_end/ticketorder_/listOneTic_Mem2.jsp">購票紀錄查詢</button>
+			 	   <button type="button" class="btn btn-outline-secondary iframe_contruler" data-href="<%=request.getContextPath()%>/Front_end/dep/listOneDep_Mem.jsp">Join儲值錢包查詢</button>
 			 	   <button id="actionForm" type="button" class="btn btn-outline-secondary">Join儲值錢包新增</button>
 				</div>
 			  </div>
