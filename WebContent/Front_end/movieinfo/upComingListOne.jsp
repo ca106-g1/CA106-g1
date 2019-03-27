@@ -223,7 +223,6 @@
                             <li class="breadcrumb-item"><a href="#">Movie Info</a></li>
                             <li class="breadcrumb-item"><a href="#">Soon Be On List</a></li>
                             <li class="breadcrumb-item"><a href="#">Soon Be On</a></li>
-                            
                         </ol>
                     </nav>
                 </div>
@@ -320,22 +319,20 @@
 								<%}else{%> <%}%>
 								<div></div>
 								
-								<h4 class="font-shadow-into-light"> </h4>
+<br>
 								<div class="widget-title text-center">
 	                                <h6>Expect Vote</h6>
 	                            	</div>
-										<tr>
-											<td>
-											     <input type="button" class="expect" id="exp2" value="期待">
-											     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-											     <input type="hidden" name="action"	value="exp">
-											</td>
-											<td>
-											     <input type="button" class="noexpect" id="noexp2" value="不期待">
-											     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
-											     <input type="hidden" name="action"	value="noexp">
-											</td>
-										</tr>
+	                            	<div>
+								     <input type="button" class="expect btn btn-danger" id="exp2" value="期待">
+								     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
+								     <input type="hidden" name="action"	value="exp">
+								     
+								     
+								     <input type="button" class="noexpect btn btn-danger" id="noexp2" value="不期待">
+								     <input type="hidden" name="movie_no"  value="${movieinfoVO.movie_no}">
+								     <input type="hidden" name="action"	value="noexp">
+	                            	</div>
 	                            </div>
 	                        </div>
 
@@ -530,6 +527,8 @@
 					var sum = parseInt(response.exp)+parseInt(response.noexp);
 					console.log((parseInt(response.exp)/sum)*100);
 					element.parent().text(parseInt((parseInt(response.exp)/sum)*100)+"%");
+// 					$('input[id=exp2]').remove();
+// 					$('input[id=noexp2]').remove();
 					$('#exp2').remove();
 					$('#noexp2').remove();
 									
@@ -559,8 +558,9 @@
 					var sum = parseInt(response.exp)+parseInt(response.noexp);
 					console.log((parseInt(response.exp)/sum)*100);
 					element.parent().text(parseInt((parseInt(response.exp)/sum)*100)+"%");
+// 					$('input[id=exp2]').remove();
+// 					$('input[id=noexp2]').remove();
 					$('#exp2').remove();
-					$('#noexp2').parent().remove();
 					$('#noexp2').remove();
 									
 				},

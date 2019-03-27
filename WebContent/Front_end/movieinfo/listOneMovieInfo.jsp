@@ -491,8 +491,8 @@
 	</footer>
 	<!-- ****** Footer Menu Area End ****** --> 
 	
-	<!--     Jquery-2.2.4 js -->
-    <script src="<%=request.getContextPath()%>/Front_end/Home/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Jquery-2.2.4 js -->
+<script src="<%=request.getContextPath()%>/Front_end/Home/js/jquery/jquery-2.2.4.min.js"></script>
 <!--     Popper js -->
     <script src="<%=request.getContextPath()%>/Front_end/Home/js/bootstrap/popper.min.js"></script>
 <!--     Bootstrap-4 js -->
