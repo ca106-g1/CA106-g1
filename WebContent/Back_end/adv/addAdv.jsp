@@ -91,7 +91,7 @@
 	<tr>
 		<th scope="col">廣告名稱:</th>
 		<td><input type="TEXT" name="ad_name" size="90" 
-			 value="<%= (advVO==null)? "全世界不可錯過的20大節日" : advVO.getAd_name()%>" /></td>
+			 value="<%= (advVO==null)? "" : advVO.getAd_name()%>" /></td>
 	</tr>
 	
 	<tr>
