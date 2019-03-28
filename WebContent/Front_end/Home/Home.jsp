@@ -233,7 +233,9 @@ input {
 									href="<%=request.getContextPath()%>/Front_end/newsinfo/listAllNewsInfo.jsp">Movie
 										News</a></li>
 								<!--影視新聞 -->
-								<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">會員首頁</a>
+<c:if test="${memVO != null}">
+								<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">Member</a>
+</c:if>
 								<!--會員功能 -->
 								<li class="nav-item"><a class="nav-link" href="#">About</a>
 								</li>
