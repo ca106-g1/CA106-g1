@@ -592,7 +592,7 @@ public class memberServlet extends HttpServlet {
 				System.out.println("檢查點16");
 				e.printStackTrace();
 
-				errorMsgs.add(e.getMessage());
+				errorMsgs.add("請確認未輸入欄位");
 				RequestDispatcher failureView = req.getRequestDispatcher("/Front_end/mem/Registered.jsp");
 				failureView.forward(req, res);
 			}
