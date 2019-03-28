@@ -514,7 +514,8 @@ public class MovieInfoServlet extends HttpServlet {
 				} else if (!movie_name.trim().matches(movie_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("電影名稱: 只能是中、英文字母、數字和_ , 且長度必需在1到10之間");
 				}
-				Double movie_score = 0.0;
+				Double movie_score = Double.parseDouble(req.getParameter("movie_score"));
+				
 				byte[] movie_level = null;
 				try {
 					Part part = req.getPart("movie_level");

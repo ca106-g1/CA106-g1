@@ -39,7 +39,7 @@
 						cal.setTime(new java.util.Date());
 						int now_year = cal.get(Calendar.YEAR);
 						
-						for(int i = 2009; i < now_year; i++){ 
+						for(int i = 2008; i <= now_year; i++){ 
 						%>
 							<div class="col-1">
 								<button type="button" class="btn btn-dark" id="<%=i %>"><%=i %>年</button>
@@ -70,7 +70,7 @@
 $(document).ready(init);
 	function init(){
 		var years = <%=now_year%>;
-		for(var i = 2008; i< years; i++){
+		for(var i = 2008; i<= years; i++){
 			var element = $('#'+i);
 			element.click(
 				function(){

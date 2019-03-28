@@ -115,15 +115,23 @@ th, td {
 									</ul>
 								</c:if>
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Back_end/newsinfo/newsinfo.do" name="form1" enctype="multipart/form-data">
+								
+								
 								<tr>
 									<td nowrap="nowrap">專欄編號:<font color=red><b>*</b></font></td>
 									<td><%=newsinfoVO.getNews_no()%></td>
 								</tr>
+						<jsp:useBean id="movieinfoSvc" scope="page" class="com.movieinfo.model.MovieInfoService"/>
+								
 								<tr>
-									<td nowrap="nowrap">電影編號:</td>
-									<td><input type="TEXT" name="movie_no" size="45"
-										value="${newsinfoVO.movie_no}" /></td>
-								</tr>
+										<td nowrap="nowrap">電影名稱:<font color=red size="2"><b>*</b></font></td>
+										<td><select size="1" name="movie_no">
+												<c:forEach var="moviename" items="${movieinfoSvc.all}"
+													varStatus="s">
+													<option value="${moviename.movie_no}">${moviename.movie_name}</option>
+												</c:forEach>
+										</select></td>
+									</tr>
 								<tr>
 									<td nowrap="nowrap">專欄標題:<font color=red><b>*</b></font></td>
 									<td><input type="TEXT" name="news_title" size="45"

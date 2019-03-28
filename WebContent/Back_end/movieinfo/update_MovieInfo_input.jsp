@@ -128,7 +128,7 @@ th, td {
 									<td>電影種類:<font color=red size="2"><b>*</b></font></td>
 									<td><select size="1" name="genre_no">
 											<c:forEach var="genrename" items="${listgenre}" varStatus="s">
-												<option value="${s.count}">${genrename.genre_name}</option>
+												<option value="${genrename.genre_no}">${genrename.genre_name}</option>
 											</c:forEach>
 									</select></td>
 								</tr>

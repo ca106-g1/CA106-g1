@@ -31,7 +31,8 @@ public class MovieInfoDAO implements MovieInfoDAO_interface {
 	private static final String GET_ALL_STMT_BY_NO = 
 			"SELECT * FROM movieinfo order by movie_no";
 	private static final String GET_ALL_STMT_SCORE = 
-			"SELECT * FROM movieinfo where rownum < 11 and movie_in BETWEEN ? AND ? order by movie_score desc ";
+			"SELECT * FROM(SELECT * FROM movieinfo where movie_in BETWEEN ? AND ? order by movie_score desc) WHERE ROWNUM <11";
+//			"SELECT * FROM movieinfo where rownum < 11 and movie_in BETWEEN ? AND ? order by movie_score desc ";
 	private static final String GET_ONE_STMT = 
 			"SELECT * FROM movieinfo where movie_no = ?";
 	private static final String DELETE = 

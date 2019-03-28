@@ -119,7 +119,7 @@ th, td {
 										<td><select size="1" name="genre_no">
 												<c:forEach var="genrename" items="${listgenre}"
 													varStatus="s">
-													<option value="${s.count}">${genrename.genre_name}</option>
+													<option value="${genrename.genre_no}">${genrename.genre_name}</option>
 												</c:forEach>
 										</select></td>
 									</tr>
@@ -133,8 +133,8 @@ th, td {
 
 									<tr>
 										<td nowrap="nowrap">電影分數:</td>
-										<td><input type="TEXT" id="movie_score"
-											name="movie_score" size="45" placeholder="ex:8.0" /></td>
+										<td><input type="TEXT" id="movie_score" name="movie_score" size="45" placeholder="ex:8.0" 
+											value="<%=(movieinfoVO == null) ? "" : movieinfoVO.getMovie_score()%>"/></td>
 									</tr>
 
 									<tr>
