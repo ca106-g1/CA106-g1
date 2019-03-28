@@ -158,7 +158,10 @@ th, td {
 								<tr>
 								<td><input type="hidden" name="action" value="insert"></td>
 								<td><button type="submit" class="btn btn-primary">送出</button>
-								<button type="button" class="btn btn-danger" onclick="history.back()">取消</button></td>
+								<button type="button" class="btn btn-danger" onclick="history.back()">取消</button>
+								<img id="button" width="20" height="20"
+											src="<%=request.getContextPath()%>/Back_end/movieinfo/images/spiderman.jpg"
+											onclick="newsinsert(this)"></td>
 								</tr>
 								</FORM>
 							</table>
@@ -273,6 +276,13 @@ th, td {
 
 			}
 			reader.readAsDataURL(input.files[0]);
+		}
+		
+        function newsinsert(name){
+			form1.news_title.value="資策會的辛酸血淚你懂嗎";
+			form1.news_auther.value="David Seafood";
+			form1.news_times.value="2019-03-29";
+			
 		}
         
 </script>
