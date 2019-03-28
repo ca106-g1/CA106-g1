@@ -67,10 +67,10 @@ td{white-space: nowrap; overflow:hidden;word-break:break-all;} /*防止換行*/
 				<%--錯誤表列 --%>
 
 				<c:if test="${not empty errorMsgs }">
-					<font style="color: red">請修正以下錯誤:</font>
-					<ul>
+					<font style="color: #DC143C ; font-weight:bold">請修正以下錯誤:</font>
+					<ul style="list-style-type:circle; font-weight:bold ">
 						<c:forEach var="message" items="${errorMsgs}">
-							<li style="color: red">${message}</li>
+							<li style="color:#1E90FF ">${message}</li>
 						</c:forEach>
 					</ul>
 				</c:if>
