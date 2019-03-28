@@ -127,13 +127,13 @@
 								
 		<script>
 			function idwrite(name){
-				form1.employee_name.value="DAVID";
+				form1.employee_name.value="ALICE";
 				form1.employee_password.value="123456";
 				
 			}
 			
 			function idwrite2(name){
-				form1.employee_name.value="PETER";
+				form1.employee_name.value="SEAFOOD";
 				form1.employee_password.value="123456";
 				
 			}
