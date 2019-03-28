@@ -284,7 +284,7 @@
                                             </div>
                                              <!-- Post Director -->
                                             <div class="movie_ticket">
-                                                <a href="#">+${movieinfoVO.movie_ticket}</a>
+                                                <a href="#">price+${movieinfoVO.movie_ticket}</a>
                                             </div>
                                         </div>
                                     </div>
