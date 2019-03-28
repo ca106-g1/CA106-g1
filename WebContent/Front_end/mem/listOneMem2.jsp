@@ -52,8 +52,7 @@
 		<th scope="col">會員電話</th>
 		<th scope="col">會員信箱</th>
 		<th scope="col">會員圖片</th>
-		<th scope="col">會員信用卡</th>
-		<th scope="col">會員驗證碼</th>
+		
 		<th scope="col">會員建立日期</th>
 		<th scope="col">會員儲值點數</th>
 		<th scope="col">會員狀態</th>
@@ -74,8 +73,7 @@
 		<td>
 			<img src='<%= request.getContextPath() %>/Front_end/mem/mem.do?member_no=${memVO.member_no}' width='200' height = '200'/>
 		</td>
-		<td><%=memVO.getMember_credit_number()%></td>
-		<td><%=memVO.getMember_back_verification()%></td>
+		
 		<td><%=memVO.getMember_buildday()%></td>
 		<td><%=memVO.getMember_point()%></td>
 		<td>${memVO.member_status eq 1?"已驗證":"未驗證"}</td>

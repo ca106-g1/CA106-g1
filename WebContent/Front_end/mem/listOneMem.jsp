@@ -104,14 +104,7 @@
 			<img src='<%= request.getContextPath() %>/Front_end/mem/mem.do?member_no=${memVO.member_no}' width='200' height = '200'/>
 		</td>
 	</tr>	
-	<tr>	
-		<th scope="col">會員信用卡</th>
-		<td><%=memVO.getMember_credit_number()%></td>
-	</tr>	
-	<tr>	
-		<th scope="col">會員驗證碼</th>
-		<td><%=memVO.getMember_back_verification()%></td>
-	</tr>	
+		
 	<tr>	
 		<th scope="col">會員建立日期</th>
 		<td><%=memVO.getMember_buildday()%></td>
