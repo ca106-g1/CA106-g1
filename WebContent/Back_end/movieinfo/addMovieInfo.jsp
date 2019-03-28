@@ -274,7 +274,7 @@ th, td {
 			form1.movie_out.value="2019-05-03";
 			form1.movie_exp.value="100000";
 			form1.movie_noexp.value="0";
-			form1.movie_ticket.value="50";
+			form1.movie_ticket.value="120000";
 		}
 	</script>
 	
