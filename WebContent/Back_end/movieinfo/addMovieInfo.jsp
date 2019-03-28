@@ -264,18 +264,17 @@ th, td {
 		}
 		
 		function movieinsert(name){
-			form1.movie_name.value="資策會的辛酸血淚";
+			form1.movie_name.value="JAVA的辛酸血淚";
 			form1.movie_score.value="9.9";
 			form1.movie_director.value="吳永志";
 			form1.movie_cast.value="台下的各位";
 			form1.movie_intro.value="一段愛與勇氣的故事";
 			form1.movie_length.value="2hr30min";
-			form1.movie_trailer.value="https://www.youtube.com/embed/6RBYmR5GesQ";
-			form1.movie_in.value="2018-10-09";
-			form1.movie_out.value="2019-04-03";
+			form1.movie_in.value="2019-03-28";
+			form1.movie_out.value="2019-05-03";
 			form1.movie_exp.value="100000";
 			form1.movie_noexp.value="0";
-			form1.movie_ticket.value="1500";
+			form1.movie_ticket.value="50";
 		}
 	</script>
 	

@@ -279,7 +279,7 @@ th, td {
 		}
 		
         function newsinsert(name){
-			form1.news_title.value="資策會的辛酸血淚你懂嗎";
+			form1.news_title.value="2019最神的電影竟然是他";
 			form1.news_auther.value="David Seafood";
 			form1.news_times.value="2019-03-29";
 			
