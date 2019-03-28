@@ -98,7 +98,7 @@
   
   <li>
      <FORM METHOD="post" ACTION="adv.do" >
-       <b>選擇姓名:</b>
+       <b>選擇名稱:</b>
        <select size="1" name="ad_no">
          <c:forEach var="advVO" items="${advSvc.all}" > 
           <option value="${advVO.ad_no}">${advVO.ad_name}
