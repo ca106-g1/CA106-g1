@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <!-- Bootstrap CSS end-->
-<title>購票須知</title>
+<title>註冊須知</title>
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />

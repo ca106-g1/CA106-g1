@@ -56,7 +56,7 @@
 	
 						if (action == "amember") {
 							//如果是給這個會員的
-							swal(jsonArray[1].message);
+							alert(jsonArray[1].message);
 						}
 					};
 					webSocket_map.onclose = function(event) {

@@ -93,14 +93,9 @@
 <c:if test="${not empty memVO}">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent1">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item dropdown">
-						<a class='nav-link dropdown-toggle' href="#" id="navbarDropdown5" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						會員個人資料</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown5">
-								<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">會員首頁</a> 
-								<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/listOneMem.jsp">會員資料查看</a> 
-								<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/update_mem_input.jsp">會員資料修改</a> 
-							</div> </li></ul></div>
+						<li>
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/Front_end/mem/select_page.jsp">會員首頁</a> 
+						</li></ul></div>
 <!-- 以上會員個人資料 -->
 </c:if>
 <c:if test="${not empty memVO}">
